@@ -1,10 +1,8 @@
 package modelo.Usuarios;
 
-import interfaces.ITicketeable;
-import modelo.Formulario_de_Busqueda;
-import modelo.Tickets.Ticket_de_Busqueda_de_Empleado;
+import excepciones.TicketYaCreadoException;
+import modelo.Tickets.Formulario_de_Busqueda;
 import modelo.Tickets.Ticket_de_Busqueda_de_Empleo;
-import modelo.Usuarios.Usuario;
 
 import java.util.GregorianCalendar;
 
@@ -34,14 +32,36 @@ public class Empleado_Pretenso extends Usuario {
     }
 
     //GETTERS & SETTERS
-
-    //FUNCIONALIDADES
-    @Override
-    public void creaTicket(Formulario_de_Busqueda form , GregorianCalendar fechaAlta , String resultado ) {
-        Ticket_de_Busqueda_de_Empleado ticket = new Ticket_de_Busqueda_de_Empleo(form, fechaAlta, resultado);
-        if (this.ticketDeBusquedaDeEmpleo == null)
-            this.ticketDeBusquedaDeEmpleo = new Ticket_de_Busqueda_de_Empleo(form, fechaAlta, resultado);
+    public String getNombre() {
+        return nombre;
     }
 
+    public String getApellido() {
+        return apellido;
+    }
+
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public int getEdad() {
+        return edad;
+    }
+
+    public String geteMail() {
+        return eMail;
+    }
+
+    public Ticket_de_Busqueda_de_Empleo getTicketDeBusquedaDeEmpleo() {
+        return ticketDeBusquedaDeEmpleo;
+    }
+
+    //FUNCIONALIDADES
+    public void creaTicket(Formulario_de_Busqueda formulario, GregorianCalendar fechaAlta) throws TicketYaCreadoException {
+        if (this.ticketDeBusquedaDeEmpleo == null)
+            this.ticketDeBusquedaDeEmpleo = new Ticket_de_Busqueda_de_Empleo(formulario, fechaAlta);
+        else
+            throw new TicketYaCreadoException("No puede existir mas de un ticket.");
+    }
 
 }

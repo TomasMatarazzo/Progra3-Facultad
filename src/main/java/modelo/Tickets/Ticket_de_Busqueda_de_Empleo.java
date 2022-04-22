@@ -1,8 +1,5 @@
 package modelo.Tickets;
 
-import modelo.Formulario_de_Busqueda;
-import modelo.Tickets.Ticket;
-
 import java.util.GregorianCalendar;
 
 public class Ticket_de_Busqueda_de_Empleo extends Ticket {
@@ -13,4 +10,11 @@ public class Ticket_de_Busqueda_de_Empleo extends Ticket {
         super(formularioDeBusqueda, fechaDeAlta);
         this.resultado = null;
     }
+
+    //GETTERS
+    public String getResultado() {
+        return resultado;
+    }
+
+    //FUNCIONALIDADES
 }

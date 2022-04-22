@@ -1,8 +1,5 @@
 package modelo.Tickets;
 
-import modelo.Formulario_de_Busqueda;
-import modelo.Tickets.Ticket;
-
 import java.util.GregorianCalendar;
 
 public class Ticket_de_Busqueda_de_Empleado extends Ticket {
@@ -10,7 +7,7 @@ public class Ticket_de_Busqueda_de_Empleado extends Ticket {
     private int cantEmpleadosObtenidos;
 
     //CONSTRUCTOR
-    public Ticket_de_Busqueda_de_Empleado(Formulario_de_Busqueda formularioDeBusqueda, GregorianCalendar fechaDeAlta, int cantEmpleadosSolicitados, int cantEmpleadosObtenidos) {
+    public Ticket_de_Busqueda_de_Empleado(Formulario_de_Busqueda formularioDeBusqueda, GregorianCalendar fechaDeAlta, int cantEmpleadosSolicitados) {
         super(formularioDeBusqueda, fechaDeAlta);
         this.cantEmpleadosSolicitados = cantEmpleadosSolicitados;
         this.cantEmpleadosObtenidos = 0;

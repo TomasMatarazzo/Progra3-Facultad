@@ -29,7 +29,7 @@ public class Sistema {
 
     //FUNCIONALIDADES
     public void registrarUsuario(Usuario nuevo) {
-        //VALIDAR RESGISTRO
+        //VALIDAR REGISTRO
         usuarios.add(nuevo);
     }
 

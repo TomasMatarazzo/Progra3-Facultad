@@ -1,14 +1,13 @@
 package modelo.Usuarios.Empleadores;
 
-import interfaces.ITicketeable;
-import modelo.Formulario_de_Busqueda;
+import modelo.Tickets.Formulario_de_Busqueda;
 import modelo.Tickets.Ticket_de_Busqueda_de_Empleado;
 import modelo.Usuarios.Usuario;
 
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 
-public class Empleador extends Usuario implements ITicketeable {
+public class Empleador extends Usuario {
     private Persona tipoPersona;
     private String razonSocial;
     private String rubro; // salud, comercio local o comercio internacional
@@ -27,12 +26,14 @@ public class Empleador extends Usuario implements ITicketeable {
         this.rubro = rubro;
     }
 
-    //GETTERS & SETTERS
+    //GETTERS & ADDERS
 
     //FUNCIONALIDADES
-    @Override
-    public void creaTicket(Formulario_de_Busqueda form , GregorianCalendar fechaAlta , String resultado) {
-
+    public void creaTicket(Formulario_de_Busqueda formulario, GregorianCalendar fechaAlta, int cantidadEmpleadosSolicitados) {
+        Ticket_de_Busqueda_de_Empleado nuevo = new Ticket_de_Busqueda_de_Empleado(formulario,fechaAlta,cantidadEmpleadosSolicitados);
+        ticketsDeBusquedaDeEmpleado.add(nuevo);
     }
+
+
 
 }

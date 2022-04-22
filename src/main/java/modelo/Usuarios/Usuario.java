@@ -1,5 +1,9 @@
 package modelo.Usuarios;
 
+import modelo.Tickets.Formulario_de_Busqueda;
+
+import java.util.GregorianCalendar;
+
 public abstract class Usuario {
     protected String nombreUsuario;
     protected String contrasena;
@@ -14,6 +18,7 @@ public abstract class Usuario {
 
     //FUNCIONALIDADES
     public void login() {
-
+        System.out.println("HOLA");
     }
+
 }

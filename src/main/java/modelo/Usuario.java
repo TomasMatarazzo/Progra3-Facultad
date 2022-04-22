@@ -3,8 +3,17 @@ package modelo;
 public abstract class Usuario {
     protected String nombreUsuario;
     protected String contrasena;
-    protected String tipoPersona; // fisica o juridica
     protected int puntaje;
 
+    //CONSTRUCTORES
+    public Usuario(String nombreUsuario, String contrasena) {
+        this.nombreUsuario = nombreUsuario;
+        this.contrasena = contrasena;
+        this.puntaje = 0;
+    }
 
+    //FUNCIONALIDADES
+    public void login() {
+
+    }
 }

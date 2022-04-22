@@ -1,5 +1,9 @@
 package modelo;
 
+import modelo.Tickets.Ticket_de_Busqueda_de_Empleado;
+import modelo.Tickets.Ticket_de_Busqueda_de_Empleo;
+import modelo.Usuarios.Usuario;
+
 import java.util.ArrayList;
 
 public class Sistema {

@@ -1,9 +1,9 @@
 package prueba;
 
-import modelo.Empleado_Pretenso;
-import modelo.Empleador;
+import modelo.Usuarios.Empleado_Pretenso;
+import modelo.Usuarios.Empleadores.Empleador;
 import modelo.Sistema;
-import modelo.Usuario;
+import modelo.Usuarios.Usuario;
 
 public class Prueba {
     public static void main(String[] args) {

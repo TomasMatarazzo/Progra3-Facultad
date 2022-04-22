@@ -1,4 +1,6 @@
-package modelo;
+package modelo.Usuarios;
+
+import modelo.Sistema;
 
 //QUEDA EN DUDA EL TEMA DEL SINGLETON DE LA PROPIA AGENCIA --> RESOLVER
 public class Agencia extends Usuario {

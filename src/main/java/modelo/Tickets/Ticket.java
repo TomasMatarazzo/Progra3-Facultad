@@ -1,13 +1,17 @@
-package modelo;
+package modelo.Tickets;
+
+import modelo.Formulario_de_Busqueda;
+
+import java.util.GregorianCalendar;
 
 ///GREGORIAN CALENDAR CON LA FECHA DE ALTA --> COMPLETAR
 public abstract class Ticket {
     protected Formulario_de_Busqueda formularioDeBusqueda;
-    protected String fechaDeAlta;
+    protected GregorianCalendar fechaDeAlta;
     protected String estado; // activo-suspendido-cancelado-finalizado
 
     //CONSTRUCTOR
-    public Ticket(Formulario_de_Busqueda formularioDeBusqueda, String fechaDeAlta) {
+    public Ticket(Formulario_de_Busqueda formularioDeBusqueda, GregorianCalendar fechaDeAlta) {
         this.formularioDeBusqueda = formularioDeBusqueda;
         this.fechaDeAlta = fechaDeAlta;
         this.estado = "Activo";
@@ -30,6 +34,9 @@ public abstract class Ticket {
 
     public void finalizaTicket() {
         this.estado = "Finalizado";
+    }
+
+    public void creaTicket(Formulario_de_Busqueda formularioDeBusqueda, GregorianCalendar fechaDeAlta ){
     }
 
 }

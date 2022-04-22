@@ -1,4 +1,4 @@
-package modelo;
+package modelo.Usuarios;
 
 public abstract class Usuario {
     protected String nombreUsuario;

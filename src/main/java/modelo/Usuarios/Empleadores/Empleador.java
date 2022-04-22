@@ -1,8 +1,12 @@
-package modelo;
+package modelo.Usuarios.Empleadores;
 
 import interfaces.ITicketeable;
+import modelo.Formulario_de_Busqueda;
+import modelo.Tickets.Ticket_de_Busqueda_de_Empleado;
+import modelo.Usuarios.Usuario;
 
 import java.util.ArrayList;
+import java.util.GregorianCalendar;
 
 public class Empleador extends Usuario implements ITicketeable {
     private Persona tipoPersona;
@@ -27,7 +31,8 @@ public class Empleador extends Usuario implements ITicketeable {
 
     //FUNCIONALIDADES
     @Override
-    public void creaTicket() {
+    public void creaTicket(Formulario_de_Busqueda form , GregorianCalendar fechaAlta , String resultado) {
 
     }
+
 }

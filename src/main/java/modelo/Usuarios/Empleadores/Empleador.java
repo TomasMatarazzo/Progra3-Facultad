@@ -29,11 +29,9 @@ public class Empleador extends Usuario {
     //GETTERS & ADDERS
 
     //FUNCIONALIDADES
-    public void creaTicket(Formulario_de_Busqueda formulario, GregorianCalendar fechaAlta, int cantidadEmpleadosSolicitados) {
-        Ticket_de_Busqueda_de_Empleado nuevo = new Ticket_de_Busqueda_de_Empleado(formulario,fechaAlta,cantidadEmpleadosSolicitados);
+    public void creaTicket(Formulario_de_Busqueda formulario, GregorianCalendar fechaAlta, int cantidadEmpleadosSolicitados,int[] vecPesos) {
+        Ticket_de_Busqueda_de_Empleado nuevo = new Ticket_de_Busqueda_de_Empleado(formulario,fechaAlta,cantidadEmpleadosSolicitados,vecPesos);
         ticketsDeBusquedaDeEmpleado.add(nuevo);
     }
-
-
 
 }

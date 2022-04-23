@@ -3,7 +3,7 @@ package modelo;
 import modelo.Tickets.Ticket_de_Busqueda_de_Empleado;
 import modelo.Tickets.Ticket_de_Busqueda_de_Empleo;
 import modelo.Usuarios.Usuario;
-
+import modelo.listas.Listas;
 import java.util.ArrayList;
 
 public class Sistema {
@@ -11,6 +11,7 @@ public class Sistema {
     private ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
     private ArrayList<Ticket_de_Busqueda_de_Empleado> ticketsBusquedaEmpleados = new ArrayList<Ticket_de_Busqueda_de_Empleado>();
     private ArrayList<Ticket_de_Busqueda_de_Empleo> ticketsBusquedaEmpleo = new ArrayList<Ticket_de_Busqueda_de_Empleo>();
+    private ArrayList<Listas> listas = new ArrayList<Listas>();
 
     //PATRON SINGLETON
     private Sistema() {

@@ -6,8 +6,7 @@ import modelo.Sistema;
 public class Agencia extends Usuario {
     private static Agencia instance = null;
     private static Sistema sistema = Sistema.getInstance();
-
-
+    
     //PATRON SINGLETON
     private Agencia(String nombreUsuario, String contrasena) {
         super(nombreUsuario, contrasena);

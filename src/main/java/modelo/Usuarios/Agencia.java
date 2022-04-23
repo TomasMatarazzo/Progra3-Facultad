@@ -6,8 +6,7 @@ import modelo.Sistema;
 public class Agencia extends Usuario {
     private static Agencia instance = null;
     private static Sistema sistema = Sistema.getInstance();
-
-
+    
     //PATRON SINGLETON
     private Agencia(String nombreUsuario, String contrasena) {
         super(nombreUsuario, contrasena);
@@ -20,6 +19,43 @@ public class Agencia extends Usuario {
     }
 
     //FUNCIONALIDADES
+    //2.
+    public void muestraEmpleadores() {
+        System.out.println("Lista de empleadores: ");
+        for (int i = 1;i < sistema.getEmpleadores().size();i++) {
+                System.out.println(sistema.getEmpleadores().get(i));
+        }
+    }
+
+    public void muestraSolicitudesEmpleadores() {
+        Empleador auxEmpleador;
+
+        System.out.println("Lista de solicitudes de empleadores: ");
+        for (int i = 1;i < sistema.getEmpleadores().size();i++) {
+            auxEmpleador = sistema.getEmpleadores().get(i);
+            System.out.println("    " + auxEmpleador.nombreUsuario + ": ");
+            for (int j = 0;j < auxEmpleador.getTicketsDeBusquedaDeEmpleado().size();j++) {
+                System.out.println("        " + auxEmpleador.getTicketsDeBusquedaDeEmpleado().get(i) + "\n");
+            }
+        }
+    }
+
+    public void muestraEmpleadosPretensos() {
+        System.out.println("Lista de empleados pretensos: ");
+        for (int i = 1;i < sistema.getEmpleadosPretensos().size();i++) {
+            System.out.println(sistema.getEmpleadosPretensos().get(i));
+        }
+    }
+
+    public void muestraSolicitudEmpleadosPretensos() {
+        System.out.println("Lista de solicitudes de empleados pretensos: ");
+        for (int i = 1;i < sistema.getEmpleadosPretensos().size();i++) {
+            System.out.println("    " + sistema.getEmpleadosPretensos().get(i).nombreUsuario + ": ");
+            System.out.println(sistema.getEmpleadosPretensos().get(i).getTicketDeBusquedaDeEmpleo());
+        }
+    }
+
+    //3.
     public void calculaComisiones() {
         double total = 0, aux;
 

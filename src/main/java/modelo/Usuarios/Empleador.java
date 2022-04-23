@@ -2,10 +2,8 @@ package modelo.Usuarios;
 
 import modelo.Tickets.Formulario_de_Busqueda;
 import modelo.Tickets.Ticket_de_Busqueda_de_Empleado;
-
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
-import java.util.Iterator;
 
 public class Empleador extends Usuario {
     private String razonSocial; //Seria el NOMBRE
@@ -41,6 +39,19 @@ public class Empleador extends Usuario {
 
     public ArrayList<Ticket_de_Busqueda_de_Empleado> getTicketsDeBusquedaDeEmpleado() {
         return ticketsDeBusquedaDeEmpleado;
+    }
+
+    //TO STRING
+    @Override
+    public String toString() {
+        return "Empleador: " +
+                "   IDUsuario: " + IDUsuario +
+                "   nombreUsuario: '" + nombreUsuario +
+                "   contrasena: '" + contrasena + //Esta bien mostrarla?
+                "   razonSocial: '" + razonSocial +
+                "   tipoPersona: '" + tipoPersona +
+                "   rubro: '" + rubro +
+                "   puntaje: " + puntaje;
     }
 
     //FUNCIONALIDADES

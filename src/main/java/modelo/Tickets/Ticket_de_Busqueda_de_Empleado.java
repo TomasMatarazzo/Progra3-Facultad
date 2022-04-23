@@ -1,6 +1,5 @@
 package modelo.Tickets;
 
-import java.util.ArrayList;
 import java.util.GregorianCalendar;
 
 public class Ticket_de_Busqueda_de_Empleado extends Ticket {
@@ -27,5 +26,17 @@ public class Ticket_de_Busqueda_de_Empleado extends Ticket {
 
     public void setCantEmpleadosObtenidos(int cantEmpleadosObtenidos) {
         this.cantEmpleadosObtenidos = cantEmpleadosObtenidos;
+    }
+
+    //TO STRING
+    @Override
+    public String toString() {
+        return "Ticket de Busqueda de Empleado: " +
+                "   IDTicket: " + IDTicket +
+                "   formularioDeBusqueda: " + formularioDeBusqueda.toString() +
+                "   fechaDeAlta: " + fechaDeAlta +
+                "   estado: " + estado +
+                "   cantEmpleadosSolicitados: " + cantEmpleadosSolicitados +
+                "   cantEmpleadosObtenidos: " + cantEmpleadosObtenidos;
     }
 }

@@ -15,6 +15,23 @@ public abstract class Usuario {
         this.puntaje = 0;
     }
 
+    //GETTERS & SETTERS
+    public int getIDUsuario() {
+        return IDUsuario;
+    }
+
+    public String getNombreUsuario() {
+        return nombreUsuario;
+    }
+
+    public String getContrasena() {
+        return contrasena;
+    }
+
+    public int getPuntaje() {
+        return puntaje;
+    }
+
     //FUNCIONALIDADES
     public void login() {
         System.out.println("HOLA");

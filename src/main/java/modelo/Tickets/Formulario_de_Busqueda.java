@@ -48,4 +48,16 @@ public class Formulario_de_Busqueda {
     public String getEstudiosCursados() {
         return estudiosCursados;
     }
+
+    //TO STRING
+    @Override
+    public String toString() {
+        return  "   locacion: " + locacion +
+                "   remuneracion: " + remuneracion +
+                "   cargaHoraria: " + cargaHoraria +
+                "   tipoPuestoLaboral: " + tipoPuestoLaboral +
+                "   rangoEtario: " + rangoEtario +
+                "   experienciaPrevia: " + experienciaPrevia +
+                "   estudiosCursados: " + estudiosCursados;
+    }
 }

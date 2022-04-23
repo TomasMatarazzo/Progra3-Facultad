@@ -20,4 +20,7 @@ public abstract class Usuario {
         System.out.println("HOLA");
     }
 
+    public double calculaComision() {
+        return -1;
+    }
 }

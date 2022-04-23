@@ -9,8 +9,6 @@ public class Ticket_de_Busqueda_de_Empleado extends Ticket {
     private int[] pesoAspectos; //Dimension del arreglo = 7
 
     //CONSTRUCTOR
-
-
     public Ticket_de_Busqueda_de_Empleado(Formulario_de_Busqueda formularioDeBusqueda, GregorianCalendar fechaDeAlta, int cantEmpleadosSolicitados, int[] pesoAspectos) {
         super(formularioDeBusqueda, fechaDeAlta);
         this.cantEmpleadosSolicitados = cantEmpleadosSolicitados;
@@ -18,6 +16,7 @@ public class Ticket_de_Busqueda_de_Empleado extends Ticket {
         this.pesoAspectos = pesoAspectos;
     }
 
+    //GETTERS
     public int getCantEmpleadosSolicitados() {
         return cantEmpleadosSolicitados;
     }

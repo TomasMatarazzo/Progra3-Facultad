@@ -20,6 +20,23 @@ public abstract class Ticket {
         this.estado = "Activo";
     }
 
+    //GETTERS
+    public int getIDTicket() {
+        return IDTicket;
+    }
+
+    public Formulario_de_Busqueda getFormularioDeBusqueda() {
+        return formularioDeBusqueda;
+    }
+
+    public GregorianCalendar getFechaDeAlta() {
+        return fechaDeAlta;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
     //FUNCIONALIDADES
     public void altaTicket() {
         if (!this.estado.equals("Cancelado")) //Una vez cancelado no se puede volver a activar.

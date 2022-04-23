@@ -76,6 +76,21 @@ public class Empleado_Pretenso extends Usuario {
         return ticketDeBusquedaDeEmpleo;
     }
 
+    //TO STRING
+    @Override
+    public String toString() {
+        return "Empleado Pretenso: \n" +
+                "   IDUsuario: " + IDUsuario +
+                "   nombreUsuario: " + nombreUsuario +
+                "   contrasena: " + contrasena + //La muestro?
+                "   nombre: '" + nombre +
+                "   apellido: '" + apellido +
+                "   telefono: " + telefono +
+                "   edad: " + edad +
+                "   eMail: " + eMail +
+                "   puntaje: " + puntaje;
+    }
+
     //FUNCIONALIDADES
     public void creaTicket(Formulario_de_Busqueda formulario, GregorianCalendar fechaAlta) throws TicketYaCreadoException {
         if (this.ticketDeBusquedaDeEmpleo == null)

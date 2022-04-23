@@ -16,5 +16,17 @@ public class Ticket_de_Busqueda_de_Empleo extends Ticket {
         return resultado;
     }
 
+    //TO STRING
+
+    @Override
+    public String toString() {
+        return "Ticket de Busqueda de Empleo: " +
+                "   IDTicket: " + IDTicket +
+                "   formularioDeBusqueda: " + formularioDeBusqueda.toString() +
+                "   fechaDeAlta: " + fechaDeAlta +
+                "   estado: " + estado +
+                "   resultado: " + resultado;
+    }
+
     //FUNCIONALIDADES
 }

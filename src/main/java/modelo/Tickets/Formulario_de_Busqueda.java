@@ -4,8 +4,8 @@ public class Formulario_de_Busqueda {
     private String locacion;
     private double remuneracion;
     private String cargaHoraria;
-    private String tipoPuestoLaboral;
-    private String rangoEtario;
+    private String tipoPuestoLaboral; //LO DEFINE LA AGENCIA
+    private String rangoEtario; //LO DEFINE LA AGENCIA
     private String experienciaPrevia;
     private String estudiosCursados;
 

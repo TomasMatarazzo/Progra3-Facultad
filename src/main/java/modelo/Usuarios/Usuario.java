@@ -32,6 +32,8 @@ public abstract class Usuario {
         return puntaje;
     }
 
+    public abstract String getTipo();
+
     //FUNCIONALIDADES
     public void login() {
         System.out.println("HOLA");

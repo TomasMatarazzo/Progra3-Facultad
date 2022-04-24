@@ -24,7 +24,7 @@ public class Empleador extends Usuario {
         this.rubro = rubro;
     }
 
-    //GETTERS & ADDERS
+    //GETTERS & SETTERS & ADDERS
     public String getRazonSocial() {
         return razonSocial;
     }
@@ -37,8 +37,19 @@ public class Empleador extends Usuario {
         return rubro;
     }
 
+    public void setDatos(String tipoPersona, String razonSocial, String rubro) {
+        this.razonSocial = razonSocial;
+        this.tipoPersona = tipoPersona;
+        this.rubro = rubro;
+    }
+
     public ArrayList<Ticket_de_Busqueda_de_Empleado> getTicketsDeBusquedaDeEmpleado() {
         return ticketsDeBusquedaDeEmpleado;
+    }
+
+    @Override
+    public String getTipo() {
+        return "Empleador";
     }
 
     //TO STRING

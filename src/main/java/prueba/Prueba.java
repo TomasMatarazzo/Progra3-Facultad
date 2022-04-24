@@ -1,5 +1,7 @@
 package prueba;
 
+import excepciones.DatosMalIngresadosException;
+import excepciones.ErrorDeUsuarioException;
 import modelo.Tickets.Formulario_de_Busqueda;
 import modelo.Usuarios.Agencia;
 import modelo.Usuarios.Empleado_Pretenso;
@@ -7,7 +9,7 @@ import modelo.Usuarios.Empleador;
 import modelo.Sistema;
 
 public class Prueba {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws DatosMalIngresadosException, ErrorDeUsuarioException {
         Sistema sistema = Sistema.getInstance();
         Agencia agencia = Agencia.getInstance();
 

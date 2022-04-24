@@ -18,6 +18,12 @@ public class Agencia extends Usuario {
         return instance;
     }
 
+    //GETTERS
+    @Override
+    public String getTipo() {
+        return "Agencia";
+    }
+
     //FUNCIONALIDADES
     //2.
     public void muestraEmpleadores() {
@@ -62,7 +68,7 @@ public class Agencia extends Usuario {
         System.out.println("Comision a cobrar a cada Usuario: ");
         for (int i = 1;i < sistema.getUsuarios().size();i++) {
             aux = sistema.getUsuarios().get(i).calculaComision();
-            System.out.println("\tUsuario: " + sistema.getUsuarios().get(i).nombreUsuario + " ~ Comision = $" + aux);
+            System.out.println("\tUsuario: " + sistema.getUsuarios().get(i).getNombreUsuario() + " ~ Comision = $" + aux);
             total += aux;
         }
         System.out.println("\nMonto total a cobrar = $" + total);

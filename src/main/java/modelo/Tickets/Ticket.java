@@ -7,6 +7,7 @@ import java.util.GregorianCalendar;
 ///GREGORIAN CALENDAR CON LA FECHA DE ALTA --> COMPLETAR
 public abstract class Ticket {
     private static int n = -1;
+    protected int IdUsuario;
     protected int IDTicket;
     protected Formulario_de_Busqueda formularioDeBusqueda;
     protected GregorianCalendar fechaDeAlta;
@@ -44,4 +45,17 @@ public abstract class Ticket {
     public void finalizaTicket() {
         this.estado = "Finalizado";
     }
+
+	public int getIdUsuario() {
+		return IdUsuario;
+	}
+
+	public int getIDTicket() {
+		return IDTicket;
+	}
+
+	public Formulario_de_Busqueda getFormularioDeBusqueda() {
+		return formularioDeBusqueda;
+	}
+    
 }

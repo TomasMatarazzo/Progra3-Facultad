@@ -29,4 +29,6 @@ public class Ticket_de_Busqueda_de_Empleado extends Ticket {
     public void setCantEmpleadosObtenidos(int cantEmpleadosObtenidos) {
         this.cantEmpleadosObtenidos = cantEmpleadosObtenidos;
     }
+
+
 }

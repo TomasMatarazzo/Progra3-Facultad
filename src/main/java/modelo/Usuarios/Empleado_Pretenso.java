@@ -2,6 +2,7 @@ package modelo.Usuarios;
 
 import excepciones.TicketYaCreadoException;
 import modelo.Tickets.Formulario_de_Busqueda;
+import modelo.Tickets.Ticket;
 import modelo.Tickets.Ticket_de_Busqueda_de_Empleo;
 
 import java.util.GregorianCalendar;
@@ -63,5 +64,17 @@ public class Empleado_Pretenso extends Usuario {
         else
             throw new TicketYaCreadoException("No puede existir mas de un ticket.");
     }
+
+	@Override
+	public double calculoComision(Ticket ticket) {
+		double aux=0;
+		switch (this.ticketDeBusquedaDeEmpleo.getFormularioDeBusqueda().getTipoPuestoLaboral()){
+			case "junior":aux= 0.8;break;
+			case "senior":aux =0.9;break;
+			case "gerencial":aux=1.0;break;
+		}
+		return ticket.getFormularioDeBusqueda().getRemuneracion()*aux;
+		
+	}
 
 }

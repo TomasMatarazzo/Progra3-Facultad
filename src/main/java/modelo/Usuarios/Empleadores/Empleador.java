@@ -1,16 +1,17 @@
 package modelo.Usuarios.Empleadores;
 
 import modelo.Tickets.Formulario_de_Busqueda;
+import modelo.Tickets.Ticket;
 import modelo.Tickets.Ticket_de_Busqueda_de_Empleado;
 import modelo.Usuarios.Usuario;
 
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 
-public class Empleador extends Usuario {
+public abstract class Empleador extends Usuario {
     private Persona tipoPersona;
     private String razonSocial;
-    private String rubro; // salud, comercio local o comercio internacional
+    protected String rubro; // salud, comercio local o comercio internacional
     //Tickets
     private ArrayList<Ticket_de_Busqueda_de_Empleado> ticketsDeBusquedaDeEmpleado = new ArrayList<Ticket_de_Busqueda_de_Empleado>();
 
@@ -34,4 +35,6 @@ public class Empleador extends Usuario {
         ticketsDeBusquedaDeEmpleado.add(nuevo);
     }
 
+    public abstract double calculoComision(Ticket ticket);
+    
 }

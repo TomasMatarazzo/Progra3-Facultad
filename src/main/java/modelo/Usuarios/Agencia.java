@@ -1,6 +1,8 @@
 package modelo.Usuarios;
 
+import excepciones.EstadoInvalidoException;
 import modelo.Sistema;
+import modelo.Tickets.Ticket;
 
 //QUEDA EN DUDA EL TEMA DEL SINGLETON DE LA PROPIA AGENCIA --> RESOLVER
 public class Agencia extends Usuario {
@@ -21,4 +23,7 @@ public class Agencia extends Usuario {
 
     //FUNCIONALIDADES
 
+    public void activarRondaDeContrataciones (Eleccion trabajadores, Eleccion empresas, ListaDeContratos lista) throws EstadoInvalidoException {
+    	sistema.rondaContrataciones(trabajadores,empresas,lista);
+    }
 }

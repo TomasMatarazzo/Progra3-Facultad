@@ -19,6 +19,7 @@ public class Empleado_Pretenso extends Usuario {
     //CONSTRUCTORES
     public Empleado_Pretenso(String nombreUsuario, String contrasena) {
         super(nombreUsuario, contrasena);
+        this.ticketDeBusquedaDeEmpleo = null;
     }
 
     public Empleado_Pretenso(String nombreUsuario, String contrasena, String nombre, String apellido, String telefono, int edad, String eMail) {
@@ -32,6 +33,13 @@ public class Empleado_Pretenso extends Usuario {
     }
 
     //GETTERS & SETTERS
+
+
+    @Override
+    public String getNombreUsuario() {
+        return super.getNombreUsuario();
+    }
+
     public String getNombre() {
         return nombre;
     }
@@ -74,6 +82,19 @@ public class Empleado_Pretenso extends Usuario {
 
     public Ticket_de_Busqueda_de_Empleo getTicketDeBusquedaDeEmpleo() {
         return ticketDeBusquedaDeEmpleo;
+    }
+
+    public void setDatos(String nombre, String apellido, String telefono, int edad, String eMail) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.telefono = telefono;
+        this.edad = edad;
+        this.eMail = eMail;
+    }
+
+    @Override
+    public String getTipo() {
+        return "Empleado Pretenso";
     }
 
     //TO STRING
@@ -124,5 +145,4 @@ public class Empleado_Pretenso extends Usuario {
 
         return monto * porcentaje;
     }
-
 }

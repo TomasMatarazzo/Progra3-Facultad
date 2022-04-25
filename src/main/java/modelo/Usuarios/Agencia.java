@@ -18,40 +18,66 @@ public class Agencia extends Usuario {
         return instance;
     }
 
+    //GETTERS
+    @Override
+    public String getTipo() {
+        return "Agencia";
+    }
+
     //FUNCIONALIDADES
-    //2.
+    //2. Convencion: usuarios[0] = AGENCIA
     public void muestraEmpleadores() {
-        System.out.println("Lista de empleadores: ");
-        for (int i = 1;i < sistema.getEmpleadores().size();i++) {
-                System.out.println(sistema.getEmpleadores().get(i));
+        Empleador aux;
+
+        if (sistema.getUsuarios().size() != 0) {
+            System.out.println("Lista de empleadores: ");
+            for (int i = 1;i < sistema.getUsuarios().size();i++)
+                if (sistema.getUsuarios().get(i).getTipo().equalsIgnoreCase("EMPLEADOR")) {
+                    aux = (Empleador) sistema.getUsuarios().get(i);
+                    System.out.println(aux);
+                }
         }
     }
 
     public void muestraSolicitudesEmpleadores() {
-        Empleador auxEmpleador;
+        Empleador aux;
 
-        System.out.println("Lista de solicitudes de empleadores: ");
-        for (int i = 1;i < sistema.getEmpleadores().size();i++) {
-            auxEmpleador = sistema.getEmpleadores().get(i);
-            System.out.println("    " + auxEmpleador.nombreUsuario + ": ");
-            for (int j = 0;j < auxEmpleador.getTicketsDeBusquedaDeEmpleado().size();j++) {
-                System.out.println("        " + auxEmpleador.getTicketsDeBusquedaDeEmpleado().get(i) + "\n");
-            }
+        if (sistema.getUsuarios().size() != 0) {
+            System.out.println("Lista de solicitudes de empleadores: ");
+            for (int i = 1;i < sistema.getUsuarios().size();i++)
+                if (sistema.getUsuarios().get(i).getTipo().equalsIgnoreCase("EMPLEADOR")) {
+                    aux = (Empleador) sistema.getUsuarios().get(i);
+                    System.out.println("    " + aux.getNombreUsuario() + ": ");
+                    for (int j = 0;j < aux.getTicketsDeBusquedaDeEmpleado().size();j++)
+                        System.out.println("        " + aux.getTicketsDeBusquedaDeEmpleado().get(i) + "\n");
+                }
         }
     }
 
     public void muestraEmpleadosPretensos() {
-        System.out.println("Lista de empleados pretensos: ");
-        for (int i = 1;i < sistema.getEmpleadosPretensos().size();i++) {
-            System.out.println(sistema.getEmpleadosPretensos().get(i));
+        Empleado_Pretenso aux;
+
+        if (sistema.getUsuarios().size() != 0) {
+            System.out.println("Lista de empleados pretensos: ");
+            for (int i = 1;i < sistema.getUsuarios().size();i++)
+                if (sistema.getUsuarios().get(i).getTipo().equalsIgnoreCase("EMPLEADO PRETENSO")) {
+                    aux = (Empleado_Pretenso) sistema.getUsuarios().get(i);
+                    System.out.println(aux);
+                }
         }
     }
 
     public void muestraSolicitudEmpleadosPretensos() {
-        System.out.println("Lista de solicitudes de empleados pretensos: ");
-        for (int i = 1;i < sistema.getEmpleadosPretensos().size();i++) {
-            System.out.println("    " + sistema.getEmpleadosPretensos().get(i).nombreUsuario + ": ");
-            System.out.println(sistema.getEmpleadosPretensos().get(i).getTicketDeBusquedaDeEmpleo());
+        Empleado_Pretenso aux;
+
+        if (sistema.getUsuarios().size() != 0) {
+            System.out.println("Lista de solicitudes de empleadores: ");
+            for (int i = 1;i < sistema.getUsuarios().size();i++)
+                if (sistema.getUsuarios().get(i).getTipo().equalsIgnoreCase("EMPLEADO PRETENSO")) {
+                    aux = (Empleado_Pretenso) sistema.getUsuarios().get(i);
+                    System.out.println("    " + aux.getNombreUsuario() + ": ");
+                    System.out.println(aux.getTicketDeBusquedaDeEmpleo());
+                }
         }
     }
 
@@ -62,9 +88,10 @@ public class Agencia extends Usuario {
         System.out.println("Comision a cobrar a cada Usuario: ");
         for (int i = 1;i < sistema.getUsuarios().size();i++) {
             aux = sistema.getUsuarios().get(i).calculaComision();
-            System.out.println("\tUsuario: " + sistema.getUsuarios().get(i).nombreUsuario + " ~ Comision = $" + aux);
+            System.out.println("\tUsuario: " + sistema.getUsuarios().get(i).getNombreUsuario() + " ~ Comision = $" + aux);
             total += aux;
         }
+
         System.out.println("\nMonto total a cobrar = $" + total);
     }
 }

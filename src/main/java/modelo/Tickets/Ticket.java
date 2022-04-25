@@ -1,7 +1,6 @@
 package modelo.Tickets;
 
 import excepciones.EstadoInvalidoException;
-
 import java.util.GregorianCalendar;
 
 ///GREGORIAN CALENDAR CON LA FECHA DE ALTA --> COMPLETAR
@@ -11,6 +10,7 @@ public abstract class Ticket {
     protected Formulario_de_Busqueda formularioDeBusqueda;
     protected GregorianCalendar fechaDeAlta;
     protected String estado; // activo-suspendido-cancelado-finalizado
+//    protected Eleccion eleccion;
 
     //CONSTRUCTOR
     public Ticket(Formulario_de_Busqueda formularioDeBusqueda, GregorianCalendar fechaDeAlta) {

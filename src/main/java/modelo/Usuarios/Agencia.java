@@ -91,6 +91,7 @@ public class Agencia extends Usuario {
             System.out.println("\tUsuario: " + sistema.getUsuarios().get(i).getNombreUsuario() + " ~ Comision = $" + aux);
             total += aux;
         }
+
         System.out.println("\nMonto total a cobrar = $" + total);
     }
 }

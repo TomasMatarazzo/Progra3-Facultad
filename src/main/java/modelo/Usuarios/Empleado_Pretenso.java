@@ -145,5 +145,4 @@ public class Empleado_Pretenso extends Usuario {
 
         return monto * porcentaje;
     }
-
 }

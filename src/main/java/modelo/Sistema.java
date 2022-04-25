@@ -48,6 +48,12 @@ public class Sistema{
         }
     }
 
+    /**
+     * Pre:
+     * Post:
+     * @param nombreUsuario
+     * @param contrasena
+     */
     public void login(String nombreUsuario, String contrasena){
         try {
             for (int i = 0;i < usuarios.size();i++)

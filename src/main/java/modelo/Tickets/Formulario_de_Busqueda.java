@@ -1,16 +1,19 @@
 package modelo.Tickets;
 
+import modelo.Tickets.Locaciones.Locacion;
+
 public class Formulario_de_Busqueda {
-    private String locacion;
+    private Locacion locacion;
     private double remuneracion;
-    private String cargaHoraria;
-    private String tipoPuestoLaboral;
-    private String rangoEtario;
-    private String experienciaPrevia;
-    private String estudiosCursados;
+    private int cargaHoraria;
+    private int tipoPuestoLaboral;
+    private int rangoEtario;
+    private int experienciaPrevia;
+    private int estudiosCursados;
 
     //CONSTRUCTOR
-    public Formulario_de_Busqueda(String locacion, double remuneracion, String cargaHoraria, String tipoPuestoLaboral, String rangoEtario, String experienciaPrevia, String estudiosCursados) {
+
+    public Formulario_de_Busqueda(Locacion locacion, double remuneracion, int cargaHoraria, int tipoPuestoLaboral, int rangoEtario, int experienciaPrevia, int estudiosCursados) {
         this.locacion = locacion;
         this.remuneracion = remuneracion;
         this.cargaHoraria = cargaHoraria;
@@ -20,32 +23,37 @@ public class Formulario_de_Busqueda {
         this.estudiosCursados = estudiosCursados;
     }
 
+
     //GETTERS
-    public String getLocacion() {
+
+
+    public Locacion getLocacion() {
         return locacion;
     }
+
+    public int puntajeLocacion(Locacion locacion){ return this.locacion.puntajeLocacion(locacion);}
 
     public double getRemuneracion() {
         return remuneracion;
     }
 
-    public String getCargaHoraria() {
+    public int getCargaHoraria() {
         return cargaHoraria;
     }
 
-    public String getTipoPuestoLaboral() {
+    public int getTipoPuestoLaboral() {
         return tipoPuestoLaboral;
     }
 
-    public String getRangoEtario() {
+    public int getRangoEtario() {
         return rangoEtario;
     }
 
-    public String getExperienciaPrevia() {
+    public int getExperienciaPrevia() {
         return experienciaPrevia;
     }
 
-    public String getEstudiosCursados() {
+    public int getEstudiosCursados() {
         return estudiosCursados;
     }
 }

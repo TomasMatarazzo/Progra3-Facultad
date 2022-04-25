@@ -13,7 +13,7 @@ public class Prueba {
         Sistema sistema = Sistema.getInstance();
         Agencia agencia = Agencia.getInstance();
 
-        Empleado_Pretenso u1 = new Empleado_Pretenso("Mario","123456789");
+        Empleado_Pretenso u1 = new Empleado_Pretenso("Mario","Bros123");
 
         //POR CONVENCION AGENCIA ES EL PRIMER USUARIO
         sistema.registrarUsuario(agencia);

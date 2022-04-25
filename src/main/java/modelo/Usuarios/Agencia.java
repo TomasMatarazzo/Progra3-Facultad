@@ -25,7 +25,7 @@ public class Agencia extends Usuario {
     }
 
     //FUNCIONALIDADES
-    //2.
+    //2. Convencion: usuarios[0] = AGENCIA
     public void muestraEmpleadores() {
         Empleador aux;
 

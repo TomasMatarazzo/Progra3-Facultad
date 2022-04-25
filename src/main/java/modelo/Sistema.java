@@ -1,12 +1,11 @@
 package modelo;
 
-import excepciones.DatosMalIngresadosException;
+import excepciones.ErrorDeContrasenaException;
 import excepciones.ErrorDeUsuarioException;
 import modelo.Tickets.Ticket_de_Busqueda_de_Empleado;
 import modelo.Tickets.Ticket_de_Busqueda_de_Empleo;
 import modelo.Usuarios.Usuario;
 import modelo.listas.Listas;
-
 import java.util.ArrayList;
 
 public class Sistema{
@@ -32,25 +31,38 @@ public class Sistema{
     }
 
     //FUNCIONALIDADES
-
     /**
      * Pre:
      * Post:
      * @param nuevo
      */
-    public void registrarUsuario(Usuario nuevo) throws DatosMalIngresadosException, ErrorDeUsuarioException {
-        //Registra solo si tiene Usuario y Contrasena
-        if (!nuevo.getNombreUsuario().equalsIgnoreCase("") && !nuevo.getContrasena().equalsIgnoreCase(""))
-            if (existeUsuario(nuevo))
-                throw new ErrorDeUsuarioException("El nombre de usuario existente ya existe.");
-            else
-                usuarios.add(nuevo);
+    public void registrarUsuario(Usuario nuevo) {
+        try {
+            for (int i = 0; i < usuarios.size(); i++) {
+                if (usuarios.get(i).usuarioValido(nuevo.getNombreUsuario()))
+                    throw new ErrorDeUsuarioException("El nombre de usuario ingresado ya existe.");
+            }
+            usuarios.add(nuevo);
+        } catch (ErrorDeUsuarioException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
-    public boolean existeUsuario(Usuario otro) {
-        for (int i = 0;i < usuarios.size();i++)
-            if (usuarios.get(i).getNombreUsuario().equalsIgnoreCase(otro.getNombreUsuario()))
-                return true;
-        return false;
+    public void login(String nombreUsuario, String contrasena){
+        try {
+            for (int i = 0;i < usuarios.size();i++)
+                if (usuarios.get(i).usuarioValido(nombreUsuario))
+                    if (usuarios.get(i).contrasenaValida(contrasena))
+                        usuarios.get(i).setLoged(true);
+                    else
+                        throw new ErrorDeContrasenaException("La contrasena ingresada es incorrecta.");
+            throw new ErrorDeUsuarioException("El usuario ingresado es incorrecto.");
+        }
+        catch (ErrorDeUsuarioException e1) {
+            System.out.println(e1.getMessage());
+        }
+        catch (ErrorDeContrasenaException e2) {
+            System.out.println(e2.getMessage());
+        }
     }
 }

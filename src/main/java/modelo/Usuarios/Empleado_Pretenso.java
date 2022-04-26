@@ -113,9 +113,9 @@ public class Empleado_Pretenso extends Usuario {
     }
 
     //FUNCIONALIDADES
-    public void creaTicket(Formulario_de_Busqueda formulario, GregorianCalendar fechaAlta) throws TicketYaCreadoException {
+    public void creaTicket(Formulario_de_Busqueda formulario, GregorianCalendar fechaAlta, int[] pesos, String resultado) throws TicketYaCreadoException {
         if (this.ticketDeBusquedaDeEmpleo == null)
-            this.ticketDeBusquedaDeEmpleo = new Ticket_de_Busqueda_de_Empleo(formulario, fechaAlta);
+            this.ticketDeBusquedaDeEmpleo = new Ticket_de_Busqueda_de_Empleo(formulario, fechaAlta, pesos, resultado);
         else
             throw new TicketYaCreadoException("No puede existir mas de un ticket.");
     }

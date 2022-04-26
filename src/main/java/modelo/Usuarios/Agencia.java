@@ -1,6 +1,7 @@
 package modelo.Usuarios;
 
 import modelo.Sistema;
+import modelo.Tickets.Ticket;
 
 //QUEDA EN DUDA EL TEMA DEL SINGLETON DE LA PROPIA AGENCIA --> RESOLVER
 public class Agencia extends Usuario {

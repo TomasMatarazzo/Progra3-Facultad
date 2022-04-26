@@ -17,4 +17,8 @@ public class Ticket_de_Busqueda_de_Empleo extends Ticket {
     }
 
     //FUNCIONALIDADES
+    
+    public String getEstado() {
+    	return super.getEstado();
+    }
 }

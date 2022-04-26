@@ -12,7 +12,8 @@ public abstract class Ticket {
     protected Formulario_de_Busqueda formularioDeBusqueda;
     protected GregorianCalendar fechaDeAlta;
     protected String estado; // activo-suspendido-cancelado-finalizado
-
+    protected int decision;
+    
     //CONSTRUCTOR
     public Ticket(Formulario_de_Busqueda formularioDeBusqueda, GregorianCalendar fechaDeAlta) {
         this.formularioDeBusqueda = formularioDeBusqueda;
@@ -57,5 +58,18 @@ public abstract class Ticket {
 	public Formulario_de_Busqueda getFormularioDeBusqueda() {
 		return formularioDeBusqueda;
 	}
+
+	public int getDecision() {
+		return decision;
+	}
+
+	public void setDecision(int decision) {
+		this.decision = decision;
+	}
+
+	public String getEstado() {
+		return estado;
+	}
     
+	
 }

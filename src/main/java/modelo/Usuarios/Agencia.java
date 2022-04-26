@@ -23,7 +23,7 @@ public class Agencia extends Usuario {
 
     //FUNCIONALIDADES
 
-    public void activarRondaDeContrataciones (Eleccion trabajadores, Eleccion empresas, ListaDeContratos lista) throws EstadoInvalidoException {
-    	sistema.rondaContrataciones(trabajadores,empresas,lista);
+    public void activarRondaDeContrataciones (Eleccion trabajadores, Eleccion empresas) throws EstadoInvalidoException {
+    	sistema.rondaContrataciones(trabajadores,empresas);
     }
 }

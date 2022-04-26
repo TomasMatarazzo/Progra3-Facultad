@@ -1,18 +1,19 @@
 package modelo.Usuarios;
 
+import modelo.Tickets.Ticket;
+
 public abstract class Usuario {
     private static int n = -1;
     protected int IDUsuario;
     protected String nombreUsuario;
     protected String contrasena;
-    protected int puntaje;
+    
 
     //CONSTRUCTORES
     public Usuario(String nombreUsuario, String contrasena) {
         this.nombreUsuario = nombreUsuario;
         this.contrasena = contrasena;
         this.IDUsuario = n++;
-        this.puntaje = 0;
     }
 
     //FUNCIONALIDADES
@@ -20,4 +21,8 @@ public abstract class Usuario {
         System.out.println("HOLA");
     }
 
+    public int getIdUsuario() {
+    	return this.IDUsuario;
+    }
+ 
 }

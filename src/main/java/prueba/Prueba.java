@@ -15,8 +15,10 @@ public class Prueba {
         Empleado_Pretenso u1 = new Empleado_Pretenso("Mario","123456789");
 
         sistema.registrarUsuario(u1);
-        sistema.registrarUsuario(new Empleador("pepito", "xxxxxxx"));
+        //sistema.registrarUsuario(new Empleador("pepito", "xxxxxxx"));
 
+        
+        
         
         //Formulario_de_Busqueda f1 = new Formulario_de_Busqueda("Presencial","hasta V1","Completa","Junior","mas de 50","Mucha","Terciario");
 

@@ -7,13 +7,14 @@ import modelo.Tickets.Ticket_de_Busqueda_de_Empleo;
 
 import java.util.GregorianCalendar;
 
-public class Empleado_Pretenso extends Usuario {
+public class Empleado_Pretenso extends Usuario implements IGeneraTicket{
     //Datos personales:
     private String nombre;
     private String apellido;
     private String telefono;
     private int edad;
     private String eMail;
+    protected int puntaje;
     //Ticket
     private Ticket_de_Busqueda_de_Empleo ticketDeBusquedaDeEmpleo;
 
@@ -77,4 +78,15 @@ public class Empleado_Pretenso extends Usuario {
 		
 	}
 
+	public int getPuntaje() {
+		return puntaje;
+	}
+
+	public void setPuntaje(int puntaje) {
+		this.puntaje = puntaje;
+	}
+	
+	 public int getIdUsuario() {
+	    	return super.getIdUsuario();
+	    }
 }

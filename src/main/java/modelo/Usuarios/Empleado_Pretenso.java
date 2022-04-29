@@ -1,12 +1,13 @@
 package modelo.Usuarios;
 
 import excepciones.TicketYaCreadoException;
+import interfaces.IComisionable;
 import modelo.Tickets.Formulario_de_Busqueda;
 import modelo.Tickets.Ticket_de_Busqueda_de_Empleo;
 
 import java.util.GregorianCalendar;
 
-public class Empleado_Pretenso extends Usuario {
+public class Empleado_Pretenso extends Usuario implements IComisionable {
     //Datos personales:
     private String nombre;
     private String apellido;
@@ -33,13 +34,6 @@ public class Empleado_Pretenso extends Usuario {
     }
 
     //GETTERS & SETTERS
-
-
-    @Override
-    public String getNombreUsuario() {
-        return super.getNombreUsuario();
-    }
-
     public String getNombre() {
         return nombre;
     }
@@ -114,34 +108,29 @@ public class Empleado_Pretenso extends Usuario {
 
     //FUNCIONALIDADES
     public void creaTicket(Formulario_de_Busqueda formulario, GregorianCalendar fechaAlta, int[] pesos, String resultado) throws TicketYaCreadoException {
-        if (this.ticketDeBusquedaDeEmpleo == null)
+        if (this.ticketDeBusquedaDeEmpleo == null || this.getTicketDeBusquedaDeEmpleo().getEstado().equalsIgnoreCase("FINALIZADO"))
             this.ticketDeBusquedaDeEmpleo = new Ticket_de_Busqueda_de_Empleo(formulario, fechaAlta, pesos, resultado);
         else
             throw new TicketYaCreadoException("No puede existir mas de un ticket.");
     }
 
-    /**
-     * Pre:
-     * Post:
-     * @return
-     */
     @Override
-    public double calculaComision() { //LA HAGO PROTECTED?
+    public double calculaComision() {
         double monto = 0, porcentaje;
 
         if (this.getTicketDeBusquedaDeEmpleo().getEstado().equalsIgnoreCase("FINALIZADO"))
             monto += this.ticketDeBusquedaDeEmpleo.getFormularioDeBusqueda().getRemuneracion();
 
-        if (this.ticketDeBusquedaDeEmpleo.getFormularioDeBusqueda().getTipoPuestoLaboral().equalsIgnoreCase("JUNIOR"))
+        if (this.ticketDeBusquedaDeEmpleo.getFormularioDeBusqueda().getTipoPuestoLaboral() == 0)
             porcentaje = 0.80;
-        else if (this.ticketDeBusquedaDeEmpleo.getFormularioDeBusqueda().getTipoPuestoLaboral().equalsIgnoreCase("SENIOR"))
+        else if (this.ticketDeBusquedaDeEmpleo.getFormularioDeBusqueda().getTipoPuestoLaboral() == 1)
             porcentaje = 0.90;
         else //Es puesto laboral GERENCIAL
             porcentaje = 1.00;
 
         //Por cada punto obtenido se le resta un 1% al valor de la comisión
         if (this.puntaje > 0)
-            porcentaje -= 0 + (0.01 * this.puntaje);
+            porcentaje -= (0.01 * this.puntaje);
 
         return monto * porcentaje;
     }

@@ -31,44 +31,29 @@ public class Sistema{
     }
 
     //FUNCIONALIDADES
-    /**
-     * Pre:
-     * Post:
-     * @param nuevo
-     */
-    public void registrarUsuario(Usuario nuevo) {
-        try {
-            for (int i = 0; i < usuarios.size(); i++) {
-                if (usuarios.get(i).usuarioValido(nuevo.getNombreUsuario()))
-                    throw new ErrorDeUsuarioException("El nombre de usuario ingresado ya existe.");
-            }
-            usuarios.add(nuevo);
-        } catch (ErrorDeUsuarioException e) {
-            System.out.println(e.getMessage());
+    public void registrarUsuario(Usuario nuevo) throws ErrorDeUsuarioException {
+        for (int i = 0; i < usuarios.size(); i++) {
+            if (usuarios.get(i).usuarioValido(nuevo.getNombreUsuario()))
+                throw new ErrorDeUsuarioException("El nombre de usuario ingresado ya existe.");
         }
+        usuarios.add(nuevo);
+        System.out.println("El usuario [" + nuevo.getNombreUsuario() + "] se ha registrado con exito.");
     }
 
-    /**
-     * Pre:
-     * Post:
-     * @param nombreUsuario
-     * @param contrasena
-     */
-    public void login(String nombreUsuario, String contrasena){
-        try {
-            for (int i = 0;i < usuarios.size();i++)
-                if (usuarios.get(i).usuarioValido(nombreUsuario))
-                    if (usuarios.get(i).contrasenaValida(contrasena))
-                        usuarios.get(i).setLoged(true);
-                    else
-                        throw new ErrorDeContrasenaException("La contrasena ingresada es incorrecta.");
+    public void login(String nombreUsuario, String contrasena) throws ErrorDeContrasenaException, ErrorDeUsuarioException {
+        boolean loged = false;
+
+        for (int i = 0;i < usuarios.size();i++) {
+            if (usuarios.get(i).usuarioValido(nombreUsuario))
+                if (usuarios.get(i).contrasenaValida(contrasena)) {
+                    loged = true;
+                    System.out.println("El usuario [" + nombreUsuario + "] se ha logeado con exito.");
+                } else
+                    throw new ErrorDeContrasenaException("La contrasena ingresada es incorrecta.");
+            usuarios.get(i).setLoged(loged);
+        }
+
+        if (!loged)
             throw new ErrorDeUsuarioException("El usuario ingresado es incorrecto.");
-        }
-        catch (ErrorDeUsuarioException e1) {
-            System.out.println(e1.getMessage());
-        }
-        catch (ErrorDeContrasenaException e2) {
-            System.out.println(e2.getMessage());
-        }
     }
 }

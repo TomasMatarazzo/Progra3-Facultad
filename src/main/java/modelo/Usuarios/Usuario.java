@@ -3,7 +3,6 @@ package modelo.Usuarios;
 import modelo.Sistema;
 
 public abstract class Usuario {
-    private Sistema sistema = Sistema.getInstance();
     private static int n = -1;
     //--------------------------//
     protected int IDUsuario;
@@ -45,21 +44,12 @@ public abstract class Usuario {
     }
 
     //FUNCIONALIDADES
-    public double calculaComision() {
-        return -1;
-    }
-
     public boolean usuarioValido(String nombreUsuario) {
-        if (this.nombreUsuario.equalsIgnoreCase(nombreUsuario))
-            return true;
-        else
-           return false;
+        return this.nombreUsuario.equalsIgnoreCase(nombreUsuario);
     }
 
     public boolean contrasenaValida(String contrasena) {
-        if (this.contrasena.equalsIgnoreCase(contrasena))
-            return true;
-        else
-            return false;
+        return this.contrasena.equalsIgnoreCase(contrasena);
     }
+
 }

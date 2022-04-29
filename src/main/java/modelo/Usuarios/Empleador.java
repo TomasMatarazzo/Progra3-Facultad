@@ -1,11 +1,12 @@
 package modelo.Usuarios;
 
+import interfaces.IComisionable;
 import modelo.Tickets.Formulario_de_Busqueda;
 import modelo.Tickets.Ticket_de_Busqueda_de_Empleado;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 
-public class Empleador extends Usuario {
+public abstract class Empleador extends Usuario implements IComisionable {
     private String razonSocial; //Seria el NOMBRE
     private String tipoPersona; // fisica o juridica
     private String rubro; // salud, comercio local o comercio internacional
@@ -47,11 +48,6 @@ public class Empleador extends Usuario {
         return ticketsDeBusquedaDeEmpleado;
     }
 
-    @Override
-    public String getTipo() {
-        return "Empleador";
-    }
-
     //TO STRING
     @Override
     public String toString() {
@@ -71,6 +67,8 @@ public class Empleador extends Usuario {
         ticketsDeBusquedaDeEmpleado.add(nuevo);
     }
 
+    public abstract double calculaPorcentajeComision();
+
     /**
      * TEXTO
      * Pre: Los atributos tipoPersona y rubro deben estar inicializados correctamente
@@ -78,29 +76,14 @@ public class Empleador extends Usuario {
      * @return monto * porcentaje
      */
     @Override
-    public double calculaComision() { //LA HAGO PROTECTED?
+    public double calculaComision() {
         double monto = 0, porcentaje;
 
-        for (int i = 0;i < this.ticketsDeBusquedaDeEmpleado.size();i++) {
+        for (int i = 0;i < this.ticketsDeBusquedaDeEmpleado.size();i++)
             if (this.ticketsDeBusquedaDeEmpleado.get(i).getEstado().equalsIgnoreCase("FINALIZADO"))
-            monto += this.ticketsDeBusquedaDeEmpleado.get(i).getFormularioDeBusqueda().getRemuneracion();
-        }
+                monto += this.ticketsDeBusquedaDeEmpleado.get(i).getFormularioDeBusqueda().getRemuneracion();
 
-        if (this.tipoPersona.equalsIgnoreCase("FISICA")) {
-            if (this.rubro.equalsIgnoreCase("SALUD"))
-                porcentaje = 0.60;
-            else if (this.rubro.equalsIgnoreCase("COMERCIO LOCAL"))
-                porcentaje = 0.70;
-            else //Es rubro COMERCIO INTERNACIONAL
-                porcentaje = 0.80;
-        } else {//Es persona juridica
-            if (this.rubro.equalsIgnoreCase("SALUD"))
-                porcentaje = 0.80;
-            else if (this.rubro.equalsIgnoreCase("COMERCIO LOCAL"))
-                porcentaje = 0.90;
-            else //Es rubro COMERCIO INTERNACIONAL
-                porcentaje = 1.00;
-        }
+        porcentaje = calculaPorcentajeComision();
 
         //Por cada punto obtenido se le resta un 1% al valor de la comisión
         if (this.puntaje > 0)
@@ -108,5 +91,4 @@ public class Empleador extends Usuario {
 
         return monto * porcentaje;
     }
-
 }

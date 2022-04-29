@@ -13,9 +13,9 @@ public class Agencia extends Usuario {
         super(nombreUsuario, contrasena);
     }
 
-    public static Agencia getInstance() {
+    public static Agencia getInstance(String nombreUsuario, String contrasena) {
         if (instance == null)
-            instance = new Agencia("Administrador","Guille<3");
+            instance = new Agencia(nombreUsuario,contrasena);
         return instance;
     }
 
@@ -84,11 +84,11 @@ public class Agencia extends Usuario {
 
     //3.
     public void calculaComisiones() {
-        double total = 0, aux;
+        double total = 0, aux = 0;
 
         System.out.println("Comision a cobrar a cada Usuario: ");
         for (int i = 1;i < sistema.getUsuarios().size();i++) {
-            aux = sistema.getUsuarios().get(i).calculaComision();
+//            aux = sistema.getUsuarios().get(i).calculaComision(); //CASTEAR AUX
             System.out.println("\tUsuario: " + sistema.getUsuarios().get(i).getNombreUsuario() + " ~ Comision = $" + aux);
             total += aux;
         }

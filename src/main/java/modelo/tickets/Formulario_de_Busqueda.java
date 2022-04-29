@@ -1,9 +1,9 @@
-package modelo.Tickets;
+package modelo.tickets;
 
-import modelo.Tickets.Locaciones.Locacion;
+import interfaces.ILocacion;
 
 public class Formulario_de_Busqueda {
-    private Locacion locacion;
+    private ILocacion locacion;
     private double remuneracion;
     private int cargaHoraria;
     private int tipoPuestoLaboral;
@@ -13,8 +13,8 @@ public class Formulario_de_Busqueda {
 
     // CONSTRUCTOR
 
-    public Formulario_de_Busqueda(Locacion locacion, double remuneracion, int cargaHoraria, int tipoPuestoLaboral,
-            int rangoEtario, int experienciaPrevia, int estudiosCursados) {
+    public Formulario_de_Busqueda(ILocacion locacion, double remuneracion, int cargaHoraria, int tipoPuestoLaboral,
+                                  int rangoEtario, int experienciaPrevia, int estudiosCursados) {
         this.locacion = locacion;
         this.remuneracion = remuneracion;
         this.cargaHoraria = cargaHoraria;
@@ -26,11 +26,11 @@ public class Formulario_de_Busqueda {
 
     // GETTERS
 
-    public Locacion getLocacion() {
+    public ILocacion getLocacion() {
         return locacion;
     }
 
-    public int puntajeLocacion(Locacion locacion) {
+    public int puntajeLocacion(ILocacion locacion) {
         return this.locacion.puntajeLocacion(locacion);
     }
 

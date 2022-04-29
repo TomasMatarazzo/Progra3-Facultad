@@ -1,27 +1,27 @@
-package modelo.Usuarios;
+package modelo.usuarios.empleadores;
 
-public class PersonaFisica extends Empleador{
+public class PersonaJuridica extends Empleador{
 
-    public PersonaFisica(String nombreUsuario, String contrasena) {
+    public PersonaJuridica(String nombreUsuario, String contrasena) {
         super(nombreUsuario, contrasena);
     }
 
-    public PersonaFisica(String nombreUsuario, String contrasena, String tipoPersona, String razonSocial, String rubro) {
+    public PersonaJuridica(String nombreUsuario, String contrasena, String tipoPersona, String razonSocial, String rubro) {
         super(nombreUsuario, contrasena, tipoPersona, razonSocial, rubro);
     }
 
     @Override
     public String getTipo() {
-        return "Persona fisica";
+        return "Persona juridica";
     }
 
     @Override
     public double calculaPorcentajeComision() {
         if (this.getRubro().equalsIgnoreCase("SALUD"))
-            return  0.60;
+            return 0.80;
         else if (this.getRubro().equalsIgnoreCase("COMERCIO LOCAL"))
-            return  0.70;
+            return  0.90;
         else //Es rubro COMERCIO INTERNACIONAL
-            return  0.80;
+            return  1.00;
     }
 }

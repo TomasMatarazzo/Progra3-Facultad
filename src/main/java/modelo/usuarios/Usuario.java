@@ -1,26 +1,29 @@
-package modelo.Usuarios;
+package modelo.usuarios;
 
 import modelo.Sistema;
 
 public abstract class Usuario {
+    private Sistema sistema = Sistema.getInstance();
     private static int n = -1;
     //--------------------------//
-    protected int IDUsuario;
+    protected int IDUsuario; //SE PUEDE OMITIR
     protected String nombreUsuario;
     protected String contrasena;
     protected boolean loged;
-    protected int puntaje;
 
     //CONSTRUCTORES
     public Usuario(String nombreUsuario, String contrasena) {
         this.nombreUsuario = nombreUsuario;
         this.contrasena = contrasena;
         this.IDUsuario = n++;
-        this.puntaje = 0;
         this.loged = false;
     }
 
     //GETTERS & SETTERS
+    public Sistema getSistema() {
+        return sistema;
+    }
+
     public int getIDUsuario() {
         return IDUsuario;
     }
@@ -31,10 +34,6 @@ public abstract class Usuario {
 
     public String getContrasena() {
         return contrasena;
-    }
-
-    public int getPuntaje() {
-        return puntaje;
     }
 
     public abstract String getTipo();

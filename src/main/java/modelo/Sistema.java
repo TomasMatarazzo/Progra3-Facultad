@@ -2,18 +2,24 @@ package modelo;
 
 import excepciones.ErrorDeContrasenaException;
 import excepciones.ErrorDeUsuarioException;
-import modelo.Tickets.Ticket_de_Busqueda_de_Empleado;
-import modelo.Tickets.Ticket_de_Busqueda_de_Empleo;
-import modelo.Usuarios.Usuario;
-import modelo.listas.Listas;
+import modelo.tickets.Ticket;
+import modelo.tickets.Ticket_de_Busqueda_de_Empleado;
+import modelo.tickets.Ticket_de_Busqueda_de_Empleo;
+import modelo.usuarios.Empleado_Pretenso;
+import modelo.usuarios.empleadores.Empleador;
+import modelo.usuarios.Usuario;
+import modelo.listas.Lista;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Sistema{
     private static Sistema instance = null;
     private ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
-    private ArrayList<Ticket_de_Busqueda_de_Empleado> ticketsBusquedaEmpleados = new ArrayList<Ticket_de_Busqueda_de_Empleado>();
-    private ArrayList<Ticket_de_Busqueda_de_Empleo> ticketsBusquedaEmpleo = new ArrayList<Ticket_de_Busqueda_de_Empleo>();
-    private ArrayList<Listas> listas = new ArrayList<Listas>();
+    private ArrayList<String> tiposDeTrabajo = new ArrayList<String>();
+    private HashMap<Ticket_de_Busqueda_de_Empleado,Empleador> TicketsDeEmpleadores = new HashMap<>();
+    private HashMap<Ticket_de_Busqueda_de_Empleo,Empleado_Pretenso> TicketsDeEmpleadosPretensos = new HashMap<>();
+    private HashMap<Ticket,Lista> listas = new HashMap<>();
+    private ArrayList<Contrato> contratos = new ArrayList<Contrato>();
 
     //PATRON SINGLETON
     private Sistema() {
@@ -28,6 +34,26 @@ public class Sistema{
     //GETTERS & ADDERS
     public ArrayList<Usuario> getUsuarios() {
         return usuarios;
+    }
+
+    public ArrayList<String> getTiposDeTrabajo() {
+        return tiposDeTrabajo;
+    }
+
+    public HashMap<Ticket_de_Busqueda_de_Empleado, Empleador> getTicketsDeEmpleadores() {
+        return TicketsDeEmpleadores;
+    }
+
+    public HashMap<Ticket_de_Busqueda_de_Empleo, Empleado_Pretenso> getTicketsDeEmpleadosPretensos() {
+        return TicketsDeEmpleadosPretensos;
+    }
+
+    public HashMap<Ticket, Lista> getListas() {
+        return listas;
+    }
+
+    public ArrayList<Contrato> getContratos() {
+        return contratos;
     }
 
     //FUNCIONALIDADES
@@ -56,4 +82,11 @@ public class Sistema{
         if (!loged)
             throw new ErrorDeUsuarioException("El usuario ingresado es incorrecto.");
     }
+
+//    public void creaTicket(Formulario_de_Busqueda formulario, GregorianCalendar fechaAlta, int[] pesos) throws TicketYaCreadoException {
+//        if (this.ticketDeBusquedaDeEmpleo == null || this.getTicketDeBusquedaDeEmpleo().getEstado().equalsIgnoreCase("FINALIZADO"))
+//            this.ticketDeBusquedaDeEmpleo = new Ticket_de_Busqueda_de_Empleo(formulario, fechaAlta, pesos);
+//        else
+//            throw new TicketYaCreadoException("No puede existir mas de un ticket.");
+//    }
 }

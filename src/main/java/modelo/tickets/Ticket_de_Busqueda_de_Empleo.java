@@ -1,14 +1,14 @@
-package modelo.Tickets;
-import java.util.GregorianCalendar;
+package modelo.tickets;
 
 public class Ticket_de_Busqueda_de_Empleo extends Ticket {
     private String resultado; // exito-fracaso
+    private Ticket_de_Busqueda_de_Empleado eleccion;
 
     //CONSTRUCTOR
-
-    public Ticket_de_Busqueda_de_Empleo(Formulario_de_Busqueda formularioDeBusqueda, GregorianCalendar fechaDeAlta, int[] pesoAspectos, String resultado) {
-        super(formularioDeBusqueda, fechaDeAlta, pesoAspectos);
-        this.resultado = resultado;
+    public Ticket_de_Busqueda_de_Empleo(Formulario_de_Busqueda formularioDeBusqueda, String tipoDeTrabajo) {
+        super(formularioDeBusqueda, tipoDeTrabajo);
+        this.resultado = null;
+        this.eleccion = null;
     }
 
     //GETTERS
@@ -20,7 +20,6 @@ public class Ticket_de_Busqueda_de_Empleo extends Ticket {
     @Override
     public String toString() {
         return "Ticket de Busqueda de Empleo: " +
-                "   IDTicket: " + IDTicket +
                 "   formularioDeBusqueda: " + formularioDeBusqueda.toString() +
                 "   fechaDeAlta: " + fechaDeAlta +
                 "   estado: " + estado +

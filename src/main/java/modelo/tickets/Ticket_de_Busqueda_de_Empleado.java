@@ -1,17 +1,18 @@
-package modelo.Tickets;
-
-import java.util.GregorianCalendar;
+package modelo.tickets;
 
 public class Ticket_de_Busqueda_de_Empleado extends Ticket {
     private int cantEmpleadosSolicitados;
     private int cantEmpleadosObtenidos;
     private int[] pesoAspectos; //Dimension del arreglo = 7
+    private Ticket_de_Busqueda_de_Empleo eleccion;
 
     //CONSTRUCTOR
-    public Ticket_de_Busqueda_de_Empleado(Formulario_de_Busqueda formularioDeBusqueda, GregorianCalendar fechaDeAlta, int cantEmpleadosSolicitados, int[] pesoAspectos) {
-        super(formularioDeBusqueda, fechaDeAlta, pesoAspectos);
+    public Ticket_de_Busqueda_de_Empleado(Formulario_de_Busqueda formularioDeBusqueda, String tipoDeTrabajo, int cantEmpleadosSolicitados, int cantEmpleadosObtenidos, int[] pesoAspectos) {
+        super(formularioDeBusqueda, tipoDeTrabajo);
         this.cantEmpleadosSolicitados = cantEmpleadosSolicitados;
-        this.cantEmpleadosObtenidos = 0;
+        this.cantEmpleadosObtenidos = cantEmpleadosObtenidos;
+        this.pesoAspectos = pesoAspectos;
+        this.eleccion = null;
     }
 
     //GETTERS
@@ -31,7 +32,6 @@ public class Ticket_de_Busqueda_de_Empleado extends Ticket {
     @Override
     public String toString() {
         return "Ticket de Busqueda de Empleado: " +
-                "   IDTicket: " + IDTicket +
                 "   formularioDeBusqueda: " + formularioDeBusqueda.toString() +
                 "   fechaDeAlta: " + fechaDeAlta +
                 "   estado: " + estado +

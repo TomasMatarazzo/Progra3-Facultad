@@ -1,34 +1,26 @@
-package modelo.Tickets;
+package modelo.tickets;
 
 import excepciones.EstadoInvalidoException;
-import modelo.Constantes.Puntajes;
-import modelo.Tickets.Locaciones.Locacion;
+import modelo.constantes.Puntajes;
+import interfaces.ILocacion;
 import java.util.GregorianCalendar;
 
 ///GREGORIAN CALENDAR CON LA FECHA DE ALTA --> COMPLETAR
 public abstract class Ticket {
-    private static int n = -1;
-    protected int IDTicket;
     protected Formulario_de_Busqueda formularioDeBusqueda;
     protected GregorianCalendar fechaDeAlta;
     protected String estado; // activo-suspendido-cancelado-finalizado
-//    protected Eleccion eleccion;
-    private int[] pesoAspectos; //Dimension del arreglo = 7
+    protected String tipoDeTrabajo;
 
     //CONSTRUCTOR
-    public Ticket(Formulario_de_Busqueda formularioDeBusqueda, GregorianCalendar fechaDeAlta, int [] pesoAspectos) {
+     public Ticket(Formulario_de_Busqueda formularioDeBusqueda, String tipoDeTrabajo) {
         this.formularioDeBusqueda = formularioDeBusqueda;
-        this.fechaDeAlta = fechaDeAlta;
-        this.pesoAspectos = pesoAspectos;
-        this.IDTicket = n++;
+        this.fechaDeAlta = new GregorianCalendar();
         this.estado = "Activo";
-    }
+        this.tipoDeTrabajo = tipoDeTrabajo;
+     }
 
     //GETTERS
-    public int getIDTicket() {
-        return IDTicket;
-    }
-
     public Formulario_de_Busqueda getFormularioDeBusqueda() {
         return formularioDeBusqueda;
     }
@@ -39,6 +31,30 @@ public abstract class Ticket {
 
     public String getEstado() {
         return estado;
+    }
+
+    public double getRemuneracion() {
+        return formularioDeBusqueda.getRemuneracion();
+    }
+
+    public int getCargaHoraria() {
+        return formularioDeBusqueda.getCargaHoraria();
+    }
+
+    public int getTipoPuestoLaboral() {
+        return formularioDeBusqueda.getTipoPuestoLaboral();
+    }
+
+    public int getRangoEtario() {
+        return formularioDeBusqueda.getRangoEtario();
+    }
+
+    public int getExperienciaPrevia() {
+        return formularioDeBusqueda.getExperienciaPrevia();
+    }
+
+    public int getEstudiosCursados() {
+        return formularioDeBusqueda.getEstudiosCursados();
     }
 
     //FUNCIONALIDADES
@@ -68,10 +84,6 @@ public abstract class Ticket {
 
     // PUNTAJES
     // Este caso seria el caso base , en el que es indistinto
-
-    // PUNTAJES
-
-
     public double puntajeTotal(Ticket ticket){
         double acum = 0;
         acum += this.pesoAspectos[0] * this.puntajeLocacion(ticket.formularioDeBusqueda.getLocacion());
@@ -89,11 +101,8 @@ public abstract class Ticket {
     }
 
     // Double dispatch con la locacion.
-
-
-
     // Para el resto de puntajes los calcularemos mediante matrices
-    public int puntajeLocacion(Locacion locacion){
+    public int puntajeLocacion(ILocacion locacion){
         return this.formularioDeBusqueda.puntajeLocacion(locacion);
     }
 
@@ -130,32 +139,4 @@ public abstract class Ticket {
     public double puntajeEstudiosCursados(Ticket ticket){
         return Puntajes.MATRIZ3[this.getEstudiosCursados()][ticket.getEstudiosCursados()];
     }
-
-    // GETTERS Y SETTERS
-
-    public double getRemuneracion() {
-        return formularioDeBusqueda.getRemuneracion();
-    }
-
-    public int getCargaHoraria() {
-        return formularioDeBusqueda.getCargaHoraria();
-    }
-
-    public int getTipoPuestoLaboral() {
-        return formularioDeBusqueda.getTipoPuestoLaboral();
-    }
-
-    public int getRangoEtario() {
-        return formularioDeBusqueda.getRangoEtario();
-    }
-
-    public int getExperienciaPrevia() {
-        return formularioDeBusqueda.getExperienciaPrevia();
-    }
-
-    public int getEstudiosCursados() {
-        return formularioDeBusqueda.getEstudiosCursados();
-    }
-
-
 }

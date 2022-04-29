@@ -1,4 +1,4 @@
-package modelo.Constantes;
+package modelo.constantes;
 
 public class Puntajes {
     public static double[][] RENUMERACION = {{1,-0.5,-1},

@@ -1,7 +1,9 @@
-package modelo.Usuarios;
+package modelo.usuarios;
 
 import modelo.Sistema;
-import modelo.Tickets.Ticket;
+import modelo.tickets.Ticket_de_Busqueda_de_Empleado;
+import modelo.tickets.Ticket_de_Busqueda_de_Empleo;
+import modelo.usuarios.empleadores.Empleador;
 
 //QUEDA EN DUDA EL TEMA DEL SINGLETON DE LA PROPIA AGENCIA --> RESOLVER
 public class Agencia extends Usuario {
@@ -32,7 +34,7 @@ public class Agencia extends Usuario {
 
         if (sistema.getUsuarios().size() != 0) {
             System.out.println("Lista de empleadores: ");
-            for (int i = 1;i < sistema.getUsuarios().size();i++)
+            for (int i = 0;i < sistema.getUsuarios().size();i++)
                 if (sistema.getUsuarios().get(i).getTipo().equalsIgnoreCase("EMPLEADOR")) {
                     aux = (Empleador) sistema.getUsuarios().get(i);
                     System.out.println(aux);
@@ -41,17 +43,10 @@ public class Agencia extends Usuario {
     }
 
     public void muestraSolicitudesEmpleadores() {
-        Empleador aux;
-
         if (sistema.getUsuarios().size() != 0) {
             System.out.println("Lista de solicitudes de empleadores: ");
-            for (int i = 1;i < sistema.getUsuarios().size();i++)
-                if (sistema.getUsuarios().get(i).getTipo().equalsIgnoreCase("EMPLEADOR")) {
-                    aux = (Empleador) sistema.getUsuarios().get(i);
-                    System.out.println("    " + aux.getNombreUsuario() + ": ");
-                    for (int j = 0;j < aux.getTicketsDeBusquedaDeEmpleado().size();j++)
-                        System.out.println("        " + aux.getTicketsDeBusquedaDeEmpleado().get(i) + "\n");
-                }
+            for (Ticket_de_Busqueda_de_Empleado i : sistema.getTicketsDeEmpleadores().keySet())
+                System.out.println(i);
         }
     }
 
@@ -60,7 +55,7 @@ public class Agencia extends Usuario {
 
         if (sistema.getUsuarios().size() != 0) {
             System.out.println("Lista de empleados pretensos: ");
-            for (int i = 1;i < sistema.getUsuarios().size();i++)
+            for (int i = 0;i < sistema.getUsuarios().size();i++)
                 if (sistema.getUsuarios().get(i).getTipo().equalsIgnoreCase("EMPLEADO PRETENSO")) {
                     aux = (Empleado_Pretenso) sistema.getUsuarios().get(i);
                     System.out.println(aux);
@@ -69,16 +64,10 @@ public class Agencia extends Usuario {
     }
 
     public void muestraSolicitudEmpleadosPretensos() {
-        Empleado_Pretenso aux;
-
         if (sistema.getUsuarios().size() != 0) {
             System.out.println("Lista de solicitudes de empleadores: ");
-            for (int i = 1;i < sistema.getUsuarios().size();i++)
-                if (sistema.getUsuarios().get(i).getTipo().equalsIgnoreCase("EMPLEADO PRETENSO")) {
-                    aux = (Empleado_Pretenso) sistema.getUsuarios().get(i);
-                    System.out.println("    " + aux.getNombreUsuario() + ": ");
-                    System.out.println(aux.getTicketDeBusquedaDeEmpleo());
-                }
+            for (Ticket_de_Busqueda_de_Empleo i : sistema.getTicketsDeEmpleadosPretensos().keySet())
+                System.out.println(i);
         }
     }
 

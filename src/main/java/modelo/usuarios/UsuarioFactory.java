@@ -1,6 +1,8 @@
-package modelo.Usuarios;
+package modelo.usuarios;
 
 import excepciones.DatosMalIngresadosException;
+import modelo.usuarios.empleadores.PersonaFisica;
+import modelo.usuarios.empleadores.PersonaJuridica;
 
 public class UsuarioFactory {
 

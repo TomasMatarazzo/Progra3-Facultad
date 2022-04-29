@@ -3,7 +3,7 @@ package prueba;
 import excepciones.DatosMalIngresadosException;
 import excepciones.ErrorDeContrasenaException;
 import excepciones.ErrorDeUsuarioException;
-import modelo.Usuarios.*;
+import modelo.usuarios.*;
 import modelo.Sistema;
 
 public class Prueba {

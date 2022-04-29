@@ -1,13 +1,8 @@
-package modelo.Usuarios;
+package modelo.usuarios;
 
-import excepciones.TicketYaCreadoException;
-import interfaces.IComisionable;
-import modelo.Tickets.Formulario_de_Busqueda;
-import modelo.Tickets.Ticket_de_Busqueda_de_Empleo;
+import modelo.tickets.Ticket_de_Busqueda_de_Empleo;
 
-import java.util.GregorianCalendar;
-
-public class Empleado_Pretenso extends Usuario implements IComisionable {
+public class Empleado_Pretenso extends UsuarioComun {
     //Datos personales:
     private String nombre;
     private String apellido;
@@ -107,13 +102,6 @@ public class Empleado_Pretenso extends Usuario implements IComisionable {
     }
 
     //FUNCIONALIDADES
-    public void creaTicket(Formulario_de_Busqueda formulario, GregorianCalendar fechaAlta, int[] pesos, String resultado) throws TicketYaCreadoException {
-        if (this.ticketDeBusquedaDeEmpleo == null || this.getTicketDeBusquedaDeEmpleo().getEstado().equalsIgnoreCase("FINALIZADO"))
-            this.ticketDeBusquedaDeEmpleo = new Ticket_de_Busqueda_de_Empleo(formulario, fechaAlta, pesos, resultado);
-        else
-            throw new TicketYaCreadoException("No puede existir mas de un ticket.");
-    }
-
     @Override
     public double calculaComision() {
         double monto = 0, porcentaje;

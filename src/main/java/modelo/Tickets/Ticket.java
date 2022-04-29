@@ -102,7 +102,17 @@ public abstract class Ticket {
     }
 
     public double puntajeCargaHoraria(Ticket ticket){
-        return Puntajes.MATRIZ2[this.getCargaHoraria()][ticket.getCargaHoraria()];
+        return Puntajes.MATRIZ2[this.indiceCargaHoraria()][ticket.indiceCargaHoraria()];
+    }
+
+    public int indiceCargaHoraria(){
+        if (this.getCargaHoraria() < Puntajes.V1){
+            return 0;
+        }else if (this.getCargaHoraria() < Puntajes.V2){
+            return 1;
+        }else{
+            return 2;
+        }
     }
 
     public double puntajeTipoDeTrabajo(Ticket ticket){

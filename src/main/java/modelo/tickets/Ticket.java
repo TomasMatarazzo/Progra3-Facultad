@@ -12,7 +12,6 @@ public abstract class Ticket {
     protected String estado; // activo-suspendido-cancelado-finalizado
     protected String tipoDeTrabajo;
 
-    //CONSTRUCTOR
     // CONSTRUCTOR
     public Ticket(Formulario_de_Busqueda formularioDeBusqueda, String tipoDeTrabajo) {
         this.formularioDeBusqueda = formularioDeBusqueda;

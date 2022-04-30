@@ -121,3 +121,5 @@ public abstract class Ticket {
         return Puntajes.MATRIZ3[this.getEstudiosCursados()][ticket.getEstudiosCursados()];
     }
 }
+
+}

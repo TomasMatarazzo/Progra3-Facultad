@@ -1,8 +1,8 @@
 package modelo.tickets;
 
 import excepciones.EstadoInvalidoException;
-import modelo.constantes.Puntajes;
-import interfaces.ILocacion;
+import modelo.Constantes.Puntajes;
+import modelo.Tickets.Locaciones.ILocacion;
 import java.util.GregorianCalendar;
 
 ///GREGORIAN CALENDAR CON LA FECHA DE ALTA --> COMPLETAR
@@ -13,14 +13,15 @@ public abstract class Ticket {
     protected String tipoDeTrabajo;
 
     //CONSTRUCTOR
-     public Ticket(Formulario_de_Busqueda formularioDeBusqueda, String tipoDeTrabajo) {
+    // CONSTRUCTOR
+    public Ticket(Formulario_de_Busqueda formularioDeBusqueda, String tipoDeTrabajo) {
         this.formularioDeBusqueda = formularioDeBusqueda;
         this.fechaDeAlta = new GregorianCalendar();
         this.estado = "Activo";
         this.tipoDeTrabajo = tipoDeTrabajo;
-     }
+    }
 
-    //GETTERS
+    // GETTERS
     public Formulario_de_Busqueda getFormularioDeBusqueda() {
         return formularioDeBusqueda;
     }
@@ -57,19 +58,20 @@ public abstract class Ticket {
         return formularioDeBusqueda.getEstudiosCursados();
     }
 
-    //FUNCIONALIDADES
+    // FUNCIONALIDADES
     public void altaTicket() {
-        if (!this.estado.equals("Cancelado")) //Una vez cancelado no se puede volver a activar.
+        if (!this.estado.equals("Cancelado")) // Una vez cancelado no se puede volver a activar.
             this.estado = "Activo";
     }
 
     public void bajaTicket() {
-        //Un ticket pasa a cancelado por petición de la parte. --> AVERIGUAR BIEN
+        // Un ticket pasa a cancelado por petición de la parte. --> AVERIGUAR BIEN
         this.estado = "Cancelado";
     }
 
     public void modificaTicket() throws EstadoInvalidoException {
-        //Un ticket deja de estar activo y pasa a suspendido (y viceversa) por decisión del propietario.
+        // Un ticket deja de estar activo y pasa a suspendido (y viceversa) por decisión
+        // del propietario.
         if (this.estado.equals("Activo"))
             this.estado = "Suspendido";
         else if (this.estado.equals("Suspendido"))
@@ -84,7 +86,7 @@ public abstract class Ticket {
 
     // PUNTAJES
     // Este caso seria el caso base , en el que es indistinto
-    public double puntajeTotal(Ticket ticket){
+    public double puntajeTotal(Ticket ticket) {
         double acum = 0;
         acum += this.pesoAspectos[0] * this.puntajeLocacion(ticket.formularioDeBusqueda.getLocacion());
         System.out.printf("\nlocacion:" + this.puntajeLocacion(ticket.formularioDeBusqueda.getLocacion()));
@@ -102,41 +104,41 @@ public abstract class Ticket {
 
     // Double dispatch con la locacion.
     // Para el resto de puntajes los calcularemos mediante matrices
-    public int puntajeLocacion(ILocacion locacion){
+    public int puntajeLocacion(ILocacion locacion) {
         return this.formularioDeBusqueda.puntajeLocacion(locacion);
     }
 
-    public double puntajeRenumeracion(Ticket ticket){
+    public double puntajeRenumeracion(Ticket ticket) {
         return Puntajes.RENUMERACION[this.getTipoPuestoLaboral()][ticket.getTipoPuestoLaboral()];
     }
 
-    public double puntajeCargaHoraria(Ticket ticket){
+    public double puntajeCargaHoraria(Ticket ticket) {
         return Puntajes.MATRIZ2[this.indiceCargaHoraria()][ticket.indiceCargaHoraria()];
     }
 
-    public int indiceCargaHoraria(){
-        if (this.getCargaHoraria() < Puntajes.V1){
+    public int indiceCargaHoraria() {
+        if (this.getCargaHoraria() < Puntajes.V1) {
             return 0;
-        }else if (this.getCargaHoraria() < Puntajes.V2){
+        } else if (this.getCargaHoraria() < Puntajes.V2) {
             return 1;
-        }else{
+        } else {
             return 2;
         }
     }
 
-    public double puntajeTipoDeTrabajo(Ticket ticket){
+    public double puntajeTipoDeTrabajo(Ticket ticket) {
         return Puntajes.MATRIZ2[this.getTipoPuestoLaboral()][ticket.getTipoPuestoLaboral()];
     }
 
-    public double puntajeRangoEtario(Ticket ticket){
+    public double puntajeRangoEtario(Ticket ticket) {
         return Puntajes.MATRIZ2[this.getRangoEtario()][ticket.getRangoEtario()];
     }
 
-    public double puntajeExperienciaPrevia(Ticket ticket){
+    public double puntajeExperienciaPrevia(Ticket ticket) {
         return Puntajes.MATRIZ3[this.getExperienciaPrevia()][ticket.getExperienciaPrevia()];
     }
 
-    public double puntajeEstudiosCursados(Ticket ticket){
+    public double puntajeEstudiosCursados(Ticket ticket) {
         return Puntajes.MATRIZ3[this.getEstudiosCursados()][ticket.getEstudiosCursados()];
     }
 }

@@ -1,6 +1,6 @@
 package modelo.tickets;
 
-import interfaces.ILocacion;
+import modelo.Tickets.Locaciones.ILocacion;
 
 public class Formulario_de_Busqueda {
     private ILocacion locacion;

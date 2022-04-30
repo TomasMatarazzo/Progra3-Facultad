@@ -1,6 +1,5 @@
 package modelo.tickets;
 
-import excepciones.EstadoInvalidoException;
 import interfaces.ILocacion;
 import modelo.constantes.Puntajes;
 
@@ -60,24 +59,22 @@ public abstract class Ticket {
 
     // FUNCIONALIDADES
     public void altaTicket() {
-        if (!this.estado.equals("Cancelado")) // Una vez cancelado no se puede volver a activar.
+        if (!this.estado.equalsIgnoreCase("Cancelado")) //Una vez cancelado no se puede volver a activar.
             this.estado = "Activo";
     }
 
     public void bajaTicket() {
-        // Un ticket pasa a cancelado por petición de la parte. --> AVERIGUAR BIEN
+        //Un ticket pasa a cancelado por petición de la parte. --> AVERIGUAR BIEN
         this.estado = "Cancelado";
     }
 
-    public void modificaTicket() throws EstadoInvalidoException {
-        // Un ticket deja de estar activo y pasa a suspendido (y viceversa) por decisión
-        // del propietario.
-        if (this.estado.equals("Activo"))
+    public void modificaTicket() {
+        //Un ticket deja de estar activo y pasa a suspendido (y viceversa) por decisión del propietario.
+        if (this.estado.equalsIgnoreCase("Activo"))
             this.estado = "Suspendido";
-        else if (this.estado.equals("Suspendido"))
-            this.estado = "Activo";
         else
-            throw new EstadoInvalidoException("El estado del ticket no corresponde a la accion solicitada.");
+        if (this.estado.equalsIgnoreCase("Suspendido"))
+            this.estado = "Activo";
     }
 
     public void finalizaTicket() {

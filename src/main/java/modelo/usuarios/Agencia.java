@@ -35,7 +35,7 @@ public class Agencia extends Usuario {
         if (sistema.getUsuarios().size() != 0) {
             System.out.println("Lista de empleadores: ");
             for (int i = 0;i < sistema.getUsuarios().size();i++)
-                if (sistema.getUsuarios().get(i).getTipo().equalsIgnoreCase("EMPLEADOR")) {
+                if (sistema.getUsuarios().get(i).getTipo().equalsIgnoreCase("PERSONA FISICA") || sistema.getUsuarios().get(i).getTipo().equalsIgnoreCase("PERSONA JURIDICA")) {
                     aux = (Empleador) sistema.getUsuarios().get(i);
                     System.out.println(aux);
                 }

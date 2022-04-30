@@ -2,6 +2,7 @@ package modelo;
 
 import excepciones.ErrorDeContrasenaException;
 import excepciones.ErrorDeUsuarioException;
+import modelo.listas.Contrato;
 import modelo.tickets.Ticket;
 import modelo.tickets.Ticket_de_Busqueda_de_Empleado;
 import modelo.tickets.Ticket_de_Busqueda_de_Empleo;
@@ -14,12 +15,13 @@ import java.util.HashMap;
 
 public class Sistema{
     private static Sistema instance = null;
-    private ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
-    private ArrayList<String> tiposDeTrabajo = new ArrayList<String>();
+//    private Agencia agencia = Agencia.getInstance();
+    private ArrayList<Usuario> usuarios = new ArrayList<>();
+    private ArrayList<String> tiposDeTrabajo = new ArrayList<>();
     private HashMap<Ticket_de_Busqueda_de_Empleado,Empleador> TicketsDeEmpleadores = new HashMap<>();
     private HashMap<Ticket_de_Busqueda_de_Empleo,Empleado_Pretenso> TicketsDeEmpleadosPretensos = new HashMap<>();
     private HashMap<Ticket,Lista> listas = new HashMap<>();
-    private ArrayList<Contrato> contratos = new ArrayList<Contrato>();
+    private ArrayList<Contrato> contratos = new ArrayList<>();
 
     //PATRON SINGLETON
     private Sistema() {
@@ -46,6 +48,14 @@ public class Sistema{
 
     public HashMap<Ticket_de_Busqueda_de_Empleo, Empleado_Pretenso> getTicketsDeEmpleadosPretensos() {
         return TicketsDeEmpleadosPretensos;
+    }
+
+    public void agregaTicketDeEmpleadosPretensos(Empleado_Pretenso usuario,Ticket_de_Busqueda_de_Empleo ticket) {
+        TicketsDeEmpleadosPretensos.put(ticket,usuario);
+    }
+
+    public void agregaTicketDeEmpleadores(Empleador usuario,Ticket_de_Busqueda_de_Empleado ticket) {
+        TicketsDeEmpleadores.put(ticket,usuario);
     }
 
     public HashMap<Ticket, Lista> getListas() {
@@ -79,14 +89,7 @@ public class Sistema{
             usuarios.get(i).setLoged(loged);
         }
 
-        if (!loged)
+        if (loged == false)
             throw new ErrorDeUsuarioException("El usuario ingresado es incorrecto.");
     }
-
-//    public void creaTicket(Formulario_de_Busqueda formulario, GregorianCalendar fechaAlta, int[] pesos) throws TicketYaCreadoException {
-//        if (this.ticketDeBusquedaDeEmpleo == null || this.getTicketDeBusquedaDeEmpleo().getEstado().equalsIgnoreCase("FINALIZADO"))
-//            this.ticketDeBusquedaDeEmpleo = new Ticket_de_Busqueda_de_Empleo(formulario, fechaAlta, pesos);
-//        else
-//            throw new TicketYaCreadoException("No puede existir mas de un ticket.");
-//    }
 }

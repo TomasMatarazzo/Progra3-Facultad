@@ -1,5 +1,7 @@
 package modelo.usuarios;
 
+import excepciones.TicketYaCreadoException;
+import modelo.tickets.Formulario_de_Busqueda;
 import modelo.tickets.Ticket_de_Busqueda_de_Empleo;
 
 public class Empleado_Pretenso extends UsuarioComun {
@@ -89,12 +91,11 @@ public class Empleado_Pretenso extends UsuarioComun {
     //TO STRING
     @Override
     public String toString() {
-        return "Empleado Pretenso: \n" +
-                "   IDUsuario: " + IDUsuario +
+        return  "   IDUsuario: " + IDUsuario +
                 "   nombreUsuario: " + nombreUsuario +
                 "   contrasena: " + contrasena + //La muestro?
-                "   nombre: '" + nombre +
-                "   apellido: '" + apellido +
+                "   nombre: " + nombre +
+                "   apellido: " + apellido +
                 "   telefono: " + telefono +
                 "   edad: " + edad +
                 "   eMail: " + eMail +
@@ -121,5 +122,17 @@ public class Empleado_Pretenso extends UsuarioComun {
             porcentaje -= (0.01 * this.puntaje);
 
         return monto * porcentaje;
+    }
+
+    public void creaTicket(Formulario_de_Busqueda formulario,String tipoTrabajo) {
+        try {
+            if (this.ticketDeBusquedaDeEmpleo != null || this.ticketDeBusquedaDeEmpleo.getEstado().equalsIgnoreCase("CANCELADO") || this.ticketDeBusquedaDeEmpleo.getEstado().equalsIgnoreCase("FINALIZADO")) {
+                this.ticketDeBusquedaDeEmpleo = new Ticket_de_Busqueda_de_Empleo(formulario,tipoTrabajo);
+                getSistema().agregaTicketDeEmpleadosPretensos(this,this.ticketDeBusquedaDeEmpleo);
+            } else
+                throw new TicketYaCreadoException("Ticket de busqueda de empleo ya existente.");
+        } catch (TicketYaCreadoException e) {
+            System.out.println(e.getMessage());
+        }
     }
 }

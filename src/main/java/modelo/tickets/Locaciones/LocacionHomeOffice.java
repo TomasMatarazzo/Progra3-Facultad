@@ -1,6 +1,6 @@
 package modelo.tickets.Locaciones;
-
-public class LocacionHomeOffice implements ILocacion {
+import interfaces.ILocacion;
+public class LocacionHomeOffice implements ILocacion{
 
     @Override
     public int puntajeLocacion(ILocacion locacion) {
@@ -20,5 +20,10 @@ public class LocacionHomeOffice implements ILocacion {
     @Override
     public int puntajePresencial() {
         return -1;
+    }
+
+    @Override
+    public String toString() {
+        return "Home Office";
     }
 }

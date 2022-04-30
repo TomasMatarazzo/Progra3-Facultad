@@ -1,4 +1,5 @@
 package modelo.tickets.Locaciones;
+import interfaces.ILocacion;
 
 public class LocacionPresencial implements ILocacion {
 
@@ -20,5 +21,10 @@ public class LocacionPresencial implements ILocacion {
     @Override
     public int puntajePresencial() {
         return 1;
+    }
+
+    @Override
+    public String toString() {
+        return "Presencial";
     }
 }

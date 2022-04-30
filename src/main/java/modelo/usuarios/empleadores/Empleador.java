@@ -9,6 +9,7 @@ public abstract class Empleador extends UsuarioComun {
     private String razonSocial; //Seria el NOMBRE
     private String tipoPersona; // fisica o juridica
     private String rubro; // salud, comercio local o comercio internacional
+    private int[] pesoPuntajes;
     //Tickets
     private ArrayList<Ticket_de_Busqueda_de_Empleado> ticketsDeBusquedaDeEmpleado = new ArrayList<>();
 
@@ -22,7 +23,9 @@ public abstract class Empleador extends UsuarioComun {
         this.razonSocial = razonSocial;
         this.tipoPersona = tipoPersona;
         this.rubro = rubro;
+        this.pesoPuntajes = new int[7];
     }
+
 
     //GETTERS & SETTERS & ADDERS
     public String getRazonSocial() {
@@ -45,6 +48,14 @@ public abstract class Empleador extends UsuarioComun {
 
     public ArrayList<Ticket_de_Busqueda_de_Empleado> getTicketsDeBusquedaDeEmpleado() {
         return ticketsDeBusquedaDeEmpleado;
+    }
+
+    public int[] getPesoPuntajes() {
+        return pesoPuntajes;
+    }
+
+    public void setPesoPuntajes(int[] pesoPuntajes) {
+        this.pesoPuntajes = pesoPuntajes;
     }
 
     //TO STRING
@@ -85,4 +96,5 @@ public abstract class Empleador extends UsuarioComun {
 
         return monto * porcentaje;
     }
+
 }

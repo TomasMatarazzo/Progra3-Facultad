@@ -3,7 +3,7 @@ package modelo.tickets;
 public class Ticket_de_Busqueda_de_Empleado extends Ticket {
     private int cantEmpleadosSolicitados;
     private int cantEmpleadosObtenidos;
-    private int[] pesoAspectos; //Dimension del arreglo = 7
+    private int[] pesoAspectos; // pesoAspecto se encuentra dentro de la empresa.
     private Ticket_de_Busqueda_de_Empleo eleccion;
 
     //CONSTRUCTOR
@@ -13,6 +13,19 @@ public class Ticket_de_Busqueda_de_Empleado extends Ticket {
         this.cantEmpleadosObtenidos = cantEmpleadosObtenidos;
         this.pesoAspectos = pesoAspectos;
         this.eleccion = null;
+    }
+
+    public double puntajeTotal(Ticket ticket) {
+        double acum = 0;
+        acum += this.pesoAspectos[0] * this.puntajeLocacion(ticket.formularioDeBusqueda.getLocacion());
+        acum += this.pesoAspectos[1] * this.puntajeRenumeracion(ticket);
+        acum += this.pesoAspectos[2] * this.puntajeCargaHoraria(ticket);
+        acum += this.pesoAspectos[3] * this.puntajeTipoDeTrabajo(ticket);
+        acum += this.pesoAspectos[4] * this.puntajeRangoEtario(ticket);
+        acum += this.pesoAspectos[5] * this.puntajeExperienciaPrevia(ticket);
+        acum += this.pesoAspectos[6] * this.puntajeEstudiosCursados(ticket);
+
+        return acum;
     }
 
     //GETTERS
@@ -38,5 +51,7 @@ public class Ticket_de_Busqueda_de_Empleado extends Ticket {
                 "   cantEmpleadosSolicitados: " + cantEmpleadosSolicitados +
                 "   cantEmpleadosObtenidos: " + cantEmpleadosObtenidos;
     }
+
+
 }
 

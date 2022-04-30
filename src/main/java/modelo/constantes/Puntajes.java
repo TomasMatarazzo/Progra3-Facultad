@@ -33,4 +33,10 @@ public class Puntajes {
     public static final int PRIMARIO = 0;
     public static final int SECUNDARIO = 1;
     public static final int TERCIARIO = 2;
+
+    public static final String[][] NOMBRES_FORM_BUSQUEDA = {{"Media","Completa","Extendida"},
+                                                            {"Junior","Senior","Managment"},
+                                                            {"edad menor a 40", "entre 40 y 50","edad mayor a 50"},
+                                                            {"sin experiencia","experiencia media", "mucha experiencia"},
+                                                            {"primerio","secundario","terciario"}};
 }

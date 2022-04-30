@@ -12,7 +12,7 @@ public class LocacionFactory {
         if (tipo == null){
             return null;
         }
-        else if (tipo.equalsIgnoreCase("HOME OFFICE")){
+        else if (tipo.equalsIgnoreCase("HOMEOFFICE")){
             return new LocacionHomeOffice();
         }
         else if (tipo.equalsIgnoreCase("PRESENCIAL")){
@@ -25,5 +25,10 @@ public class LocacionFactory {
 
 
 
+    }
+
+    @Override
+    public String toString() {
+        return "Presencial";
     }
 }

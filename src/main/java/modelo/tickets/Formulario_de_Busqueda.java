@@ -1,6 +1,8 @@
 package modelo.tickets;
-
-import modelo.Tickets.Locaciones.ILocacion;
+import interfaces.ILocacion;
+import modelo.constantes.Puntajes;
+import modelo.tickets.Locaciones.LocacionFactory;
+import modelo.tickets.Locaciones.LocacionHomeOffice;
 
 public class Formulario_de_Busqueda {
     private ILocacion locacion;
@@ -61,12 +63,26 @@ public class Formulario_de_Busqueda {
     // TO STRING
     @Override
     public String toString() {
-        return "   locacion: " + locacion +
-                "   remuneracion: " + remuneracion +
-                "   cargaHoraria: " + cargaHoraria +
-                "   tipoPuestoLaboral: " + tipoPuestoLaboral +
-                "   rangoEtario: " + rangoEtario +
-                "   experienciaPrevia: " + experienciaPrevia +
-                "   estudiosCursados: " + estudiosCursados;
+
+        return  "--FORMULARIO DE BUSQUEDA--  \n"+
+                "   locacion: " + locacion.toString() + "\n" +
+                "   remuneracion: " + remuneracion + "\n"+
+                "   cargaHoraria: " + Puntajes.NOMBRES_FORM_BUSQUEDA[0][cargaHoraria] +"\n"+
+                "   tipoPuestoLaboral: " + Puntajes.NOMBRES_FORM_BUSQUEDA[1][tipoPuestoLaboral]+"\n"+
+                "   rangoEtario: " + Puntajes.NOMBRES_FORM_BUSQUEDA[2][rangoEtario] +"\n"+
+                "   experienciaPrevia: " + Puntajes.NOMBRES_FORM_BUSQUEDA[3][experienciaPrevia] +"\n"+
+                "   estudiosCursados: " + Puntajes.NOMBRES_FORM_BUSQUEDA[4][estudiosCursados];
+    }
+
+    public static void main(String[] args) {
+        LocacionFactory factoryLocacion = new LocacionFactory();
+        ILocacion locacion1 = factoryLocacion.getLocacion("presencial");
+        int[] pesoAspectos ={1,1,1,1,1,1,1};
+        Formulario_de_Busqueda form1 = new Formulario_de_Busqueda(locacion1,25000,1,1,1,1,1);
+        Formulario_de_Busqueda form2 = new Formulario_de_Busqueda(factoryLocacion.getLocacion("indistinto"),60000,1,1,1,1,1);
+        Ticket_de_Busqueda_de_Empleado ticket1 = new Ticket_de_Busqueda_de_Empleado(form1,"no se",1,1,pesoAspectos);
+        Ticket_de_Busqueda_de_Empleo ticket2 = new Ticket_de_Busqueda_de_Empleo(form2,"no se");
+        ticket1.puntajeTotal(ticket2);
+        System.out.printf(form1.toString());
     }
 }

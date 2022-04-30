@@ -22,4 +22,9 @@ public class LocacionIndistinto implements ILocacion {
     public int puntajePresencial() {
         return -1;
     }
+
+    @Override
+    public String toString() {
+        return "indistinto";
+    }
 }

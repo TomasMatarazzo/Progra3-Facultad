@@ -1,8 +1,9 @@
 package modelo.tickets;
 
 import excepciones.EstadoInvalidoException;
-import modelo.Constantes.Puntajes;
-import modelo.Tickets.Locaciones.ILocacion;
+import interfaces.ILocacion;
+import modelo.constantes.Puntajes;
+
 import java.util.GregorianCalendar;
 
 ///GREGORIAN CALENDAR CON LA FECHA DE ALTA --> COMPLETAR
@@ -83,24 +84,6 @@ public abstract class Ticket {
         this.estado = "Finalizado";
     }
 
-    // PUNTAJES
-    // Este caso seria el caso base , en el que es indistinto
-    public double puntajeTotal(Ticket ticket) {
-        double acum = 0;
-        acum += this.pesoAspectos[0] * this.puntajeLocacion(ticket.formularioDeBusqueda.getLocacion());
-        System.out.printf("\nlocacion:" + this.puntajeLocacion(ticket.formularioDeBusqueda.getLocacion()));
-        acum += this.pesoAspectos[0] * this.puntajeRangoEtario(ticket);
-        System.out.printf("\nrango etario:" + this.puntajeRangoEtario(ticket));
-
-        acum += this.pesoAspectos[0] * this.puntajeTipoDeTrabajo(ticket);
-        System.out.printf("\ntrabajo:" + this.puntajeTipoDeTrabajo(ticket));
-
-        acum += this.pesoAspectos[0] * this.puntajeCargaHoraria(ticket);
-        System.out.printf("\ncarga horaria:" + this.puntajeCargaHoraria(ticket));
-
-        return acum;
-    }
-
     // Double dispatch con la locacion.
     // Para el resto de puntajes los calcularemos mediante matrices
     public int puntajeLocacion(ILocacion locacion) {
@@ -108,17 +91,17 @@ public abstract class Ticket {
     }
 
     public double puntajeRenumeracion(Ticket ticket) {
-        return Puntajes.RENUMERACION[this.getTipoPuestoLaboral()][ticket.getTipoPuestoLaboral()];
+        return Puntajes.RENUMERACION[this.indiceRenumeracion()][ticket.indiceRenumeracion()];
     }
 
     public double puntajeCargaHoraria(Ticket ticket) {
-        return Puntajes.MATRIZ2[this.indiceCargaHoraria()][ticket.indiceCargaHoraria()];
+        return Puntajes.MATRIZ2[this.getCargaHoraria()][ticket.getCargaHoraria()];
     }
 
-    public int indiceCargaHoraria() {
-        if (this.getCargaHoraria() < Puntajes.V1) {
+    public int indiceRenumeracion() {
+        if (this.getRemuneracion() < Puntajes.V1) {
             return 0;
-        } else if (this.getCargaHoraria() < Puntajes.V2) {
+        } else if (this.getRemuneracion() < Puntajes.V2) {
             return 1;
         } else {
             return 2;

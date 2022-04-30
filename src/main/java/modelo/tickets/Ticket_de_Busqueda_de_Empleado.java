@@ -37,5 +37,9 @@ public class Ticket_de_Busqueda_de_Empleado extends Ticket {
                 "   cantEmpleadosSolicitados: " + cantEmpleadosSolicitados +
                 "   cantEmpleadosObtenidos: " + cantEmpleadosObtenidos;
     }
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
 }
 

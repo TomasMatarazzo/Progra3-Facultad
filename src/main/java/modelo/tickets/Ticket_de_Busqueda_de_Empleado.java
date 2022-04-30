@@ -7,10 +7,10 @@ public class Ticket_de_Busqueda_de_Empleado extends Ticket {
     private Ticket_de_Busqueda_de_Empleo eleccion;
 
     //CONSTRUCTOR
-    public Ticket_de_Busqueda_de_Empleado(Formulario_de_Busqueda formularioDeBusqueda, String tipoDeTrabajo, int cantEmpleadosSolicitados, int cantEmpleadosObtenidos, int[] pesoAspectos) {
+    public Ticket_de_Busqueda_de_Empleado(Formulario_de_Busqueda formularioDeBusqueda, String tipoDeTrabajo, int cantEmpleadosSolicitados, int[] pesoAspectos) {
         super(formularioDeBusqueda, tipoDeTrabajo);
         this.cantEmpleadosSolicitados = cantEmpleadosSolicitados;
-        this.cantEmpleadosObtenidos = cantEmpleadosObtenidos;
+        this.cantEmpleadosObtenidos = 0;
         this.pesoAspectos = pesoAspectos;
         this.eleccion = null;
     }
@@ -31,8 +31,7 @@ public class Ticket_de_Busqueda_de_Empleado extends Ticket {
     //TO STRING
     @Override
     public String toString() {
-        return "Ticket de Busqueda de Empleado: " +
-                "   formularioDeBusqueda: " + formularioDeBusqueda.toString() +
+        return  "   formularioDeBusqueda: " + formularioDeBusqueda.toString() +
                 "   fechaDeAlta: " + fechaDeAlta +
                 "   estado: " + estado +
                 "   cantEmpleadosSolicitados: " + cantEmpleadosSolicitados +

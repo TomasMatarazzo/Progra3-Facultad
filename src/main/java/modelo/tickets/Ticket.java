@@ -1,6 +1,5 @@
 package modelo.tickets;
 
-import excepciones.EstadoInvalidoException;
 import modelo.constantes.Puntajes;
 import interfaces.ILocacion;
 import java.util.GregorianCalendar;
@@ -59,7 +58,7 @@ public abstract class Ticket {
 
     //FUNCIONALIDADES
     public void altaTicket() {
-        if (!this.estado.equals("Cancelado")) //Una vez cancelado no se puede volver a activar.
+        if (!this.estado.equalsIgnoreCase("Cancelado")) //Una vez cancelado no se puede volver a activar.
             this.estado = "Activo";
     }
 
@@ -68,14 +67,13 @@ public abstract class Ticket {
         this.estado = "Cancelado";
     }
 
-    public void modificaTicket() throws EstadoInvalidoException {
+    public void modificaTicket() {
         //Un ticket deja de estar activo y pasa a suspendido (y viceversa) por decisión del propietario.
-        if (this.estado.equals("Activo"))
+        if (this.estado.equalsIgnoreCase("Activo"))
             this.estado = "Suspendido";
-        else if (this.estado.equals("Suspendido"))
-            this.estado = "Activo";
         else
-            throw new EstadoInvalidoException("El estado del ticket no corresponde a la accion solicitada.");
+            if (this.estado.equalsIgnoreCase("Suspendido"))
+                this.estado = "Activo";
     }
 
     public void finalizaTicket() {
@@ -84,21 +82,21 @@ public abstract class Ticket {
 
     // PUNTAJES
     // Este caso seria el caso base , en el que es indistinto
-    public double puntajeTotal(Ticket ticket){
-        double acum = 0;
-        acum += this.pesoAspectos[0] * this.puntajeLocacion(ticket.formularioDeBusqueda.getLocacion());
-        System.out.printf("\nlocacion:" + this.puntajeLocacion(ticket.formularioDeBusqueda.getLocacion()));
-        acum += this.pesoAspectos[0] * this.puntajeRangoEtario(ticket);
-        System.out.printf("\nrango etario:" + this.puntajeRangoEtario(ticket));
-
-        acum += this.pesoAspectos[0] * this.puntajeTipoDeTrabajo(ticket);
-        System.out.printf("\ntrabajo:" + this.puntajeTipoDeTrabajo(ticket));
-
-        acum += this.pesoAspectos[0] * this.puntajeCargaHoraria(ticket);
-        System.out.printf("\ncarga horaria:" + this.puntajeCargaHoraria(ticket));
-
-        return acum;
-    }
+//    public double puntajeTotal(Ticket ticket){
+//        double acum = 0;
+//        acum += this.pesoAspectos[0] * this.puntajeLocacion(ticket.formularioDeBusqueda.getLocacion());
+//        System.out.printf("\nlocacion:" + this.puntajeLocacion(ticket.formularioDeBusqueda.getLocacion()));
+//        acum += this.pesoAspectos[0] * this.puntajeRangoEtario(ticket);
+//        System.out.printf("\nrango etario:" + this.puntajeRangoEtario(ticket));
+//
+//        acum += this.pesoAspectos[0] * this.puntajeTipoDeTrabajo(ticket);
+//        System.out.printf("\ntrabajo:" + this.puntajeTipoDeTrabajo(ticket));
+//
+//        acum += this.pesoAspectos[0] * this.puntajeCargaHoraria(ticket);
+//        System.out.printf("\ncarga horaria:" + this.puntajeCargaHoraria(ticket));
+//
+//        return acum;
+//    }
 
     // Double dispatch con la locacion.
     // Para el resto de puntajes los calcularemos mediante matrices

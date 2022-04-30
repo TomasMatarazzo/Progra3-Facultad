@@ -12,9 +12,7 @@ public class Formulario_de_Busqueda {
     private int estudiosCursados;
 
     // CONSTRUCTOR
-
-    public Formulario_de_Busqueda(ILocacion locacion, double remuneracion, int cargaHoraria, int tipoPuestoLaboral,
-                                  int rangoEtario, int experienciaPrevia, int estudiosCursados) {
+    public Formulario_de_Busqueda(ILocacion locacion, double remuneracion, int cargaHoraria, int tipoPuestoLaboral, int rangoEtario, int experienciaPrevia, int estudiosCursados) {
         this.locacion = locacion;
         this.remuneracion = remuneracion;
         this.cargaHoraria = cargaHoraria;
@@ -58,10 +56,10 @@ public class Formulario_de_Busqueda {
         return estudiosCursados;
     }
 
-    // TO STRING
+    //TO STRING
     @Override
     public String toString() {
-        return "   locacion: " + locacion +
+        return  "   locacion: " + locacion +
                 "   remuneracion: " + remuneracion +
                 "   cargaHoraria: " + cargaHoraria +
                 "   tipoPuestoLaboral: " + tipoPuestoLaboral +

@@ -1,5 +1,6 @@
 package modelo.usuarios.empleadores;
 
+import modelo.tickets.Formulario_de_Busqueda;
 import modelo.tickets.Ticket_de_Busqueda_de_Empleado;
 import modelo.usuarios.UsuarioComun;
 
@@ -47,16 +48,19 @@ public abstract class Empleador extends UsuarioComun {
         return ticketsDeBusquedaDeEmpleado;
     }
 
+    public void agregarTicket(Ticket_de_Busqueda_de_Empleado nuevo) {
+        ticketsDeBusquedaDeEmpleado.add(nuevo);
+    }
+
     //TO STRING
     @Override
     public String toString() {
-        return "Empleador: " +
-                "   IDUsuario: " + IDUsuario +
+        return  "   IDUsuario: " + IDUsuario +
                 "   nombreUsuario: '" + nombreUsuario +
-                "   contrasena: '" + contrasena + //Esta bien mostrarla?
-                "   razonSocial: '" + razonSocial +
-                "   tipoPersona: '" + tipoPersona +
-                "   rubro: '" + rubro +
+                "   contrasena: " + contrasena + //Esta bien mostrarla?
+                "   razonSocial: " + razonSocial +
+                "   tipoPersona: " + tipoPersona +
+                "   rubro: " + rubro +
                 "   puntaje: " + puntaje;
     }
 
@@ -84,5 +88,11 @@ public abstract class Empleador extends UsuarioComun {
             porcentaje -= 0 + (0.01 * this.puntaje);
 
         return monto * porcentaje;
+    }
+
+    public void creaTicket(Formulario_de_Busqueda formulario, String tipoTrabajo,int cantEmpleadosSolicitados,int[] pesoAspectos) {
+        Ticket_de_Busqueda_de_Empleado nuevo = new Ticket_de_Busqueda_de_Empleado(formulario,tipoTrabajo,cantEmpleadosSolicitados,pesoAspectos);
+        this.agregarTicket(nuevo);
+        getSistema().agregaTicketDeEmpleadores(this,nuevo);
     }
 }

@@ -1,4 +1,4 @@
-package modelo;
+package modelo.listas;
 
 import modelo.usuarios.Empleado_Pretenso;
 import modelo.usuarios.empleadores.Empleador;

@@ -1,7 +1,7 @@
 package modelo.Tickets.Locaciones;
 
-public interface Locacion {
-    int puntajeLocacion( Locacion locacion);
+public interface ILocacion {
+    int puntajeLocacion( ILocacion locacion);
     int puntajeHomeOffice();
     int puntajeIndistinto();
     int puntajePresencial();

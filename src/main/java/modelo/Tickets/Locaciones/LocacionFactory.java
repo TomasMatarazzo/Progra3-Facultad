@@ -5,7 +5,7 @@ public class LocacionFactory {
     public LocacionFactory(){
     }
 
-    public Locacion getLocacion(String tipo){
+    public ILocacion getLocacion(String tipo){
 
         if (tipo == null){
             return null;

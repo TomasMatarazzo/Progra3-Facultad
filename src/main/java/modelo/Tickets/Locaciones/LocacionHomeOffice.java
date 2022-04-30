@@ -1,9 +1,9 @@
 package modelo.Tickets.Locaciones;
 
-public class LocacionHomeOffice implements Locacion{
+public class LocacionHomeOffice implements ILocacion {
 
     @Override
-    public int puntajeLocacion(Locacion locacion) {
+    public int puntajeLocacion(ILocacion locacion) {
         return locacion.puntajeHomeOffice();
     }
 

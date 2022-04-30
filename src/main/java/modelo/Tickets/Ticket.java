@@ -2,7 +2,7 @@ package modelo.Tickets;
 
 import excepciones.EstadoInvalidoException;
 import modelo.Constantes.Puntajes;
-import modelo.Tickets.Locaciones.Locacion;
+import modelo.Tickets.Locaciones.ILocacion;
 import java.util.GregorianCalendar;
 
 ///GREGORIAN CALENDAR CON LA FECHA DE ALTA --> COMPLETAR
@@ -41,6 +41,7 @@ public abstract class Ticket {
         return estado;
     }
 
+
     //FUNCIONALIDADES
     public void altaTicket() {
         if (!this.estado.equals("Cancelado")) //Una vez cancelado no se puede volver a activar.
@@ -72,6 +73,7 @@ public abstract class Ticket {
     // PUNTAJES
 
 
+
     public double puntajeTotal(Ticket ticket){
         double acum = 0;
         acum += this.pesoAspectos[0] * this.puntajeLocacion(ticket.formularioDeBusqueda.getLocacion());
@@ -93,7 +95,7 @@ public abstract class Ticket {
 
 
     // Para el resto de puntajes los calcularemos mediante matrices
-    public int puntajeLocacion(Locacion locacion){
+    public int puntajeLocacion(ILocacion locacion){
         return this.formularioDeBusqueda.puntajeLocacion(locacion);
     }
 

@@ -32,6 +32,9 @@ public abstract class Ticket {
     public String getEstado() {
         return estado;
     }
+    public String getTipoDeTrabajo() {
+        return tipoDeTrabajo;
+    }
 
     public double getRemuneracion() {
         return formularioDeBusqueda.getRemuneracion();

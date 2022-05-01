@@ -18,10 +18,11 @@ public class Sistema{
 //    private Agencia agencia = Agencia.getInstance();
     private ArrayList<Usuario> usuarios = new ArrayList<>();
     private ArrayList<String> tiposDeTrabajo = new ArrayList<>();
-    private HashMap<Ticket_de_Busqueda_de_Empleado,Empleador> TicketsDeEmpleadores = new HashMap<>();
-    private HashMap<Ticket_de_Busqueda_de_Empleo,Empleado_Pretenso> TicketsDeEmpleadosPretensos = new HashMap<>();
+    private HashMap<Ticket_de_Busqueda_de_Empleado,Empleador> ticketsDeEmpleadores = new HashMap<>();
+    private HashMap<Ticket_de_Busqueda_de_Empleo,Empleado_Pretenso> ticketsDeEmpleadosPretensos = new HashMap<>();
     private HashMap<Ticket,Lista> listas = new HashMap<>();
     private ArrayList<Contrato> contratos = new ArrayList<>();
+
 
     //PATRON SINGLETON
     private Sistema() {
@@ -43,19 +44,19 @@ public class Sistema{
     }
 
     public HashMap<Ticket_de_Busqueda_de_Empleado, Empleador> getTicketsDeEmpleadores() {
-        return TicketsDeEmpleadores;
+        return ticketsDeEmpleadores;
     }
 
     public HashMap<Ticket_de_Busqueda_de_Empleo, Empleado_Pretenso> getTicketsDeEmpleadosPretensos() {
-        return TicketsDeEmpleadosPretensos;
+        return ticketsDeEmpleadosPretensos;
     }
 
     public void agregaTicketDeEmpleadosPretensos(Empleado_Pretenso usuario,Ticket_de_Busqueda_de_Empleo ticket) {
-        TicketsDeEmpleadosPretensos.put(ticket,usuario);
+        ticketsDeEmpleadosPretensos.put(ticket,usuario);
     }
 
     public void agregaTicketDeEmpleadores(Empleador usuario,Ticket_de_Busqueda_de_Empleado ticket) {
-        TicketsDeEmpleadores.put(ticket,usuario);
+        ticketsDeEmpleadores.put(ticket,usuario);
     }
 
     public HashMap<Ticket, Lista> getListas() {

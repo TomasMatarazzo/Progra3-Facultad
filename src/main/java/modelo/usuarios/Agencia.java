@@ -1,9 +1,14 @@
 package modelo.usuarios;
 
 import modelo.Sistema;
+import modelo.constantes.Puntajes;
+import modelo.tickets.Ticket;
 import modelo.tickets.Ticket_de_Busqueda_de_Empleado;
 import modelo.tickets.Ticket_de_Busqueda_de_Empleo;
 import modelo.usuarios.empleadores.Empleador;
+
+import java.util.ArrayList;
+import java.util.Map;
 
 //QUEDA EN DUDA EL TEMA DEL SINGLETON DE LA PROPIA AGENCIA --> RESOLVER
 public class Agencia extends Usuario {
@@ -84,4 +89,52 @@ public class Agencia extends Usuario {
 
         System.out.println("\nMonto total a cobrar = $" + total);
     }
+
+    // PROBAR METODO CUANDO SE CARGUEN LAS LISTAS
+
+    public ArrayList<Ticket> confionarTipoDeTrabajo( String trabajo) {
+
+        ArrayList<Ticket> listaConfeccionada = new ArrayList<>();
+        for (Map.Entry<Ticket_de_Busqueda_de_Empleado, Empleador> elem : Sistema.getInstance().getTicketsDeEmpleadores().entrySet()) {
+            if (elem.getKey().getTipoDeTrabajo().equalsIgnoreCase(trabajo)) {
+                listaConfeccionada.add(elem.getKey());
+            }
+        }
+
+        for (Map.Entry<Ticket_de_Busqueda_de_Empleo, Empleado_Pretenso> elem : Sistema.getInstance().getTicketsDeEmpleadosPretensos().entrySet()) {
+            if (elem.getKey().getTipoDeTrabajo().equalsIgnoreCase(trabajo)) {
+                listaConfeccionada.add(elem.getKey());
+            }
+
+
+        }
+        return listaConfeccionada;
+    }
+
+    // PROBAR METODO CUADNO SE CARGUEN LAS LISTAS.
+    
+    public ArrayList<Ticket> confionarTipoPuestoLaboral( String tipoDePuesto) {
+
+        ArrayList<Ticket> listaConfeccionada = new ArrayList<>();
+        String puesto;
+
+        for (Map.Entry<Ticket_de_Busqueda_de_Empleado, Empleador> elem : Sistema.getInstance().getTicketsDeEmpleadores().entrySet()) {
+            puesto = Puntajes.NOMBRES_FORM_BUSQUEDA[0][elem.getKey().getTipoPuestoLaboral()]; // obtengo el nombre del puesto mediante su indice
+            if (puesto.equalsIgnoreCase(tipoDePuesto)) {
+                listaConfeccionada.add(elem.getKey());
+            }
+        }
+
+        for (Map.Entry<Ticket_de_Busqueda_de_Empleo, Empleado_Pretenso> elem : Sistema.getInstance().getTicketsDeEmpleadosPretensos().entrySet()) {
+            puesto = Puntajes.NOMBRES_FORM_BUSQUEDA[0][elem.getKey().getTipoPuestoLaboral()];
+            if (puesto.equalsIgnoreCase(tipoDePuesto)) {
+                listaConfeccionada.add(elem.getKey());
+            }
+
+
+        }
+        return listaConfeccionada;
+    }
+
+    // confeccionar la de rango laboral
 }

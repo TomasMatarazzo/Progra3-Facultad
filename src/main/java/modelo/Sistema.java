@@ -15,8 +15,11 @@ import java.util.HashMap;
 
 public class Sistema{
     private static Sistema instance = null;
-//    private Agencia agencia = Agencia.getInstance();
     private ArrayList<UsuarioComun> usuarios = new ArrayList<>();
+
+//    private ArrayList<Empleador> empleadores = new ArrayList<>();
+//    private ArrayList<Empleado_Pretenso> empleadosPretensos = new ArrayList<>();
+
     private ArrayList<String> tiposDeTrabajo = new ArrayList<>();
     private HashMap<Ticket_de_Busqueda_de_Empleado,Empleador> ticketsDeEmpleadores = new HashMap<>();
     private HashMap<Ticket_de_Busqueda_de_Empleo,Empleado_Pretenso> ticketsDeEmpleadosPretensos = new HashMap<>();

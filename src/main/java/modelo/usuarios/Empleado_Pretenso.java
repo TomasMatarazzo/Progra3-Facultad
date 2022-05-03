@@ -137,15 +137,6 @@ public class Empleado_Pretenso extends UsuarioComun {
         }
     }
 
-    public void finalizaTicket() {
-        this.ticketDeBusquedaDeEmpleo.setEstado("Finalizado");
-    }
-
-    public void cancelaTicket() {
-        this.ticketDeBusquedaDeEmpleo.setEstado("Cancelado");
-        this.puntaje--;
-    }
-
     public void gestionaTicket(String estado) {
         try {
             if (!estado.equalsIgnoreCase("FINALIZADO")) {

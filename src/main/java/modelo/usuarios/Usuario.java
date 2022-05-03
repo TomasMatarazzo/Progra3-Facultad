@@ -38,8 +38,6 @@ public abstract class Usuario {
 
     public abstract String getTipo();
 
-
-
     public void setLoged(boolean loged) {
         this.loged = loged;
     }

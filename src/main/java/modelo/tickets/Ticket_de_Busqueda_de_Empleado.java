@@ -15,19 +15,6 @@ public class Ticket_de_Busqueda_de_Empleado extends Ticket {
         this.eleccion = null;
     }
 
-    public double puntajeTotal(Ticket ticket) {
-        double acum = 0;
-        acum += this.pesoAspectos[0] * this.puntajeLocacion(ticket.formularioDeBusqueda.getLocacion());
-        acum += this.pesoAspectos[1] * this.puntajeRenumeracion(ticket);
-        acum += this.pesoAspectos[2] * this.puntajeCargaHoraria(ticket);
-        acum += this.pesoAspectos[3] * this.puntajeTipoDeTrabajo(ticket);
-        acum += this.pesoAspectos[4] * this.puntajeRangoEtario(ticket);
-        acum += this.pesoAspectos[5] * this.puntajeExperienciaPrevia(ticket);
-        acum += this.pesoAspectos[6] * this.puntajeEstudiosCursados(ticket);
-
-        return acum;
-    }
-
     //GETTERS
     public int getCantEmpleadosSolicitados() {
         return cantEmpleadosSolicitados;
@@ -52,6 +39,28 @@ public class Ticket_de_Busqueda_de_Empleado extends Ticket {
                 "   cantEmpleadosObtenidos: " + cantEmpleadosObtenidos;
     }
 
+    //FUCNIONALIDADES
+    public double puntajeTotal(Ticket ticket) {
+        double acum = 0;
 
+        acum += this.pesoAspectos[0] * this.puntajeLocacion(ticket.formularioDeBusqueda.getLocacion());
+        acum += this.pesoAspectos[1] * this.puntajeRenumeracion(ticket);
+        acum += this.pesoAspectos[2] * this.puntajeCargaHoraria(ticket);
+        acum += this.pesoAspectos[3] * this.puntajeTipoDeTrabajo(ticket);
+        acum += this.pesoAspectos[4] * this.puntajeRangoEtario(ticket);
+        acum += this.pesoAspectos[5] * this.puntajeExperienciaPrevia(ticket);
+        acum += this.pesoAspectos[6] * this.puntajeEstudiosCursados(ticket);
+
+        return acum;
+    }
+
+    public int compareTo(Ticket o) {
+        if (this.puntajeTotal(this) > o.puntajeTotal(o))
+            return 1;
+        else if (this.puntajeTotal(this)==o.puntajeTotal(o))
+            return 0;
+        else
+            return -1;
+    }
 }
 

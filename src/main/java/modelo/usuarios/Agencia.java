@@ -81,8 +81,8 @@ public class Agencia extends Usuario {
         double total = 0, aux = 0;
 
         System.out.println("Comision a cobrar a cada Usuario: ");
-        for (int i = 1;i < sistema.getUsuarios().size();i++) {
-//            aux = sistema.getUsuarios().get(i).calculaComision(); //CASTEAR AUX
+        for (int i = 0;i < sistema.getUsuarios().size();i++) {
+            aux = sistema.getUsuarios().get(i).calculaComision();
             System.out.println("\tUsuario: " + sistema.getUsuarios().get(i).getNombreUsuario() + " ~ Comision = $" + aux);
             total += aux;
         }

@@ -7,8 +7,8 @@ import modelo.tickets.Ticket;
 import modelo.tickets.Ticket_de_Busqueda_de_Empleado;
 import modelo.tickets.Ticket_de_Busqueda_de_Empleo;
 import modelo.usuarios.Empleado_Pretenso;
+import modelo.usuarios.UsuarioComun;
 import modelo.usuarios.empleadores.Empleador;
-import modelo.usuarios.Usuario;
 import modelo.listas.Lista;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -16,13 +16,12 @@ import java.util.HashMap;
 public class Sistema{
     private static Sistema instance = null;
 //    private Agencia agencia = Agencia.getInstance();
-    private ArrayList<Usuario> usuarios = new ArrayList<>();
+    private ArrayList<UsuarioComun> usuarios = new ArrayList<>();
     private ArrayList<String> tiposDeTrabajo = new ArrayList<>();
     private HashMap<Ticket_de_Busqueda_de_Empleado,Empleador> ticketsDeEmpleadores = new HashMap<>();
     private HashMap<Ticket_de_Busqueda_de_Empleo,Empleado_Pretenso> ticketsDeEmpleadosPretensos = new HashMap<>();
     private HashMap<Ticket,Lista> listas = new HashMap<>();
     private ArrayList<Contrato> contratos = new ArrayList<>();
-
 
     //PATRON SINGLETON
     private Sistema() {
@@ -35,7 +34,7 @@ public class Sistema{
     }
 
     //GETTERS & ADDERS
-    public ArrayList<Usuario> getUsuarios() {
+    public ArrayList<UsuarioComun> getUsuarios() {
         return usuarios;
     }
 
@@ -59,7 +58,7 @@ public class Sistema{
         ticketsDeEmpleadores.put(ticket,usuario);
     }
 
-    public HashMap<Ticket, Lista> getListas() {
+    public HashMap<Ticket,Lista> getListas() {
         return listas;
     }
 
@@ -68,7 +67,7 @@ public class Sistema{
     }
 
     //FUNCIONALIDADES
-    public void registrarUsuario(Usuario nuevo) throws ErrorDeUsuarioException {
+    public void registrarUsuario(UsuarioComun nuevo) throws ErrorDeUsuarioException {
         for (int i = 0; i < usuarios.size(); i++) {
             if (usuarios.get(i).usuarioValido(nuevo.getNombreUsuario()))
                 throw new ErrorDeUsuarioException("El nombre de usuario ingresado ya existe.");
@@ -92,5 +91,18 @@ public class Sistema{
 
         if (loged == false)
             throw new ErrorDeUsuarioException("El usuario ingresado es incorrecto.");
+    }
+
+    public void rondaEncuentrosLaborales(){
+        for(Ticket_de_Busqueda_de_Empleado claveempleados:ticketsDeEmpleadores.keySet()){
+            Lista nuevalista = new Lista();
+            nuevalista.ofertas.addAll(ticketsDeEmpleadosPretensos.keySet());
+            listas.put(claveempleados,nuevalista);
+        }
+        for(Ticket_de_Busqueda_de_Empleo claveempleadores:ticketsDeEmpleadosPretensos.keySet()){
+            Lista nuevalista = new Lista();
+            nuevalista.ofertas.addAll(ticketsDeEmpleadores.keySet());
+            listas.put(claveempleadores,nuevalista);
+        }
     }
 }

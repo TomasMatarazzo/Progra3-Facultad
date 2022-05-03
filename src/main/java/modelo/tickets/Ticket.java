@@ -20,7 +20,7 @@ public abstract class Ticket {
         this.tipoDeTrabajo = tipoDeTrabajo;
     }
 
-    // GETTERS
+    // GETTERS && SETTERS
     public Formulario_de_Busqueda getFormularioDeBusqueda() {
         return formularioDeBusqueda;
     }
@@ -32,6 +32,7 @@ public abstract class Ticket {
     public String getEstado() {
         return estado;
     }
+
     public String getTipoDeTrabajo() {
         return tipoDeTrabajo;
     }
@@ -60,29 +61,11 @@ public abstract class Ticket {
         return formularioDeBusqueda.getEstudiosCursados();
     }
 
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
     // FUNCIONALIDADES
-    public void altaTicket() {
-        if (!this.estado.equalsIgnoreCase("Cancelado")) //Una vez cancelado no se puede volver a activar.
-            this.estado = "Activo";
-    }
-
-    public void bajaTicket() {
-        //Un ticket pasa a cancelado por petición de la parte. --> AVERIGUAR BIEN
-        this.estado = "Cancelado";
-    }
-
-    public void modificaTicket() {
-        //Un ticket deja de estar activo y pasa a suspendido (y viceversa) por decisión del propietario.
-        if (this.estado.equalsIgnoreCase("Activo"))
-            this.estado = "Suspendido";
-        else
-        if (this.estado.equalsIgnoreCase("Suspendido"))
-            this.estado = "Activo";
-    }
-
-    public void finalizaTicket() {
-        this.estado = "Finalizado";
-    }
 
     // Double dispatch con la locacion.
     // Para el resto de puntajes los calcularemos mediante matrices

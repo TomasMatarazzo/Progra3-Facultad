@@ -1,6 +1,8 @@
 package modelo.usuarios.empleadores;
 
+import excepciones.DatosMalIngresadosException;
 import modelo.tickets.Ticket_de_Busqueda_de_Empleado;
+import modelo.tickets.Ticket_de_Busqueda_de_Empleo;
 import modelo.usuarios.UsuarioComun;
 
 import java.util.ArrayList;
@@ -97,4 +99,29 @@ public abstract class Empleador extends UsuarioComun {
         return monto * porcentaje;
     }
 
+    public void gestionaTicket(Ticket_de_Busqueda_de_Empleado ticket,String estado) {
+        try {
+            if (!estado.equalsIgnoreCase("FINALIZADO")) {
+                if (estado.equalsIgnoreCase("ACTIVO"))
+                    if (ticket.getEstado().equalsIgnoreCase("SUSPENDIDO"))
+                        ticket.setEstado(estado);
+                    else
+                        throw new DatosMalIngresadosException("No es posible activar un ticket de estado: " + ticket.getEstado());
+                else
+                if (estado.equalsIgnoreCase("SUSPENDIDO"))
+                    if (ticket.getEstado().equalsIgnoreCase("ACTIVO"))
+                        ticket.setEstado(estado);
+                    else
+                        throw new DatosMalIngresadosException("No es posible suspender un ticket de estado: " + ticket.getEstado());
+                else
+                if (estado.equalsIgnoreCase("CANCELADO")) {
+                    this.puntaje--;
+                    ticket.setEstado(estado);
+                }
+            } else
+                throw new DatosMalIngresadosException("No tiene los permisos para realizar esta accion.");
+        } catch (DatosMalIngresadosException e) {
+            System.out.println(e.getMessage());
+        }
+    }
 }

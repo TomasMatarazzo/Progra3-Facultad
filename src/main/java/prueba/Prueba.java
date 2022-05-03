@@ -32,12 +32,12 @@ public class Prueba {
 
         try {
             //POR CONVENCION AGENCIA ES EL PRIMER USUARIO
-            sistema.registrarUsuario(u0);
-            sistema.registrarUsuario(u1);
-            sistema.registrarUsuario(u2);
-            sistema.registrarUsuario(u3);
-            sistema.registrarUsuario(u4);
-            sistema.registrarUsuario(u5);
+//            sistema.registrarUsuario(u0);
+//            sistema.registrarUsuario(u1);
+//            sistema.registrarUsuario(u2);
+//            sistema.registrarUsuario(u3);
+//            sistema.registrarUsuario(u4);
+//            sistema.registrarUsuario(u5);
         }
         catch (ErrorDeUsuarioException e1) {
             System.out.println(e1.getMessage());

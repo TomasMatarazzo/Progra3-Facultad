@@ -1,5 +1,6 @@
 package modelo.usuarios;
 
+import excepciones.DatosMalIngresadosException;
 import excepciones.TicketYaCreadoException;
 import modelo.tickets.Formulario_de_Busqueda;
 import modelo.tickets.Ticket_de_Busqueda_de_Empleo;
@@ -108,7 +109,7 @@ public class Empleado_Pretenso extends UsuarioComun {
         double monto = 0, porcentaje;
 
         if (this.getTicketDeBusquedaDeEmpleo().getEstado().equalsIgnoreCase("FINALIZADO"))
-            monto += this.ticketDeBusquedaDeEmpleo.getFormularioDeBusqueda().getRemuneracion();
+            monto += this.ticketDeBusquedaDeEmpleo.getFormularioDeBusqueda().getRemuneracion(); //FALTA SACAR DE CONTRATOS
 
         if (this.ticketDeBusquedaDeEmpleo.getFormularioDeBusqueda().getTipoPuestoLaboral() == 0)
             porcentaje = 0.80;
@@ -132,6 +133,41 @@ public class Empleado_Pretenso extends UsuarioComun {
             } else
                 throw new TicketYaCreadoException("Ticket de busqueda de empleo ya existente.");
         } catch (TicketYaCreadoException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void finalizaTicket() {
+        this.ticketDeBusquedaDeEmpleo.setEstado("Finalizado");
+    }
+
+    public void cancelaTicket() {
+        this.ticketDeBusquedaDeEmpleo.setEstado("Cancelado");
+        this.puntaje--;
+    }
+
+    public void gestionaTicket(String estado) {
+        try {
+            if (!estado.equalsIgnoreCase("FINALIZADO")) {
+                if (estado.equalsIgnoreCase("ACTIVO"))
+                    if (this.ticketDeBusquedaDeEmpleo.getEstado().equalsIgnoreCase("SUSPENDIDO"))
+                        this.ticketDeBusquedaDeEmpleo.setEstado(estado);
+                    else
+                        throw new DatosMalIngresadosException("No es posible activar un ticket de estado: " + this.ticketDeBusquedaDeEmpleo.getEstado());
+                else
+                    if (estado.equalsIgnoreCase("SUSPENDIDO"))
+                        if (this.ticketDeBusquedaDeEmpleo.getEstado().equalsIgnoreCase("ACTIVO"))
+                            this.ticketDeBusquedaDeEmpleo.setEstado(estado);
+                        else
+                            throw new DatosMalIngresadosException("No es posible suspender un ticket de estado: " + this.ticketDeBusquedaDeEmpleo.getEstado());
+                    else
+                        if (estado.equalsIgnoreCase("CANCELADO")) {
+                            this.puntaje--;
+                            this.ticketDeBusquedaDeEmpleo.setEstado(estado);
+                        }
+            } else
+                throw new DatosMalIngresadosException("No tiene los permisos para realizar esta accion.");
+        } catch (DatosMalIngresadosException e) {
             System.out.println(e.getMessage());
         }
     }

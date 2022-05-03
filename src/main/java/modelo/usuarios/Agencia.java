@@ -90,28 +90,16 @@ public class Agencia extends Usuario {
         System.out.println("\nMonto total a cobrar = $" + total);
     }
 
-    // PROBAR METODO CUANDO SE CARGUEN LAS LISTAS
+    public ArrayList<Ticket> confionarTipoDeTrabajo(String trabajo) {
 
-    public ArrayList<Ticket> confionarTipoDeTrabajo( String trabajo) {
+        //SE INGRESAN LOS VALORES A PARTIR DE UN FORMULARIO
 
-        ArrayList<Ticket> listaConfeccionada = new ArrayList<>();
-        for (Map.Entry<Ticket_de_Busqueda_de_Empleado, Empleador> elem : Sistema.getInstance().getTicketsDeEmpleadores().entrySet()) {
-            if (elem.getKey().getTipoDeTrabajo().equalsIgnoreCase(trabajo)) {
-                listaConfeccionada.add(elem.getKey());
-            }
-        }
-
-        for (Map.Entry<Ticket_de_Busqueda_de_Empleo, Empleado_Pretenso> elem : Sistema.getInstance().getTicketsDeEmpleadosPretensos().entrySet()) {
-            if (elem.getKey().getTipoDeTrabajo().equalsIgnoreCase(trabajo)) {
-                listaConfeccionada.add(elem.getKey());
-            }
-
-
-        }
-        return listaConfeccionada;
+        sistema.agregaTiposDeTrabajo("Camarero");
+        sistema.agregaTiposDeTrabajo("Taxista");
+        sistema.agregaTiposDeTrabajo("Bombero");
+        sistema.agregaTiposDeTrabajo("Piloto");
+        sistema.agregaTiposDeTrabajo("Marinero");
     }
-
-    // PROBAR METODO CUADNO SE CARGUEN LAS LISTAS.
     
     public ArrayList<Ticket> confionarTipoPuestoLaboral( String tipoDePuesto) {
 

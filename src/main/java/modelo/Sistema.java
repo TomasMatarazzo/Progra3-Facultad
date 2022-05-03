@@ -53,6 +53,10 @@ public class Sistema{
         return ticketsDeEmpleadosPretensos;
     }
 
+    public void agregaTiposDeTrabajo(String nuevo) {
+        tiposDeTrabajo.add(nuevo);
+    }
+
     public void agregaTicketDeEmpleadosPretensos(Empleado_Pretenso usuario,Ticket_de_Busqueda_de_Empleo ticket) {
         ticketsDeEmpleadosPretensos.put(ticket,usuario);
     }

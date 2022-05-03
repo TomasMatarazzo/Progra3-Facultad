@@ -54,13 +54,6 @@ public class Ticket_de_Busqueda_de_Empleado extends Ticket {
         return acum;
     }
 
-    public int compareTo(Ticket o) {
-        if (this.puntajeTotal(this) > o.puntajeTotal(o))
-            return 1;
-        else if (this.puntajeTotal(this)==o.puntajeTotal(o))
-            return 0;
-        else
-            return -1;
-    }
+
 }
 

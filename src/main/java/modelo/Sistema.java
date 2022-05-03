@@ -94,15 +94,31 @@ public class Sistema{
     }
 
     public void rondaEncuentrosLaborales(){
-        for(Ticket_de_Busqueda_de_Empleado claveempleados:ticketsDeEmpleadores.keySet()){
+        double puntaje;
+        
+        for(Ticket_de_Busqueda_de_Empleado ticketEmpleador:ticketsDeEmpleadores.keySet()){
             Lista nuevalista = new Lista();
-            nuevalista.ofertas.addAll(ticketsDeEmpleadosPretensos.keySet());
-            listas.put(claveempleados,nuevalista);
+            for ( Ticket_de_Busqueda_de_Empleo ticketEmpleado: ticketsDeEmpleadosPretensos.keySet()){
+                puntaje = ticketEmpleador.puntajeTotal(ticketEmpleado);
+                ticketEmpleado.setPuntajeTotal(puntaje);
+                if (ticketEmpleador.getTipoDeTrabajo().equalsIgnoreCase(ticketEmpleado.getTipoDeTrabajo())){
+                    nuevalista.ofertas.add(ticketEmpleado);
+                }
+
+            }
+            listas.put(ticketEmpleador,nuevalista);
         }
-        for(Ticket_de_Busqueda_de_Empleo claveempleadores:ticketsDeEmpleadosPretensos.keySet()){
+
+        for(Ticket_de_Busqueda_de_Empleo ticketEmpleado:ticketsDeEmpleadosPretensos.keySet()){
             Lista nuevalista = new Lista();
-            nuevalista.ofertas.addAll(ticketsDeEmpleadores.keySet());
-            listas.put(claveempleadores,nuevalista);
+            for(Ticket_de_Busqueda_de_Empleado ticketEmpleador:ticketsDeEmpleadores.keySet()){
+                puntaje = ticketEmpleador.puntajeTotal(ticketEmpleado);
+                ticketEmpleador.setPuntajeTotal(puntaje);
+                if (ticketEmpleador.getTipoDeTrabajo().equalsIgnoreCase(ticketEmpleado.getTipoDeTrabajo())){
+                    nuevalista.ofertas.add(ticketEmpleador);
+                }
+            }
+            listas.put(ticketEmpleado,nuevalista);
         }
     }
 }

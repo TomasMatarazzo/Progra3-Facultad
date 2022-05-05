@@ -84,11 +84,6 @@ public class Empleado_Pretenso extends UsuarioComun {
         this.eMail = eMail;
     }
 
-    @Override
-    public String getTipo() {
-        return "Empleado Pretenso";
-    }
-
     //TO STRING
     @Override
     public String toString() {

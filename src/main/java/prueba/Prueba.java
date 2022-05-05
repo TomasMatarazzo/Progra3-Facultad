@@ -9,7 +9,6 @@ import modelo.Sistema;
 public class Prueba {
     public static void main(String[] args) {
         Sistema sistema = Sistema.getInstance();
-        Agencia agencia = Agencia.getInstance("bla","bla");
         UsuarioFactory usuarioFactory = new UsuarioFactory();
         Usuario u0 = null;
         Usuario u1 = null;
@@ -42,10 +41,5 @@ public class Prueba {
         catch (ErrorDeUsuarioException e1) {
             System.out.println(e1.getMessage());
         }
-
-        agencia.muestraEmpleadores();
-        agencia.muestraSolicitudesEmpleadores();
-        agencia.muestraEmpleadosPretensos();
-        agencia.muestraSolicitudEmpleadosPretensos();
     }
 }

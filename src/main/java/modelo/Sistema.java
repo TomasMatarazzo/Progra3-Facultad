@@ -6,6 +6,7 @@ import modelo.listas.Contrato;
 import modelo.tickets.Ticket;
 import modelo.tickets.Ticket_de_Busqueda_de_Empleado;
 import modelo.tickets.Ticket_de_Busqueda_de_Empleo;
+import modelo.usuarios.Agencia;
 import modelo.usuarios.Empleado_Pretenso;
 import modelo.usuarios.empleadores.Empleador;
 import modelo.listas.Lista;
@@ -14,6 +15,7 @@ import java.util.HashMap;
 
 public class Sistema{
     private static Sistema instance = null;
+    private Agencia agencia;
     private ArrayList<Empleador> empleadores = new ArrayList<>();
     private ArrayList<Empleado_Pretenso> empleadosPretensos = new ArrayList<>();
     private ArrayList<String> tiposDeTrabajo = new ArrayList<>();
@@ -32,7 +34,15 @@ public class Sistema{
         return instance;
     }
 
-    //GETTERS & ADDERS
+    //GETTERS & SETTERS & ADDERS
+    public Agencia getAgencia() {
+        return agencia;
+    }
+
+    public void setAgencia(Agencia agencia) {
+        this.agencia = agencia;
+    }
+
     public ArrayList<Empleador> getEmpleadores() {
         return empleadores;
     }

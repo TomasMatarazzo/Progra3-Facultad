@@ -36,8 +36,6 @@ public abstract class Usuario {
         return contrasena;
     }
 
-    public abstract String getTipo();
-
     public void setLoged(boolean loged) {
         this.loged = loged;
     }

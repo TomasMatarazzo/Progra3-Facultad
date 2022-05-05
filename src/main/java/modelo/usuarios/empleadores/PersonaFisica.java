@@ -11,11 +11,6 @@ public class PersonaFisica extends Empleador{
     }
 
     @Override
-    public String getTipo() {
-        return "Persona fisica";
-    }
-
-    @Override
     public double calculaPorcentajeComision() {
         if (this.getRubro().equalsIgnoreCase("SALUD"))
             return  0.60;

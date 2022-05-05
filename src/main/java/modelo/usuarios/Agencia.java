@@ -90,18 +90,18 @@ public class Agencia extends Usuario {
         System.out.println("\nMonto total a cobrar = $" + total);
     }
 
-    public ArrayList<Ticket> confionarTipoDeTrabajo(String trabajo) {
-
-        //SE INGRESAN LOS VALORES A PARTIR DE UN FORMULARIO
-
-        sistema.agregaTiposDeTrabajo("Camarero");
-        sistema.agregaTiposDeTrabajo("Taxista");
-        sistema.agregaTiposDeTrabajo("Bombero");
-        sistema.agregaTiposDeTrabajo("Piloto");
-        sistema.agregaTiposDeTrabajo("Marinero");
-    }
+//    public ArrayList<Ticket> confeccionarTipoDeTrabajo(String trabajo) {
+//
+//        //SE INGRESAN LOS VALORES A PARTIR DE UN FORMULARIO
+//
+//        sistema.agregaTiposDeTrabajo("Camarero");
+//        sistema.agregaTiposDeTrabajo("Taxista");
+//        sistema.agregaTiposDeTrabajo("Bombero");
+//        sistema.agregaTiposDeTrabajo("Piloto");
+//        sistema.agregaTiposDeTrabajo("Marinero");
+//    }
     
-    public ArrayList<Ticket> confionarTipoPuestoLaboral( String tipoDePuesto) {
+    public ArrayList<Ticket> confeccionarTipoPuestoLaboral( String tipoDePuesto) {
 
         ArrayList<Ticket> listaConfeccionada = new ArrayList<>();
         String puesto;

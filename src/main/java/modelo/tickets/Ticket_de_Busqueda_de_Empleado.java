@@ -53,7 +53,5 @@ public class Ticket_de_Busqueda_de_Empleado extends Ticket {
 
         return acum;
     }
-
-
 }
 

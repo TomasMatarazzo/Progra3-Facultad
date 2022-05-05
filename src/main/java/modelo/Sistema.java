@@ -7,7 +7,6 @@ import modelo.tickets.Ticket;
 import modelo.tickets.Ticket_de_Busqueda_de_Empleado;
 import modelo.tickets.Ticket_de_Busqueda_de_Empleo;
 import modelo.usuarios.Empleado_Pretenso;
-import modelo.usuarios.UsuarioComun;
 import modelo.usuarios.empleadores.Empleador;
 import modelo.listas.Lista;
 import java.util.ArrayList;
@@ -15,11 +14,8 @@ import java.util.HashMap;
 
 public class Sistema{
     private static Sistema instance = null;
-    private ArrayList<UsuarioComun> usuarios = new ArrayList<>();
-
-//    private ArrayList<Empleador> empleadores = new ArrayList<>();
-//    private ArrayList<Empleado_Pretenso> empleadosPretensos = new ArrayList<>();
-
+    private ArrayList<Empleador> empleadores = new ArrayList<>();
+    private ArrayList<Empleado_Pretenso> empleadosPretensos = new ArrayList<>();
     private ArrayList<String> tiposDeTrabajo = new ArrayList<>();
     private HashMap<Ticket_de_Busqueda_de_Empleado,Empleador> ticketsDeEmpleadores = new HashMap<>();
     private HashMap<Ticket_de_Busqueda_de_Empleo,Empleado_Pretenso> ticketsDeEmpleadosPretensos = new HashMap<>();
@@ -37,8 +33,12 @@ public class Sistema{
     }
 
     //GETTERS & ADDERS
-    public ArrayList<UsuarioComun> getUsuarios() {
-        return usuarios;
+    public ArrayList<Empleador> getEmpleadores() {
+        return empleadores;
+    }
+
+    public ArrayList<Empleado_Pretenso> getEmpleadosPretensos() {
+        return empleadosPretensos;
     }
 
     public ArrayList<String> getTiposDeTrabajo() {
@@ -51,6 +51,14 @@ public class Sistema{
 
     public HashMap<Ticket_de_Busqueda_de_Empleo, Empleado_Pretenso> getTicketsDeEmpleadosPretensos() {
         return ticketsDeEmpleadosPretensos;
+    }
+
+    public void agregaEmpleado(Empleador nuevo) {
+        empleadores.add(nuevo);
+    }
+
+    public void agregaEmpleadoPretenso(Empleado_Pretenso nuevo) {
+        empleadosPretensos.add(nuevo);
     }
 
     public void agregaTiposDeTrabajo(String nuevo) {
@@ -74,26 +82,49 @@ public class Sistema{
     }
 
     //FUNCIONALIDADES
-    public void registrarUsuario(UsuarioComun nuevo) throws ErrorDeUsuarioException {
-        for (int i = 0; i < usuarios.size(); i++) {
-            if (usuarios.get(i).usuarioValido(nuevo.getNombreUsuario()))
+    public void registrarUsuario(Empleador nuevo) throws ErrorDeUsuarioException {
+        for (int i = 0; i < empleadores.size(); i++) {
+            if (empleadores.get(i).getNombreUsuario().equalsIgnoreCase(nuevo.getNombreUsuario()))
                 throw new ErrorDeUsuarioException("El nombre de usuario ingresado ya existe.");
         }
-        usuarios.add(nuevo);
+        empleadores.add(nuevo);
+        System.out.println("El usuario [" + nuevo.getNombreUsuario() + "] se ha registrado con exito.");
+    }
+
+    public void registrarUsuario(Empleado_Pretenso nuevo) throws ErrorDeUsuarioException {
+        for (int i = 0; i < empleadosPretensos.size(); i++) {
+            if (empleadosPretensos.get(i).getNombreUsuario().equalsIgnoreCase(nuevo.getNombreUsuario()))
+                throw new ErrorDeUsuarioException("El nombre de usuario ingresado ya existe.");
+        }
+        empleadosPretensos.add(nuevo);
         System.out.println("El usuario [" + nuevo.getNombreUsuario() + "] se ha registrado con exito.");
     }
 
     public void login(String nombreUsuario, String contrasena) throws ErrorDeContrasenaException, ErrorDeUsuarioException {
         boolean loged = false;
+        int i = 0;
 
-        for (int i = 0;i < usuarios.size();i++) {
-            if (usuarios.get(i).usuarioValido(nombreUsuario))
-                if (usuarios.get(i).contrasenaValida(contrasena)) {
+        while (i < empleadores.size() && loged == false) {
+            if (empleadores.get(i).getNombreUsuario().equalsIgnoreCase(nombreUsuario))
+                if (empleadores.get(i).getContrasena().equalsIgnoreCase(contrasena)) {
                     loged = true;
                     System.out.println("El usuario [" + nombreUsuario + "] se ha logeado con exito.");
                 } else
                     throw new ErrorDeContrasenaException("La contrasena ingresada es incorrecta.");
-            usuarios.get(i).setLoged(loged);
+            else
+                i++;
+        }
+
+        i = 0;
+        while (i < empleadosPretensos.size() && loged == false) {
+            if (empleadosPretensos.get(i).getNombreUsuario().equalsIgnoreCase(nombreUsuario))
+                if (empleadosPretensos.get(i).getContrasena().equalsIgnoreCase(contrasena)) {
+                    loged = true;
+                    System.out.println("El usuario [" + nombreUsuario + "] se ha logeado con exito.");
+                } else
+                    throw new ErrorDeContrasenaException("La contrasena ingresada es incorrecta.");
+            else
+                i++;
         }
 
         if (loged == false)

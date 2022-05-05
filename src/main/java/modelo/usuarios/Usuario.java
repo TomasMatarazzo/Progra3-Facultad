@@ -43,12 +43,4 @@ public abstract class Usuario {
     }
 
     //FUNCIONALIDADES
-    public boolean usuarioValido(String nombreUsuario) {
-        return this.nombreUsuario.equalsIgnoreCase(nombreUsuario);
-    }
-
-    public boolean contrasenaValida(String contrasena) {
-        return this.contrasena.equalsIgnoreCase(contrasena);
-    }
-
 }

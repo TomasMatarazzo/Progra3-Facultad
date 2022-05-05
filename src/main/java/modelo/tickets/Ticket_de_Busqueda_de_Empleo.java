@@ -16,6 +16,10 @@ public class Ticket_de_Busqueda_de_Empleo extends Ticket {
         return resultado;
     }
 
+    public Ticket_de_Busqueda_de_Empleado getEleccion() {
+        return eleccion;
+    }
+
     //TO STRING
     @Override
     public String toString() {

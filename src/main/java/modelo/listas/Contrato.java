@@ -8,4 +8,9 @@ public class Contrato {
     private Empleado_Pretenso empleado_pretenso;
     private double remuneracion;
 
+    public Contrato(Empleador empleador, Empleado_Pretenso empleado_pretenso, double remuneracion) {
+        this.empleador = empleador;
+        this.empleado_pretenso = empleado_pretenso;
+        this.remuneracion = remuneracion;
+    }
 }

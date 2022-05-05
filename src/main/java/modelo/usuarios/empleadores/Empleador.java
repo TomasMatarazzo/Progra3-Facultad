@@ -2,7 +2,6 @@ package modelo.usuarios.empleadores;
 
 import excepciones.DatosMalIngresadosException;
 import modelo.tickets.Ticket_de_Busqueda_de_Empleado;
-import modelo.tickets.Ticket_de_Busqueda_de_Empleo;
 import modelo.usuarios.UsuarioComun;
 
 import java.util.ArrayList;

@@ -28,6 +28,10 @@ public class Ticket_de_Busqueda_de_Empleado extends Ticket {
         this.cantEmpleadosObtenidos = cantEmpleadosObtenidos;
     }
 
+    public Ticket_de_Busqueda_de_Empleo getEleccion() {
+        return eleccion;
+    }
+
     //TO STRING
     @Override
     public String toString() {

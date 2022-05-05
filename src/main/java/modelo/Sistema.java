@@ -41,6 +41,7 @@ public class Sistema{
 
     public void setAgencia(Agencia agencia) {
         this.agencia = agencia;
+        System.out.println("Es un placer [" + agencia.getNombreUsuario() + "], se ha registrado como administrador exitosamente.");
     }
 
     public ArrayList<Empleador> getEmpleadores() {
@@ -98,7 +99,7 @@ public class Sistema{
                 throw new ErrorDeUsuarioException("El nombre de usuario ingresado ya existe.");
         }
         empleadores.add(nuevo);
-        System.out.println("El usuario [" + nuevo.getNombreUsuario() + "] se ha registrado con exito.");
+        System.out.println("El empleador [" + nuevo.getNombreUsuario() + "] se ha registrado con exito.");
     }
 
     public void registrarUsuario(Empleado_Pretenso nuevo) throws ErrorDeUsuarioException {
@@ -107,14 +108,14 @@ public class Sistema{
                 throw new ErrorDeUsuarioException("El nombre de usuario ingresado ya existe.");
         }
         empleadosPretensos.add(nuevo);
-        System.out.println("El usuario [" + nuevo.getNombreUsuario() + "] se ha registrado con exito.");
+        System.out.println("El empleado pretenso [" + nuevo.getNombreUsuario() + "] se ha registrado con exito.");
     }
 
     public void login(String nombreUsuario, String contrasena) throws ErrorDeContrasenaException, ErrorDeUsuarioException {
         boolean loged = false;
         int i = 0;
 
-        while (i < empleadores.size() && loged == false) {
+        while (i < empleadores.size() && !loged) {
             if (empleadores.get(i).getNombreUsuario().equalsIgnoreCase(nombreUsuario))
                 if (empleadores.get(i).getContrasena().equalsIgnoreCase(contrasena)) {
                     loged = true;
@@ -126,7 +127,7 @@ public class Sistema{
         }
 
         i = 0;
-        while (i < empleadosPretensos.size() && loged == false) {
+        while (i < empleadosPretensos.size() && !loged) {
             if (empleadosPretensos.get(i).getNombreUsuario().equalsIgnoreCase(nombreUsuario))
                 if (empleadosPretensos.get(i).getContrasena().equalsIgnoreCase(contrasena)) {
                     loged = true;
@@ -137,11 +138,11 @@ public class Sistema{
                 i++;
         }
 
-        if (loged == false)
+        if (!loged)
             throw new ErrorDeUsuarioException("El usuario ingresado es incorrecto.");
     }
 
-    public void rondaEncuentrosLaborales(){
+    public void rondaEncuentrosLaborales() {
         double puntaje;
         
         for(Ticket_de_Busqueda_de_Empleado ticketEmpleador:ticketsDeEmpleadores.keySet()){
@@ -171,5 +172,50 @@ public class Sistema{
             ticketsDeEmpleadosPretensos.get(nuevalista.ofertas.last()).setPuntaje(ticketsDeEmpleadosPretensos.get(nuevalista.ofertas.last()).getPuntaje()+10);
             listas.put(ticketEmpleado,nuevalista);
         }
+    }
+
+    public void rondaContrataciones() {
+        HashMap <Empleador,Boolean> elegidos = empleadosElegidos();
+        for (Ticket_de_Busqueda_de_Empleo clave:Sistema.getInstance().ticketsDeEmpleadosPretensos.keySet()) {
+            if ((clave.getEstado().equalsIgnoreCase("Activo")) && (clave.getEleccion()!=null  && clave.getEleccion().getEstado().equalsIgnoreCase("Activo"))) {
+                if (clave.getEleccion()!= null && clave == clave.getEleccion().getEleccion()) {
+                    elegidos.replace(this.ticketsDeEmpleadores.get(clave.getEleccion()), true);
+                    Contrato contrato = new Contrato(this.ticketsDeEmpleadores.get(clave.getEleccion()),this.ticketsDeEmpleadosPretensos.get(clave),clave.getEleccion().getRemuneracion());
+                    this.contratos.add(contrato);
+                    clave.setEstado("Finalizado");
+                    clave.getEleccion().setEstado("Finalizado");
+                    this.ticketsDeEmpleadores.get(clave.getEleccion()).setPuntaje(this.ticketsDeEmpleadores.get(clave.getEleccion()).getPuntaje()+50);
+                    this.ticketsDeEmpleadosPretensos.get(clave).setPuntaje(this.ticketsDeEmpleadosPretensos.get(clave).getPuntaje()+10);
+                }
+            }
+
+        }
+
+        for (Empleador clave:elegidos.keySet())
+            if (!elegidos.get(clave))
+                clave.setPuntaje(clave.getPuntaje()-20);
+    }
+
+    public HashMap<Empleador,Boolean> empleadosElegidos() {
+        HashMap <Empleador,Boolean> elegidos = new HashMap<>();
+        if (this.getEmpleadores().size() != 0) {
+            for (int i = 0;i < this.getEmpleadores().size();i++)
+                if (tieneTicketsActivos(this.getEmpleadores().get(i)))
+                    elegidos.put(this.getEmpleadores().get(i),false);
+        }
+        return elegidos;
+    }
+
+    public boolean tieneTicketsActivos (Empleador empleador) {
+        boolean respuesta = false;
+        int cont = 0;
+        if (empleador.getTicketsDeBusquedaDeEmpleado() != null) {
+            while (cont<empleador.getTicketsDeBusquedaDeEmpleado().size() && !respuesta) {
+                if (empleador.getTicketsDeBusquedaDeEmpleado().get(cont).getEstado().equalsIgnoreCase("Activo"))
+                    respuesta = true;
+                cont++;
+            }
+        }
+        return respuesta;
     }
 }

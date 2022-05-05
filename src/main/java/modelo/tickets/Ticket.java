@@ -76,8 +76,7 @@ public abstract class Ticket {
     }
 
 
-// FUNCIONALIDADES
-
+    // FUNCIONALIDADES
     // Double dispatch con la locacion.
     // Para el resto de puntajes los calcularemos mediante matrices
     public int puntajeLocacion(ILocacion locacion) {

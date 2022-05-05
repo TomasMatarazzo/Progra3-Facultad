@@ -1,9 +1,6 @@
 package modelo.listas;
 
 import modelo.tickets.Ticket;
-import modelo.tickets.Ticket_de_Busqueda_de_Empleado;
-import modelo.usuarios.Usuario;
-
 import java.util.Calendar;
 import java.util.TreeSet;
 

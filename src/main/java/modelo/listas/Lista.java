@@ -4,10 +4,11 @@ import modelo.tickets.Ticket;
 import java.util.Calendar;
 import java.util.TreeSet;
 
-public class Lista { //Coleccion
+public class Lista { //COLECCION
     public TreeSet<Ticket> ofertas = new TreeSet<>();
-    public Calendar fechaDeCreacion=Calendar.getInstance();
+    public Calendar fechaDeCreacion = Calendar.getInstance();
 
+    //GETTERS && SETTERS
     public TreeSet<Ticket> getOfertas() {
         return ofertas;
     }

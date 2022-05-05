@@ -13,4 +13,17 @@ public class Contrato {
         this.empleado_pretenso = empleado_pretenso;
         this.remuneracion = remuneracion;
     }
+
+    //GETTERS
+    public Empleador getEmpleador() {
+        return empleador;
+    }
+
+    public Empleado_Pretenso getEmpleado_pretenso() {
+        return empleado_pretenso;
+    }
+
+    public double getRemuneracion() {
+        return remuneracion;
+    }
 }

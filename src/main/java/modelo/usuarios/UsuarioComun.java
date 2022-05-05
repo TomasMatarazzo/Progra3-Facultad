@@ -18,5 +18,5 @@ public abstract class UsuarioComun extends Usuario{
     }
 
     //FUNCIONALIDADES
-    public abstract double calculaComision();
+    public abstract double calculaComision(double remuneracion);
 }

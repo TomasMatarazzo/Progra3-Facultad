@@ -8,6 +8,7 @@ import modelo.tickets.Ticket_de_Busqueda_de_Empleado;
 import modelo.tickets.Ticket_de_Busqueda_de_Empleo;
 import modelo.usuarios.Agencia;
 import modelo.usuarios.Empleado_Pretenso;
+import modelo.usuarios.UsuarioComun;
 import modelo.usuarios.empleadores.Empleador;
 import modelo.listas.Lista;
 import java.util.ArrayList;

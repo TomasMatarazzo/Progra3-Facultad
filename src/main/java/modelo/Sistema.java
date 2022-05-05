@@ -144,6 +144,8 @@ public class Sistema{
                 }
 
             }
+            ticketsDeEmpleadores.get(nuevalista.ofertas.first()).setPuntaje(ticketsDeEmpleadores.get(nuevalista.ofertas.first()).getPuntaje()-5);
+            ticketsDeEmpleadores.get(nuevalista.ofertas.last()).setPuntaje(ticketsDeEmpleadores.get(nuevalista.ofertas.last()).getPuntaje()+5);
             listas.put(ticketEmpleador,nuevalista);
         }
 
@@ -156,6 +158,7 @@ public class Sistema{
                     nuevalista.ofertas.add(ticketEmpleador);
                 }
             }
+            ticketsDeEmpleadosPretensos.get(nuevalista.ofertas.last()).setPuntaje(ticketsDeEmpleadosPretensos.get(nuevalista.ofertas.last()).getPuntaje()+10);
             listas.put(ticketEmpleado,nuevalista);
         }
     }

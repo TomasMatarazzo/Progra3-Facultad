@@ -144,8 +144,6 @@ public class Sistema{
 
     public void rondaEncuentrosLaborales() {
         double puntaje;
-        Empleador ultimo,primero;
-        Ticket t1;
         
         for(Ticket_de_Busqueda_de_Empleado ticketEmpleador:ticketsDeEmpleadores.keySet()){
             Lista nuevalista = new Lista();

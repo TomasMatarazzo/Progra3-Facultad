@@ -1,8 +1,6 @@
 package modelo.tickets;
 
 public class Ticket_de_Busqueda_de_Empleado extends Ticket {
-//    private int cantEmpleadosSolicitados;
-//    private int cantEmpleadosObtenidos;
     private int[] pesoAspectos; //Pesos de [1,3] vector de 7 dimensiones
     private Ticket_de_Busqueda_de_Empleo eleccion;
 

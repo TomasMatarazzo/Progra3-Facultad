@@ -128,8 +128,8 @@ public abstract class Empleador extends UsuarioComun {
     }
 
     public void muestraLista() {
-        for (int i = 0;i < ticketsDeBusquedaDeEmpleado.size();i++)
-            if (ticketsDeBusquedaDeEmpleado.get(i).getEstado().equalsIgnoreCase("ACTIVO"))
-                System.out.println("Lista del usuario [" + this.nombreUsuario + "]: (en un mal formato)\n" + sistema.getListas().get(this.ticketsDeBusquedaDeEmpleado.get(i)).toString());
+        for (Ticket_de_Busqueda_de_Empleado ticket_de_busqueda_de_empleado : ticketsDeBusquedaDeEmpleado)
+            if (ticket_de_busqueda_de_empleado.getEstado().equalsIgnoreCase("ACTIVO"))
+                System.out.println("Lista del usuario [" + this.nombreUsuario + "]: (en un mal formato)\n" + sistema.getListas().get(ticket_de_busqueda_de_empleado).toString());
     }
 }

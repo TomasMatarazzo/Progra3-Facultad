@@ -12,8 +12,6 @@ public class Agencia extends Usuario {
         super(nombreUsuario, contrasena);
     }
 
-    //GETTERS
-
     //FUNCIONALIDADES
     public void muestraEmpleadores() {
         System.out.println("Lista de empleadores: ");

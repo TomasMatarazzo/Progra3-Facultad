@@ -36,6 +36,4 @@ public class Ticket_de_Busqueda_de_Empleo extends Ticket {
                 "   estado: " + estado +
                 "   resultado: " + resultado + "\n";
     }
-
-    //FUNCIONALIDADES
 }

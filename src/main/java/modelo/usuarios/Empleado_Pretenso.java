@@ -3,7 +3,6 @@ package modelo.usuarios;
 import excepciones.DatosMalIngresadosException;
 import excepciones.TicketYaCreadoException;
 import modelo.tickets.Formulario_de_Busqueda;
-import modelo.tickets.Ticket;
 import modelo.tickets.Ticket_de_Busqueda_de_Empleo;
 
 public class Empleado_Pretenso extends UsuarioComun {

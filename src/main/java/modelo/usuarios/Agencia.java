@@ -18,25 +18,25 @@ public class Agencia extends Usuario {
     public void muestraEmpleadores() {
         System.out.println("Lista de empleadores: ");
         for (int i = 0;i < sistema.getEmpleadores().size();i++)
-            System.out.println(sistema.getEmpleadores().get(i));
+            System.out.println(sistema.getEmpleadores().get(i).toString());
     }
 
     public void muestraSolicitudesEmpleadores() {
         System.out.println("Lista de solicitudes de empleadores: ");
         for (Ticket_de_Busqueda_de_Empleado i : sistema.getTicketsDeEmpleadores().keySet())
-            System.out.println(i);
+            System.out.println(i.toString());
     }
 
     public void muestraEmpleadosPretensos() {
         System.out.println("Lista de empleados pretensos: ");
         for (int i = 0;i < sistema.getEmpleadosPretensos().size();i++)
-            System.out.println(sistema.getEmpleadosPretensos().get(i));
+            System.out.println(sistema.getEmpleadosPretensos().get(i).toString());
     }
 
     public void muestraSolicitudEmpleadosPretensos() {
         System.out.println("Lista de solicitudes de empleadores: ");
         for (Ticket_de_Busqueda_de_Empleo i : sistema.getTicketsDeEmpleadosPretensos().keySet())
-            System.out.println(i);
+            System.out.println(i.toString());
     }
 
     //3.
@@ -61,14 +61,7 @@ public class Agencia extends Usuario {
     }
 
     public void agregarTipoDeTrabajo(String trabajo) {
-
-        //SE INGRESAN LOS VALORES A PARTIR DE UN FORMULARIO
-
-        sistema.agregaTiposDeTrabajo("Camarero");
-        sistema.agregaTiposDeTrabajo("Taxista");
-        sistema.agregaTiposDeTrabajo("Bombero");
-        sistema.agregaTiposDeTrabajo("Piloto");
-        sistema.agregaTiposDeTrabajo("Marinero");
+        sistema.agregaTiposDeTrabajo(trabajo);
     }
 
     public void confeccionarRangoEtario(int edad1, int edad2){

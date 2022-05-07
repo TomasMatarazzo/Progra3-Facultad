@@ -28,6 +28,7 @@ public abstract class Empleador extends UsuarioComun {
         this.pesoPuntajes = new int[7];
     }
 
+
     //GETTERS & SETTERS & ADDERS
     public String getRazonSocial() {
         return razonSocial;
@@ -62,9 +63,7 @@ public abstract class Empleador extends UsuarioComun {
     //TO STRING
     @Override
     public String toString() {
-        return "Empleador: " +
-                "   IDUsuario: " + IDUsuario +
-                "   nombreUsuario: '" + nombreUsuario +
+        return  "   nombreUsuario: '" + nombreUsuario +
                 "   contrasena: '" + contrasena + //Esta bien mostrarla?
                 "   razonSocial: '" + razonSocial +
                 "   tipoPersona: '" + tipoPersona +
@@ -82,12 +81,8 @@ public abstract class Empleador extends UsuarioComun {
      * @return monto * porcentaje
      */
     @Override
-    public double calculaComision() {
-        double monto = 0, porcentaje;
-
-        for (int i = 0;i < this.ticketsDeBusquedaDeEmpleado.size();i++)
-            if (this.ticketsDeBusquedaDeEmpleado.get(i).getEstado().equalsIgnoreCase("FINALIZADO"))
-                monto += 999999; //FALTA SACAR DE CONTRATOS
+    public double calculaComision(double remuneracion) {
+        double porcentaje;
 
         porcentaje = calculaPorcentajeComision();
 
@@ -95,14 +90,15 @@ public abstract class Empleador extends UsuarioComun {
         if (this.puntaje > 0)
             porcentaje -= 0 + (0.01 * this.puntaje);
 
-        return monto * porcentaje;
+        return remuneracion * porcentaje;
     }
+
     public void creaTicket(Formulario_de_Busqueda formulario, String tipoTrabajo, int[] pesoAspectos) {
         Ticket_de_Busqueda_de_Empleado nuevo;
 
         nuevo = new Ticket_de_Busqueda_de_Empleado(formulario,tipoTrabajo,pesoAspectos);
         this.ticketsDeBusquedaDeEmpleado.add(nuevo);
-        getSistema().agregaTicketDeEmpleadores(this,nuevo);
+        sistema.agregaTicketDeEmpleadores(this,nuevo);
     }
 
     public void gestionaTicket(Ticket_de_Busqueda_de_Empleado ticket,String estado) {
@@ -129,5 +125,11 @@ public abstract class Empleador extends UsuarioComun {
         } catch (DatosMalIngresadosException e) {
             System.out.println(e.getMessage());
         }
+    }
+
+    public void muestraLista() {
+        for (int i = 0;i < ticketsDeBusquedaDeEmpleado.size();i++)
+            if (ticketsDeBusquedaDeEmpleado.get(i).getEstado().equalsIgnoreCase("ACTIVO"))
+                System.out.println("Lista del usuario [" + this.nombreUsuario + "]: (en un mal formato)\n" + sistema.getListas().get(this.ticketsDeBusquedaDeEmpleado.get(i)).toString());
     }
 }

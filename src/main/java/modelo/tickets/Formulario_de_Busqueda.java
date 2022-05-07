@@ -60,13 +60,12 @@ public class Formulario_de_Busqueda {
     //TO STRING
     @Override
     public String toString() {
-        return  "--FORMULARIO DE BUSQUEDA--  \n"+
-                "   locacion: " + locacion.toString() + "\n" +
-                "   remuneracion: " + remuneracion + "\n"+
-                "   cargaHoraria: " + Puntajes.NOMBRES_FORM_BUSQUEDA[0][cargaHoraria] +"\n"+
-                "   tipoPuestoLaboral: " + Puntajes.NOMBRES_FORM_BUSQUEDA[1][tipoPuestoLaboral]+"\n"+
-                "   rangoEtario: " + Puntajes.NOMBRES_FORM_BUSQUEDA[2][rangoEtario] +"\n"+
-                "   experienciaPrevia: " + Puntajes.NOMBRES_FORM_BUSQUEDA[3][experienciaPrevia] +"\n"+
+        return  "   locacion: " + locacion.toString() +
+                "   remuneracion: " + remuneracion +
+                "   cargaHoraria: " + Puntajes.NOMBRES_FORM_BUSQUEDA[0][cargaHoraria] +
+                "   tipoPuestoLaboral: " + Puntajes.NOMBRES_FORM_BUSQUEDA[1][tipoPuestoLaboral]+
+                "   rangoEtario: " + Puntajes.NOMBRES_FORM_BUSQUEDA[2][rangoEtario] +
+                "   experienciaPrevia: " + Puntajes.NOMBRES_FORM_BUSQUEDA[3][experienciaPrevia] +
                 "   estudiosCursados: " + Puntajes.NOMBRES_FORM_BUSQUEDA[4][estudiosCursados];
     }
 }

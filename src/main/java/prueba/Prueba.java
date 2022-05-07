@@ -3,10 +3,10 @@ package prueba;
 import excepciones.DatosMalIngresadosException;
 import excepciones.ErrorDeContrasenaException;
 import excepciones.ErrorDeUsuarioException;
+import excepciones.TicketYaCreadoException;
 import interfaces.ILocacion;
 import modelo.tickets.Formulario_de_Busqueda;
 import modelo.tickets.Ticket_de_Busqueda_de_Empleado;
-import modelo.tickets.Ticket_de_Busqueda_de_Empleo;
 import modelo.tickets.Locaciones.LocacionFactory;
 import modelo.usuarios.*;
 import modelo.Sistema;
@@ -15,6 +15,7 @@ public class Prueba {
     public static void main(String[] args) {
         Sistema sistema = Sistema.getInstance();
         UsuarioFactory usuarioFactory = new UsuarioFactory();
+        Usuario u0,u1,u2,u3,u4,u5 = null;
 
         //SE CREAN Y SE REGISTRAN
         try {
@@ -65,12 +66,15 @@ public class Prueba {
         Formulario_de_Busqueda fbt5 = new Formulario_de_Busqueda(home,20000,8,1,50,1,2);
 
         System.out.println("SE CREAN LOS TICKETS DE BUSQUEDA DE EMPLEOS ");
-
-        sistema.getEmpleadosPretensos().get(0).creaTicket(fbt1, "Bombero");
-        sistema.getEmpleadosPretensos().get(1).creaTicket(fbt2, "Camarero");
-        sistema.getEmpleadosPretensos().get(2).creaTicket(fbt3, "Camarero");
-        sistema.getEmpleadosPretensos().get(3).creaTicket(fbt4, "Bombero");
-        sistema.getEmpleadosPretensos().get(4).creaTicket(fbt5, "Taxista");
+        try {
+            sistema.getEmpleadosPretensos().get(0).creaTicket(fbt1, "Bombero");
+            sistema.getEmpleadosPretensos().get(1).creaTicket(fbt2, "Camarero");
+            sistema.getEmpleadosPretensos().get(2).creaTicket(fbt3, "Camarero");
+            sistema.getEmpleadosPretensos().get(3).creaTicket(fbt4, "Bombero");
+            sistema.getEmpleadosPretensos().get(4).creaTicket(fbt5, "Taxista");
+        } catch (TicketYaCreadoException e) {
+            System.out.println(e.getMessage());
+        }
 
         System.out.println("SE CREAN FORMULARIOS DE BUSQUEDA DE LOS EMPLEADORES ");
 
@@ -97,7 +101,6 @@ public class Prueba {
         sistema.getEmpleadores().get(2).creaTicket(fbe3,"Camarero",peso3);
         sistema.getEmpleadores().get(3).creaTicket(fbe4,"Taxista",peso4);
         sistema.getEmpleadores().get(4).creaTicket(fbe5,"Bombero",peso5);
-        
 
         System.out.println(" RONDA DE ELECCIONES ");
         
@@ -145,3 +148,5 @@ public class Prueba {
         }
     }
 }
+
+

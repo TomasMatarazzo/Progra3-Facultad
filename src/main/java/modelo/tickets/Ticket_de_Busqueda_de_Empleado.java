@@ -1,25 +1,21 @@
 package modelo.tickets;
 
 public class Ticket_de_Busqueda_de_Empleado extends Ticket {
-//    private int cantEmpleadosSolicitados;
-//    private int cantEmpleadosObtenidos;
-    private int[] pesoAspectos; //Pesos de [1,3] vector de 7 dimensiones
+    private int[] pesoAspectos; // pesoAspecto se encuentra dentro de la empresa.
     private Ticket_de_Busqueda_de_Empleo eleccion;
 
     //CONSTRUCTOR
-    public Ticket_de_Busqueda_de_Empleado(Formulario_de_Busqueda formularioDeBusqueda, String tipoDeTrabajo,int[] pesoAspectos) {
+    public Ticket_de_Busqueda_de_Empleado(Formulario_de_Busqueda formularioDeBusqueda, String tipoDeTrabajo, int[] pesoAspectos) {
         super(formularioDeBusqueda, tipoDeTrabajo);
         this.pesoAspectos = pesoAspectos;
         this.eleccion = null;
     }
 
-    //GETTERS
+    //GETTERS & SETTERS
     public Ticket_de_Busqueda_de_Empleo getEleccion() {
         return eleccion;
     }
 
-    //SETTERS
-    
     public void setEleccion(Ticket_de_Busqueda_de_Empleo eleccion) {
  		this.eleccion = eleccion;
  	}

@@ -28,7 +28,6 @@ public abstract class Empleador extends UsuarioComun {
         this.pesoPuntajes = new int[7];
     }
 
-
     //GETTERS & SETTERS & ADDERS
     public String getRazonSocial() {
         return razonSocial;
@@ -63,7 +62,8 @@ public abstract class Empleador extends UsuarioComun {
     //TO STRING
     @Override
     public String toString() {
-        return  "Empleador: " +
+        return "Empleador: " +
+                "   IDUsuario: " + IDUsuario +
                 "   nombreUsuario: '" + nombreUsuario +
                 "   contrasena: '" + contrasena + //Esta bien mostrarla?
                 "   razonSocial: '" + razonSocial +
@@ -82,8 +82,12 @@ public abstract class Empleador extends UsuarioComun {
      * @return monto * porcentaje
      */
     @Override
-    public double calculaComision(double remuneracion) {
-        double porcentaje;
+    public double calculaComision() {
+        double monto = 0, porcentaje;
+
+        for (int i = 0;i < this.ticketsDeBusquedaDeEmpleado.size();i++)
+            if (this.ticketsDeBusquedaDeEmpleado.get(i).getEstado().equalsIgnoreCase("FINALIZADO"))
+                monto += 999999; //FALTA SACAR DE CONTRATOS
 
         porcentaje = calculaPorcentajeComision();
 
@@ -91,7 +95,7 @@ public abstract class Empleador extends UsuarioComun {
         if (this.puntaje > 0)
             porcentaje -= 0 + (0.01 * this.puntaje);
 
-        return remuneracion * porcentaje;
+        return monto * porcentaje;
     }
 
     public void creaTicket(Formulario_de_Busqueda formulario, String tipoTrabajo, int[] pesoAspectos) {
@@ -99,7 +103,7 @@ public abstract class Empleador extends UsuarioComun {
 
         nuevo = new Ticket_de_Busqueda_de_Empleado(formulario,tipoTrabajo,pesoAspectos);
         this.ticketsDeBusquedaDeEmpleado.add(nuevo);
-        sistema.agregaTicketDeEmpleadores(this,nuevo);
+        getSistema().agregaTicketDeEmpleadores(this,nuevo);
     }
 
     public void gestionaTicket(Ticket_de_Busqueda_de_Empleado ticket,String estado) {

@@ -6,10 +6,13 @@ import modelo.tickets.Ticket_de_Busqueda_de_Empleado;
 import modelo.tickets.Ticket_de_Busqueda_de_Empleo;
 
 public class Agencia extends Usuario {
+    private static Sistema sistema = Sistema.getInstance();
 
     public Agencia(String nombreUsuario, String contrasena) {
         super(nombreUsuario, contrasena);
     }
+
+    //GETTERS
 
     //FUNCIONALIDADES
     public void muestraEmpleadores() {
@@ -36,19 +39,20 @@ public class Agencia extends Usuario {
             System.out.println(i);
     }
 
+    //3.
     public void calculaComisiones() {
         double total = 0, aux = 0;
 
         System.out.println("Comision a cobrar a cada Empleador: ");
-        for (int i = 0;i < sistema.getContratos().size();i++) {
-            aux = sistema.getContratos().get(i).getEmpleador().calculaComision(sistema.getContratos().get(i).getRemuneracion());
+        for (int i = 0;i < sistema.getEmpleadores().size();i++) {
+            aux = sistema.getEmpleadores().get(i).calculaComision();
             System.out.println("\tUsuario: " + sistema.getEmpleadores().get(i).getNombreUsuario() + " ~ Comision = $" + aux);
             total += aux;
         }
 
-        System.out.println("\nComision a cobrar a cada Empleado pretenso: ");
-        for (int i = 0;i < sistema.getContratos().size();i++) {
-            aux = sistema.getContratos().get(i).getEmpleado_pretenso().calculaComision(sistema.getContratos().get(i).getRemuneracion());
+        System.out.println("Comision a cobrar a cada Empleado pretenso: ");
+        for (int i = 0;i < sistema.getEmpleadosPretensos().size();i++) {
+            aux = sistema.getEmpleadosPretensos().get(i).calculaComision();
             System.out.println("\tUsuario: " + sistema.getEmpleadosPretensos().get(i).getNombreUsuario() + " ~ Comision = $" + aux);
             total += aux;
         }

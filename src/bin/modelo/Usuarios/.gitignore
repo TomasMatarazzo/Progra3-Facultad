@@ -1,6 +1,5 @@
 /Agencia.class
-/Contrato.class
-/Eleccion.class
 /Empleado_Pretenso.class
-/IGeneraTicket.class
 /Usuario.class
+/UsuarioComun.class
+/UsuarioFactory.class

@@ -14,7 +14,6 @@ public class Contrato {
         this.remuneracion = remuneracion;
     }
 
-    //GETTERS
     public Empleador getEmpleador() {
         return empleador;
     }

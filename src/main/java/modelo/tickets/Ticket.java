@@ -5,7 +5,6 @@ import modelo.constantes.Puntajes;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
-///GREGORIAN CALENDAR CON LA FECHA DE ALTA --> COMPLETAR
 public abstract class Ticket implements Comparable{
     protected Formulario_de_Busqueda formularioDeBusqueda;
     protected Calendar fechaDeAlta = Calendar.getInstance();

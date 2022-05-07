@@ -174,6 +174,21 @@ public class Sistema{
             listas.put(ticketEmpleado,nuevalista);
         }
     }
+    /**
+     * Metodo Ronda Contrataciones
+     * Recorre todos los Tickets de busqueda de Empleo, generados por los Empleados Pretensos, y verifica 
+     * que la eleccion de ese Ticket coincida con la elección del tickets Elegido. De ser así, genera un 
+     * nuevo contrato entre ambas partes, suma los puntajes a cada uno de los usuarios y cambia el 
+     * estado de ambos tickets a finalizado.<br>
+     * 
+     * Ademas, genera un HashMap, el cual se modificará y utilizará para verificar cuales de los
+     * Empleadores no fueron elegidos, para, de ser así, restar puntos de usuario.
+     * 
+     * <b>pre:</b> lista de empleadores inicializada (!= null). Lista de Contratos inicializada (!=null)
+     * Lista de Tickets de Empleados Pretensos y de Empleadores inicializada (!=null).<br>
+     * <b>post:</b> Se ha verificado la existencia de coincidencias de elecciones entre Empleados
+     * Pretensos y Empleadores <br>
+     */
 
     public void rondaContrataciones() {
         HashMap <Empleador,Boolean> elegidos = empleadosElegidos();
@@ -196,6 +211,15 @@ public class Sistema{
             if (!elegidos.get(clave))
                 clave.setPuntaje(clave.getPuntaje()-20);
     }
+    
+    /**
+     * Este Metodo inicializa un hashMap con todos los Empleadores con tickets activos como llave 
+     * y asigna falso a todos los valores.<br>
+     * <b>pre:</b> lista de empleadores inicializada (!= null).<br>
+     * <b>post:</b> se ha inicializado HashMap. <br>
+     *   
+     * @return HashMap <Empleador,Boolean>  
+     */
 
     public HashMap<Empleador,Boolean> empleadosElegidos() {
         HashMap <Empleador,Boolean> elegidos = new HashMap<>();
@@ -207,6 +231,15 @@ public class Sistema{
         return elegidos;
     }
 
+    /**
+     * Este Metodo verifica que el empleador tenga tickets en estado activo.<br>
+     * <b>pre:</b> lista de empleadores inicializada (!= null).<br>
+     * <b>post:</b> se ha verificado la existencia de tickets activos para el empleador.<br>
+     * 
+     * @param empleador Es la referencia a un Empleador. empleador != null
+     * @return valor booleano 
+     */
+    
     public boolean tieneTicketsActivos (Empleador empleador) {
         boolean respuesta = false;
         int cont = 0;

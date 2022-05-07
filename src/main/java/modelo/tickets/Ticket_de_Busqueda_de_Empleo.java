@@ -20,6 +20,12 @@ public class Ticket_de_Busqueda_de_Empleo extends Ticket {
         return eleccion;
     }
 
+    //SETTERS
+    
+    public void setEleccion(Ticket_de_Busqueda_de_Empleado eleccion) {
+		this.eleccion = eleccion;
+	}
+    
     //TO STRING
     @Override
     public String toString() {
@@ -28,6 +34,8 @@ public class Ticket_de_Busqueda_de_Empleo extends Ticket {
                 "   estado: " + estado +
                 "   resultado: " + resultado;
     }
+
+	
 
     //FUNCIONALIDADES
 }

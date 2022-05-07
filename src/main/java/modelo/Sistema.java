@@ -144,6 +144,8 @@ public class Sistema{
 
     public void rondaEncuentrosLaborales() {
         double puntaje;
+        Empleador ultimo,primero;
+        Ticket t1;
         
         for(Ticket_de_Busqueda_de_Empleado ticketEmpleador:ticketsDeEmpleadores.keySet()){
             Lista nuevalista = new Lista();
@@ -151,12 +153,11 @@ public class Sistema{
                 puntaje = ticketEmpleador.puntajeTotal(ticketEmpleado);
                 ticketEmpleado.setPuntajeTotal(puntaje);
                 if (ticketEmpleador.getTipoDeTrabajo().equalsIgnoreCase(ticketEmpleado.getTipoDeTrabajo())){
-                    nuevalista.ofertas.add(ticketEmpleado);
+                    nuevalista.getOfertas().add(ticketEmpleado);
                 }
 
             }
-            ticketsDeEmpleadores.get(nuevalista.ofertas.first()).setPuntaje(ticketsDeEmpleadores.get(nuevalista.ofertas.first()).getPuntaje()-5);
-            ticketsDeEmpleadores.get(nuevalista.ofertas.last()).setPuntaje(ticketsDeEmpleadores.get(nuevalista.ofertas.last()).getPuntaje()+5);
+            ticketsDeEmpleadosPretensos.get(nuevalista.getOfertas().last()).setPuntaje(ticketsDeEmpleadosPretensos.get(nuevalista.getOfertas().last()).getPuntaje()+10);
             listas.put(ticketEmpleador,nuevalista);
         }
 
@@ -166,10 +167,10 @@ public class Sistema{
                 puntaje = ticketEmpleador.puntajeTotal(ticketEmpleado);
                 ticketEmpleador.setPuntajeTotal(puntaje);
                 if (ticketEmpleador.getTipoDeTrabajo().equalsIgnoreCase(ticketEmpleado.getTipoDeTrabajo())){
-                    nuevalista.ofertas.add(ticketEmpleador);
+                    nuevalista.getOfertas().add(ticketEmpleador);
                 }
             }
-            ticketsDeEmpleadosPretensos.get(nuevalista.ofertas.last()).setPuntaje(ticketsDeEmpleadosPretensos.get(nuevalista.ofertas.last()).getPuntaje()+10);
+            ticketsDeEmpleadosPretensos.get(nuevalista.getOfertas().last()).setPuntaje(ticketsDeEmpleadosPretensos.get(nuevalista.getOfertas().last()).getPuntaje()+10);
             listas.put(ticketEmpleado,nuevalista);
         }
     }
@@ -218,4 +219,5 @@ public class Sistema{
         }
         return respuesta;
     }
+
 }

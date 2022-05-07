@@ -7,7 +7,7 @@ public class Ticket_de_Busqueda_de_Empleo extends Ticket {
     //CONSTRUCTOR
     public Ticket_de_Busqueda_de_Empleo(Formulario_de_Busqueda formularioDeBusqueda, String tipoDeTrabajo) {
         super(formularioDeBusqueda, tipoDeTrabajo);
-        this.resultado = null;
+        this.resultado = "";
         this.eleccion = null;
     }
 
@@ -32,7 +32,7 @@ public class Ticket_de_Busqueda_de_Empleo extends Ticket {
     @Override
     public String toString() {
         return  "   formularioDeBusqueda: " + formularioDeBusqueda.toString() +
-                "   fechaDeAlta: " + fechaDeAlta +
+                "   fechaDeAlta: " + fechaDeAlta.getTime() +
                 "   estado: " + estado +
                 "   resultado: " + resultado;
     }

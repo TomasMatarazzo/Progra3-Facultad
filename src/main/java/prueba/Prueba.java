@@ -69,11 +69,11 @@ public class Prueba {
         System.out.println("\nSE CREAN FORMULARIOS DE BUSQUEDA DE LOS EMPLEADOS ");
 
         // Remuneracion, cargaHoraria, TipoPuesto [0,1,2],Rango Etario, ExperienciaPrevia [0,1,2], estudiosCursados [0,1,2]
-        Formulario_de_Busqueda fbt1 = new Formulario_de_Busqueda(indistinto,90000,6,0,40,2,2);
-        Formulario_de_Busqueda fbt2 = new Formulario_de_Busqueda(presencial,10000,8,0,25,1,0);
-        Formulario_de_Busqueda fbt3 = new Formulario_de_Busqueda(presencial,15000,5,2,32,0,1);
-        Formulario_de_Busqueda fbt4 = new Formulario_de_Busqueda(indistinto,12000,8,1,25,0,2);
-        Formulario_de_Busqueda fbt5 = new Formulario_de_Busqueda(home,20000,8,1,50,1,2);
+        Formulario_de_Busqueda fbt1 = new Formulario_de_Busqueda(indistinto,90000,0,0,0,2,2);
+        Formulario_de_Busqueda fbt2 = new Formulario_de_Busqueda(presencial,10000,1,0,1,1,0);
+        Formulario_de_Busqueda fbt3 = new Formulario_de_Busqueda(presencial,15000,2,2,1,0,1);
+        Formulario_de_Busqueda fbt4 = new Formulario_de_Busqueda(indistinto,12000,2,1,2,0,2);
+        Formulario_de_Busqueda fbt5 = new Formulario_de_Busqueda(home,20000,0,1,2,1,2);
 
         System.out.println("\nSE CREAN LOS TICKETS DE BUSQUEDA DE EMPLEOS ");
 
@@ -89,11 +89,11 @@ public class Prueba {
 
         System.out.println("\nSE CREAN FORMULARIOS DE BUSQUEDA DE LOS EMPLEADORES ");
 
-        Formulario_de_Busqueda fbe1 = new Formulario_de_Busqueda(indistinto,200000,8,0,30,1,2);
-        Formulario_de_Busqueda fbe2 = new Formulario_de_Busqueda(home,1200000,8,2,20,2,2);
-        Formulario_de_Busqueda fbe3 = new Formulario_de_Busqueda(presencial,85000,4,1,60,1,1);
-        Formulario_de_Busqueda fbe4 = new Formulario_de_Busqueda(indistinto,50000,4,1,40,0,0);
-        Formulario_de_Busqueda fbe5 = new Formulario_de_Busqueda(presencial,150000,8,2,25,1,1);
+        Formulario_de_Busqueda fbe1 = new Formulario_de_Busqueda(indistinto,200000,0,0,1,1,2);
+        Formulario_de_Busqueda fbe2 = new Formulario_de_Busqueda(home,1200000,1,2,2,2,2);
+        Formulario_de_Busqueda fbe3 = new Formulario_de_Busqueda(presencial,85000,2,1,0,1,1);
+        Formulario_de_Busqueda fbe4 = new Formulario_de_Busqueda(indistinto,50000,1,1,2,0,0);
+        Formulario_de_Busqueda fbe5 = new Formulario_de_Busqueda(presencial,150000,2,2,0,1,1);
 
         System.out.println("\nCADA EMPLEADOR CARGA SU TABLA DE PESOS ");
 
@@ -103,7 +103,7 @@ public class Prueba {
         int [] peso4 = new int[7]; peso4[0]=3;peso4[1]=3;peso4[2]=2;peso4[3]=2;peso4[4]=2;peso4[5]=2;peso4[6]=2;
         int [] peso5 = new int[7]; peso5[0]=2;peso5[1]=3;peso5[2]=1;peso5[3]=1;peso5[4]=2;peso5[5]=3;peso5[6]=3;
 
-        Ticket_de_Busqueda_de_Empleado tbe = new Ticket_de_Busqueda_de_Empleado(fbe1,"Bombero",peso1);
+//        Ticket_de_Busqueda_de_Empleado tbe = new Ticket_de_Busqueda_de_Empleado(fbe1,"Bombero",peso1);
 
         System.out.println("\nSE CREAN LOS TICKETS DE BUSQUETA DE EMPLEADO ");
 
@@ -115,7 +115,12 @@ public class Prueba {
 
         System.out.println("\nRONDA DE ENCUENTROS LABORALES ");
 
+        sistema.rondaEncuentrosLaborales();
+
+        sistema.getEmpleadores().get(0).muestraLista();
+
         System.out.println("\nRONDA DE ELECCIONES ");
+
 
         System.out.println("\nELECCIONES DE LOS EMPLEADOS PRETENSOS");
 

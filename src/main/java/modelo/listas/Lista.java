@@ -5,8 +5,8 @@ import java.util.Calendar;
 import java.util.TreeSet;
 
 public class Lista { //COLECCION
-    public TreeSet<Ticket> ofertas = new TreeSet<>();
-    public Calendar fechaDeCreacion = Calendar.getInstance();
+    private TreeSet<Ticket> ofertas = new TreeSet<>();
+    private Calendar fechaDeCreacion = Calendar.getInstance();
 
     //GETTERS && SETTERS
     public TreeSet<Ticket> getOfertas() {
@@ -15,5 +15,12 @@ public class Lista { //COLECCION
 
     public void setEmpleadoresPosibles(TreeSet<Ticket> ofertas) {
         this.ofertas = ofertas;
+    }
+
+     //TO STRING
+    @Override
+    public String toString() {
+        return  "    " + ofertas +
+                "   fechaDeCreacion: " + fechaDeCreacion.getTime();
     }
 }

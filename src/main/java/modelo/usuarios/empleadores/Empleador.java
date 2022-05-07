@@ -126,4 +126,10 @@ public abstract class Empleador extends UsuarioComun {
             System.out.println(e.getMessage());
         }
     }
+
+    public void muestraLista() {
+        for (int i = 0;i < ticketsDeBusquedaDeEmpleado.size();i++)
+            if (ticketsDeBusquedaDeEmpleado.get(i).getEstado().equalsIgnoreCase("ACTIVO"))
+                System.out.println("Lista del usuario [" + this.nombreUsuario + "]: (en un mal formato)\n" + sistema.getListas().get(this.ticketsDeBusquedaDeEmpleado.get(i)).toString());
+    }
 }

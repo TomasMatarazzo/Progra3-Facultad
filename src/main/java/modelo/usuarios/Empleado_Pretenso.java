@@ -3,6 +3,7 @@ package modelo.usuarios;
 import excepciones.DatosMalIngresadosException;
 import excepciones.TicketYaCreadoException;
 import modelo.tickets.Formulario_de_Busqueda;
+import modelo.tickets.Ticket;
 import modelo.tickets.Ticket_de_Busqueda_de_Empleo;
 
 public class Empleado_Pretenso extends UsuarioComun {
@@ -148,5 +149,10 @@ public class Empleado_Pretenso extends UsuarioComun {
         } catch (DatosMalIngresadosException e) {
             System.out.println(e.getMessage());
         }
+    }
+
+    public void muestraLista() {
+        if (ticketDeBusquedaDeEmpleo.getEstado().equalsIgnoreCase("ACTIVO"))
+            System.out.println("Lista del usuario [" + this.nombreUsuario + "]: (en un mal formato)\n" + sistema.getListas().get(this.ticketDeBusquedaDeEmpleo).toString());
     }
 }

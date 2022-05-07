@@ -63,8 +63,7 @@ public abstract class Empleador extends UsuarioComun {
     //TO STRING
     @Override
     public String toString() {
-        return  "Empleador: " +
-                "   nombreUsuario: '" + nombreUsuario +
+        return  "   nombreUsuario: '" + nombreUsuario +
                 "   contrasena: '" + contrasena + //Esta bien mostrarla?
                 "   razonSocial: '" + razonSocial +
                 "   tipoPersona: '" + tipoPersona +

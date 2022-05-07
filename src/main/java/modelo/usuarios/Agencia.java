@@ -57,14 +57,10 @@ public class Agencia extends Usuario {
     }
 
     public void agregarTipoDeTrabajo(String trabajo) {
+        sistema.agregaTiposDeTrabajo(trabajo);
 
         //SE INGRESAN LOS VALORES A PARTIR DE UN FORMULARIO
 
-        sistema.agregaTiposDeTrabajo("Camarero");
-        sistema.agregaTiposDeTrabajo("Taxista");
-        sistema.agregaTiposDeTrabajo("Bombero");
-        sistema.agregaTiposDeTrabajo("Piloto");
-        sistema.agregaTiposDeTrabajo("Marinero");
     }
 
     public void confeccionarRangoEtario(int edad1, int edad2){

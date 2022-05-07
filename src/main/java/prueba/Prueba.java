@@ -3,8 +3,12 @@ package prueba;
 import excepciones.DatosMalIngresadosException;
 import excepciones.ErrorDeContrasenaException;
 import excepciones.ErrorDeUsuarioException;
+import excepciones.TicketYaCreadoException;
+import interfaces.ILocacion;
 import modelo.tickets.Formulario_de_Busqueda;
+import modelo.tickets.Ticket_de_Busqueda_de_Empleado;
 import modelo.tickets.Ticket_de_Busqueda_de_Empleo;
+import modelo.tickets.Locaciones.LocacionFactory;
 import modelo.usuarios.*;
 import modelo.Sistema;
 
@@ -13,7 +17,7 @@ public class Prueba {
         Sistema sistema = Sistema.getInstance();
         UsuarioFactory usuarioFactory = new UsuarioFactory();
 
-        //SE CREAN Y SE REGISTRAN
+        //SE CREAN Y SE REGISTRAN LOS USUARIOS
         try {
             usuarioFactory.creaUsuario("Guillermo","Guille<3","Agencia");
             //--------------------------------------------------------------------------------------
@@ -32,6 +36,8 @@ public class Prueba {
             System.out.println("El parametro '" + e1.getMessage() + "' ingresado es incorrecto.");
         }
 
+        System.out.println("\nSE LOGEAN ALGUNOS USUARIOS.");
+
         try {
             sistema.login("Empleado01","123"); //Usuario correcto
 //            sistema.login("Incorrecto","123"); //Usuario incorrecta
@@ -44,42 +50,52 @@ public class Prueba {
             System.out.println(e1.getMessage());
         }
 
-        System.out.println("SE CREAN FORMULARIOS DE BUSQUEDA DE EMPLEOS ");
+        System.out.println("\nLA AGENCIA CARGA ALGUNOS PUESTOS DE TRABAJO");
 
-        // Remuneracion, cargaHoraria, TipoPuesto [0,1,2],Rango Etario 1, Rango Etario 2, ExperienciaPrevia [0,1,2], estudiosCursados [0,1,2]
-        Formulario_de_Busqueda fbt1 = new Formulario_de_Busqueda(90000,6,0,20,40,2,2);
-        Formulario_de_Busqueda fbt2 = new Formulario_de_Busqueda(10000,8,0,20,25,1,0);
-        Formulario_de_Busqueda fbt3 = new Formulario_de_Busqueda(15000,5,2,25,32,0,1);
-        Formulario_de_Busqueda fbt4 = new Formulario_de_Busqueda(12000,8,1,20,25,0,2);
-        Formulario_de_Busqueda fbt5 = new Formulario_de_Busqueda(20000,8,1,50,60,1,2);
+        sistema.getAgencia().agregarTipoDeTrabajo("Camarero");
+        sistema.getAgencia().agregarTipoDeTrabajo("Taxista");
+        sistema.getAgencia().agregarTipoDeTrabajo("Bombero");
+        sistema.getAgencia().agregarTipoDeTrabajo("Piloto");
+        sistema.getAgencia().agregarTipoDeTrabajo("Marinero");
 
-        System.out.println("SE CREAN LOS TICKETS DE BUSQUEDA DE EMPLEOS ");
+        System.out.println("\nSE CREAN LAS LOCACIONES DE LOS TRABAJOS ");
 
+        LocacionFactory lc = new LocacionFactory();
 
+        ILocacion home = lc.getLocacion("HOMEOFFICE");
+        ILocacion presencial = lc.getLocacion("PRESENCIAL");
+        ILocacion indistinto = lc.getLocacion("INDISTINTO");
 
-        System.out.println("SE CARGAN LOS TICKETS DE BUSQUEDA DE EMPLEOS AL SISTEMA");
+        System.out.println("\nSE CREAN FORMULARIOS DE BUSQUEDA DE LOS EMPLEADOS ");
 
+        // Remuneracion, cargaHoraria, TipoPuesto [0,1,2],Rango Etario, ExperienciaPrevia [0,1,2], estudiosCursados [0,1,2]
+        Formulario_de_Busqueda fbt1 = new Formulario_de_Busqueda(indistinto,90000,6,0,40,2,2);
+        Formulario_de_Busqueda fbt2 = new Formulario_de_Busqueda(presencial,10000,8,0,25,1,0);
+        Formulario_de_Busqueda fbt3 = new Formulario_de_Busqueda(presencial,15000,5,2,32,0,1);
+        Formulario_de_Busqueda fbt4 = new Formulario_de_Busqueda(indistinto,12000,8,1,25,0,2);
+        Formulario_de_Busqueda fbt5 = new Formulario_de_Busqueda(home,20000,8,1,50,1,2);
 
+        System.out.println("\nSE CREAN LOS TICKETS DE BUSQUEDA DE EMPLEOS ");
 
-        System.out.println("SE CREAN FORMULARIOS DE BUSQUEDA DE LOS EMPLEADOS ");
+        try {
+            sistema.getEmpleadosPretensos().get(0).creaTicket(fbt1, "Bombero");
+            sistema.getEmpleadosPretensos().get(1).creaTicket(fbt2, "Camarero");
+            sistema.getEmpleadosPretensos().get(2).creaTicket(fbt3, "Camarero");
+            sistema.getEmpleadosPretensos().get(3).creaTicket(fbt4, "Bombero");
+            sistema.getEmpleadosPretensos().get(4).creaTicket(fbt5, "Taxista");
+        } catch (TicketYaCreadoException e) {
+            System.out.println(e.getMessage());
+        }
 
-        // Remuneracion, cargaHoraria, TipoPuesto [0,1,2],Rango Etario 1, Rango Etario 2, ExperienciaPrevia [0,1,2], estudiosCursados [0,1,2]
-        Formulario_de_Busqueda fbt1 = new Formulario_de_Busqueda(90000,6,0,50,60,0,0);
-        Formulario_de_Busqueda fbt2 = new Formulario_de_Busqueda(220000,8,1,40,50,2,0);
-        Formulario_de_Busqueda fbt3 = new Formulario_de_Busqueda(180000,8,1,20,30,1,1);
-        Formulario_de_Busqueda fbt4 = new Formulario_de_Busqueda(120000,6,2,30,40,1,1);
-        Formulario_de_Busqueda fbt5 = new Formulario_de_Busqueda(80000,4,0,30,50,2,2);
+        System.out.println("\nSE CREAN FORMULARIOS DE BUSQUEDA DE LOS EMPLEADORES ");
 
+        Formulario_de_Busqueda fbe1 = new Formulario_de_Busqueda(indistinto,200000,8,0,30,1,2);
+        Formulario_de_Busqueda fbe2 = new Formulario_de_Busqueda(home,1200000,8,2,20,2,2);
+        Formulario_de_Busqueda fbe3 = new Formulario_de_Busqueda(presencial,85000,4,1,60,1,1);
+        Formulario_de_Busqueda fbe4 = new Formulario_de_Busqueda(indistinto,50000,4,1,40,0,0);
+        Formulario_de_Busqueda fbe5 = new Formulario_de_Busqueda(presencial,150000,8,2,25,1,1);
 
-        System.out.println("SE CREAN FORMULARIOS DE BUSQUEDA DE LOS EMPLEADORES ");
-
-        Formulario_de_Busqueda fbe1 = new Formulario_de_Busqueda(200000,8,0,20,30,1,2);
-        Formulario_de_Busqueda fbe2 = new Formulario_de_Busqueda(1200000,8,2,20,40,2,2);
-        Formulario_de_Busqueda fbe3 = new Formulario_de_Busqueda(85000,4,1,40,60,1,1);
-        Formulario_de_Busqueda fbe4 = new Formulario_de_Busqueda(50000,4,1,40,45,0,0);
-        Formulario_de_Busqueda fbe5 = new Formulario_de_Busqueda(150000,8,2,20,25,1,1);
-
-        System.out.println("CADA EMPLEADOR CARGA SU TABLA DE PESOS ");
+        System.out.println("\nCADA EMPLEADOR CARGA SU TABLA DE PESOS ");
 
         int [] peso1 = new int[7]; peso1[0]=0;peso1[1]=2;peso1[2]=2;peso1[3]=1;peso1[4]=1;peso1[5]=1;peso1[6]=3;
         int [] peso2 = new int[7]; peso2[0]=1;peso2[1]=3;peso2[2]=3;peso2[3]=2;peso2[4]=2;peso2[5]=1;peso2[6]=1;
@@ -87,29 +103,61 @@ public class Prueba {
         int [] peso4 = new int[7]; peso4[0]=3;peso4[1]=3;peso4[2]=2;peso4[3]=2;peso4[4]=2;peso4[5]=2;peso4[6]=2;
         int [] peso5 = new int[7]; peso5[0]=2;peso5[1]=3;peso5[2]=1;peso5[3]=1;peso5[4]=2;peso5[5]=3;peso5[6]=3;
 
+        Ticket_de_Busqueda_de_Empleado tbe = new Ticket_de_Busqueda_de_Empleado(fbe1,"Bombero",peso1);
 
-        System.out.println("SE CREAN LOS TICKETS DE BUSQUETA DE EMPLEADO ");
+        System.out.println("\nSE CREAN LOS TICKETS DE BUSQUETA DE EMPLEADO ");
 
-        sistema.getEmpleadores().get(0).creaTicket(fbt1,"Bombero",peso1);
-        Ticket_de_Busqueda_de_Empleado te2 = new Ticket_de_Busqueda_de_Empleado(fbe2,"Camarero",peso2);
-        Ticket_de_Busqueda_de_Empleado te3 = new Ticket_de_Busqueda_de_Empleado(fbe3,"Camarero",peso3);
-        Ticket_de_Busqueda_de_Empleado te4 = new Ticket_de_Busqueda_de_Empleado(fbe4,"Bombero",peso4);
-        Ticket_de_Busqueda_de_Empleado te5 = new Ticket_de_Busqueda_de_Empleado(fbe5,"Taxista",peso5);
+        sistema.getEmpleadores().get(0).creaTicket(fbe1,"Bombero",peso1);
+        sistema.getEmpleadores().get(1).creaTicket(fbe2,"Taxista",peso2);
+        sistema.getEmpleadores().get(2).creaTicket(fbe3,"Camarero",peso3);
+        sistema.getEmpleadores().get(3).creaTicket(fbe4,"Taxista",peso4);
+        sistema.getEmpleadores().get(4).creaTicket(fbe5,"Bombero",peso5);
 
-        System.out.println("SE AGREGAN LOS TICKETS DE EMPLEADORES AL SISTEMA ");
+        System.out.println("\nRONDA DE ENCUENTROS LABORALES ");
 
-        sistema.getTicketsDeEmpleadores().put(te1, empleador1);
-        sistema.getTicketsDeEmpleadores().put(te2, empleador2);
-        sistema.getTicketsDeEmpleadores().put(te3, empleador3);
-        sistema.getTicketsDeEmpleadores().put(te4, empleador4);
-        sistema.getTicketsDeEmpleadores().put(te5, empleador5);
+        System.out.println("\nRONDA DE ELECCIONES ");
 
-        System.out.println("SE AGREGAN LOS TICKETS A CADA EMPLEADOR ");
+        System.out.println("\nELECCIONES DE LOS EMPLEADOS PRETENSOS");
 
-        empleador1.ticketsDeBusquedaDeEmpleado.add(te1);
-        empleador2.ticketsDeBusquedaDeEmpleado.add(te2);
-        empleador3.ticketsDeBusquedaDeEmpleado.add(te3);
-        empleador4.ticketsDeBusquedaDeEmpleado.add(te4);
-        empleador5.ticketsDeBusquedaDeEmpleado.add(te5);
+        System.out.println(" El empleado0 elige al ticket0 del empleador1");
+        sistema.getEmpleadosPretensos().get(0).getTicketDeBusquedaDeEmpleo().setEleccion(sistema.getEmpleadores().get(1).getTicketsDeBusquedaDeEmpleado().get(0));
+
+        System.out.println(" El empleado1 elige al ticket0 del empleador1");
+        sistema.getEmpleadosPretensos().get(1).getTicketDeBusquedaDeEmpleo().setEleccion(sistema.getEmpleadores().get(1).getTicketsDeBusquedaDeEmpleado().get(0));
+
+        System.out.println(" El empleado2 elige al ticket0 del empleador0");
+        sistema.getEmpleadosPretensos().get(2).getTicketDeBusquedaDeEmpleo().setEleccion(sistema.getEmpleadores().get(0).getTicketsDeBusquedaDeEmpleado().get(0));
+
+        System.out.println(" El empleado3 elige al ticket0 del empleador4");
+        sistema.getEmpleadosPretensos().get(3).getTicketDeBusquedaDeEmpleo().setEleccion(sistema.getEmpleadores().get(4).getTicketsDeBusquedaDeEmpleado().get(0));
+
+        System.out.println(" El empleado4 elige al ticket0 del empleador1");
+        sistema.getEmpleadosPretensos().get(4).getTicketDeBusquedaDeEmpleo().setEleccion(sistema.getEmpleadores().get(1).getTicketsDeBusquedaDeEmpleado().get(0));
+
+        System.out.println("\nELECCIONES DE LOS EMPlEADORES");
+
+        System.out.println(" El empleador0 (su ticket0) elige al empleado4");
+        sistema.getEmpleadores().get(0).getTicketsDeBusquedaDeEmpleado().get(0).setEleccion(sistema.getEmpleadosPretensos().get(4).getTicketDeBusquedaDeEmpleo());
+
+        System.out.println(" El empleador1 (su ticket0) elige al empleado4");
+        sistema.getEmpleadores().get(1).getTicketsDeBusquedaDeEmpleado().get(0).setEleccion(sistema.getEmpleadosPretensos().get(4).getTicketDeBusquedaDeEmpleo());
+
+        System.out.println(" El empleador2 (su ticket0) elige al empleado0");
+        sistema.getEmpleadores().get(2).getTicketsDeBusquedaDeEmpleado().get(0).setEleccion(sistema.getEmpleadosPretensos().get(0).getTicketDeBusquedaDeEmpleo());
+
+        System.out.println(" El empleado3 (su ticket0) elige al empleado4");
+        sistema.getEmpleadores().get(3).getTicketsDeBusquedaDeEmpleado().get(0).setEleccion(sistema.getEmpleadosPretensos().get(1).getTicketDeBusquedaDeEmpleo());
+
+        System.out.println(" El empleado4 NO elige a ningun empleado pretenso");
+
+        sistema.rondaContrataciones();
+
+        System.out.println("\nCONTRATOS: ");
+        for (int a = 0; a< sistema.getContratos().size() ;a++) {
+            System.out.println("CONTRATO "+(a+1));
+            System.out.println("EMPLEADOR "+ sistema.getContratos().get(a).getEmpleador());
+            System.out.println("EMPLEADO PRETENSO "+ sistema.getContratos().get(a).getEmpleado_pretenso());
+            System.out.println("REMUNERACION "+ sistema.getContratos().get(a).getRemuneracion());
+        }
     }
 }

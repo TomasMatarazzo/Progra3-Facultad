@@ -116,16 +116,12 @@ public class Empleado_Pretenso extends UsuarioComun {
         return remuneracion * porcentaje;
     }
 
-    public void creaTicket(Formulario_de_Busqueda formulario,String tipoTrabajo) {
-        try {
-            if (this.ticketDeBusquedaDeEmpleo != null || this.ticketDeBusquedaDeEmpleo.getEstado().equalsIgnoreCase("CANCELADO") || this.ticketDeBusquedaDeEmpleo.getEstado().equalsIgnoreCase("FINALIZADO")) {
-                this.ticketDeBusquedaDeEmpleo = new Ticket_de_Busqueda_de_Empleo(formulario,tipoTrabajo);
-                sistema.agregaTicketDeEmpleadosPretensos(this,this.ticketDeBusquedaDeEmpleo);
-            } else
-                throw new TicketYaCreadoException("Ticket de busqueda de empleo ya existente.");
-        } catch (TicketYaCreadoException e) {
-            System.out.println(e.getMessage());
-        }
+    public void creaTicket(Formulario_de_Busqueda formulario,String tipoTrabajo) throws TicketYaCreadoException {
+        if (this.ticketDeBusquedaDeEmpleo == null || this.ticketDeBusquedaDeEmpleo.getEstado().equalsIgnoreCase("CANCELADO") || this.ticketDeBusquedaDeEmpleo.getEstado().equalsIgnoreCase("FINALIZADO")) {
+            this.ticketDeBusquedaDeEmpleo = new Ticket_de_Busqueda_de_Empleo(formulario,tipoTrabajo);
+            sistema.agregaTicketDeEmpleadosPretensos(this,this.ticketDeBusquedaDeEmpleo);
+        } else
+            throw new TicketYaCreadoException("Ticket de busqueda de empleo ya existente.");
     }
 
     public void gestionaTicket(String estado) {

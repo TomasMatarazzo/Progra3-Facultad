@@ -5,6 +5,7 @@ import excepciones.ErrorDeContrasenaException;
 import excepciones.ErrorDeUsuarioException;
 import excepciones.TicketYaCreadoException;
 import interfaces.ILocacion;
+import modelo.constantes.Puntajes;
 import modelo.tickets.Formulario_de_Busqueda;
 import modelo.tickets.Ticket_de_Busqueda_de_Empleado;
 import modelo.tickets.Ticket_de_Busqueda_de_Empleo;
@@ -57,6 +58,11 @@ public class Prueba {
         sistema.getAgencia().agregarTipoDeTrabajo("Bombero");
         sistema.getAgencia().agregarTipoDeTrabajo("Piloto");
         sistema.getAgencia().agregarTipoDeTrabajo("Marinero");
+
+        System.out.printf("\n SE ESPECIFICAN TIPOS DE PUESTOS LABOLARES");
+
+        sistema.getAgencia().confeccionarRangoEtario(40,50);
+        sistema.getAgencia().confeccionarTipoDePuesto("JR","SR","MANAGMENT");
 
         System.out.println("\nSE CREAN LAS LOCACIONES DE LOS TRABAJOS ");
 

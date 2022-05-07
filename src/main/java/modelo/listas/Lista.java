@@ -21,6 +21,6 @@ public class Lista { //COLECCION
     @Override
     public String toString() {
         return  "    " + ofertas +
-                "   fechaDeCreacion: " + fechaDeCreacion.getTime();
+                "   fechaDeCreacion:" + fechaDeCreacion.getTime() + "\n";
     }
 }

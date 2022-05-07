@@ -157,7 +157,11 @@ public class Sistema{
                 }
 
             }
-            ticketsDeEmpleadosPretensos.get(nuevalista.getOfertas().last()).setPuntaje(ticketsDeEmpleadosPretensos.get(nuevalista.getOfertas().last()).getPuntaje()+10);
+            Ticket ultimoTicketEmpleado = (Ticket_de_Busqueda_de_Empleo)nuevalista.getOfertas().last(); // EN REALIDAD ES TICKET DE EMPLEADO
+            Ticket primerTicketEmpleado = (Ticket_de_Busqueda_de_Empleo)nuevalista.getOfertas().first(); // EN REALIDAD ES TICKET DE EMPLEADO
+            ticketsDeEmpleadosPretensos.get(ultimoTicketEmpleado).setPuntaje(ticketsDeEmpleadosPretensos.get(ultimoTicketEmpleado).getPuntaje()+ 5);
+            ticketsDeEmpleadosPretensos.get(primerTicketEmpleado).setPuntaje(ticketsDeEmpleadosPretensos.get(primerTicketEmpleado).getPuntaje() - 5);
+
             listas.put(ticketEmpleador,nuevalista);
         }
 
@@ -170,7 +174,8 @@ public class Sistema{
                     nuevalista.getOfertas().add(ticketEmpleador);
                 }
             }
-            ticketsDeEmpleadosPretensos.get(nuevalista.getOfertas().last()).setPuntaje(ticketsDeEmpleadosPretensos.get(nuevalista.getOfertas().last()).getPuntaje()+10);
+            Ticket ultimoTicketEmpresa = (Ticket_de_Busqueda_de_Empleado)nuevalista.getOfertas().last(); // EN REALIDAD ES TICKET DE UNA EMPRESA
+            ticketsDeEmpleadores.get(ultimoTicketEmpresa).setPuntaje(ticketsDeEmpleadores.get(ultimoTicketEmpresa).getPuntaje()+10);
             listas.put(ticketEmpleado,nuevalista);
         }
     }
@@ -206,6 +211,8 @@ public class Sistema{
         }
         return elegidos;
     }
+
+
 
     public boolean tieneTicketsActivos (Empleador empleador) {
         boolean respuesta = false;

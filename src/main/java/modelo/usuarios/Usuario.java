@@ -3,7 +3,7 @@ package modelo.usuarios;
 import modelo.Sistema;
 
 public abstract class Usuario {
-    private Sistema sistema = Sistema.getInstance();
+    protected Sistema sistema = Sistema.getInstance();
     private static int n = -1;
     //--------------------------//
     protected int IDUsuario; //SE PUEDE OMITIR

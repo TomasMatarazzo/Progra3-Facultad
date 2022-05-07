@@ -7,7 +7,7 @@ public class Ticket_de_Busqueda_de_Empleo extends Ticket {
     //CONSTRUCTOR
     public Ticket_de_Busqueda_de_Empleo(Formulario_de_Busqueda formularioDeBusqueda, String tipoDeTrabajo) {
         super(formularioDeBusqueda, tipoDeTrabajo);
-        this.resultado = "";
+        this.resultado = "PENDIENTE";
         this.eleccion = null;
     }
 
@@ -34,7 +34,7 @@ public class Ticket_de_Busqueda_de_Empleo extends Ticket {
         return  "   formularioDeBusqueda: " + formularioDeBusqueda.toString() +
                 "   fechaDeAlta: " + fechaDeAlta.getTime() +
                 "   estado: " + estado +
-                "   resultado: " + resultado;
+                "   resultado: " + resultado + "\n";
     }
 
     //FUNCIONALIDADES

@@ -27,7 +27,8 @@ public class Ticket_de_Busqueda_de_Empleado extends Ticket {
     public String toString() {
         return  "   formularioDeBusqueda: \n" + formularioDeBusqueda.toString() +
                 "   fechaDeAlta: " + fechaDeAlta.getTime() +
-                "   estado: " + estado;
+                "   estado: " + estado+
+                "\n";
     }
 
     //FUCNIONALIDADES

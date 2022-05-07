@@ -97,7 +97,6 @@ public abstract class Empleador extends UsuarioComun {
 
         return monto * porcentaje;
     }
-
     public void creaTicket(Formulario_de_Busqueda formulario, String tipoTrabajo, int[] pesoAspectos) {
         Ticket_de_Busqueda_de_Empleado nuevo;
 

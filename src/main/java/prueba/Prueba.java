@@ -20,17 +20,11 @@ public class Prueba {
         //SE CREAN Y SE REGISTRAN
         try {
             usuarioFactory.creaUsuario("Guillermo","Guille<3","Agencia");
-            //--------------------------------------------------------------------------------------
-            usuarioFactory.creaUsuario("Empleado01","111","Empleado Pretenso");
-            usuarioFactory.creaUsuario("Empleado02","222","Empleado Pretenso");
-            usuarioFactory.creaUsuario("Empleado03","333","Empleado Pretenso");
-            usuarioFactory.creaUsuario("Empleado04","444","Empleado Pretenso");
-            usuarioFactory.creaUsuario("Empleado05","555","Empleado Pretenso");
-            usuarioFactory.creaUsuario("EmpleadorJuridico1","666","Persona Juridica");
-            usuarioFactory.creaUsuario("EmpleadorFisico1","777","Persona Fisica");
-            usuarioFactory.creaUsuario("EmpleadorJuridico2","888","Persona Juridica");
-            usuarioFactory.creaUsuario("EmpleadorFisico2","999","Persona Fisica");
-            usuarioFactory.creaUsuario("EmpleadorFisico3","101010","Persona Fisica");
+            usuarioFactory.creaUsuario("Empleado01","123","Empleado Pretenso");
+            usuarioFactory.creaUsuario("EmpleadorJuridico1","456","Persona Juridica");
+            usuarioFactory.creaUsuario("EmpleadorFisico1","789","Persona Fisica");
+            usuarioFactory.creaUsuario("EmpleadorJuridico2","101","Persona Juridica");
+            usuarioFactory.creaUsuario("EmpleadorFisico2","112","Persona Fisica");
         }
         catch (DatosMalIngresadosException e1) {
             System.out.println("El parametro '" + e1.getMessage() + "' ingresado es incorrecto.");

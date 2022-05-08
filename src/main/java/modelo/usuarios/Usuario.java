@@ -3,7 +3,6 @@ package modelo.usuarios;
 import modelo.Sistema;
 
 public abstract class Usuario {
-    protected Sistema sistema = Sistema.getInstance();
     protected String nombreUsuario;
     protected String contrasena;
     protected boolean loged;

@@ -1,6 +1,7 @@
 package modelo.usuarios.empleadores;
 
 import excepciones.DatosMalIngresadosException;
+import modelo.Sistema;
 import modelo.tickets.Formulario_de_Busqueda;
 import modelo.tickets.Ticket_de_Busqueda_de_Empleado;
 import modelo.usuarios.UsuarioComun;
@@ -98,7 +99,7 @@ public abstract class Empleador extends UsuarioComun {
 
         nuevo = new Ticket_de_Busqueda_de_Empleado(formulario,tipoTrabajo,pesoAspectos);
         this.ticketsDeBusquedaDeEmpleado.add(nuevo);
-        sistema.agregaTicketDeEmpleadores(this,nuevo);
+        Sistema.getInstance().agregaTicketDeEmpleadores(this,nuevo);
     }
 
     public void gestionaTicket(Ticket_de_Busqueda_de_Empleado ticket,String estado) {
@@ -130,6 +131,6 @@ public abstract class Empleador extends UsuarioComun {
     public void muestraLista() {
         for (Ticket_de_Busqueda_de_Empleado ticket_de_busqueda_de_empleado : ticketsDeBusquedaDeEmpleado)
             if (ticket_de_busqueda_de_empleado.getEstado().equalsIgnoreCase("ACTIVO"))
-                System.out.println("Lista del usuario [" + this.nombreUsuario + "]: (en un mal formato)\n" + sistema.getListas().get(ticket_de_busqueda_de_empleado).toString());
+                System.out.println("Lista del usuario [" + this.nombreUsuario + "]: (en un mal formato)\n" + Sistema.getInstance().getListas().get(ticket_de_busqueda_de_empleado).toString());
     }
 }

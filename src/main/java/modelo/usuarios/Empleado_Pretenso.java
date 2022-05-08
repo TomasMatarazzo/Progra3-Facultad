@@ -2,6 +2,7 @@ package modelo.usuarios;
 
 import excepciones.DatosMalIngresadosException;
 import excepciones.TicketYaCreadoException;
+import modelo.Sistema;
 import modelo.tickets.Formulario_de_Busqueda;
 import modelo.tickets.Ticket_de_Busqueda_de_Empleo;
 
@@ -119,7 +120,7 @@ public class Empleado_Pretenso extends UsuarioComun {
     public void creaTicket(Formulario_de_Busqueda formulario,String tipoTrabajo) throws TicketYaCreadoException {
         if (this.ticketDeBusquedaDeEmpleo == null || this.ticketDeBusquedaDeEmpleo.getEstado().equalsIgnoreCase("CANCELADO") || this.ticketDeBusquedaDeEmpleo.getEstado().equalsIgnoreCase("FINALIZADO")) {
             this.ticketDeBusquedaDeEmpleo = new Ticket_de_Busqueda_de_Empleo(formulario,tipoTrabajo);
-            sistema.agregaTicketDeEmpleadosPretensos(this,this.ticketDeBusquedaDeEmpleo);
+            Sistema.getInstance().agregaTicketDeEmpleadosPretensos(this,this.ticketDeBusquedaDeEmpleo);
         } else
             throw new TicketYaCreadoException("Ticket de busqueda de empleo ya existente.");
     }
@@ -152,6 +153,6 @@ public class Empleado_Pretenso extends UsuarioComun {
 
     public void muestraLista() {
         if (ticketDeBusquedaDeEmpleo.getEstado().equalsIgnoreCase("ACTIVO"))
-            System.out.println("Lista del usuario [" + this.nombreUsuario + "]: (en un mal formato)\n" + sistema.getListas().get(this.ticketDeBusquedaDeEmpleo).toString());
+            System.out.println("Lista del usuario [" + this.nombreUsuario + "]: (en un mal formato)\n" + Sistema.getInstance().getListas().get(this.ticketDeBusquedaDeEmpleo).toString());
     }
 }

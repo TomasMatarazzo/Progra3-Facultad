@@ -64,7 +64,7 @@ public class Sistema{
         return ticketsDeEmpleadosPretensos;
     }
 
-    public void agregaEmpleado(Empleador nuevo) {
+    public void agregaEmpleador(Empleador nuevo) {
         empleadores.add(nuevo);
     }
 
@@ -93,24 +93,42 @@ public class Sistema{
     }
 
     //FUNCIONALIDADES
+
+    /**
+     * Registra un nuevo empleador en el sistema, es decir lo almacena como atributo.
+     * @param nuevo
+     * @throws ErrorDeUsuarioException
+     */
     public void registrarUsuario(Empleador nuevo) throws ErrorDeUsuarioException {
         for (int i = 0; i < empleadores.size(); i++) {
             if (empleadores.get(i).getNombreUsuario().equalsIgnoreCase(nuevo.getNombreUsuario()))
                 throw new ErrorDeUsuarioException("El nombre de usuario ingresado ya existe.");
         }
-        empleadores.add(nuevo);
+        agregaEmpleador(nuevo);
         System.out.println("El empleador [" + nuevo.getNombreUsuario() + "] se ha registrado con exito.");
     }
 
+    /**
+     * Registra un nuevo empleado pretenso en el sistema, es decir lo almacena como atributo.
+     * @param nuevo
+     * @throws ErrorDeUsuarioException
+     */
     public void registrarUsuario(Empleado_Pretenso nuevo) throws ErrorDeUsuarioException {
         for (int i = 0; i < empleadosPretensos.size(); i++) {
             if (empleadosPretensos.get(i).getNombreUsuario().equalsIgnoreCase(nuevo.getNombreUsuario()))
                 throw new ErrorDeUsuarioException("El nombre de usuario ingresado ya existe.");
         }
-        empleadosPretensos.add(nuevo);
+        agregaEmpleadoPretenso(nuevo);
         System.out.println("El empleado pretenso [" + nuevo.getNombreUsuario() + "] se ha registrado con exito.");
     }
 
+    /**
+     *
+     * @param nombreUsuario
+     * @param contrasena
+     * @throws ErrorDeContrasenaException
+     * @throws ErrorDeUsuarioException
+     */
     public void login(String nombreUsuario, String contrasena) throws ErrorDeContrasenaException, ErrorDeUsuarioException {
         boolean loged = false;
         int i = 0;

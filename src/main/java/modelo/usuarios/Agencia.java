@@ -6,7 +6,6 @@ import modelo.tickets.Ticket_de_Busqueda_de_Empleado;
 import modelo.tickets.Ticket_de_Busqueda_de_Empleo;
 
 public class Agencia extends Usuario {
-    private static Sistema sistema = Sistema.getInstance();
 
     public Agencia(String nombreUsuario, String contrasena) {
         super(nombreUsuario, contrasena);
@@ -15,25 +14,25 @@ public class Agencia extends Usuario {
     //FUNCIONALIDADES
     public void muestraEmpleadores() {
         System.out.println("Lista de empleadores: ");
-        for (int i = 0;i < sistema.getEmpleadores().size();i++)
-            System.out.println(sistema.getEmpleadores().get(i).toString());
+        for (int i = 0;i < Sistema.getInstance().getEmpleadores().size();i++)
+            System.out.println(Sistema.getInstance().getEmpleadores().get(i).toString());
     }
 
     public void muestraSolicitudesEmpleadores() {
         System.out.println("Lista de solicitudes de empleadores: ");
-        for (Ticket_de_Busqueda_de_Empleado i : sistema.getTicketsDeEmpleadores().keySet())
+        for (Ticket_de_Busqueda_de_Empleado i : Sistema.getInstance().getTicketsDeEmpleadores().keySet())
             System.out.println(i.toString());
     }
 
     public void muestraEmpleadosPretensos() {
         System.out.println("Lista de empleados pretensos: ");
-        for (int i = 0;i < sistema.getEmpleadosPretensos().size();i++)
-            System.out.println(sistema.getEmpleadosPretensos().get(i).toString());
+        for (int i = 0;i < Sistema.getInstance().getEmpleadosPretensos().size();i++)
+            System.out.println(Sistema.getInstance().getEmpleadosPretensos().get(i).toString());
     }
 
     public void muestraSolicitudEmpleadosPretensos() {
         System.out.println("Lista de solicitudes de empleadores: ");
-        for (Ticket_de_Busqueda_de_Empleo i : sistema.getTicketsDeEmpleadosPretensos().keySet())
+        for (Ticket_de_Busqueda_de_Empleo i : Sistema.getInstance().getTicketsDeEmpleadosPretensos().keySet())
             System.out.println(i.toString());
     }
 
@@ -42,16 +41,16 @@ public class Agencia extends Usuario {
         double total = 0, aux;
 
         System.out.println("Comision a cobrar a cada Empleador: ");
-        for (int i = 0;i < sistema.getContratos().size();i++) {
-            aux = sistema.getContratos().get(i).getEmpleador().calculaComision(sistema.getContratos().get(i).getRemuneracion());
-            System.out.println("\tUsuario: " + sistema.getEmpleadores().get(i).getNombreUsuario() + " ~ Comision = $" + aux);
+        for (int i = 0;i < Sistema.getInstance().getContratos().size();i++) {
+            aux = Sistema.getInstance().getContratos().get(i).getEmpleador().calculaComision(Sistema.getInstance().getContratos().get(i).getRemuneracion());
+            System.out.println("\tUsuario: " + Sistema.getInstance().getEmpleadores().get(i).getNombreUsuario() + " ~ Comision = $" + aux);
             total += aux;
         }
 
         System.out.println("Comision a cobrar a cada Empleado pretenso: ");
-        for (int i = 0;i < sistema.getEmpleadosPretensos().size();i++) {
-            aux = sistema.getContratos().get(i).getEmpleado_pretenso().calculaComision(sistema.getContratos().get(i).getRemuneracion());
-            System.out.println("\tUsuario: " + sistema.getEmpleadosPretensos().get(i).getNombreUsuario() + " ~ Comision = $" + aux);
+        for (int i = 0;i < Sistema.getInstance().getEmpleadosPretensos().size();i++) {
+            aux = Sistema.getInstance().getContratos().get(i).getEmpleado_pretenso().calculaComision(Sistema.getInstance().getContratos().get(i).getRemuneracion());
+            System.out.println("\tUsuario: " + Sistema.getInstance().getEmpleadosPretensos().get(i).getNombreUsuario() + " ~ Comision = $" + aux);
             total += aux;
         }
 
@@ -59,7 +58,7 @@ public class Agencia extends Usuario {
     }
 
     public void agregarTipoDeTrabajo(String trabajo) {
-        sistema.agregaTiposDeTrabajo(trabajo);
+        Sistema.getInstance().agregaTiposDeTrabajo(trabajo);
     }
 
     public void confeccionarRangoEtario(int edad1, int edad2){

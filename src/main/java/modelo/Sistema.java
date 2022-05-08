@@ -15,7 +15,7 @@ import java.util.HashMap;
 
 public class Sistema{
     private static Sistema instance = null;
-    private Agencia agencia;
+    private Agencia agencia = null;
     private ArrayList<Empleador> empleadores = new ArrayList<>();
     private ArrayList<Empleado_Pretenso> empleadosPretensos = new ArrayList<>();
     private ArrayList<String> tiposDeTrabajo = new ArrayList<>();
@@ -241,7 +241,7 @@ public class Sistema{
      *
      * @return HashMap <Empleador,Boolean>
      */
-    public HashMap<Empleador,Boolean> empleadosElegidos() {
+    private HashMap<Empleador,Boolean> empleadosElegidos() {
         HashMap <Empleador,Boolean> elegidos = new HashMap<>();
         if (this.getEmpleadores().size() != 0) {
             for (int i = 0;i < this.getEmpleadores().size();i++)
@@ -259,7 +259,7 @@ public class Sistema{
      * @param empleador Es la referencia a un Empleador. empleador != null
      * @return valor booleano
      */
-    public boolean tieneTicketsActivos (Empleador empleador) {
+    private boolean tieneTicketsActivos (Empleador empleador) {
         boolean respuesta = false;
         int cont = 0;
         if (empleador.getTicketsDeBusquedaDeEmpleado() != null) {
@@ -271,5 +271,4 @@ public class Sistema{
         }
         return respuesta;
     }
-
 }

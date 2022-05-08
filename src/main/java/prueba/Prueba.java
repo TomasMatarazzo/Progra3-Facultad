@@ -31,7 +31,7 @@ public class Prueba {
             usuarioFactory.creaUsuario("EmpleadorFisico3","101010","Persona Fisica");
         }
         catch (DatosMalIngresadosException e1) {
-            System.out.println("El parametro '" + e1.getMessage() + "' ingresado es incorrecto.");
+            System.out.println("El parametro " + e1.getMessage() + " ingresado es incorrecto.");
         }
 
         System.out.println("\nSE LOGEAN ALGUNOS USUARIOS.");

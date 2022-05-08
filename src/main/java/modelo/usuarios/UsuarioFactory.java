@@ -11,7 +11,10 @@ public class UsuarioFactory {
     public void creaUsuario(String nombreUsuario, String contrasena, String tipo) throws DatosMalIngresadosException {
         try {
             if (tipo.equalsIgnoreCase("AGENCIA"))
-                Sistema.getInstance().setAgencia(new Agencia(nombreUsuario,contrasena));
+                if (Sistema.getInstance().getAgencia() == null)
+                    Sistema.getInstance().setAgencia(new Agencia(nombreUsuario,contrasena));
+                else 
+                    throw new DatosMalIngresadosException("Tipo Usuario (ya existe un administrador)");
             else
                 if (tipo.equalsIgnoreCase("EMPLEADO PRETENSO"))
                     Sistema.getInstance().registrarUsuario(new Empleado_Pretenso(nombreUsuario, contrasena));

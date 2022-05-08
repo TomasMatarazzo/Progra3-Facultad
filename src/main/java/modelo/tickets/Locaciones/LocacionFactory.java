@@ -9,22 +9,19 @@ public class LocacionFactory {
 
     public ILocacion getLocacion(String tipo){
 
-        if (tipo == null){
+        if (tipo == null)
             return null;
-        }
-        else if (tipo.equalsIgnoreCase("HOMEOFFICE")){
-            return new LocacionHomeOffice();
-        }
-        else if (tipo.equalsIgnoreCase("PRESENCIAL")){
-            return new LocacionPresencial();
-        }
-        else if (tipo.equalsIgnoreCase("INDISTINTO"))
-            return new LocacionIndistinto();
-
-        return null;
-
-
-
+        else
+            if (tipo.equalsIgnoreCase("HOMEOFFICE"))
+                return new LocacionHomeOffice();
+            else
+                if (tipo.equalsIgnoreCase("PRESENCIAL"))
+                    return new LocacionPresencial();
+                else
+                    if (tipo.equalsIgnoreCase("INDISTINTO"))
+                        return new LocacionIndistinto();
+                    else
+                        return null;
     }
 
     @Override

@@ -93,7 +93,6 @@ public class Sistema{
     }
 
     //FUNCIONALIDADES
-
     /**
      * Registra un nuevo empleador en el sistema, es decir lo almacena como atributo.
      * @param nuevo

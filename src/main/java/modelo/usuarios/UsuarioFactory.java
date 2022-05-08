@@ -13,7 +13,7 @@ public class UsuarioFactory {
             if (tipo.equalsIgnoreCase("AGENCIA"))
                 if (Sistema.getInstance().getAgencia() == null)
                     Sistema.getInstance().setAgencia(new Agencia(nombreUsuario,contrasena));
-                else 
+                else
                     throw new DatosMalIngresadosException("Tipo Usuario (ya existe un administrador)");
             else
                 if (tipo.equalsIgnoreCase("EMPLEADO PRETENSO"))

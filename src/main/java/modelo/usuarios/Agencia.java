@@ -66,7 +66,6 @@ public class Agencia extends Usuario {
         // se encuentra definido dentro de las constantes.
         Puntajes.setEdad2(edad2);
         Puntajes.setEdad1(edad1);
-
     }
 
     public void confeccionarTipoDePuesto(String puesto1, String puesto2, String puesto3){
@@ -75,6 +74,5 @@ public class Agencia extends Usuario {
         Puntajes.setPuesto1( puesto1 );
         Puntajes.setPuesto2( puesto2 );
         Puntajes.setPuesto3( puesto3 );
-
     }
 }

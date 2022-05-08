@@ -36,7 +36,6 @@ public class Agencia extends Usuario {
             System.out.println(i.toString());
     }
 
-    //3.
     public void calculaComisiones() {
         double total = 0, aux;
 

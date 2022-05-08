@@ -13,6 +13,9 @@ import modelo.listas.Lista;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+/**
+ * Clase que representa la totalidad del sistema, encargada de administrar los distintos datos durante el tiempo de ejecucion.
+ */
 public class Sistema{
     private static Sistema instance = null;
     private Agencia agencia = null;
@@ -94,9 +97,11 @@ public class Sistema{
 
     //FUNCIONALIDADES
     /**
-     * Registra un nuevo empleador en el sistema, es decir lo almacena como atributo.
-     * @param nuevo
-     * @throws ErrorDeUsuarioException
+     * Registra un nuevo empleador en el sistema, ya sea una persona fisica o una persona juridica.
+     * <b>Pre: </b> nuevo debe ser distinto de null <br>
+     * <b>Post: </b> el nuevo empleador se agrega al ArrayList de empleadores<br>
+     * @param nuevo: de tipo Empleador, representa un usuario en el sistema
+     * @throws ErrorDeUsuarioException: cuando el nombre de usuario ya existe en el sistema
      */
     public void registrarUsuario(Empleador nuevo) throws ErrorDeUsuarioException {
         for (int i = 0; i < empleadores.size(); i++) {
@@ -108,9 +113,11 @@ public class Sistema{
     }
 
     /**
-     * Registra un nuevo empleado pretenso en el sistema, es decir lo almacena como atributo.
-     * @param nuevo
-     * @throws ErrorDeUsuarioException
+     * Registra un nuevo empleado pretenso en el sistema.
+     * <b>Pre: </b> nuevo debe ser distinto de null <br>
+     * <b>Post: </b> el nuevo empleado pretenso se agrega al ArrayList de empeladosPretensos<br>
+     * @param nuevo: de tipo Empleado_Pretenso, representa un usuario en el sistema
+     * @throws ErrorDeUsuarioException: cuando el nombre de usuario ya existe en el sistema
      */
     public void registrarUsuario(Empleado_Pretenso nuevo) throws ErrorDeUsuarioException {
         for (int i = 0; i < empleadosPretensos.size(); i++) {
@@ -122,11 +129,13 @@ public class Sistema{
     }
 
     /**
-     *
-     * @param nombreUsuario
-     * @param contrasena
-     * @throws ErrorDeContrasenaException
-     * @throws ErrorDeUsuarioException
+     * Loguea un usuario registrado con anterioridad en el sistema.
+     * <b>Pre: </b> nombreUsuario y contrasena deben ser distinto de null o estar vacios <br>
+     * <b>Post: </b> el usuario se loguea con exito y se cambia el atributo logued a true, en caso contrario se lanza una excepcion<br>
+     * @param nombreUsuario: de tipo String, representa el nombre que tendra el usuario en el sistema
+     * @param contrasena: de tipo String, representa la contrasena que tendra el usuario en el sistema
+     * @throws ErrorDeContrasenaException: cuando la contrasena es incorrecta al nombre de usuario ingresado
+     * @throws ErrorDeUsuarioException: cuando el usuario no esta registrado en el sistema
      */
     public void login(String nombreUsuario, String contrasena) throws ErrorDeContrasenaException, ErrorDeUsuarioException {
         boolean loged = false;
@@ -136,6 +145,7 @@ public class Sistema{
             if (empleadores.get(i).getNombreUsuario().equalsIgnoreCase(nombreUsuario))
                 if (empleadores.get(i).getContrasena().equalsIgnoreCase(contrasena)) {
                     loged = true;
+                    empleadores.get(i).setLoged(loged);
                     System.out.println("El usuario [" + nombreUsuario + "] se ha logeado con exito.");
                 } else
                     throw new ErrorDeContrasenaException("La contrasena ingresada es incorrecta.");
@@ -148,6 +158,7 @@ public class Sistema{
             if (empleadosPretensos.get(i).getNombreUsuario().equalsIgnoreCase(nombreUsuario))
                 if (empleadosPretensos.get(i).getContrasena().equalsIgnoreCase(contrasena)) {
                     loged = true;
+                    empleadosPretensos.get(i).setLoged(loged);
                     System.out.println("El usuario [" + nombreUsuario + "] se ha logeado con exito.");
                 } else
                     throw new ErrorDeContrasenaException("La contrasena ingresada es incorrecta.");
@@ -159,6 +170,16 @@ public class Sistema{
             throw new ErrorDeUsuarioException("El usuario ingresado es incorrecto.");
     }
 
+    /**
+     * Metodo ronda de encuentros laborales
+     * Para cada ticket dentro del hashmap ticketDeEmpleadores, generamos una clase lista que tendra un tree set
+     * de tickets de empleados ordenadas segun el puntaje obtenido y tambien tendra a ese mismo ticket como parametro.
+     * La clase lista generada sera almacenada dentro de listasEncuentroLaborales.
+     * Para los tickets de empleados se hara lo mismo , pero su lista estara compuesta de tickets de empleadores.
+     *
+     * <b>post:</b> listaEncuentrosLaborales se encuentra cargada para la ronda de Contrataciones. <br>
+     *
+     */
     public void rondaEncuentrosLaborales() {
         double puntaje;
         

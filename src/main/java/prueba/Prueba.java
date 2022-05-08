@@ -5,11 +5,8 @@ import excepciones.ErrorDeContrasenaException;
 import excepciones.ErrorDeUsuarioException;
 import excepciones.TicketYaCreadoException;
 import interfaces.ILocacion;
-import modelo.constantes.Puntajes;
 import modelo.tickets.Formulario_de_Busqueda;
-import modelo.tickets.Ticket_de_Busqueda_de_Empleado;
-import modelo.tickets.Ticket_de_Busqueda_de_Empleo;
-import modelo.tickets.Locaciones.LocacionFactory;
+import modelo.tickets.locaciones.LocacionFactory;
 import modelo.usuarios.*;
 import modelo.Sistema;
 

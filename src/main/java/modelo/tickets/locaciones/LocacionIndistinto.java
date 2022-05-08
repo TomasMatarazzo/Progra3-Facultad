@@ -1,10 +1,11 @@
-package modelo.tickets.Locaciones;
-import interfaces.ILocacion;
-public class LocacionHomeOffice implements ILocacion{
+package modelo.tickets.locaciones;
 
+import interfaces.ILocacion;
+
+public class LocacionIndistinto implements ILocacion {
     @Override
     public int puntajeLocacion(ILocacion locacion) {
-        return locacion.puntajeHomeOffice();
+        return locacion.puntajeIndistinto();
     }
 
     @Override
@@ -24,6 +25,6 @@ public class LocacionHomeOffice implements ILocacion{
 
     @Override
     public String toString() {
-        return "Home Office";
+        return "indistinto";
     }
 }

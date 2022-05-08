@@ -1,4 +1,5 @@
-package modelo.tickets.Locaciones;
+package modelo.tickets.locaciones;
+
 import interfaces.ILocacion;
 
 public class LocacionPresencial implements ILocacion {

@@ -99,6 +99,12 @@ public class Empleado_Pretenso extends UsuarioComun {
     }
 
     //FUNCIONALIDADES
+    /**
+     * Este método calcula la comisión a cobrar al Empleado pretenso según el tipo de Puesto Laboral.<br>
+     * <b>pre: </b> Ticket de busqueda de empleado debe estar inicializada (!=null).<br>
+     * @param remuneracion: tipo double, representa la remuneración en bruto
+     * @return un double que representa la comisión
+     */
     @Override
     public double calculaComision(double remuneracion) {
         double porcentaje;
@@ -117,6 +123,14 @@ public class Empleado_Pretenso extends UsuarioComun {
         return remuneracion * porcentaje;
     }
 
+    /**
+     * Crea un ticket de busqueda de empleo
+     * <b>Pre: </b> tipoTrabajo debe ser distinto de null y no estar vacio <br>
+     * <b>Post: </b> Agrega el ticket de busqueda de empleo al sistema y al propio usuario, en caso contrario, lanza una excepcion <br>
+     * @param formulario: de tipo Formulario_de_Busqueda, contiene los datos relacionados al empleo
+     * @param tipoTrabajo: de tipo String, representa el tipo de trabajo solicitado
+     * @throws TicketYaCreadoException
+     */
     public void creaTicket(Formulario_de_Busqueda formulario,String tipoTrabajo) throws TicketYaCreadoException {
         if (this.ticketDeBusquedaDeEmpleo == null || this.ticketDeBusquedaDeEmpleo.getEstado().equalsIgnoreCase("CANCELADO") || this.ticketDeBusquedaDeEmpleo.getEstado().equalsIgnoreCase("FINALIZADO")) {
             this.ticketDeBusquedaDeEmpleo = new Ticket_de_Busqueda_de_Empleo(formulario,tipoTrabajo);
@@ -125,6 +139,13 @@ public class Empleado_Pretenso extends UsuarioComun {
             throw new TicketYaCreadoException("Ticket de busqueda de empleo ya existente.");
     }
 
+    /**
+     * Cambia y cerifica el estado del ticket del usuario
+     * <b>Pre: </b> estado debe ser distinto de null y no estar vacio <br>
+     * <b>Post: </b> se cambio el estado del ticket del empleado pretenso <br>
+     * @param estado: de tipo String, representa el tipo de estado que quiero que tenga el ticket.
+     * @throws DatosMalIngresadosException cuando el dato ingresado como parametro es incorrecto
+     */
     public void gestionaTicket(String estado) {
         try {
             if (!estado.equalsIgnoreCase("FINALIZADO")) {
@@ -151,6 +172,10 @@ public class Empleado_Pretenso extends UsuarioComun {
         }
     }
 
+    /**
+     * Este método muestra la lista de asignación del empleado pretenso.<br>
+     * <b>pre:</b> ticket de busqueda de empleo (!= null). Lista de asignacion (!=null). Empleado-Pretenso inicializado (!=null)<br>
+     */
     public void muestraLista() {
         if (ticketDeBusquedaDeEmpleo.getEstado().equalsIgnoreCase("ACTIVO"))
             System.out.println("Lista del usuario [" + this.nombreUsuario + "]: (en un mal formato)\n" + Sistema.getInstance().getListas().get(this.ticketDeBusquedaDeEmpleo).toString());

@@ -101,7 +101,7 @@ public class Sistema{
      * <b>Pre: </b> nuevo debe ser distinto de null <br>
      * <b>Post: </b> el nuevo empleador se agrega al ArrayList de empleadores<br>
      * @param nuevo: de tipo Empleador, representa un usuario en el sistema
-     * @throws ErrorDeUsuarioException: cuando el nombre de usuario ya existe en el sistema
+     * @throws ErrorDeUsuarioException
      */
     public void registrarUsuario(Empleador nuevo) throws ErrorDeUsuarioException {
         for (int i = 0; i < empleadores.size(); i++) {
@@ -117,7 +117,7 @@ public class Sistema{
      * <b>Pre: </b> nuevo debe ser distinto de null <br>
      * <b>Post: </b> el nuevo empleado pretenso se agrega al ArrayList de empeladosPretensos<br>
      * @param nuevo: de tipo Empleado_Pretenso, representa un usuario en el sistema
-     * @throws ErrorDeUsuarioException: cuando el nombre de usuario ya existe en el sistema
+     * @throws ErrorDeUsuarioException
      */
     public void registrarUsuario(Empleado_Pretenso nuevo) throws ErrorDeUsuarioException {
         for (int i = 0; i < empleadosPretensos.size(); i++) {
@@ -134,8 +134,8 @@ public class Sistema{
      * <b>Post: </b> el usuario se loguea con exito y se cambia el atributo logued a true, en caso contrario se lanza una excepcion<br>
      * @param nombreUsuario: de tipo String, representa el nombre que tendra el usuario en el sistema
      * @param contrasena: de tipo String, representa la contrasena que tendra el usuario en el sistema
-     * @throws ErrorDeContrasenaException: cuando la contrasena es incorrecta al nombre de usuario ingresado
-     * @throws ErrorDeUsuarioException: cuando el usuario no esta registrado en el sistema
+     * @throws ErrorDeContrasenaException
+     * @throws ErrorDeUsuarioException
      */
     public void login(String nombreUsuario, String contrasena) throws ErrorDeContrasenaException, ErrorDeUsuarioException {
         boolean loged = false;
@@ -193,8 +193,8 @@ public class Sistema{
                 }
 
             }
-            Ticket ultimoTicketEmpleado = (Ticket_de_Busqueda_de_Empleo)nuevalista.getOfertas().last(); // EN REALIDAD ES TICKET DE EMPLEADO
-            Ticket primerTicketEmpleado = (Ticket_de_Busqueda_de_Empleo)nuevalista.getOfertas().first(); // EN REALIDAD ES TICKET DE EMPLEADO
+            Ticket ultimoTicketEmpleado = nuevalista.getOfertas().last();
+            Ticket primerTicketEmpleado = nuevalista.getOfertas().first();
             ticketsDeEmpleadosPretensos.get(ultimoTicketEmpleado).setPuntaje(ticketsDeEmpleadosPretensos.get(ultimoTicketEmpleado).getPuntaje()+ 5);
             ticketsDeEmpleadosPretensos.get(primerTicketEmpleado).setPuntaje(ticketsDeEmpleadosPretensos.get(primerTicketEmpleado).getPuntaje() - 5);
 

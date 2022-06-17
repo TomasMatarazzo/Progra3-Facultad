@@ -1,24 +1,46 @@
 package modelo.tickets;
 
+import Estados.ActivadoState;
+import excepciones.EstadoException;
 import interfaces.ILocacion;
+import interfaces.State;
 import modelo.constantes.Puntajes;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
-public abstract class Ticket implements Comparable{
+public abstract class Ticket implements Comparable, State {
     protected Formulario_de_Busqueda formularioDeBusqueda;
     protected Calendar fechaDeAlta = Calendar.getInstance();
     protected String estado; // activo-suspendido-cancelado-finalizado
+    private State state;
     protected String tipoDeTrabajo;
     protected double puntajeTotal;
 
     // CONSTRUCTOR
     public Ticket(Formulario_de_Busqueda formularioDeBusqueda, String tipoDeTrabajo) {
         this.formularioDeBusqueda = formularioDeBusqueda;
+        this.state= new ActivadoState(this);
         this.fechaDeAlta = new GregorianCalendar();
         this.estado = "Activo";
         this.tipoDeTrabajo = tipoDeTrabajo;
         this.puntajeTotal = 0;
+    }
+
+    @Override
+    public void activar() throws EstadoException {
+        this.state.activar();
+    }
+    @Override
+    public void cancelar() throws EstadoException {
+        this.state.cancelar();
+    }
+    @Override
+    public void finalizar() throws EstadoException {
+        this.state.finalizar();
+    }
+    @Override
+    public void suspender() throws EstadoException {
+        this.state.suspender();
     }
 
     // GETTERS && SETTERS
@@ -64,6 +86,13 @@ public abstract class Ticket implements Comparable{
 
     public void setEstado(String estado) {
         this.estado = estado;
+    }
+
+    public void setState(State state){
+        this.state=state;
+    }
+    public State getState(){
+        return this.state;
     }
 
     public void setPuntajeTotal(double puntajeTotal) {

@@ -18,6 +18,7 @@ public class ActivadoState implements State {
 
     @Override
     public void suspender(){
+        System.out.println("Se suspendio el activado");
         this.t.setState(new SuspendidoState(this.t));
     }
 

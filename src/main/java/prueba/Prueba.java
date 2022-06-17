@@ -1,9 +1,7 @@
 package prueba;
 
-import excepciones.DatosMalIngresadosException;
-import excepciones.ErrorDeContrasenaException;
-import excepciones.ErrorDeUsuarioException;
-import excepciones.TicketYaCreadoException;
+import Estados.CanceladoState;
+import excepciones.*;
 import interfaces.ILocacion;
 import modelo.tickets.Formulario_de_Busqueda;
 import modelo.tickets.locaciones.LocacionFactory;
@@ -11,7 +9,7 @@ import modelo.usuarios.*;
 import modelo.Sistema;
 
 public class Prueba {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws EstadoException {
         Sistema sistema = Sistema.getInstance();
         UsuarioFactory usuarioFactory = new UsuarioFactory();
 
@@ -158,7 +156,11 @@ public class Prueba {
 
         System.out.println(" El empleado4 NO elige a ningun empleado pretenso");
 
-        sistema.rondaContrataciones();
+        try{sistema.getEmpleadosPretensos().get(0).getTicketDeBusquedaDeEmpleo().getState().activar();}
+        catch (EstadoException e){
+            System.out.println(e.getMessage());
+        }
+        /*sistema.rondaContrataciones();
 
         System.out.println("\nCONTRATOS: ");
         for (int a = 0; a< sistema.getContratos().size() ;a++) {
@@ -166,6 +168,6 @@ public class Prueba {
             System.out.println("EMPLEADOR "+ sistema.getContratos().get(a).getEmpleador());
             System.out.println("EMPLEADO PRETENSO "+ sistema.getContratos().get(a).getEmpleado_pretenso());
             System.out.println("REMUNERACION "+ sistema.getContratos().get(a).getRemuneracion());
-        }
+        }*/
     }
 }

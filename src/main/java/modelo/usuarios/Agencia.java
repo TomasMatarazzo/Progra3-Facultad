@@ -2,13 +2,18 @@ package modelo.usuarios;
 
 import modelo.Sistema;
 import modelo.constantes.Puntajes;
+import modelo.tickets.TicketSimplificado;
 import modelo.tickets.Ticket_de_Busqueda_de_Empleado;
 import modelo.tickets.Ticket_de_Busqueda_de_Empleo;
 
+import java.util.ArrayList;
+
 public class Agencia extends Usuario {
+    private ArrayList <TicketSimplificado> bolsaDeTrabajo;
 
     public Agencia(String nombreUsuario, String contrasena) {
         super(nombreUsuario, contrasena);
+        this.bolsaDeTrabajo=new ArrayList<>();
     }
 
     //FUNCIONALIDADES
@@ -73,5 +78,9 @@ public class Agencia extends Usuario {
         Puntajes.setPuesto1( puesto1 );
         Puntajes.setPuesto2( puesto2 );
         Puntajes.setPuesto3( puesto3 );
+    }
+
+    public void agregarABolsaDeTrabajo(TicketSimplificado t){
+        this.bolsaDeTrabajo.add(t);
     }
 }

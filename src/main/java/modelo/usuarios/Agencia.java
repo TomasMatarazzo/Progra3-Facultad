@@ -2,6 +2,7 @@ package modelo.usuarios;
 
 import modelo.Sistema;
 import modelo.constantes.Puntajes;
+import modelo.tickets.Ticket;
 import modelo.tickets.TicketSimplificado;
 import modelo.tickets.Ticket_de_Busqueda_de_Empleado;
 import modelo.tickets.Ticket_de_Busqueda_de_Empleo;
@@ -9,6 +10,7 @@ import modelo.tickets.Ticket_de_Busqueda_de_Empleo;
 import java.util.ArrayList;
 
 public class Agencia extends Usuario {
+	
     private ArrayList <TicketSimplificado> bolsaDeTrabajo;
 
     public Agencia(String nombreUsuario, String contrasena) {
@@ -80,7 +82,55 @@ public class Agencia extends Usuario {
         Puntajes.setPuesto3( puesto3 );
     }
 
+    public TicketSimplificado coincidenciaTipoTrabajo(Ticket t) {
+        int c = 0;
+        TicketSimplificado aux, retorno = null;
+        if (this.bolsaDeTrabajo.size()!= 0) {
+            aux = this.bolsaDeTrabajo.get(c);
+            c++;
+            while (aux!=null && c<this.bolsaDeTrabajo.size() && retorno== null) {
+                if (aux.getTipoDeTrabajo().equalsIgnoreCase(t.getTipoDeTrabajo()))
+                    retorno = aux;
+                aux = this.bolsaDeTrabajo.get(c);
+                c++;
+
+            }
+        }
+        return retorno;
+    }
+
+
     public void agregarABolsaDeTrabajo(TicketSimplificado t){
         this.bolsaDeTrabajo.add(t);
+    }
+    public void eliminarABolsaDeTrabajo(TicketSimplificado t){
+        this.bolsaDeTrabajo.remove(t);
+    }
+
+    //METODOS SYNCHRONIZED
+    public synchronized TicketSimplificado SacaBolsa(Ticket t, Empleado_Pretenso u)
+    {
+        TicketSimplificado aux=null;
+        while (((aux = coincidenciaTipoTrabajo(t)) == null))
+        {
+            try
+            {
+            	System.out.println("El Empleado Pretenso "+ u.getNombreUsuario() + " Esperara a que haya En la bolsa de Trabajo algún trabajo de Su tipo Buscado");
+                wait();
+            } catch (InterruptedException e)
+            {
+                e.printStackTrace();
+            }
+        }
+        this.eliminarABolsaDeTrabajo(aux);
+        System.out.println("EL empleado "+u.getNombreUsuario()+" Saca de la Bolsa un trabajo para evaluar su Locacion");
+        notifyAll();
+        return aux;
+    }
+
+    public synchronized void PoneBolsa(TicketSimplificado t, UsuarioComun u){
+        this.agregarABolsaDeTrabajo(t);
+        System.out.println("El Usuario "+ u.getNombreUsuario() + " Puso un trabajo En la bolsa de Trabajo");
+        notifyAll();
     }
 }

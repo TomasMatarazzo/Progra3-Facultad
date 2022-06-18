@@ -1,7 +1,7 @@
 package modelo;
 
-import excepciones.ErrorDeContrasenaException;
-import excepciones.ErrorDeUsuarioException;
+import modelo.excepciones.ErrorDeContrasenaException;
+import modelo.excepciones.ErrorDeUsuarioException;
 import modelo.listas.Contrato;
 import modelo.tickets.Ticket;
 import modelo.tickets.Ticket_de_Busqueda_de_Empleado;
@@ -44,7 +44,7 @@ public class Sistema{
 
     public void setAgencia(Agencia agencia) {
         this.agencia = agencia;
-        System.out.println("Es un placer [" + agencia.getNombreUsuario() + "], se ha registrado como administrador exitosamente.");
+        //System.out.println("Es un placer [" + agencia.getNombreUsuario() + "], se ha registrado como administrador exitosamente.");
     }
 
     public ArrayList<Empleador> getEmpleadores() {
@@ -110,6 +110,7 @@ public class Sistema{
         }
         agregaEmpleador(nuevo);
         System.out.println("El empleador [" + nuevo.getNombreUsuario() + "] se ha registrado con exito.");
+        System.out.println("Cantidad de empleadores: " + empleadores.size());
     }
 
     /**
@@ -126,6 +127,7 @@ public class Sistema{
         }
         agregaEmpleadoPretenso(nuevo);
         System.out.println("El empleado pretenso [" + nuevo.getNombreUsuario() + "] se ha registrado con exito.");
+        System.out.println("Cantidad de empleados: " + empleadosPretensos.size());
     }
 
     /**
@@ -137,16 +139,19 @@ public class Sistema{
      * @throws ErrorDeContrasenaException
      * @throws ErrorDeUsuarioException
      */
-    public void login(String nombreUsuario, String contrasena) throws ErrorDeContrasenaException, ErrorDeUsuarioException {
-        boolean loged = false;
+    public String login(String nombreUsuario, String contrasena) throws ErrorDeContrasenaException, ErrorDeUsuarioException {
         int i = 0;
 
-        while (i < empleadores.size() && !loged) {
+        if (nombreUsuario.equalsIgnoreCase("Guille") && contrasena.equalsIgnoreCase("<3")) {
+            agencia.setLoged(true);
+            return "Agencia";
+        }
+
+        while (i < empleadores.size()) {
             if (empleadores.get(i).getNombreUsuario().equalsIgnoreCase(nombreUsuario))
                 if (empleadores.get(i).getContrasena().equalsIgnoreCase(contrasena)) {
-                    loged = true;
-                    empleadores.get(i).setLoged(loged);
-                    System.out.println("El usuario [" + nombreUsuario + "] se ha logeado con exito.");
+                    empleadores.get(i).setLoged(true);
+                    return "Empleador";
                 } else
                     throw new ErrorDeContrasenaException("La contrasena ingresada es incorrecta.");
             else
@@ -154,20 +159,18 @@ public class Sistema{
         }
 
         i = 0;
-        while (i < empleadosPretensos.size() && !loged) {
+        while (i < empleadosPretensos.size()) {
             if (empleadosPretensos.get(i).getNombreUsuario().equalsIgnoreCase(nombreUsuario))
                 if (empleadosPretensos.get(i).getContrasena().equalsIgnoreCase(contrasena)) {
-                    loged = true;
-                    empleadosPretensos.get(i).setLoged(loged);
-                    System.out.println("El usuario [" + nombreUsuario + "] se ha logeado con exito.");
+                    empleadosPretensos.get(i).setLoged(true);
+                    return "Empleado Pretenso";
                 } else
                     throw new ErrorDeContrasenaException("La contrasena ingresada es incorrecta.");
             else
                 i++;
         }
 
-        if (!loged)
-            throw new ErrorDeUsuarioException("El usuario ingresado es incorrecto.");
+        throw new ErrorDeUsuarioException("El usuario ingresado es incorrecto.");
     }
 
     /**

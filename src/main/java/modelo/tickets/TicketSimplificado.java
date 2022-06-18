@@ -13,6 +13,10 @@ public class TicketSimplificado extends Ticket{
         Sistema.getInstance().getAgencia().agregarABolsaDeTrabajo(this);
     }
 
+    public TicketSimplificado(Formulario_de_Busqueda formularioDeBusqueda, String tipoDeTrabajo) {
+        super(formularioDeBusqueda,tipoDeTrabajo);
+    }
+
     public Empleador getEmpleador() {
         return empleador;
     }

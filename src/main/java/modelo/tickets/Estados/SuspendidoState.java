@@ -1,7 +1,7 @@
-package Estados;
+package modelo.tickets.Estados;
 
-import excepciones.EstadoException;
-import interfaces.State;
+import modelo.excepciones.EstadoException;
+import modelo.interfaces.State;
 import modelo.tickets.Ticket;
 
 public class SuspendidoState implements State {

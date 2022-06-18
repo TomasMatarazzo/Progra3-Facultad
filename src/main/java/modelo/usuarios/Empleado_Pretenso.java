@@ -1,12 +1,13 @@
 package modelo.usuarios;
 
-import excepciones.DatosMalIngresadosException;
-import excepciones.TicketYaCreadoException;
+import modelo.excepciones.DatosMalIngresadosException;
+import modelo.excepciones.TicketYaCreadoException;
 import modelo.Sistema;
 import modelo.tickets.Formulario_de_Busqueda;
+import modelo.tickets.TicketSimplificado;
 import modelo.tickets.Ticket_de_Busqueda_de_Empleo;
 
-public class Empleado_Pretenso extends UsuarioComun {
+public class Empleado_Pretenso extends UsuarioComun implements Runnable {
     //Datos personales:
     private String nombre;
     private String apellido;
@@ -15,6 +16,7 @@ public class Empleado_Pretenso extends UsuarioComun {
     private String eMail;
     //Ticket
     private Ticket_de_Busqueda_de_Empleo ticketDeBusquedaDeEmpleo;
+    private TicketSimplificado ticketSimplificado;
 
     //CONSTRUCTORES
     public Empleado_Pretenso(String nombreUsuario, String contrasena) {
@@ -30,6 +32,7 @@ public class Empleado_Pretenso extends UsuarioComun {
         this.edad = edad;
         this.eMail = eMail;
         this.ticketDeBusquedaDeEmpleo = null;
+        this.ticketSimplificado=null;
     }
 
     //GETTERS & SETTERS
@@ -179,5 +182,31 @@ public class Empleado_Pretenso extends UsuarioComun {
     public void muestraLista() {
         if (ticketDeBusquedaDeEmpleo.getEstado().equalsIgnoreCase("ACTIVO"))
             System.out.println("Lista del usuario [" + this.nombreUsuario + "]: (en un mal formato)\n" + Sistema.getInstance().getListas().get(this.ticketDeBusquedaDeEmpleo).toString());
+    }
+
+    public TicketSimplificado getTicketSimplificado() {
+        return ticketSimplificado;
+    }
+
+    public void setTicketSimplificado(TicketSimplificado ticketSimplificado) {
+        this.ticketSimplificado = ticketSimplificado;
+    }
+
+    @Override
+    public void run(){
+        int i=0;
+        TicketSimplificado aux=null;
+        while (i < 10 && this.ticketSimplificado == null){
+            aux=Sistema.getInstance().getAgencia().SacaBolsa(this.getTicketDeBusquedaDeEmpleo(),this);
+            if(this.ticketDeBusquedaDeEmpleo.getFormularioDeBusqueda().puntajeLocacion(aux.getFormularioDeBusqueda().getLocacion())==1){
+                this.ticketSimplificado=aux;
+                System.out.println("EL EMPLEADO "+this.getNombreUsuario()+" OBTUVO EL TRABAJO!!!");
+            }
+            else{
+                Sistema.getInstance().getAgencia().PoneBolsa(aux,this);
+                System.out.println("El Empleado pretenso "+this.getNombreUsuario()+" No obtuvo el trabajo por no coincidir la Locacion");
+            }
+          i++;
+        }
     }
 }

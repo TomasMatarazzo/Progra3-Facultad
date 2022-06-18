@@ -1,14 +1,9 @@
-package Vistas;
-
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
+package vista;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-
-import controlador.controladorEmpleados;
-
+import controlador.ControladorEmpleados;
 import java.awt.Color;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -16,14 +11,12 @@ import java.awt.event.ActionEvent;
 import java.awt.Font;
 import javax.swing.JTabbedPane;
 import javax.swing.JLabel;
-import java.awt.Component;
-import javax.swing.JTextField;
 import java.awt.Cursor;
 import javax.swing.SwingConstants;
 import javax.swing.JSeparator;
 import javax.swing.ImageIcon;
 
-public class vistaEmpleado extends JFrame {
+public class VentanaEmpleado extends JFrame {
 
 	private JPanel contentPane;
 	private JButton btnProfile;
@@ -57,7 +50,7 @@ public class vistaEmpleado extends JFrame {
 	// Listeners a los botones.
 	
 
-	public void setControlador(controladorEmpleados c) {
+	public void setControlador(ControladorEmpleados c) {
 		System.out.println("Se ejecuto el comando");
 		this.ticketsButton.addActionListener(c);
 		this.btnProfile.addActionListener(c);
@@ -84,7 +77,7 @@ public class vistaEmpleado extends JFrame {
 		this.edadLabel.setText(edad);
 	}
 
-	public vistaEmpleado() {
+	public VentanaEmpleado() {
 		System.out.println("Se ejecuto el comando");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 800, 501);

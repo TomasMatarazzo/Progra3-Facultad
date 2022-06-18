@@ -3,13 +3,13 @@ package controlador;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import Vistas.vistaEmpleado;
+import vista.VentanaEmpleado;
 
-public class controladorEmpleados implements ActionListener {
+public class ControladorEmpleados implements ActionListener {
 	
-	private vistaEmpleado vista;
+	private VentanaEmpleado vista;
 
-	public controladorEmpleados(vistaEmpleado vista) {
+	public ControladorEmpleados(VentanaEmpleado vista) {
 		super();
 		this.vista = vista;
 	}

@@ -1,14 +1,17 @@
 package modelo.usuarios.empleadores;
 
 import excepciones.DatosMalIngresadosException;
+import interfaces.ILocacion;
 import modelo.Sistema;
 import modelo.tickets.Formulario_de_Busqueda;
+import modelo.tickets.TicketSimplificado;
 import modelo.tickets.Ticket_de_Busqueda_de_Empleado;
+import modelo.tickets.locaciones.LocacionFactory;
 import modelo.usuarios.UsuarioComun;
 
 import java.util.ArrayList;
 
-public abstract class Empleador extends UsuarioComun {
+public abstract class Empleador extends UsuarioComun implements Runnable {
     private String razonSocial; //Seria el NOMBRE
     private String tipoPersona; // fisica o juridica
     private String rubro; // salud, comercio local o comercio internacional
@@ -132,5 +135,30 @@ public abstract class Empleador extends UsuarioComun {
         for (Ticket_de_Busqueda_de_Empleado ticket_de_busqueda_de_empleado : ticketsDeBusquedaDeEmpleado)
             if (ticket_de_busqueda_de_empleado.getEstado().equalsIgnoreCase("ACTIVO"))
                 System.out.println("Lista del usuario [" + this.nombreUsuario + "]: (en un mal formato)\n" + Sistema.getInstance().getListas().get(ticket_de_busqueda_de_empleado).toString());
+    }
+
+    public TicketSimplificado generaTicketRandom() {
+        TicketSimplificado ts = null;
+        int a,b;
+        LocacionFactory lc = new LocacionFactory();
+        ILocacion loc = null;
+        a = (int) Math.round(3*Math.random());
+        switch (a) {
+            case 0 -> loc = lc.getLocacion("HOMEOFFICE");
+            case 1 -> loc = lc.getLocacion("PRESENCIAL");
+            case 2 -> loc = lc.getLocacion("INDISTINTO");
+        }
+        a = (int) Math.round(Sistema.getInstance().getTiposDeTrabajo().size()*Math.random());
+        ts = new TicketSimplificado(new Formulario_de_Busqueda(loc,0,0,0,0,0,0),Sistema.getInstance().getTiposDeTrabajo().get(a));
+        return ts;
+    }
+
+    @Override
+    public void run() {
+        TicketSimplificado ts;
+        for (int t =0; t<3; t++) {
+            ts = generaTicketRandom();
+            Sistema.getInstance().getAgencia().PoneBolsa(ts);
+        }
     }
 }

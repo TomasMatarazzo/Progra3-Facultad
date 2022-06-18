@@ -2,6 +2,7 @@ package modelo.usuarios;
 
 import modelo.Sistema;
 import modelo.constantes.Puntajes;
+import modelo.tickets.Ticket;
 import modelo.tickets.TicketSimplificado;
 import modelo.tickets.Ticket_de_Busqueda_de_Empleado;
 import modelo.tickets.Ticket_de_Busqueda_de_Empleo;
@@ -80,7 +81,54 @@ public class Agencia extends Usuario {
         Puntajes.setPuesto3( puesto3 );
     }
 
+    public TicketSimplificado coincidenciaTipoTrabajo(Ticket t) {
+        int c = 0;
+        TicketSimplificado aux, retorno = null;
+        if (this.bolsaDeTrabajo.size()!= 0) {
+            aux = this.bolsaDeTrabajo.get(c);
+            c++;
+            while (aux!=null && c<this.bolsaDeTrabajo.size() && retorno== null) {
+                if (aux.getTipoDeTrabajo().equalsIgnoreCase(t.getTipoDeTrabajo()))
+                    retorno = aux;
+                aux = this.bolsaDeTrabajo.get(c);
+                c++;
+
+            }
+        }
+        return retorno;
+    }
+
+    public boolean coincidenciaTipoLocacion(Ticket t) {
+        return true;
+    }
+
     public void agregarABolsaDeTrabajo(TicketSimplificado t){
         this.bolsaDeTrabajo.add(t);
+    }
+    public void eliminarABolsaDeTrabajo(TicketSimplificado t){
+        this.bolsaDeTrabajo.remove(t);
+    }
+
+    ////METODOS SYNCHRONIZED
+    public synchronized TicketSimplificado SacaBolsa(Ticket t)
+    {
+        TicketSimplificado aux=null;
+        while (((aux = coincidenciaTipoTrabajo(t)) == null))
+        {
+            try
+            {
+                wait();
+            } catch (InterruptedException e)
+            {
+                e.printStackTrace();
+            }
+        }
+        notifyAll();
+        return aux;
+    }
+
+    public synchronized void PoneBolsa(TicketSimplificado t){
+        this.agregarABolsaDeTrabajo(t);
+        notifyAll();
     }
 }

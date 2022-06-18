@@ -1,6 +1,6 @@
-package interfaces;
+package modelo.interfaces;
 
-import excepciones.EstadoException;
+import modelo.excepciones.EstadoException;
 
 public interface State {
     void activar() throws EstadoException;

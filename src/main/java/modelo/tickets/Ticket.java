@@ -1,9 +1,9 @@
 package modelo.tickets;
 
-import Estados.ActivadoState;
-import excepciones.EstadoException;
-import interfaces.ILocacion;
-import interfaces.State;
+import modelo.tickets.Estados.ActivadoState;
+import modelo.excepciones.EstadoException;
+import modelo.interfaces.ILocacion;
+import modelo.interfaces.State;
 import modelo.constantes.Puntajes;
 import java.util.Calendar;
 import java.util.GregorianCalendar;

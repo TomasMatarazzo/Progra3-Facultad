@@ -1,7 +1,7 @@
 package modelo.usuarios.empleadores;
 
-import excepciones.DatosMalIngresadosException;
-import interfaces.ILocacion;
+import modelo.excepciones.DatosMalIngresadosException;
+import modelo.interfaces.ILocacion;
 import modelo.Sistema;
 import modelo.tickets.Formulario_de_Busqueda;
 import modelo.tickets.TicketSimplificado;
@@ -13,7 +13,6 @@ import java.util.ArrayList;
 
 public abstract class Empleador extends UsuarioComun implements Runnable {
     private String razonSocial; //Seria el NOMBRE
-    private String tipoPersona; // fisica o juridica
     private String rubro; // salud, comercio local o comercio internacional
     private int[] pesoPuntajes;
     //Tickets
@@ -24,10 +23,9 @@ public abstract class Empleador extends UsuarioComun implements Runnable {
         super(nombreUsuario, contrasena);
     }
 
-    public Empleador(String nombreUsuario, String contrasena, String tipoPersona, String razonSocial, String rubro) {
+    public Empleador(String nombreUsuario, String contrasena, String razonSocial, String rubro) {
         super(nombreUsuario, contrasena);
         this.razonSocial = razonSocial;
-        this.tipoPersona = tipoPersona;
         this.rubro = rubro;
         this.pesoPuntajes = new int[7];
     }
@@ -38,22 +36,24 @@ public abstract class Empleador extends UsuarioComun implements Runnable {
         return razonSocial;
     }
 
-    public String getTipoPersona() {
-        return tipoPersona;
+    public void setRazonSocial(String razonSocial) {
+        this.razonSocial = razonSocial;
     }
 
     public String getRubro() {
         return rubro;
     }
 
-    public void setDatos(String tipoPersona, String razonSocial, String rubro) {
-        this.razonSocial = razonSocial;
-        this.tipoPersona = tipoPersona;
+    public void setRubro(String rubro) {
         this.rubro = rubro;
     }
 
     public ArrayList<Ticket_de_Busqueda_de_Empleado> getTicketsDeBusquedaDeEmpleado() {
         return ticketsDeBusquedaDeEmpleado;
+    }
+
+    public void setTicketsDeBusquedaDeEmpleado(ArrayList<Ticket_de_Busqueda_de_Empleado> ticketsDeBusquedaDeEmpleado) {
+        this.ticketsDeBusquedaDeEmpleado = ticketsDeBusquedaDeEmpleado;
     }
 
     public int[] getPesoPuntajes() {
@@ -70,7 +70,6 @@ public abstract class Empleador extends UsuarioComun implements Runnable {
         return  "   nombreUsuario: '" + nombreUsuario +
                 "   contrasena: '" + contrasena + //Esta bien mostrarla?
                 "   razonSocial: '" + razonSocial +
-                "   tipoPersona: '" + tipoPersona +
                 "   rubro: '" + rubro +
                 "   puntaje: " + puntaje;
     }

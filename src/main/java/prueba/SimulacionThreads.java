@@ -1,11 +1,10 @@
 package prueba;
 
-import excepciones.DatosMalIngresadosException;
-import excepciones.ErrorDeContrasenaException;
-import excepciones.ErrorDeUsuarioException;
-import excepciones.EstadoException;
-import excepciones.TicketYaCreadoException;
-import interfaces.ILocacion;
+import modelo.excepciones.DatosMalIngresadosException;
+import modelo.excepciones.ErrorDeUsuarioException;
+import modelo.excepciones.EstadoException;
+import modelo.excepciones.TicketYaCreadoException;
+import modelo.interfaces.ILocacion;
 import modelo.Sistema;
 import modelo.tickets.Formulario_de_Busqueda;
 import modelo.tickets.locaciones.LocacionFactory;
@@ -31,9 +30,10 @@ public class SimulacionThreads {
             usuarioFactory.creaUsuario("EmpleadorJuridico2","888","Persona Juridica");
             usuarioFactory.creaUsuario("EmpleadorFisico2","999","Persona Fisica");
             usuarioFactory.creaUsuario("EmpleadorFisico3","101010","Persona Fisica");
-        }
-        catch (DatosMalIngresadosException e1) {
+        } catch (DatosMalIngresadosException e1) {
             System.out.println("El parametro " + e1.getMessage() + " ingresado es incorrecto.");
+        } catch (ErrorDeUsuarioException e2) {
+            //HAGAN ALGO ACA
         }
 
         //System.out.println("\nSE LOGEAN ALGUNOS USUARIOS.");

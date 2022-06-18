@@ -107,7 +107,7 @@ public class Agencia extends Usuario {
         this.bolsaDeTrabajo.remove(t);
     }
 
-    ////METODOS SYNCHRONIZED
+    //METODOS SYNCHRONIZED
     public synchronized TicketSimplificado SacaBolsa(Ticket t, Empleado_Pretenso u)
     {
         TicketSimplificado aux=null;

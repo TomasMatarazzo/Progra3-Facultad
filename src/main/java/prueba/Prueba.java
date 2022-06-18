@@ -1,8 +1,11 @@
 package prueba;
 
-import Estados.CanceladoState;
 import excepciones.*;
-import interfaces.ILocacion;
+import modelo.excepciones.ErrorDeContrasenaException;
+import modelo.excepciones.ErrorDeUsuarioException;
+import modelo.excepciones.EstadoException;
+import modelo.excepciones.TicketYaCreadoException;
+import modelo.interfaces.ILocacion;
 import modelo.tickets.Formulario_de_Busqueda;
 import modelo.tickets.locaciones.LocacionFactory;
 import modelo.usuarios.*;
@@ -14,7 +17,7 @@ public class Prueba {
         UsuarioFactory usuarioFactory = new UsuarioFactory();
 
         //SE CREAN Y SE REGISTRAN LOS USUARIOS
-        try {
+/*        try {
             usuarioFactory.creaUsuario("Guillermo","Guille<3","Agencia");
             //--------------------------------------------------------------------------------------
             usuarioFactory.creaUsuario("Empleado01","111","Empleado Pretenso");
@@ -30,7 +33,7 @@ public class Prueba {
         }
         catch (DatosMalIngresadosException e1) {
             System.out.println("El parametro " + e1.getMessage() + " ingresado es incorrecto.");
-        }
+        }*/
 
         System.out.println("\nSE LOGEAN ALGUNOS USUARIOS.");
 

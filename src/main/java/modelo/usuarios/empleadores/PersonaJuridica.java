@@ -6,8 +6,8 @@ public class PersonaJuridica extends Empleador{
         super(nombreUsuario, contrasena);
     }
 
-    public PersonaJuridica(String nombreUsuario, String contrasena, String tipoPersona, String razonSocial, String rubro) {
-        super(nombreUsuario, contrasena, tipoPersona, razonSocial, rubro);
+    public PersonaJuridica(String nombreUsuario, String contrasena, String razonSocial, String rubro) {
+        super(nombreUsuario, contrasena, razonSocial, rubro);
     }
 
     @Override

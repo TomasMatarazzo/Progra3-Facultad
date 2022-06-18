@@ -44,7 +44,7 @@ public class Sistema{
 
     public void setAgencia(Agencia agencia) {
         this.agencia = agencia;
-        System.out.println("Es un placer [" + agencia.getNombreUsuario() + "], se ha registrado como administrador exitosamente.");
+        //System.out.println("Es un placer [" + agencia.getNombreUsuario() + "], se ha registrado como administrador exitosamente.");
     }
 
     public ArrayList<Empleador> getEmpleadores() {
@@ -109,7 +109,7 @@ public class Sistema{
                 throw new ErrorDeUsuarioException("El nombre de usuario ingresado ya existe.");
         }
         agregaEmpleador(nuevo);
-        System.out.println("El empleador [" + nuevo.getNombreUsuario() + "] se ha registrado con exito.");
+      //  System.out.println("El empleador [" + nuevo.getNombreUsuario() + "] se ha registrado con exito.");
     }
 
     /**
@@ -125,7 +125,7 @@ public class Sistema{
                 throw new ErrorDeUsuarioException("El nombre de usuario ingresado ya existe.");
         }
         agregaEmpleadoPretenso(nuevo);
-        System.out.println("El empleado pretenso [" + nuevo.getNombreUsuario() + "] se ha registrado con exito.");
+       // System.out.println("El empleado pretenso [" + nuevo.getNombreUsuario() + "] se ha registrado con exito.");
     }
 
     /**

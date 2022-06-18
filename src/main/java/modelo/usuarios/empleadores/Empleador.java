@@ -142,13 +142,13 @@ public abstract class Empleador extends UsuarioComun implements Runnable {
         int a,b;
         LocacionFactory lc = new LocacionFactory();
         ILocacion loc = null;
-        a = (int) Math.round(3*Math.random());
+        a = (int) Math.round(2*Math.random());
         switch (a) {
             case 0 -> loc = lc.getLocacion("HOMEOFFICE");
             case 1 -> loc = lc.getLocacion("PRESENCIAL");
             case 2 -> loc = lc.getLocacion("INDISTINTO");
         }
-        a = (int) Math.round(Sistema.getInstance().getTiposDeTrabajo().size()*Math.random());
+        a = (int) Math.round((Sistema.getInstance().getTiposDeTrabajo().size()-1)*Math.random());
         ts = new TicketSimplificado(new Formulario_de_Busqueda(loc,0,0,0,0,0,0),Sistema.getInstance().getTiposDeTrabajo().get(a));
         return ts;
     }
@@ -158,7 +158,7 @@ public abstract class Empleador extends UsuarioComun implements Runnable {
         TicketSimplificado ts;
         for (int t =0; t<3; t++) {
             ts = generaTicketRandom();
-            Sistema.getInstance().getAgencia().PoneBolsa(ts);
+            Sistema.getInstance().getAgencia().PoneBolsa(ts, this);
         }
     }
 }

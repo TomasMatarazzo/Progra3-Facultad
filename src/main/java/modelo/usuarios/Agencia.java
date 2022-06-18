@@ -10,6 +10,7 @@ import modelo.tickets.Ticket_de_Busqueda_de_Empleo;
 import java.util.ArrayList;
 
 public class Agencia extends Usuario {
+	
     private ArrayList <TicketSimplificado> bolsaDeTrabajo;
 
     public Agencia(String nombreUsuario, String contrasena) {
@@ -98,9 +99,6 @@ public class Agencia extends Usuario {
         return retorno;
     }
 
-    public boolean coincidenciaTipoLocacion(Ticket t) {
-        return true;
-    }
 
     public void agregarABolsaDeTrabajo(TicketSimplificado t){
         this.bolsaDeTrabajo.add(t);
@@ -110,25 +108,29 @@ public class Agencia extends Usuario {
     }
 
     ////METODOS SYNCHRONIZED
-    public synchronized TicketSimplificado SacaBolsa(Ticket t)
+    public synchronized TicketSimplificado SacaBolsa(Ticket t, Empleado_Pretenso u)
     {
         TicketSimplificado aux=null;
         while (((aux = coincidenciaTipoTrabajo(t)) == null))
         {
             try
             {
+            	System.out.println("El Empleado Pretenso "+ u.getNombreUsuario() + " Esperara a que haya En la bolsa de Trabajo algún trabajo de Su tipo Buscado");
                 wait();
             } catch (InterruptedException e)
             {
                 e.printStackTrace();
             }
         }
+        this.eliminarABolsaDeTrabajo(aux);
+        System.out.println("EL empleado "+u.getNombreUsuario()+" Saca de la Bolsa un trabajo para evaluar su Locacion");
         notifyAll();
         return aux;
     }
 
-    public synchronized void PoneBolsa(TicketSimplificado t){
+    public synchronized void PoneBolsa(TicketSimplificado t, UsuarioComun u){
         this.agregarABolsaDeTrabajo(t);
+        System.out.println("El Usuario "+ u.getNombreUsuario() + " Puso un trabajo En la bolsa de Trabajo");
         notifyAll();
     }
 }

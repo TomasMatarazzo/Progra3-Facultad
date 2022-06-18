@@ -197,13 +197,16 @@ public class Empleado_Pretenso extends UsuarioComun implements Runnable {
         int i=0;
         TicketSimplificado aux=null;
         while (i < 10 && this.ticketSimplificado == null){
-            aux=Sistema.getInstance().getAgencia().SacaBolsa(this.getTicketDeBusquedaDeEmpleo());
+            aux=Sistema.getInstance().getAgencia().SacaBolsa(this.getTicketDeBusquedaDeEmpleo(),this);
             if(this.ticketDeBusquedaDeEmpleo.getFormularioDeBusqueda().puntajeLocacion(aux.getFormularioDeBusqueda().getLocacion())==1){
                 this.ticketSimplificado=aux;
+                System.out.println("EL EMPLEADO "+this.getNombreUsuario()+" OBTUVO EL TRABAJO!!!");
             }
             else{
-                Sistema.getInstance().getAgencia().PoneBolsa(aux);
+                Sistema.getInstance().getAgencia().PoneBolsa(aux,this);
+                System.out.println("El Empleado pretenso "+this.getNombreUsuario()+" No obtuvo el trabajo por no coincidir la Locacion");
             }
+          i++;
         }
     }
 }

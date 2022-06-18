@@ -1,6 +1,5 @@
 package prueba;
 
-import excepciones.*;
 import modelo.excepciones.ErrorDeContrasenaException;
 import modelo.excepciones.ErrorDeUsuarioException;
 import modelo.excepciones.EstadoException;

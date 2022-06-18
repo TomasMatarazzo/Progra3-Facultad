@@ -1,8 +1,8 @@
 package vista;
 
+import controlador.ControladorEmpleados;
 import controlador.ControladorRegister;
 import modelo.usuarios.UsuarioFactoryExtendida;
-
 import javax.swing.*;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyListener;
@@ -89,14 +89,16 @@ public class VentanaLogin extends JFrame implements IVista {
                 vista.ejecutar();
                 break;
             case "Empleado Pretenso":
-                System.out.println("Se abre la ventana de EMPLEADO PRETENSO");
+                //Agregar modelo de ser necesario
+                VentanaEmpleado ventanaEmpleado = new VentanaEmpleado();
+                ControladorEmpleados controladorEmpleados = new ControladorEmpleados(ventanaEmpleado);
+                ventanaEmpleado.arranca();
                 break;
             case "Empleador":
                 System.out.println("Se abre la ventana de EMPLEADOR");
                 break;
             case "Agencia":
                 System.out.println("Se abre la ventana de AGENCIA ");
-
                 break;
         }
         this.ocultar();

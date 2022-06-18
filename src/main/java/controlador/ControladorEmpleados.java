@@ -10,8 +10,8 @@ public class ControladorEmpleados implements ActionListener {
 	private VentanaEmpleado vista;
 
 	public ControladorEmpleados(VentanaEmpleado vista) {
-		super();
 		this.vista = vista;
+		this.vista.setControlador(this);
 	}
 	
 

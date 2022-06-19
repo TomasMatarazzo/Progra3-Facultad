@@ -1,12 +1,11 @@
 package modelo.tickets.Estados;
 
 import modelo.excepciones.EstadoException;
-import modelo.interfaces.State;
 import modelo.tickets.Ticket;
 
-public class CanceladoState implements State {
+public class CanceladoIStateTickets implements IStateTickets {
     private Ticket t;
-    public CanceladoState(Ticket t){
+    public CanceladoIStateTickets(Ticket t){
         this.t=t;
     }
 

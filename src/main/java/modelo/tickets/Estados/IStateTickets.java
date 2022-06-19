@@ -1,8 +1,8 @@
-package modelo.interfaces;
+package modelo.tickets.Estados;
 
 import modelo.excepciones.EstadoException;
 
-public interface State {
+public interface IStateTickets {
     void activar() throws EstadoException;
     void suspender() throws EstadoException;
     void cancelar() throws EstadoException;

@@ -1,4 +1,4 @@
-package modelo.interfaces;
+package modelo.tickets.locaciones;
 
 public interface ILocacion {
     int puntajeLocacion( ILocacion locacion);

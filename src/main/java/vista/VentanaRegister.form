@@ -2,9 +2,10 @@
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="vista.VentanaRegister">
   <grid id="27dc6" binding="panelPrincipal" layout-manager="BorderLayout" hgap="0" vgap="0">
     <constraints>
-      <xy x="20" y="20" width="665" height="475"/>
+      <xy x="20" y="20" width="681" height="480"/>
     </constraints>
     <properties>
+      <background color="-16746571"/>
       <focusable value="false"/>
       <preferredSize width="500" height="500"/>
     </properties>
@@ -16,6 +17,7 @@
         <margin top="0" left="0" bottom="0" right="0"/>
         <constraints border-constraint="North"/>
         <properties>
+          <background color="-16746571"/>
           <preferredSize width="100" height="60"/>
         </properties>
         <border type="empty">
@@ -27,7 +29,10 @@
               <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
+              <background color="-16746571"/>
               <focusable value="false"/>
+              <font name="Segoe UI Semibold" size="13"/>
+              <foreground color="-983056"/>
               <selected value="true"/>
               <text value="Empleado"/>
             </properties>
@@ -37,7 +42,10 @@
               <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
+              <background color="-16746571"/>
               <focusable value="false"/>
+              <font name="Segoe UI Semibold" size="13"/>
+              <foreground color="-983056"/>
               <selected value="false"/>
               <text value="Empleador"/>
             </properties>
@@ -47,7 +55,8 @@
               <grid row="0" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <font size="14"/>
+              <font name="Segoe UI Semibold" size="15"/>
+              <foreground color="-983056"/>
               <text value="Seleccione el tipo de Usuario que desee crear"/>
             </properties>
           </component>
@@ -56,6 +65,7 @@
       <grid id="da574" binding="panelDatos" layout-manager="BorderLayout" hgap="0" vgap="0">
         <constraints border-constraint="Center"/>
         <properties>
+          <background color="-16746571"/>
           <opaque value="false"/>
           <preferredSize width="450" height="300"/>
         </properties>
@@ -67,6 +77,7 @@
             <margin top="0" left="0" bottom="0" right="0"/>
             <constraints border-constraint="North"/>
             <properties>
+              <background color="-16746571"/>
               <preferredSize width="450" height="50"/>
             </properties>
             <border type="none"/>
@@ -76,7 +87,8 @@
                   <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
-                  <font size="14"/>
+                  <font name="Segoe UI Semibold" size="15"/>
+                  <foreground color="-983056"/>
                   <text value="Nombre de Usuario"/>
                 </properties>
               </component>
@@ -105,7 +117,8 @@
                   <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
-                  <font size="14"/>
+                  <font name="Segoe UI Semibold" size="15"/>
+                  <foreground color="-983056"/>
                   <text value="Contrasena"/>
                 </properties>
               </component>
@@ -114,6 +127,7 @@
           <grid id="62447" binding="panelOpcional" layout-manager="BorderLayout" hgap="0" vgap="0">
             <constraints border-constraint="Center"/>
             <properties>
+              <background color="-16746571"/>
               <preferredSize width="450" height="100"/>
             </properties>
             <border type="none"/>
@@ -121,6 +135,7 @@
               <grid id="5a8a9" binding="panelExtras" layout-manager="BorderLayout" hgap="0" vgap="0">
                 <constraints border-constraint="Center"/>
                 <properties>
+                  <background color="-16746571"/>
                   <preferredSize width="450" height="200"/>
                 </properties>
                 <border type="empty">
@@ -131,6 +146,7 @@
                     <margin top="0" left="0" bottom="0" right="0"/>
                     <constraints border-constraint="East"/>
                     <properties>
+                      <background color="-16746571"/>
                       <minimumSize width="440" height="200"/>
                       <preferredSize width="440" height="200"/>
                       <requestFocusEnabled value="false"/>
@@ -145,7 +161,8 @@
                           <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                         </constraints>
                         <properties>
-                          <font size="14"/>
+                          <font name="Segoe UI Semibold" size="15"/>
+                          <foreground color="-983056"/>
                           <text value="Nombre*"/>
                         </properties>
                       </component>
@@ -170,7 +187,8 @@
                           <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                         </constraints>
                         <properties>
-                          <font size="14"/>
+                          <font name="Segoe UI Semibold" size="15"/>
+                          <foreground color="-983056"/>
                           <text value="Apellido*"/>
                         </properties>
                       </component>
@@ -179,7 +197,8 @@
                           <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                         </constraints>
                         <properties>
-                          <font size="14"/>
+                          <font name="Segoe UI Semibold" size="15"/>
+                          <foreground color="-983056"/>
                           <text value="Telefono*"/>
                         </properties>
                       </component>
@@ -196,7 +215,8 @@
                           <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                         </constraints>
                         <properties>
-                          <font size="14"/>
+                          <font name="Segoe UI Semibold" size="15"/>
+                          <foreground color="-983056"/>
                           <text value="Edad*"/>
                         </properties>
                       </component>
@@ -213,7 +233,8 @@
                           <grid row="4" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                         </constraints>
                         <properties>
-                          <font size="14"/>
+                          <font name="Segoe UI Semibold" size="15"/>
+                          <foreground color="-983056"/>
                           <text value="E-Mail*"/>
                         </properties>
                       </component>
@@ -231,6 +252,7 @@
                     <margin top="0" left="0" bottom="0" right="0"/>
                     <constraints border-constraint="West"/>
                     <properties>
+                      <background color="-16746571"/>
                       <preferredSize width="450" height="200"/>
                       <visible value="false"/>
                     </properties>
@@ -243,7 +265,8 @@
                           <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                         </constraints>
                         <properties>
-                          <font size="14"/>
+                          <font name="Segoe UI Semibold" size="15"/>
+                          <foreground color="-983056"/>
                           <text value="Nombre o Razon Social*"/>
                         </properties>
                       </component>
@@ -252,7 +275,9 @@
                         <constraints>
                           <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
                         </constraints>
-                        <properties/>
+                        <properties>
+                          <background color="-16746571"/>
+                        </properties>
                         <border type="none"/>
                         <children>
                           <component id="c743f" class="javax.swing.JRadioButton" binding="saludRadioButton" default-binding="true">
@@ -260,7 +285,10 @@
                               <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                             </constraints>
                             <properties>
+                              <background color="-16746571"/>
                               <focusable value="false"/>
+                              <font name="Segoe UI Semibold" size="13"/>
+                              <foreground color="-983056"/>
                               <text value="Salud"/>
                             </properties>
                           </component>
@@ -269,7 +297,10 @@
                               <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                             </constraints>
                             <properties>
+                              <background color="-16746571"/>
                               <focusable value="false"/>
+                              <font name="Segoe UI Semibold" size="13"/>
+                              <foreground color="-983056"/>
                               <text value="Comercio Local"/>
                             </properties>
                           </component>
@@ -278,7 +309,10 @@
                               <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                             </constraints>
                             <properties>
+                              <background color="-16746571"/>
                               <focusable value="false"/>
+                              <font name="Segoe UI Semibold" size="13"/>
+                              <foreground color="-983056"/>
                               <text value="Comercio internacional"/>
                             </properties>
                           </component>
@@ -287,7 +321,8 @@
                               <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                             </constraints>
                             <properties>
-                              <font size="14"/>
+                              <font name="Segoe UI Semibold" size="15"/>
+                              <foreground color="-983056"/>
                               <text value="Rubro al que se dedica*"/>
                             </properties>
                           </component>
@@ -310,7 +345,9 @@
                             <preferred-size width="129" height="23"/>
                           </grid>
                         </constraints>
-                        <properties/>
+                        <properties>
+                          <background color="-16746571"/>
+                        </properties>
                         <border type="empty">
                           <size top="5" left="5" bottom="5" right="5"/>
                         </border>
@@ -320,7 +357,8 @@
                               <grid row="0" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                             </constraints>
                             <properties>
-                              <font size="14"/>
+                              <font name="Segoe UI Semibold" size="15"/>
+                              <foreground color="-983056"/>
                               <text value="Tipo de Persona"/>
                             </properties>
                           </component>
@@ -330,7 +368,10 @@
                             </constraints>
                             <properties>
                               <actionCommand value="Persona Fisica"/>
+                              <background color="-16746571"/>
                               <focusable value="false"/>
+                              <font name="Segoe UI Semibold" size="13"/>
+                              <foreground color="-983056"/>
                               <selected value="false"/>
                               <text value="Fisica"/>
                             </properties>
@@ -341,7 +382,10 @@
                             </constraints>
                             <properties>
                               <actionCommand value="Persona Juridica"/>
+                              <background color="-16746571"/>
                               <focusable value="false"/>
+                              <font name="Segoe UI Semibold" size="13"/>
+                              <foreground color="-983056"/>
                               <text value="Juridica"/>
                             </properties>
                           </component>
@@ -358,6 +402,7 @@
       <grid id="8cc8c" binding="panelRegister" layout-manager="BorderLayout" hgap="0" vgap="0">
         <constraints border-constraint="South"/>
         <properties>
+          <background color="-16746571"/>
           <minimumSize width="500" height="40"/>
           <preferredSize width="100" height="40"/>
         </properties>
@@ -368,6 +413,8 @@
           <component id="f9547" class="javax.swing.JLabel">
             <constraints border-constraint="North"/>
             <properties>
+              <font name="Segoe UI Semibold" size="12"/>
+              <foreground color="-983056"/>
               <horizontalAlignment value="0"/>
               <text value="(*) Campos Opcionales"/>
             </properties>

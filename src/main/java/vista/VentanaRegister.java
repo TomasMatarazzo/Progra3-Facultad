@@ -1,6 +1,7 @@
 package vista;
 
 import controlador.ControladorLogin;
+
 import javax.swing.*;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyListener;
@@ -180,7 +181,7 @@ public class VentanaRegister extends JFrame implements IVistaRegister {
 
     @Override
     public void ejecutar() {
-        setTitle("Grupo 5");
+        setTitle("My Linkedn - Grupo 5");
         pack(); //Coloca los componentes
         setContentPane(panelPrincipal);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -193,6 +194,7 @@ public class VentanaRegister extends JFrame implements IVistaRegister {
 
     @Override
     public void ocultar() {
+        setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         setVisible(false);
     }
 

@@ -1,6 +1,6 @@
 package modelo.tickets;
 
-import modelo.interfaces.ILocacion;
+import modelo.tickets.locaciones.ILocacion;
 import modelo.constantes.Puntajes;
 
 public class Formulario_de_Busqueda {

@@ -1,18 +1,17 @@
 package modelo.tickets.Estados;
 
 import modelo.excepciones.EstadoException;
-import modelo.interfaces.State;
 import modelo.tickets.Ticket;
 
-public class SuspendidoState implements State {
+public class SuspendidoIStateTickets implements IStateTickets {
     private Ticket t;
 
-    public SuspendidoState(Ticket t) {
+    public SuspendidoIStateTickets(Ticket t) {
         this.t=t;
     }
     @Override
     public void activar() {
-        this.t.setState(new ActivadoState(this.t));
+        this.t.setState(new ActivadoIStateTickets(this.t));
     }
 
     @Override
@@ -22,7 +21,7 @@ public class SuspendidoState implements State {
 
     @Override
     public void cancelar() {
-        this.t.setState(new CanceladoState(this.t));
+        this.t.setState(new CanceladoIStateTickets(this.t));
     }
 
     @Override

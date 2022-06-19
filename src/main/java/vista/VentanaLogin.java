@@ -2,13 +2,20 @@ package vista;
 
 import controlador.ControladorEmpleados;
 import controlador.ControladorRegister;
+import modelo.usuarios.Agencia;
+import modelo.usuarios.Empleado_Pretenso;
+import modelo.usuarios.Usuario;
 import modelo.usuarios.UsuarioFactoryExtendida;
+import modelo.usuarios.empleadores.Empleador;
+
 import javax.swing.*;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyListener;
+import java.util.Observable;
+import java.util.Observer;
 
-public class VentanaLogin extends JFrame implements IVista {
-    private JPanel panelPrinciapal;
+public class VentanaLogin extends JFrame implements IVista, Observer {
+    private JPanel panelPrincipal;
     private JPanel panelCentral;
     private JPanel panelInferior;
     private JPanel PanelDatos;
@@ -16,6 +23,9 @@ public class VentanaLogin extends JFrame implements IVista {
     private JTextField textoContrasena;
     private JButton botonRegistrarse;
     private JButton botonLogin;
+    private JPanel panelRegistrarse;
+    private JPanel panelLogin;
+    private Usuario observado;
 
     public JTextField getTextoNombreUsuario() {
         return textoNombreUsuario;
@@ -63,9 +73,9 @@ public class VentanaLogin extends JFrame implements IVista {
 
     @Override
     public void ejecutar() {
-        setTitle("Grupo 5");
+        setTitle("My Linkedn - Grupo 5");
         pack(); //Coloca los componentes
-        setContentPane(panelPrinciapal);
+        setContentPane(panelPrincipal);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
         setSize(500,400); //Dimensiones del JFrame
@@ -76,6 +86,7 @@ public class VentanaLogin extends JFrame implements IVista {
 
     @Override
     public void ocultar() {
+        setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         setVisible(false);
     }
 
@@ -89,18 +100,40 @@ public class VentanaLogin extends JFrame implements IVista {
                 vista.ejecutar();
                 break;
             case "Empleado Pretenso":
-                //Agregar modelo de ser necesario
+                Empleado_Pretenso empleado = (Empleado_Pretenso) observado;
                 VentanaEmpleado ventanaEmpleado = new VentanaEmpleado();
-                ControladorEmpleados controladorEmpleados = new ControladorEmpleados(ventanaEmpleado);
+                ControladorEmpleados controladorEmpleados = new ControladorEmpleados(ventanaEmpleado,empleado);
                 ventanaEmpleado.arranca();
                 break;
             case "Empleador":
+                Empleador empleador = (Empleador) observado;
+
+
+
                 System.out.println("Se abre la ventana de EMPLEADOR");
                 break;
             case "Agencia":
+                Agencia agencia = (Agencia) observado;
+
                 System.out.println("Se abre la ventana de AGENCIA ");
                 break;
         }
         this.ocultar();
+    }
+
+    public void setObservado(Usuario usuario) {
+        this.observado = usuario;
+        usuario.addObserver(this);
+    }
+
+    @Override
+    public void update(Observable usuario, Object arg) {
+
+        if (usuario != observado)
+            throw new IllegalArgumentException();
+        else {
+            String tipoUsuario = (String) arg;
+            creaOtraVentana(tipoUsuario);
+        }
     }
 }

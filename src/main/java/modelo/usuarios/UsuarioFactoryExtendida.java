@@ -13,11 +13,11 @@ public class UsuarioFactoryExtendida extends UsuarioFactory {
         Empleado_Pretenso empleado;
         empleado = Sistema.getInstance().getEmpleadosPretensos().get(Sistema.getInstance().getEmpleadosPretensos().size()-1);
 
-        empleado.setNombre(nombre);
-        empleado.setApellido(apellido);
-        empleado.setTelefono(telefono);
+        empleado.setNombre(nombre.isEmpty()?"-":nombre);
+        empleado.setApellido(apellido.isEmpty()?"-":apellido);
+        empleado.setTelefono(telefono.isEmpty()?"-":telefono);
         empleado.setEdad(edad);
-        empleado.seteMail(mail);
+        empleado.seteMail(mail.isEmpty()?"-":mail);
     }
 
     public void creaUsuario(String nombreUsuario, String contrasena, String tipo, String razonSocial, String rubro) throws ErrorDeUsuarioException, DatosMalIngresadosException {

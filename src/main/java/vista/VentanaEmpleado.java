@@ -58,29 +58,30 @@ public class VentanaEmpleado extends JFrame {
 	}
 	
 	public void arranca(){
-				try {
-					setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
+		setTitle("My Linkedn - Grupo 5");
+		pack(); //Coloca los componentes
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setVisible(true);
+		setSize(800,500); //Dimensiones del JFrame
+		setResizable(false); //No redimensionable
+		setLocationRelativeTo(null);
 	}
 	
 	public void cambiarPagina(int i) {
 		this.pantallasTab.setSelectedIndex(i);
 	}
 
-	public void llenarDatosEmpleado(String nombre, String apellido, String email, String telefono , String edad) {
+	public void llenarDatosEmpleado(String nombre, String apellido, String email, String telefono , int edad) {
 		this.nombreLabel.setText(nombre);
 		this.apellidoLabel.setText(apellido);
 		this.mailLabel.setText(email);
-		this.telefonoLabel.setText(edad);
-		this.edadLabel.setText(edad);
+		this.telefonoLabel.setText(telefono);
+		this.edadLabel.setText(String.valueOf(edad));
 	}
 
 	public VentanaEmpleado() {
-		System.out.println("Se ejecuto el comando");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 800, 501);
+		setBounds(100, 100, 800, 500);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);

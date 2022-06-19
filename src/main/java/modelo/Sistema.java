@@ -8,6 +8,7 @@ import modelo.tickets.Ticket_de_Busqueda_de_Empleado;
 import modelo.tickets.Ticket_de_Busqueda_de_Empleo;
 import modelo.usuarios.Agencia;
 import modelo.usuarios.Empleado_Pretenso;
+import modelo.usuarios.Usuario;
 import modelo.usuarios.empleadores.Empleador;
 import modelo.listas.Lista;
 import java.util.ArrayList;
@@ -131,27 +132,25 @@ public class Sistema{
     }
 
     /**
-     * Loguea un usuario registrado con anterioridad en el sistema.
-     * <b>Pre: </b> nombreUsuario y contrasena deben ser distinto de null o estar vacios <br>
-     * <b>Post: </b> el usuario se loguea con exito y se cambia el atributo logued a true, en caso contrario se lanza una excepcion<br>
+     * Loguea un usuario registrado en el sistema.
+     * <b>Pre: </b> nombreUsuario y contrasena deben ser distinto de null o vacio <br>
+     * <b>Post: </b> el usuario se loguea con exito y se pasa la referencia a la ventana correspondiente, en caso contrario se lanza una excepcion<br>
      * @param nombreUsuario: de tipo String, representa el nombre que tendra el usuario en el sistema
      * @param contrasena: de tipo String, representa la contrasena que tendra el usuario en el sistema
      * @throws ErrorDeContrasenaException
      * @throws ErrorDeUsuarioException
      */
-    public String login(String nombreUsuario, String contrasena) throws ErrorDeContrasenaException, ErrorDeUsuarioException {
+    public Usuario login(String nombreUsuario, String contrasena) throws ErrorDeContrasenaException, ErrorDeUsuarioException {
         int i = 0;
 
         if (nombreUsuario.equalsIgnoreCase("Guille") && contrasena.equalsIgnoreCase("<3")) {
-            agencia.setLoged(true);
-            return "Agencia";
+            return agencia;
         }
 
         while (i < empleadores.size()) {
             if (empleadores.get(i).getNombreUsuario().equalsIgnoreCase(nombreUsuario))
                 if (empleadores.get(i).getContrasena().equalsIgnoreCase(contrasena)) {
-                    empleadores.get(i).setLoged(true);
-                    return "Empleador";
+                    return empleadores.get(i);
                 } else
                     throw new ErrorDeContrasenaException("La contrasena ingresada es incorrecta.");
             else
@@ -162,8 +161,7 @@ public class Sistema{
         while (i < empleadosPretensos.size()) {
             if (empleadosPretensos.get(i).getNombreUsuario().equalsIgnoreCase(nombreUsuario))
                 if (empleadosPretensos.get(i).getContrasena().equalsIgnoreCase(contrasena)) {
-                    empleadosPretensos.get(i).setLoged(true);
-                    return "Empleado Pretenso";
+                    return empleadosPretensos.get(i);
                 } else
                     throw new ErrorDeContrasenaException("La contrasena ingresada es incorrecta.");
             else

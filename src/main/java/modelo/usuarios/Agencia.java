@@ -19,6 +19,13 @@ public class Agencia extends Usuario {
     }
 
     //FUNCIONALIDADES
+    @Override
+    public void loguearse() {
+        System.out.println("El usuario [" + nombreUsuario + "] se ha logueado con exito.");
+        setChanged();
+        notifyObservers("Agencia");
+    }
+
     public void muestraEmpleadores() {
         System.out.println("Lista de empleadores: ");
         for (int i = 0;i < Sistema.getInstance().getEmpleadores().size();i++)
@@ -98,7 +105,6 @@ public class Agencia extends Usuario {
         }
         return retorno;
     }
-
 
     public void agregarABolsaDeTrabajo(TicketSimplificado t){
         this.bolsaDeTrabajo.add(t);

@@ -1,15 +1,15 @@
 package modelo.usuarios;
 
-public abstract class Usuario {
+import java.util.Observable;
+
+public abstract class Usuario extends Observable {
     protected String nombreUsuario;
     protected String contrasena;
-    protected boolean loged;
 
     //CONSTRUCTORES
     public Usuario(String nombreUsuario, String contrasena) {
         this.nombreUsuario = nombreUsuario;
         this.contrasena = contrasena;
-        this.loged = false;
     }
 
     //GETTERS & SETTERS
@@ -21,7 +21,5 @@ public abstract class Usuario {
         return contrasena;
     }
 
-    public void setLoged(boolean loged) {
-        this.loged = loged;
-    }
+    public abstract void loguearse();
 }

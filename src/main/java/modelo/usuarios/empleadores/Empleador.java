@@ -1,7 +1,7 @@
 package modelo.usuarios.empleadores;
 
 import modelo.excepciones.DatosMalIngresadosException;
-import modelo.interfaces.ILocacion;
+import modelo.tickets.locaciones.ILocacion;
 import modelo.Sistema;
 import modelo.tickets.Formulario_de_Busqueda;
 import modelo.tickets.TicketSimplificado;
@@ -75,6 +75,13 @@ public abstract class Empleador extends UsuarioComun implements Runnable {
     }
 
     //FUNCIONALIDADES
+    @Override
+    public void loguearse() {
+        System.out.println("El usuario [" + nombreUsuario + "] se ha logueado con exito.");
+        setChanged();
+        notifyObservers("Empleado");
+    }
+
     public abstract double calculaPorcentajeComision();
 
     /**

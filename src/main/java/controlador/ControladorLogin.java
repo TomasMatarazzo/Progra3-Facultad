@@ -3,6 +3,7 @@ package controlador;
 import modelo.Sistema;
 import modelo.excepciones.ErrorDeContrasenaException;
 import modelo.excepciones.ErrorDeUsuarioException;
+import modelo.usuarios.Usuario;
 import vista.VentanaLogin;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -12,6 +13,7 @@ import java.awt.event.KeyListener;
 
 public class ControladorLogin implements ActionListener, KeyListener {
     private VentanaLogin vista;
+    private Usuario modelo;
 
     public ControladorLogin(VentanaLogin vista) {
         this.vista = vista;
@@ -27,9 +29,9 @@ public class ControladorLogin implements ActionListener, KeyListener {
                 break;
             case "Login":
                 try {
-                    String tipoUsuario;
-                    tipoUsuario = Sistema.getInstance().login(vista.getTextoNombreUsuario().getText(),vista.getTextoContrasena().getText());
-                    vista.creaOtraVentana(tipoUsuario);
+                    modelo = Sistema.getInstance().login(vista.getTextoNombreUsuario().getText(),vista.getTextoContrasena().getText());
+                    vista.setObservado(modelo);
+                    modelo.loguearse();
                 } catch (ErrorDeContrasenaException e1) {
                     JOptionPane.showMessageDialog(null, "ERROR: " + e1.getMessage());
                     vista.getTextoContrasena().setText("\0");

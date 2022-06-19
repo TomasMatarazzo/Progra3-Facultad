@@ -4,7 +4,7 @@ import modelo.excepciones.ErrorDeContrasenaException;
 import modelo.excepciones.ErrorDeUsuarioException;
 import modelo.excepciones.EstadoException;
 import modelo.excepciones.TicketYaCreadoException;
-import modelo.interfaces.ILocacion;
+import modelo.tickets.locaciones.ILocacion;
 import modelo.tickets.Formulario_de_Busqueda;
 import modelo.tickets.locaciones.LocacionFactory;
 import modelo.usuarios.*;

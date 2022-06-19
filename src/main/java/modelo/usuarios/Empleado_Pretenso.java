@@ -80,14 +80,6 @@ public class Empleado_Pretenso extends UsuarioComun implements Runnable {
         return ticketDeBusquedaDeEmpleo;
     }
 
-    public void setDatos(String nombre, String apellido, String telefono, int edad, String eMail) {
-        this.nombre = nombre;
-        this.apellido = apellido;
-        this.telefono = telefono;
-        this.edad = edad;
-        this.eMail = eMail;
-    }
-
     //TO STRING
     @Override
     public String toString() {
@@ -102,6 +94,13 @@ public class Empleado_Pretenso extends UsuarioComun implements Runnable {
     }
 
     //FUNCIONALIDADES
+    @Override
+    public void loguearse() {
+        System.out.println("El usuario [" + nombreUsuario + "] se ha logueado con exito.");
+        setChanged();
+        notifyObservers("Empleado Pretenso");
+    }
+
     /**
      * Este método calcula la comisión a cobrar al Empleado pretenso según el tipo de Puesto Laboral.<br>
      * <b>pre: </b> Ticket de busqueda de empleado debe estar inicializada (!=null).<br>

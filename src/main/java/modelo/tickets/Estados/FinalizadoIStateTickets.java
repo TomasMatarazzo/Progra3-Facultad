@@ -1,12 +1,11 @@
 package modelo.tickets.Estados;
 
 import modelo.excepciones.EstadoException;
-import modelo.interfaces.State;
 import modelo.tickets.Ticket;
 
-public class FinalizadoState implements State {
+public class FinalizadoIStateTickets implements IStateTickets {
     private Ticket t;
-    public FinalizadoState(Ticket t){
+    public FinalizadoIStateTickets(Ticket t){
         this.t= t;
     }
     @Override

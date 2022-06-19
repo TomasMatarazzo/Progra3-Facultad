@@ -1,13 +1,12 @@
 package modelo.tickets.Estados;
 
 import modelo.excepciones.EstadoException;
-import modelo.interfaces.State;
 import modelo.tickets.Ticket;
 
-public class ActivadoState implements State {
+public class ActivadoIStateTickets implements IStateTickets {
     private Ticket t;
 
-    public ActivadoState(Ticket t){
+    public ActivadoIStateTickets(Ticket t){
         this.t=t;
     }
 
@@ -19,16 +18,16 @@ public class ActivadoState implements State {
     @Override
     public void suspender(){
         System.out.println("Se suspendio el activado");
-        this.t.setState(new SuspendidoState(this.t));
+        this.t.setState(new SuspendidoIStateTickets(this.t));
     }
 
     @Override
     public void cancelar(){
-        this.t.setState(new CanceladoState(this.t));
+        this.t.setState(new CanceladoIStateTickets(this.t));
     }
 
     @Override
     public void finalizar(){
-        this.t.setState(new FinalizadoState(this.t));
+        this.t.setState(new FinalizadoIStateTickets(this.t));
     }
 }

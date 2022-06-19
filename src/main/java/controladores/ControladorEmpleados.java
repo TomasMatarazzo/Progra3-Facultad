@@ -1,4 +1,4 @@
-package controlador;
+package controladores;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -27,7 +27,5 @@ public class ControladorEmpleados implements ActionListener {
 		}else if (e.getActionCommand().equals("iniciarELECCIONES")) {
 			vista.cambiarPagina(2);
 		}
-		
 	}
-
 }

@@ -1,6 +1,6 @@
 package prueba;
 
-import controlador.ControladorLogin;
+import controladores.ControladorLogin;
 import modelo.Sistema;
 import modelo.usuarios.Agencia;
 import vista.VentanaLogin;

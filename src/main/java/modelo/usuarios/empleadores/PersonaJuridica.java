@@ -4,8 +4,12 @@ import java.io.Serializable;
 
 public class PersonaJuridica extends Empleador implements Serializable {
 
+    public PersonaJuridica(String nombreUsuario, String contrasena) {
+        super(nombreUsuario, contrasena);
+    }
+
     public PersonaJuridica(String nombreUsuario, String contrasena, String tipoPersona, String razonSocial, String rubro) {
-        super(nombreUsuario, contrasena, tipoPersona, razonSocial, rubro);
+        super(nombreUsuario, contrasena);
     }
 
     @Override

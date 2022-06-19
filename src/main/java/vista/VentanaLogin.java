@@ -1,13 +1,12 @@
 package vista;
 
-import controlador.ControladorEmpleados;
-import controlador.ControladorRegister;
+import controladores.ControladorEmpleados;
+import controladores.ControladorRegister;
 import modelo.usuarios.Agencia;
 import modelo.usuarios.Empleado_Pretenso;
 import modelo.usuarios.Usuario;
 import modelo.usuarios.UsuarioFactoryExtendida;
 import modelo.usuarios.empleadores.Empleador;
-
 import javax.swing.*;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyListener;
@@ -107,8 +106,6 @@ public class VentanaLogin extends JFrame implements IVista, Observer {
                 break;
             case "Empleador":
                 Empleador empleador = (Empleador) observado;
-
-
 
                 System.out.println("Se abre la ventana de EMPLEADOR");
                 break;

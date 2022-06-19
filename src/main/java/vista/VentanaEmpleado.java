@@ -3,7 +3,7 @@ package vista;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import controlador.ControladorEmpleados;
+import controladores.ControladorEmpleados;
 import java.awt.Color;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -156,7 +156,7 @@ public class VentanaEmpleado extends JFrame {
 		panel_1.add(separator);
 		
 		JLabel lblNewLabel_2 = new JLabel("");
-		lblNewLabel_2.setIcon(new ImageIcon("C:\\Users\\tomas\\Desktop\\tp-progra\\Progra3-Linkedin\\src\\icons8-donald-trump-96.png"));
+		lblNewLabel_2.setIcon(new ImageIcon("src/icons8-donald-trump-96.png"));
 		lblNewLabel_2.setBounds(27, 102, 266, 183);
 		panel_1.add(lblNewLabel_2);
 		
@@ -300,7 +300,6 @@ public class VentanaEmpleado extends JFrame {
 		panel_3.add(lblNewLabel);
 		
 		pantallasTab.setSelectedIndex(2);
-
 	}
 }
 

@@ -19,7 +19,10 @@ public abstract class Empleador extends UsuarioComun implements Runnable {
     private ArrayList<Ticket_de_Busqueda_de_Empleado> ticketsDeBusquedaDeEmpleado = new ArrayList<>();
 
     //CONSTRUCTORES
-    public Empleador(String nombreUsuario, String contrasena, String tipoPersona, String razonSocial, String rubro) {
+    public Empleador() {
+    }
+
+    public Empleador(String nombreUsuario, String contrasena) {
         super(nombreUsuario, contrasena);
     }
 

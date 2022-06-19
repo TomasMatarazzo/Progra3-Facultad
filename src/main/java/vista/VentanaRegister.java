@@ -1,6 +1,6 @@
 package vista;
 
-import controlador.ControladorLogin;
+import controladores.ControladorLogin;
 
 import javax.swing.*;
 import java.awt.event.ActionListener;

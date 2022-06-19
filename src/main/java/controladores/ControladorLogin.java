@@ -1,4 +1,4 @@
-package controlador;
+package controladores;
 
 import modelo.Sistema;
 import modelo.excepciones.ErrorDeContrasenaException;

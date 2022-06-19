@@ -5,7 +5,7 @@ import java.io.Serializable;
 public class PersonaFisica extends Empleador implements Serializable {
 
     public PersonaFisica(String nombreUsuario, String contrasena) {
-        super(nombreUsuario, contrasena, tipoPersona, razonSocial, rubro);
+        super(nombreUsuario, contrasena);
     }
 
     public PersonaFisica(String nombreUsuario, String contrasena, String razonSocial, String rubro) {

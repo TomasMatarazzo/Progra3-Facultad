@@ -1,4 +1,4 @@
-package controlador;
+package controladores;
 
 import modelo.excepciones.DatosMalIngresadosException;
 import modelo.excepciones.ErrorDeUsuarioException;

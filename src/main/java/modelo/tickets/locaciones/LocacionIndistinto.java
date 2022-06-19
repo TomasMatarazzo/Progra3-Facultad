@@ -1,7 +1,5 @@
 package modelo.tickets.locaciones;
 
-import interfaces.ILocacion;
-
 public class LocacionIndistinto implements ILocacion {
     @Override
     public int puntajeLocacion(ILocacion locacion) {

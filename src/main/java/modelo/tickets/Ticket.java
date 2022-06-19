@@ -1,25 +1,25 @@
 package modelo.tickets;
 
-import Estados.ActivadoState;
-import excepciones.EstadoException;
-import interfaces.ILocacion;
-import interfaces.State;
+import modelo.tickets.Estados.ActivadoIStateTickets;
+import modelo.excepciones.EstadoException;
+import modelo.tickets.locaciones.ILocacion;
+import modelo.tickets.Estados.IStateTickets;
 import modelo.constantes.Puntajes;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
-public abstract class Ticket implements Comparable, State {
+public abstract class Ticket implements Comparable, IStateTickets {
     protected Formulario_de_Busqueda formularioDeBusqueda;
     protected Calendar fechaDeAlta = Calendar.getInstance();
     protected String estado; // activo-suspendido-cancelado-finalizado
-    private State state;
+    private IStateTickets IStateTickets;
     protected String tipoDeTrabajo;
     protected double puntajeTotal;
 
     // CONSTRUCTOR
     public Ticket(Formulario_de_Busqueda formularioDeBusqueda, String tipoDeTrabajo) {
         this.formularioDeBusqueda = formularioDeBusqueda;
-        this.state= new ActivadoState(this);
+        this.IStateTickets = new ActivadoIStateTickets(this);
         this.fechaDeAlta = new GregorianCalendar();
         this.estado = "Activo";
         this.tipoDeTrabajo = tipoDeTrabajo;
@@ -31,19 +31,19 @@ public abstract class Ticket implements Comparable, State {
 
     @Override
     public void activar() throws EstadoException {
-        this.state.activar();
+        this.IStateTickets.activar();
     }
     @Override
     public void cancelar() throws EstadoException {
-        this.state.cancelar();
+        this.IStateTickets.cancelar();
     }
     @Override
     public void finalizar() throws EstadoException {
-        this.state.finalizar();
+        this.IStateTickets.finalizar();
     }
     @Override
     public void suspender() throws EstadoException {
-        this.state.suspender();
+        this.IStateTickets.suspender();
     }
 
     // GETTERS && SETTERS
@@ -91,11 +91,11 @@ public abstract class Ticket implements Comparable, State {
         this.estado = estado;
     }
 
-    public void setState(State state){
-        this.state=state;
+    public void setState(IStateTickets IStateTickets){
+        this.IStateTickets = IStateTickets;
     }
-    public State getState(){
-        return this.state;
+    public IStateTickets getState(){
+        return this.IStateTickets;
     }
 
     public void setPuntajeTotal(double puntajeTotal) {

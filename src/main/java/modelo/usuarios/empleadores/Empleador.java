@@ -1,7 +1,7 @@
 package modelo.usuarios.empleadores;
 
-import excepciones.DatosMalIngresadosException;
-import interfaces.ILocacion;
+import modelo.excepciones.DatosMalIngresadosException;
+import modelo.tickets.locaciones.ILocacion;
 import modelo.Sistema;
 import modelo.tickets.Formulario_de_Busqueda;
 import modelo.tickets.TicketSimplificado;
@@ -13,7 +13,6 @@ import java.util.ArrayList;
 
 public abstract class Empleador extends UsuarioComun implements Runnable {
     private String razonSocial; //Seria el NOMBRE
-    private String tipoPersona; // fisica o juridica
     private String rubro; // salud, comercio local o comercio internacional
     private int[] pesoPuntajes;
     //Tickets
@@ -24,10 +23,9 @@ public abstract class Empleador extends UsuarioComun implements Runnable {
         super(nombreUsuario, contrasena);
     }
 
-    public Empleador(String nombreUsuario, String contrasena, String tipoPersona, String razonSocial, String rubro) {
+    public Empleador(String nombreUsuario, String contrasena, String razonSocial, String rubro) {
         super(nombreUsuario, contrasena);
         this.razonSocial = razonSocial;
-        this.tipoPersona = tipoPersona;
         this.rubro = rubro;
         this.pesoPuntajes = new int[7];
     }
@@ -38,22 +36,24 @@ public abstract class Empleador extends UsuarioComun implements Runnable {
         return razonSocial;
     }
 
-    public String getTipoPersona() {
-        return tipoPersona;
+    public void setRazonSocial(String razonSocial) {
+        this.razonSocial = razonSocial;
     }
 
     public String getRubro() {
         return rubro;
     }
 
-    public void setDatos(String tipoPersona, String razonSocial, String rubro) {
-        this.razonSocial = razonSocial;
-        this.tipoPersona = tipoPersona;
+    public void setRubro(String rubro) {
         this.rubro = rubro;
     }
 
     public ArrayList<Ticket_de_Busqueda_de_Empleado> getTicketsDeBusquedaDeEmpleado() {
         return ticketsDeBusquedaDeEmpleado;
+    }
+
+    public void setTicketsDeBusquedaDeEmpleado(ArrayList<Ticket_de_Busqueda_de_Empleado> ticketsDeBusquedaDeEmpleado) {
+        this.ticketsDeBusquedaDeEmpleado = ticketsDeBusquedaDeEmpleado;
     }
 
     public int[] getPesoPuntajes() {
@@ -70,12 +70,18 @@ public abstract class Empleador extends UsuarioComun implements Runnable {
         return  "   nombreUsuario: '" + nombreUsuario +
                 "   contrasena: '" + contrasena + //Esta bien mostrarla?
                 "   razonSocial: '" + razonSocial +
-                "   tipoPersona: '" + tipoPersona +
                 "   rubro: '" + rubro +
                 "   puntaje: " + puntaje;
     }
 
     //FUNCIONALIDADES
+    @Override
+    public void loguearse() {
+        System.out.println("El usuario [" + nombreUsuario + "] se ha logueado con exito.");
+        setChanged();
+        notifyObservers("Empleado");
+    }
+
     public abstract double calculaPorcentajeComision();
 
     /**
@@ -142,13 +148,13 @@ public abstract class Empleador extends UsuarioComun implements Runnable {
         int a,b;
         LocacionFactory lc = new LocacionFactory();
         ILocacion loc = null;
-        a = (int) Math.round(3*Math.random());
+        a = (int) Math.round(2*Math.random());
         switch (a) {
             case 0 -> loc = lc.getLocacion("HOMEOFFICE");
             case 1 -> loc = lc.getLocacion("PRESENCIAL");
             case 2 -> loc = lc.getLocacion("INDISTINTO");
         }
-        a = (int) Math.round(Sistema.getInstance().getTiposDeTrabajo().size()*Math.random());
+        a = (int) Math.round((Sistema.getInstance().getTiposDeTrabajo().size()-1)*Math.random());
         ts = new TicketSimplificado(new Formulario_de_Busqueda(loc,0,0,0,0,0,0),Sistema.getInstance().getTiposDeTrabajo().get(a));
         return ts;
     }
@@ -158,7 +164,7 @@ public abstract class Empleador extends UsuarioComun implements Runnable {
         TicketSimplificado ts;
         for (int t =0; t<3; t++) {
             ts = generaTicketRandom();
-            Sistema.getInstance().getAgencia().PoneBolsa(ts);
+            Sistema.getInstance().getAgencia().PoneBolsa(ts, this);
         }
     }
 }

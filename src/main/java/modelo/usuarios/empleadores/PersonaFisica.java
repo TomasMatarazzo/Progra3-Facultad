@@ -8,8 +8,8 @@ public class PersonaFisica extends Empleador implements Serializable {
         super(nombreUsuario, contrasena);
     }
 
-    public PersonaFisica(String nombreUsuario, String contrasena, String tipoPersona, String razonSocial, String rubro) {
-        super(nombreUsuario, contrasena, tipoPersona, razonSocial, rubro);
+    public PersonaFisica(String nombreUsuario, String contrasena, String razonSocial, String rubro) {
+        super(nombreUsuario, contrasena, razonSocial, rubro);
     }
 
     @Override

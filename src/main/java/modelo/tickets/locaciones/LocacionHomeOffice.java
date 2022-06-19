@@ -1,7 +1,5 @@
 package modelo.tickets.locaciones;
 
-import interfaces.ILocacion;
-
 public class LocacionHomeOffice implements ILocacion{
 
     @Override

@@ -1,7 +1,7 @@
 package modelo.usuarios;
 
-import excepciones.DatosMalIngresadosException;
-import excepciones.TicketYaCreadoException;
+import modelo.excepciones.DatosMalIngresadosException;
+import modelo.excepciones.TicketYaCreadoException;
 import modelo.Sistema;
 import modelo.tickets.Formulario_de_Busqueda;
 import modelo.tickets.TicketSimplificado;
@@ -86,14 +86,6 @@ public class Empleado_Pretenso extends UsuarioComun implements Runnable, Seriali
         return ticketDeBusquedaDeEmpleo;
     }
 
-    public void setDatos(String nombre, String apellido, String telefono, int edad, String eMail) {
-        this.nombre = nombre;
-        this.apellido = apellido;
-        this.telefono = telefono;
-        this.edad = edad;
-        this.eMail = eMail;
-    }
-
     //TO STRING
     @Override
     public String toString() {
@@ -108,6 +100,13 @@ public class Empleado_Pretenso extends UsuarioComun implements Runnable, Seriali
     }
 
     //FUNCIONALIDADES
+    @Override
+    public void loguearse() {
+        System.out.println("El usuario [" + nombreUsuario + "] se ha logueado con exito.");
+        setChanged();
+        notifyObservers("Empleado Pretenso");
+    }
+
     /**
      * Este método calcula la comisión a cobrar al Empleado pretenso según el tipo de Puesto Laboral.<br>
      * <b>pre: </b> Ticket de busqueda de empleado debe estar inicializada (!=null).<br>
@@ -203,13 +202,16 @@ public class Empleado_Pretenso extends UsuarioComun implements Runnable, Seriali
         int i=0;
         TicketSimplificado aux=null;
         while (i < 10 && this.ticketSimplificado == null){
-            aux=Sistema.getInstance().getAgencia().SacaBolsa(this.getTicketDeBusquedaDeEmpleo());
+            aux=Sistema.getInstance().getAgencia().SacaBolsa(this.getTicketDeBusquedaDeEmpleo(),this);
             if(this.ticketDeBusquedaDeEmpleo.getFormularioDeBusqueda().puntajeLocacion(aux.getFormularioDeBusqueda().getLocacion())==1){
                 this.ticketSimplificado=aux;
+                System.out.println("EL EMPLEADO "+this.getNombreUsuario()+" OBTUVO EL TRABAJO!!!");
             }
             else{
-                Sistema.getInstance().getAgencia().PoneBolsa(aux);
+                Sistema.getInstance().getAgencia().PoneBolsa(aux,this);
+                System.out.println("El Empleado pretenso "+this.getNombreUsuario()+" No obtuvo el trabajo por no coincidir la Locacion");
             }
+          i++;
         }
     }
 }

@@ -1,11 +1,17 @@
 package modelo.tickets;
 
-public class Ticket_de_Busqueda_de_Empleado extends Ticket {
+import java.io.Serializable;
+
+public class Ticket_de_Busqueda_de_Empleado extends Ticket implements Serializable{
     private int[] pesoAspectos; //Pesos de [1,3] vector de 7 dimensiones
     private Ticket_de_Busqueda_de_Empleo eleccion;
 
     //CONSTRUCTOR
-    public Ticket_de_Busqueda_de_Empleado(Formulario_de_Busqueda formularioDeBusqueda, String tipoDeTrabajo,int[] pesoAspectos) {
+
+    public Ticket_de_Busqueda_de_Empleado() {
+    }
+
+    public Ticket_de_Busqueda_de_Empleado(Formulario_de_Busqueda formularioDeBusqueda, String tipoDeTrabajo, int[] pesoAspectos) {
         super(formularioDeBusqueda, tipoDeTrabajo);
         this.pesoAspectos = pesoAspectos;
         this.eleccion = null;
@@ -18,6 +24,14 @@ public class Ticket_de_Busqueda_de_Empleado extends Ticket {
 
     public void setEleccion(Ticket_de_Busqueda_de_Empleo eleccion) {
         this.eleccion = eleccion;
+    }
+
+    public int[] getPesoAspectos() {
+        return pesoAspectos;
+    }
+
+    public void setPesoAspectos(int[] pesoAspectos) {
+        this.pesoAspectos = pesoAspectos;
     }
 
     //TO STRING

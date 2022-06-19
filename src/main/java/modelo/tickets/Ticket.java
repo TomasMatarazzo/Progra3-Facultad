@@ -26,6 +26,9 @@ public abstract class Ticket implements Comparable, State {
         this.puntajeTotal = 0;
     }
 
+    protected Ticket() {
+    }
+
     @Override
     public void activar() throws EstadoException {
         this.state.activar();

@@ -1,10 +1,16 @@
 package modelo.tickets;
 
-public class Ticket_de_Busqueda_de_Empleo extends Ticket {
+import java.io.Serializable;
+
+public class Ticket_de_Busqueda_de_Empleo extends Ticket implements Serializable {
     private String resultado; // exito-fracaso
     private Ticket_de_Busqueda_de_Empleado eleccion;
 
     //CONSTRUCTOR
+
+    public Ticket_de_Busqueda_de_Empleo() {
+    }
+
     public Ticket_de_Busqueda_de_Empleo(Formulario_de_Busqueda formularioDeBusqueda, String tipoDeTrabajo) {
         super(formularioDeBusqueda, tipoDeTrabajo);
         this.resultado = "PENDIENTE";

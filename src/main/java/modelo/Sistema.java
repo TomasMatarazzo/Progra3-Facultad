@@ -67,6 +67,22 @@ public class Sistema{
         return ticketsDeEmpleadosPretensos;
     }
 
+    public void setEmpleadores(ArrayList<Empleador> empleadores) {
+        this.empleadores = empleadores;
+    }
+
+    public void setEmpleadosPretensos(ArrayList<Empleado_Pretenso> empleadosPretensos) {
+        this.empleadosPretensos = empleadosPretensos;
+    }
+
+    public void setTicketsDeEmpleadores(HashMap<Ticket_de_Busqueda_de_Empleado, Empleador> ticketsDeEmpleadores) {
+        this.ticketsDeEmpleadores = ticketsDeEmpleadores;
+    }
+
+    public void setTicketsDeEmpleadosPretensos(HashMap<Ticket_de_Busqueda_de_Empleo, Empleado_Pretenso> ticketsDeEmpleadosPretensos) {
+        this.ticketsDeEmpleadosPretensos = ticketsDeEmpleadosPretensos;
+    }
+
     public void agregaEmpleador(Empleador nuevo) {
         empleadores.add(nuevo);
     }

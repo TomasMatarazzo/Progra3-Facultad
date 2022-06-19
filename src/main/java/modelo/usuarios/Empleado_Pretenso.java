@@ -7,7 +7,9 @@ import modelo.tickets.Formulario_de_Busqueda;
 import modelo.tickets.TicketSimplificado;
 import modelo.tickets.Ticket_de_Busqueda_de_Empleo;
 
-public class Empleado_Pretenso extends UsuarioComun implements Runnable {
+import java.io.Serializable;
+
+public class Empleado_Pretenso extends UsuarioComun implements Runnable, Serializable {
     //Datos personales:
     private String nombre;
     private String apellido;
@@ -19,6 +21,10 @@ public class Empleado_Pretenso extends UsuarioComun implements Runnable {
     private TicketSimplificado ticketSimplificado;
 
     //CONSTRUCTORES
+
+    public Empleado_Pretenso() {
+    }
+
     public Empleado_Pretenso(String nombreUsuario, String contrasena) {
         super(nombreUsuario, contrasena);
         this.ticketDeBusquedaDeEmpleo = null;

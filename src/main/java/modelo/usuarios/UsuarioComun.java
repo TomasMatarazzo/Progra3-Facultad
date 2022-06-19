@@ -8,6 +8,9 @@ public abstract class UsuarioComun extends Usuario{
         this.puntaje = 0;
     }
 
+    protected UsuarioComun() {
+    }
+
     //GETTERS & SETTERS
     public int getPuntaje() {
         return puntaje;

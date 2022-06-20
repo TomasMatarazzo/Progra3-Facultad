@@ -2,11 +2,9 @@ package controladores;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import modelo.Sistema;
 import modelo.usuarios.Empleado_Pretenso;
 import vista.VentanaEmpleado;
-import vista.VentanaEmpleados;
 
 public class ControladorEmpleados implements ActionListener {
 	private VentanaEmpleado vista;

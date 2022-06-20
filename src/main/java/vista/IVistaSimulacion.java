@@ -8,5 +8,4 @@ import modelo.usuarios.Usuario;
 public interface IVistaSimulacion {
 
 	void addActionListener(ActionListener listener);
-	void actualizaLista(Iterator<Usuario> iteratorUsuario);
 }

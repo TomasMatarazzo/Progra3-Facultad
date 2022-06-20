@@ -101,11 +101,7 @@ public class VentanaSimulacionThreads extends JFrame implements IVistaSimulacion
     	
     }
 
-	@Override
-	public void actualizaLista(Iterator<Usuario> iteratorUsuario) {
-		// TODO Auto-generated method stub
-		
-	}
+	
 
 	@Override
 	public void update(Observable o, Object arg) {

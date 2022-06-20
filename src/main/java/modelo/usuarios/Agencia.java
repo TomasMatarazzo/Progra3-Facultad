@@ -133,7 +133,7 @@ public class Agencia extends Usuario{
         }
         this.eliminarABolsaDeTrabajo(aux);
         setChanged();
-        notifyObservers(u.getNombreUsuario()+" Saca de la Bolsa un trabajo para evaluar su Locacion");
+        notifyObservers(u.getNombreUsuario()+" Saco de la Bolsa un trabajo");
         //System.out.println("EL empleado "+u.getNombreUsuario()+" Saca de la Bolsa un trabajo para evaluar su Locacion");
         notifyAll();
         Util.espera(1000);

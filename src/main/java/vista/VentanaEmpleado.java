@@ -134,8 +134,8 @@ public class VentanaEmpleado extends JFrame {
 	}
 	
 	public void renderListaElecciones( ArrayList<Ticket_de_Busqueda_de_Empleo> list) {
-		if (list != null ) {
-			lblNewLabel = new JLabel("Todavia no se efectuo la ronda de elecciones.");
+		if (list == null ) {
+			lblNewLabel = new JLabel("Todavia no se efectuo la ronda de contratos laborales.");
 		}else {
 			lblNewLabel = new JLabel("Ofertas laborales encontradas , seleccione una");
 			DefaultListModel<Ticket_de_Busqueda_de_Empleo> meses2 = new DefaultListModel<Ticket_de_Busqueda_de_Empleo>();

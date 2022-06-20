@@ -87,6 +87,18 @@ public class Sistema{
     public void agregaTicketDeEmpleadores(Empleador usuario,Ticket_de_Busqueda_de_Empleado ticket) {
         ticketsDeEmpleadores.put(ticket,usuario);
     }
+    
+    public void eliminaTicketDeEmpleadosPretensos( Ticket_de_Busqueda_de_Empleo ticket) {
+    	ticketsDeEmpleadosPretensos.remove(ticket);
+    }	
+    public void eliminaTicketDeEmpleadores(Empleador usuario,Ticket_de_Busqueda_de_Empleado ticket) {
+    	ticketsDeEmpleadores.remove(ticket);
+    }
+    
+    public void seleccionarEmpleadorRondaContrataciones( Ticket_de_Busqueda_de_Empleado ticket) {
+    	// Con cambiar la referencia bastara??
+    	ticketsDeEmpleadores.get(ticket);
+    }
 
     public HashMap<Ticket,Lista> getListas() {
         return listas;

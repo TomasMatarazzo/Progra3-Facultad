@@ -1,5 +1,7 @@
 package modelo.usuarios;
 
+import modelo.tickets.Ticket;
+
 public abstract class UsuarioComun extends Usuario{
     protected int puntaje;
 
@@ -16,6 +18,7 @@ public abstract class UsuarioComun extends Usuario{
     public void setPuntaje(int puntaje) {
         this.puntaje = puntaje;
     }
+    
 
     //FUNCIONALIDADES
     public abstract double calculaComision(double remuneracion);

@@ -14,7 +14,7 @@ import java.awt.event.KeyListener;
 import java.util.Observable;
 import java.util.Observer;
 
-public class VentanaLogin extends JFrame implements IVista, Observer {
+public class VentanaLogin extends JFrame implements IVista{
     private JPanel panelPrincipal;
     private JPanel panelCentral;
     private JPanel panelInferior;

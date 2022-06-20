@@ -10,7 +10,7 @@ import modelo.tickets.Formulario_de_Busqueda;
 import modelo.tickets.locaciones.LocacionFactory;
 import modelo.usuarios.*;
 import vista.VentanaEmpleado;
-import controlador.ControladorEmpleados;
+import controladores.ControladorEmpleados;
 import modelo.Sistema;
 
 public class Prueba {
@@ -23,14 +23,14 @@ public class Prueba {
             usuarioFactory.creaUsuario("Guillermo","Guille<3","Agencia");
             System.out.println("0");
             //--------------------------------------------------------------------------------------
-            usuarioFactory.creaUsuario("Empleado01","111","Empleado");
+            usuarioFactory.creaUsuario("Empleado01","111","Empleado Pretenso");
             System.out.println("1");
-            usuarioFactory.creaUsuario("Empleado02","222","Empleado");
+            usuarioFactory.creaUsuario("Empleado02","222","Empleado Pretenso");
             System.out.println("2");
-            usuarioFactory.creaUsuario("Empleado03","333","Empleado");
+            usuarioFactory.creaUsuario("Empleado03","333","Empleado Pretenso");
             System.out.println("3");
-            usuarioFactory.creaUsuario("Empleado04","444","Empleado");
-            usuarioFactory.creaUsuario("Empleado05","555","Empleado");
+            usuarioFactory.creaUsuario("Empleado04","444","Empleado Pretenso");
+            usuarioFactory.creaUsuario("Empleado05","555","Empleado Pretenso");
             usuarioFactory.creaUsuario("EmpleadorJuridico1","666","Persona Juridica");
             usuarioFactory.creaUsuario("EmpleadorFisico1","777","Persona Fisica");
             usuarioFactory.creaUsuario("EmpleadorJuridico2","888","Persona Juridica");

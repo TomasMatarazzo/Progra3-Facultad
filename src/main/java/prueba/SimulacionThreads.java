@@ -5,10 +5,12 @@ import modelo.excepciones.ErrorDeUsuarioException;
 import modelo.excepciones.EstadoException;
 import modelo.excepciones.TicketYaCreadoException;
 import modelo.tickets.locaciones.ILocacion;
+import controladores.ControladorThreads;
 import modelo.Sistema;
 import modelo.tickets.Formulario_de_Busqueda;
 import modelo.tickets.locaciones.LocacionFactory;
 import modelo.usuarios.UsuarioFactory;
+import vista.VentanaSimulacionThreads;
 
 public class SimulacionThreads {
 
@@ -19,6 +21,7 @@ public class SimulacionThreads {
         //SE CREAN Y SE REGISTRAN LOS USUARIOS
         try {
             usuarioFactory.creaUsuario("Guillermo","Guille<3","Agencia");
+            
             //--------------------------------------------------------------------------------------
             usuarioFactory.creaUsuario("Empleado01","111","Empleado Pretenso");
             usuarioFactory.creaUsuario("Empleado02","222","Empleado Pretenso");
@@ -35,7 +38,7 @@ public class SimulacionThreads {
         } catch (ErrorDeUsuarioException e2) {
             //HAGAN ALGO ACA
         }
-
+       
         //System.out.println("\nSE LOGEAN ALGUNOS USUARIOS.");
 /*
         try {
@@ -128,13 +131,20 @@ public class SimulacionThreads {
         Thread e2 = new Thread(Sistema.getInstance().getEmpleadores().get(1));
         Thread e3 = new Thread(Sistema.getInstance().getEmpleadores().get(2));
       
+        VentanaSimulacionThreads frame = new VentanaSimulacionThreads();
+        
+        ControladorThreads controlThread = new ControladorThreads(frame);
+        
+        frame.setVisible(true);
+        
+        
         t1.start();
         t2.start();
         t3.start();
         e1.start();
         e2.start();
         e3.start();
-     
+     	
 	}
 
 }

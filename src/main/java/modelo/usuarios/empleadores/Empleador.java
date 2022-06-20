@@ -8,6 +8,7 @@ import modelo.tickets.TicketSimplificado;
 import modelo.tickets.Ticket_de_Busqueda_de_Empleado;
 import modelo.tickets.locaciones.LocacionFactory;
 import modelo.usuarios.UsuarioComun;
+import util.Util;
 
 import java.util.ArrayList;
 
@@ -168,6 +169,7 @@ public abstract class Empleador extends UsuarioComun implements Runnable {
         for (int t =0; t<3; t++) {
             ts = generaTicketRandom();
             Sistema.getInstance().getAgencia().PoneBolsa(ts, this);
+            Util.espera(2000);
         }
     }
 }

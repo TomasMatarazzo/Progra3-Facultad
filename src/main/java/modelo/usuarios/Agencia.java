@@ -6,10 +6,11 @@ import modelo.tickets.Ticket;
 import modelo.tickets.TicketSimplificado;
 import modelo.tickets.Ticket_de_Busqueda_de_Empleado;
 import modelo.tickets.Ticket_de_Busqueda_de_Empleo;
+import util.Util;
 
 import java.util.ArrayList;
 
-public class Agencia extends Usuario {
+public class Agencia extends Usuario{
 	
     private ArrayList <TicketSimplificado> bolsaDeTrabajo;
 
@@ -121,7 +122,9 @@ public class Agencia extends Usuario {
         {
             try
             {
-            	System.out.println("El Empleado Pretenso "+ u.getNombreUsuario() + " Esperara a que haya En la bolsa de Trabajo algún trabajo de Su tipo Buscado");
+            	setChanged();
+                notifyObservers(u.getNombreUsuario()+" Esperara a que haya En la bolsa de Trabajo algún trabajo de Su tipo Buscado");
+            	//System.out.println("El Empleado Pretenso "+ u.getNombreUsuario() + " Esperara a que haya En la bolsa de Trabajo algún trabajo de Su tipo Buscado");
                 wait();
             } catch (InterruptedException e)
             {
@@ -129,14 +132,20 @@ public class Agencia extends Usuario {
             }
         }
         this.eliminarABolsaDeTrabajo(aux);
-        System.out.println("EL empleado "+u.getNombreUsuario()+" Saca de la Bolsa un trabajo para evaluar su Locacion");
+        setChanged();
+        notifyObservers(u.getNombreUsuario()+" Saca de la Bolsa un trabajo para evaluar su Locacion");
+        //System.out.println("EL empleado "+u.getNombreUsuario()+" Saca de la Bolsa un trabajo para evaluar su Locacion");
         notifyAll();
+        Util.espera(1000);
         return aux;
     }
 
     public synchronized void PoneBolsa(TicketSimplificado t, UsuarioComun u){
         this.agregarABolsaDeTrabajo(t);
-        System.out.println("El Usuario "+ u.getNombreUsuario() + " Puso un trabajo En la bolsa de Trabajo");
+        setChanged();
+        notifyObservers(u.getNombreUsuario()+" Puso un trabajo En la bolsa de Trabajo");
+        //System.out.println("El Usuario "+ u.getNombreUsuario() + " Puso un trabajo En la bolsa de Trabajo");
         notifyAll();
+        Util.espera(1000);
     }
 }

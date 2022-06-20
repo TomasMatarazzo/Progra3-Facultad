@@ -6,6 +6,7 @@ import modelo.Sistema;
 import modelo.tickets.Formulario_de_Busqueda;
 import modelo.tickets.TicketSimplificado;
 import modelo.tickets.Ticket_de_Busqueda_de_Empleo;
+import util.Util;
 
 import java.io.Serializable;
 
@@ -205,13 +206,13 @@ public class Empleado_Pretenso extends UsuarioComun implements Runnable, Seriali
             aux=Sistema.getInstance().getAgencia().SacaBolsa(this.getTicketDeBusquedaDeEmpleo(),this);
             if(this.ticketDeBusquedaDeEmpleo.getFormularioDeBusqueda().puntajeLocacion(aux.getFormularioDeBusqueda().getLocacion())==1){
                 this.ticketSimplificado=aux;
-                System.out.println("EL EMPLEADO "+this.getNombreUsuario()+" OBTUVO EL TRABAJO!!!");
             }
             else{
-                Sistema.getInstance().getAgencia().PoneBolsa(aux,this);
-                System.out.println("El Empleado pretenso "+this.getNombreUsuario()+" No obtuvo el trabajo por no coincidir la Locacion");
+            	Util.espera(1000);
+            	Sistema.getInstance().getAgencia().PoneBolsa(aux,this);
             }
           i++;
+          Util.espera(1000);
         }
     }
 }

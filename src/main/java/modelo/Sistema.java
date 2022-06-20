@@ -126,8 +126,8 @@ public class Sistema{
                 throw new ErrorDeUsuarioException("El nombre de usuario ingresado ya existe.");
         }
         agregaEmpleador(nuevo);
-        System.out.println("El empleador [" + nuevo.getNombreUsuario() + "] se ha registrado con exito.");
-        System.out.println("Cantidad de empleadores: " + empleadores.size());
+        //System.out.println("El empleador [" + nuevo.getNombreUsuario() + "] se ha registrado con exito.");
+        //System.out.println("Cantidad de empleadores: " + empleadores.size());
     }
 
     /**
@@ -143,8 +143,8 @@ public class Sistema{
                 throw new ErrorDeUsuarioException("El nombre de usuario ingresado ya existe.");
         }
         agregaEmpleadoPretenso(nuevo);
-        System.out.println("El empleado pretenso [" + nuevo.getNombreUsuario() + "] se ha registrado con exito.");
-        System.out.println("Cantidad de empleados: " + empleadosPretensos.size());
+        //System.out.println("El empleado pretenso [" + nuevo.getNombreUsuario() + "] se ha registrado con exito.");
+        //System.out.println("Cantidad de empleados: " + empleadosPretensos.size());
     }
 
     /**

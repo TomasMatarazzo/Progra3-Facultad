@@ -8,7 +8,6 @@ import modelo.tickets.Formulario_de_Busqueda;
 import modelo.tickets.Ticket_de_Busqueda_de_Empleo;
 import modelo.tickets.locaciones.ILocacion;
 import modelo.tickets.locaciones.LocacionFactory;
-import modelo.usuarios.Empleado_Pretenso;
 
 import java.awt.Color;
 import javax.swing.JButton;
@@ -35,14 +34,14 @@ import java.awt.CardLayout;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 
-public class VentanaEmpleado extends JFrame {
+public class VentanaEmpleador extends JFrame implements ActionListener {
 
 	private JPanel contentPane;
 	private JButton btnProfile;
 	private JButton ticketsButton;
 	private JButton eleccionesButton;
 	private JTabbedPane pantallasTab ;
-	private JPanel tab1;
+	private JPanel panel_1;
 	private JSeparator separator;
 	private JLabel lblNewLabel_3;
 	private JLabel lblNewLabel_4;
@@ -54,13 +53,16 @@ public class VentanaEmpleado extends JFrame {
 	private JLabel apellidoLabel;
 	private JLabel mailLabel;
 	private JLabel edadLabel;
+	private JLabel lblNewLabel_15;
 	private JLabel telefonoLabel;
 	private JSeparator separator_2;
 	private JSeparator separator_3;
 	private JSeparator separator_4;
+	private JSeparator separator_5;
 	private JSeparator separator_6;
 	private JScrollPane scrollPane;
-	private JList<Ticket_de_Busqueda_de_Empleo> list_1 = new JList<Ticket_de_Busqueda_de_Empleo>();
+	private JList<Ticket_de_Busqueda_de_Empleo> list;
+	private JList<Ticket_de_Busqueda_de_Empleo> list_1;
 	private JPanel panel_4;
 	private JButton agregarTicketButton;
 	private JButton eliminarTicketButton;
@@ -68,21 +70,7 @@ public class VentanaEmpleado extends JFrame {
     private LocacionFactory lc = new LocacionFactory();
 	private Formulario_de_Busqueda formulario;
 	private Ticket_de_Busqueda_de_Empleo ticket ;
-	private JLabel lblEtiqueta_1;
-	private JSeparator separator_7;
-	private JLabel lblNewLabel_7;
-	private JLabel cantTicketsLabel;
-	private JLabel nombreCompletooLabel;
-	private JPanel tab3;
-	private JScrollPane scrollPane_1;
-	private JButton seleccionarEmpleadorButton;
-	private JLabel lblEtiqueta_2;
-	private JSeparator separator_5;
-	private JLabel lblNewLabel;
-	private JLabel nombreCompletooLabel_1;
-	private JList<Ticket_de_Busqueda_de_Empleo> listaElecciones;
-	private DefaultListModel<Ticket_de_Busqueda_de_Empleo> listaTicketsDefault = new DefaultListModel<Ticket_de_Busqueda_de_Empleo>();;
-	private FormTickets form;
+
 
 	// Listeners a los botones.
 	
@@ -94,8 +82,6 @@ public class VentanaEmpleado extends JFrame {
 		this.eleccionesButton.addActionListener(c);
 		this.agregarTicketButton.addActionListener(c);
 		this.eliminarTicketButton.addActionListener(c);
-		this.seleccionarEmpleadorButton.addActionListener(c);
-		this.form.crearTicketButton.addActionListener(c);
 	}
 	
 	public void arranca(){
@@ -119,51 +105,12 @@ public class VentanaEmpleado extends JFrame {
 		this.mailLabel.setText(email);
 		this.telefonoLabel.setText(telefono);
 		this.edadLabel.setText(String.valueOf(edad));
-		this.nombreCompletooLabel.setText(nombre + " " + apellido);
-		this.cantTicketsLabel.setText(Integer.toString(this.list_1.getWidth()));
-
-	}
-	
-	public void renderListaTickets( Ticket_de_Busqueda_de_Empleo ticket) {
-		listaTicketsDefault.addElement(ticket);
-		System.out.println("Se eliminaron todos los tickets");
-		if (list_1.getModel().getSize() != 0)
-			((DefaultListModel) list_1.getModel()).removeAllElements();
-		this.list_1.setModel(listaTicketsDefault);
-		scrollPane.setViewportView(list_1);
-	}
-	
-	public void renderListaElecciones( ArrayList<Ticket_de_Busqueda_de_Empleo> list) {
-		if (list == null ) {
-			lblNewLabel = new JLabel("Todavia no se efectuo la ronda de contratos laborales.");
-		}else {
-			lblNewLabel = new JLabel("Ofertas laborales encontradas , seleccione una");
-			DefaultListModel<Ticket_de_Busqueda_de_Empleo> meses2 = new DefaultListModel<Ticket_de_Busqueda_de_Empleo>();
-			meses2.addElement(ticket);
-			this.listaElecciones = new JList<Ticket_de_Busqueda_de_Empleo>();
-			
-			// Inicializo vista con los tickets del modelo
-			this.listaElecciones.setModel(meses2);
-			listaElecciones.setVisibleRowCount(3);
-			scrollPane_1.setViewportView(listaElecciones);
-		}
-	}
-	
-	public void mostrarFormTicket() {
-		this.form.setVisible(true);
-	}
-	
-	public void ocultarFormTicket() {
-		this.form.setVisible(false);
 	}
 	
 	// Manejo de la lista de tickets
 	
 	public Ticket_de_Busqueda_de_Empleo getTicketSeleccionado() {
 		return this.list_1.getSelectedValue();
-	}
-	public Ticket_de_Busqueda_de_Empleo getTicketEleccionesSeleccionado() {
-		return this.listaElecciones.getSelectedValue();
 	}
 	
 	// Ventaja Emergente
@@ -173,7 +120,7 @@ public class VentanaEmpleado extends JFrame {
         JOptionPane.showMessageDialog(jFrame, mensaje);
 	}
 
-	public VentanaEmpleado(Empleado_Pretenso modelo) {
+	public VentanaEmpleador() {
 	    ILocacion indistinto = lc.getLocacion("INDISTINTO");
 		formulario = new Formulario_de_Busqueda(indistinto,200000,0,0,1,1,2);
 		ticket = new Ticket_de_Busqueda_de_Empleo(formulario,"Bombero");
@@ -232,129 +179,145 @@ public class VentanaEmpleado extends JFrame {
 		pantallasTab.setBounds(187, 0, 599, 464);
 		contentPane.add(pantallasTab);
 		
-		tab1 = new JPanel();
-		tab1.setBackground(new Color(30, 144, 255));
-		pantallasTab.addTab("Perfil", null, tab1, null);
-		tab1.setLayout(null);
+		panel_1 = new JPanel();
+		panel_1.setBackground(new Color(0, 119, 181));
+		pantallasTab.addTab("Perfil", null, panel_1, null);
+		panel_1.setLayout(null);
 		
 		JLabel lblEtiqueta = new JLabel("Empleado");
 		lblEtiqueta.setForeground(new Color(253, 245, 230));
 		lblEtiqueta.setFont(new Font("Segoe UI Light", Font.PLAIN, 39));
 		lblEtiqueta.setBounds(27, 65, 238, 60);
-		tab1.add(lblEtiqueta);
+		panel_1.add(lblEtiqueta);
 		
 		separator = new JSeparator();
 		separator.setBackground(new Color(245, 245, 245));
 		separator.setForeground(new Color(253, 245, 230));
 		separator.setBounds(27, 123, 176, 2);
-		tab1.add(separator);
+		panel_1.add(separator);
 		
 		JLabel lblNewLabel_2 = new JLabel("");
 		lblNewLabel_2.setIcon(new ImageIcon("C:\\Users\\tomas\\Desktop\\tp-progra\\Progra3-Linkedin\\src\\icons8-donald-trump-96.png"));
-		lblNewLabel_2.setBounds(37, 133, 266, 183);
-		tab1.add(lblNewLabel_2);
+		lblNewLabel_2.setBounds(27, 102, 266, 183);
+		panel_1.add(lblNewLabel_2);
 		
 		lblNewLabel_3 = new JLabel("Nombre");
 		lblNewLabel_3.setForeground(new Color(245, 245, 245));
 		lblNewLabel_3.setFont(new Font("Segoe UI Light", Font.BOLD, 17));
 		lblNewLabel_3.setBounds(283, 65, 77, 36);
-		tab1.add(lblNewLabel_3);
+		panel_1.add(lblNewLabel_3);
 		
 		lblNewLabel_4 = new JLabel("Apellido");
 		lblNewLabel_4.setForeground(new Color(253, 245, 230));
 		lblNewLabel_4.setFont(new Font("Segoe UI Light", Font.BOLD, 17));
 		lblNewLabel_4.setBounds(464, 65, 77, 36);
-		tab1.add(lblNewLabel_4);
+		panel_1.add(lblNewLabel_4);
 		
 		lblNewLabel_5 = new JLabel("Email");
 		lblNewLabel_5.setForeground(new Color(253, 245, 230));
 		lblNewLabel_5.setFont(new Font("Segoe UI Light", Font.BOLD, 17));
-		lblNewLabel_5.setBounds(283, 234, 77, 36);
-		tab1.add(lblNewLabel_5);
+		lblNewLabel_5.setBounds(283, 148, 77, 36);
+		panel_1.add(lblNewLabel_5);
 		
 		lblNewLabel_6 = new JLabel("Telefono");
 		lblNewLabel_6.setForeground(new Color(253, 245, 230));
 		lblNewLabel_6.setFont(new Font("Segoe UI Light", Font.BOLD, 17));
 		lblNewLabel_6.setBounds(464, 148, 77, 36);
-		tab1.add(lblNewLabel_6);
+		panel_1.add(lblNewLabel_6);
 		
 		LabelEdad = new JLabel("Edad");
 		LabelEdad.setForeground(new Color(253, 245, 230));
 		LabelEdad.setFont(new Font("Segoe UI Light", Font.BOLD, 17));
-		LabelEdad.setBounds(283, 148, 77, 36);
-		tab1.add(LabelEdad);
+		LabelEdad.setBounds(283, 234, 77, 36);
+		panel_1.add(LabelEdad);
 		
 		separator_1 = new JSeparator();
 		separator_1.setFont(new Font("Segoe UI Light", Font.BOLD, 12));
 		separator_1.setForeground(new Color(0, 0, 139));
 		separator_1.setBackground(new Color(0, 0, 139));
 		separator_1.setBounds(280, 100, 69, 40);
-		tab1.add(separator_1);
+		panel_1.add(separator_1);
 		
 		nombreLabel = new JLabel("Tomas");
 		nombreLabel.setForeground(new Color(253, 245, 230));
 		nombreLabel.setFont(new Font("Segoe UI Light", Font.BOLD, 17));
 		nombreLabel.setBounds(283, 104, 120, 36);
-		tab1.add(nombreLabel);
+		panel_1.add(nombreLabel);
 		
 		apellidoLabel = new JLabel("Matarazzo");
 		apellidoLabel.setForeground(new Color(253, 245, 230));
 		apellidoLabel.setFont(new Font("Segoe UI Light", Font.BOLD, 17));
 		apellidoLabel.setBounds(464, 104, 120, 36);
-		tab1.add(apellidoLabel);
+		panel_1.add(apellidoLabel);
 		
 		mailLabel = new JLabel("tomasm208@hotmail.es");
 		mailLabel.setHorizontalTextPosition(SwingConstants.CENTER);
 		mailLabel.setForeground(new Color(253, 245, 230));
 		mailLabel.setFont(new Font("Segoe UI Light", Font.BOLD, 14));
-		mailLabel.setBounds(283, 267, 176, 49);
-		tab1.add(mailLabel);
+		mailLabel.setBounds(283, 187, 176, 49);
+		panel_1.add(mailLabel);
 		
 		edadLabel = new JLabel("24");
 		edadLabel.setForeground(new Color(253, 245, 230));
 		edadLabel.setFont(new Font("Segoe UI Light", Font.BOLD, 17));
-		edadLabel.setBounds(283, 190, 120, 36);
-		tab1.add(edadLabel);
+		edadLabel.setBounds(283, 278, 120, 36);
+		panel_1.add(edadLabel);
+		
+		lblNewLabel_15 = new JLabel("CO");
+		lblNewLabel_15.setForeground(new Color(253, 245, 230));
+		lblNewLabel_15.setFont(new Font("Segoe UI", Font.BOLD, 17));
+		lblNewLabel_15.setBounds(464, 278, 120, 36);
+		panel_1.add(lblNewLabel_15);
 		
 		telefonoLabel = new JLabel("2266473122");
 		telefonoLabel.setForeground(new Color(253, 245, 230));
 		telefonoLabel.setFont(new Font("Segoe UI Light", Font.BOLD, 17));
 		telefonoLabel.setBounds(464, 192, 120, 36);
-		tab1.add(telefonoLabel);
+		panel_1.add(telefonoLabel);
 		
 		separator_2 = new JSeparator();
 		separator_2.setForeground(new Color(0, 0, 139));
 		separator_2.setBackground(new Color(0, 0, 139));
 		separator_2.setBounds(283, 177, 51, 49);
-		tab1.add(separator_2);
+		panel_1.add(separator_2);
 		
 		separator_3 = new JSeparator();
 		separator_3.setForeground(new Color(0, 0, 139));
 		separator_3.setBackground(new Color(0, 0, 139));
 		separator_3.setBounds(464, 177, 69, 40);
-		tab1.add(separator_3);
+		panel_1.add(separator_3);
 		
 		separator_4 = new JSeparator();
 		separator_4.setForeground(new Color(0, 0, 139));
 		separator_4.setBackground(new Color(0, 0, 139));
 		separator_4.setBounds(464, 100, 69, 40);
-		tab1.add(separator_4);
+		panel_1.add(separator_4);
+		
+		separator_5 = new JSeparator();
+		separator_5.setForeground(new Color(0, 0, 139));
+		separator_5.setBackground(new Color(0, 0, 139));
+		separator_5.setBounds(464, 263, 51, 40);
+		panel_1.add(separator_5);
 		
 		separator_6 = new JSeparator();
 		separator_6.setForeground(new Color(0, 0, 139));
 		separator_6.setBackground(new Color(0, 0, 139));
 		separator_6.setBounds(283, 263, 69, 40);
-		tab1.add(separator_6);
+		panel_1.add(separator_6);
 		
-		JPanel tab2 = new JPanel();
-		tab2.setBackground(new Color(30, 144, 255));
-		pantallasTab.addTab("Tickets", null, tab2, null);
-		tab2.setLayout(null);
+		JPanel panel_2 = new JPanel();
+		panel_2.setBackground(new Color(30, 144, 255));
+		pantallasTab.addTab("Tickets", null, panel_2, null);
+		panel_2.setLayout(null);
 		
 		scrollPane = new JScrollPane();
 		scrollPane.setBounds(31, 155, 539, 276);
-		tab2.add(scrollPane);
-		this.renderListaTickets(modelo.getTicketDeBusquedaDeEmpleo());
+		panel_2.add(scrollPane);
+		DefaultListModel<Ticket_de_Busqueda_de_Empleo> meses = new DefaultListModel<Ticket_de_Busqueda_de_Empleo>();
+		meses.addElement(ticket);
+		this.list_1 = new JList<Ticket_de_Busqueda_de_Empleo>();
+		this.list_1.setModel(meses);
+
 		list_1.setVisibleRowCount(3);
 		scrollPane.setViewportView(list_1);
 		
@@ -365,88 +328,37 @@ public class VentanaEmpleado extends JFrame {
 		agregarTicketButton = new JButton("Agregar Ticket");
 		agregarTicketButton.setActionCommand("AGREGARTICKET");
 		agregarTicketButton.setBounds(31, 128, 89, 19);
-		tab2.add(agregarTicketButton);
+		panel_2.add(agregarTicketButton);
 		
 		eliminarTicketButton = new JButton("Eliminar Ticket");
 		eliminarTicketButton.setActionCommand("ELIMINARTICKET");
 		eliminarTicketButton.setBounds(128, 128, 87, 19);
-		tab2.add(eliminarTicketButton);
+		panel_2.add(eliminarTicketButton);
 		
 		btnModificarTicket = new JButton("Modificar Ticket");
 		btnModificarTicket.setBounds(223, 128, 100, 19);
-		tab2.add(btnModificarTicket);
+		panel_2.add(btnModificarTicket);
+		agregarTicketButton.addActionListener(this);
 		
-		lblEtiqueta_1 = new JLabel("Empleado: ");
-		lblEtiqueta_1.setForeground(new Color(253, 245, 230));
-		lblEtiqueta_1.setFont(new Font("Segoe UI Light", Font.PLAIN, 25));
-		lblEtiqueta_1.setBounds(31, 8, 238, 60);
-		tab2.add(lblEtiqueta_1);
 		
-		separator_7 = new JSeparator();
-		separator_7.setForeground(new Color(253, 245, 230));
-		separator_7.setBackground(new Color(245, 245, 245));
-		separator_7.setBounds(31, 59, 115, 2);
-		tab2.add(separator_7);
+		JPanel panel_3 = new JPanel();
+		pantallasTab.addTab("Elecciones", null, panel_3, null);
+		panel_3.setLayout(null);
 		
-		lblNewLabel_7 = new JLabel("Cantidad de tickets: ");
-		lblNewLabel_7.setForeground(new Color(240, 248, 255));
-		lblNewLabel_7.setFont(new Font("Segoe UI Light", Font.PLAIN, 20));
-		lblNewLabel_7.setBounds(31, 76, 187, 38);
-		tab2.add(lblNewLabel_7);
-		
-		cantTicketsLabel = new JLabel("1");
-		cantTicketsLabel.setFont(new Font("Segoe UI Light", Font.BOLD, 25));
-		cantTicketsLabel.setBounds(206, 72, 46, 44);
-		tab2.add(cantTicketsLabel);
-		
-		nombreCompletooLabel = new JLabel("Tomas Matarazzo");
-		nombreCompletooLabel.setFont(new Font("Segoe UI", Font.PLAIN, 25));
-		nombreCompletooLabel.setBounds(164, 24, 231, 29);
-		tab2.add(nombreCompletooLabel);
+		JLabel lblNewLabel = new JLabel("Etiqueta 3");
+		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 39));
+		lblNewLabel.setBounds(184, 170, 238, 36);
+		panel_3.add(lblNewLabel);
 		
 		pantallasTab.setSelectedIndex(0);
-		
-		tab3 = new JPanel();
-		tab3.setLayout(null);
-		tab3.setBackground(new Color(30, 144, 255));
-		pantallasTab.addTab("Elecciones", null, tab3, null);
-		
-		scrollPane_1 = new JScrollPane();
-		scrollPane_1.setBounds(31, 155, 539, 276);
-		tab3.add(scrollPane_1);
-		
-		
-		seleccionarEmpleadorButton = new JButton("Confirmar Empleador");
-		seleccionarEmpleadorButton.setActionCommand("EMPLEADORELEGIDO");
-		seleccionarEmpleadorButton.setBounds(31, 128, 169, 19);
-		tab3.add(seleccionarEmpleadorButton);
-		
-		lblEtiqueta_2 = new JLabel("Empleado: ");
-		lblEtiqueta_2.setForeground(new Color(253, 245, 230));
-		lblEtiqueta_2.setFont(new Font("Segoe UI Light", Font.PLAIN, 25));
-		lblEtiqueta_2.setBounds(31, 8, 238, 60);
-		tab3.add(lblEtiqueta_2);
-		
-		separator_5 = new JSeparator();
-		separator_5.setForeground(new Color(253, 245, 230));
-		separator_5.setBackground(new Color(245, 245, 245));
-		separator_5.setBounds(31, 59, 115, 2);
-		tab3.add(separator_5);
-		
-		lblNewLabel = new JLabel();
-		this.renderListaElecciones( null);
-		lblNewLabel.setForeground(new Color(240, 248, 255));
-		lblNewLabel.setFont(new Font("Segoe UI Light", Font.PLAIN, 20));
-		lblNewLabel.setBounds(31, 76, 464, 38);
-		tab3.add(lblNewLabel);
-		
-		nombreCompletooLabel_1 = new JLabel("Tomas Matarazzo");
-		nombreCompletooLabel_1.setFont(new Font("Segoe UI", Font.PLAIN, 25));
-		nombreCompletooLabel_1.setBounds(164, 24, 231, 29);
-		tab3.add(nombreCompletooLabel_1);
-		
-		form = new FormTickets();
 
 	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
 
 }

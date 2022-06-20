@@ -1,5 +1,6 @@
 package prueba;
 
+import modelo.excepciones.DatosMalIngresadosException;
 import modelo.excepciones.ErrorDeContrasenaException;
 import modelo.excepciones.ErrorDeUsuarioException;
 import modelo.excepciones.EstadoException;
@@ -8,22 +9,28 @@ import modelo.tickets.locaciones.ILocacion;
 import modelo.tickets.Formulario_de_Busqueda;
 import modelo.tickets.locaciones.LocacionFactory;
 import modelo.usuarios.*;
+import vista.VentanaEmpleado;
+import controlador.ControladorEmpleados;
 import modelo.Sistema;
 
 public class Prueba {
-    public static void main(String[] args) throws EstadoException {
+    public static void main(String[] args) throws EstadoException, ErrorDeUsuarioException {
         Sistema sistema = Sistema.getInstance();
         UsuarioFactory usuarioFactory = new UsuarioFactory();
 
         //SE CREAN Y SE REGISTRAN LOS USUARIOS
-/*        try {
+        try {
             usuarioFactory.creaUsuario("Guillermo","Guille<3","Agencia");
+            System.out.println("0");
             //--------------------------------------------------------------------------------------
-            usuarioFactory.creaUsuario("Empleado01","111","Empleado Pretenso");
-            usuarioFactory.creaUsuario("Empleado02","222","Empleado Pretenso");
-            usuarioFactory.creaUsuario("Empleado03","333","Empleado Pretenso");
-            usuarioFactory.creaUsuario("Empleado04","444","Empleado Pretenso");
-            usuarioFactory.creaUsuario("Empleado05","555","Empleado Pretenso");
+            usuarioFactory.creaUsuario("Empleado01","111","Empleado");
+            System.out.println("1");
+            usuarioFactory.creaUsuario("Empleado02","222","Empleado");
+            System.out.println("2");
+            usuarioFactory.creaUsuario("Empleado03","333","Empleado");
+            System.out.println("3");
+            usuarioFactory.creaUsuario("Empleado04","444","Empleado");
+            usuarioFactory.creaUsuario("Empleado05","555","Empleado");
             usuarioFactory.creaUsuario("EmpleadorJuridico1","666","Persona Juridica");
             usuarioFactory.creaUsuario("EmpleadorFisico1","777","Persona Fisica");
             usuarioFactory.creaUsuario("EmpleadorJuridico2","888","Persona Juridica");
@@ -32,14 +39,14 @@ public class Prueba {
         }
         catch (DatosMalIngresadosException e1) {
             System.out.println("El parametro " + e1.getMessage() + " ingresado es incorrecto.");
-        }*/
+        }
 
         System.out.println("\nSE LOGEAN ALGUNOS USUARIOS.");
 
         try {
             sistema.login("Empleado01","123"); //Usuario correcto
 //            sistema.login("Incorrecto","123"); //Usuario incorrecta
-            sistema.login("EmpleadorFisico1","xxxxxxx"); //Contrasena incorrecta
+            //sistema.login("EmpleadorFisico1","xxxxxxx"); //Contrasena incorrecta
         }
         catch (ErrorDeContrasenaException e2) {
             System.out.println(e2.getMessage());
@@ -48,7 +55,7 @@ public class Prueba {
             System.out.println(e1.getMessage());
         }
 
-        System.out.println("\nLA AGENCIA CARGA ALGUNOS PUESTOS DE TRABAJO");
+        System.out.println(sistema.getEmpleadosPretensos());
 
         sistema.getAgencia().agregarTipoDeTrabajo("Camarero");
         sistema.getAgencia().agregarTipoDeTrabajo("Taxista");
@@ -115,6 +122,11 @@ public class Prueba {
         sistema.getEmpleadores().get(2).creaTicket(fbe3,"Camarero",peso3);
         sistema.getEmpleadores().get(3).creaTicket(fbe4,"Taxista",peso4);
         sistema.getEmpleadores().get(4).creaTicket(fbe5,"Bombero",peso5);
+        
+        VentanaEmpleado vista = new VentanaEmpleado(sistema.getEmpleadosPretensos().get(0));
+        System.out.println("nashe" + sistema.getEmpleadosPretensos().get(0).getTicketDeBusquedaDeEmpleo());
+        ControladorEmpleados controlador = new ControladorEmpleados(vista, sistema.getEmpleadosPretensos().get(0));
+        vista.arranca();
 
         System.out.println("\nRONDA DE ENCUENTROS LABORALES ");
 
@@ -123,45 +135,45 @@ public class Prueba {
         sistema.getEmpleadores().get(0).muestraLista();
 
         System.out.println("\nRONDA DE ELECCIONES ");
-
-
-        System.out.println("\nELECCIONES DE LOS EMPLEADOS PRETENSOS");
-
-        System.out.println(" El empleado0 elige al ticket0 del empleador1");
-        sistema.getEmpleadosPretensos().get(0).getTicketDeBusquedaDeEmpleo().setEleccion(sistema.getEmpleadores().get(1).getTicketsDeBusquedaDeEmpleado().get(0));
-
-        System.out.println(" El empleado1 elige al ticket0 del empleador1");
-        sistema.getEmpleadosPretensos().get(1).getTicketDeBusquedaDeEmpleo().setEleccion(sistema.getEmpleadores().get(1).getTicketsDeBusquedaDeEmpleado().get(0));
-
-        System.out.println(" El empleado2 elige al ticket0 del empleador0");
-        sistema.getEmpleadosPretensos().get(2).getTicketDeBusquedaDeEmpleo().setEleccion(sistema.getEmpleadores().get(0).getTicketsDeBusquedaDeEmpleado().get(0));
-
-        System.out.println(" El empleado3 elige al ticket0 del empleador4");
-        sistema.getEmpleadosPretensos().get(3).getTicketDeBusquedaDeEmpleo().setEleccion(sistema.getEmpleadores().get(4).getTicketsDeBusquedaDeEmpleado().get(0));
-
-        System.out.println(" El empleado4 elige al ticket0 del empleador1");
-        sistema.getEmpleadosPretensos().get(4).getTicketDeBusquedaDeEmpleo().setEleccion(sistema.getEmpleadores().get(1).getTicketsDeBusquedaDeEmpleado().get(0));
-
-        System.out.println("\nELECCIONES DE LOS EMPlEADORES");
-
-        System.out.println(" El empleador0 (su ticket0) elige al empleado4");
-        sistema.getEmpleadores().get(0).getTicketsDeBusquedaDeEmpleado().get(0).setEleccion(sistema.getEmpleadosPretensos().get(4).getTicketDeBusquedaDeEmpleo());
-
-        System.out.println(" El empleador1 (su ticket0) elige al empleado4");
-        sistema.getEmpleadores().get(1).getTicketsDeBusquedaDeEmpleado().get(0).setEleccion(sistema.getEmpleadosPretensos().get(4).getTicketDeBusquedaDeEmpleo());
-
-        System.out.println(" El empleador2 (su ticket0) elige al empleado0");
-        sistema.getEmpleadores().get(2).getTicketsDeBusquedaDeEmpleado().get(0).setEleccion(sistema.getEmpleadosPretensos().get(0).getTicketDeBusquedaDeEmpleo());
-
-        System.out.println(" El empleado3 (su ticket0) elige al empleado4");
-        sistema.getEmpleadores().get(3).getTicketsDeBusquedaDeEmpleado().get(0).setEleccion(sistema.getEmpleadosPretensos().get(1).getTicketDeBusquedaDeEmpleo());
-
-        System.out.println(" El empleado4 NO elige a ningun empleado pretenso");
-
-        try{sistema.getEmpleadosPretensos().get(0).getTicketDeBusquedaDeEmpleo().getState().activar();}
-        catch (EstadoException e){
-            System.out.println(e.getMessage());
-        }
+//
+//
+//        System.out.println("\nELECCIONES DE LOS EMPLEADOS PRETENSOS");
+//
+//        System.out.println(" El empleado0 elige al ticket0 del empleador1");
+//        sistema.getEmpleadosPretensos().get(0).getTicketDeBusquedaDeEmpleo().setEleccion(sistema.getEmpleadores().get(1).getTicketsDeBusquedaDeEmpleado().get(0));
+//
+//        System.out.println(" El empleado1 elige al ticket0 del empleador1");
+//        sistema.getEmpleadosPretensos().get(1).getTicketDeBusquedaDeEmpleo().setEleccion(sistema.getEmpleadores().get(1).getTicketsDeBusquedaDeEmpleado().get(0));
+//
+//        System.out.println(" El empleado2 elige al ticket0 del empleador0");
+//        sistema.getEmpleadosPretensos().get(2).getTicketDeBusquedaDeEmpleo().setEleccion(sistema.getEmpleadores().get(0).getTicketsDeBusquedaDeEmpleado().get(0));
+//
+//        System.out.println(" El empleado3 elige al ticket0 del empleador4");
+//        sistema.getEmpleadosPretensos().get(3).getTicketDeBusquedaDeEmpleo().setEleccion(sistema.getEmpleadores().get(4).getTicketsDeBusquedaDeEmpleado().get(0));
+//
+//        System.out.println(" El empleado4 elige al ticket0 del empleador1");
+//        sistema.getEmpleadosPretensos().get(4).getTicketDeBusquedaDeEmpleo().setEleccion(sistema.getEmpleadores().get(1).getTicketsDeBusquedaDeEmpleado().get(0));
+//
+//        System.out.println("\nELECCIONES DE LOS EMPlEADORES");
+//
+//        System.out.println(" El empleador0 (su ticket0) elige al empleado4");
+//        sistema.getEmpleadores().get(0).getTicketsDeBusquedaDeEmpleado().get(0).setEleccion(sistema.getEmpleadosPretensos().get(4).getTicketDeBusquedaDeEmpleo());
+//
+//        System.out.println(" El empleador1 (su ticket0) elige al empleado4");
+//        sistema.getEmpleadores().get(1).getTicketsDeBusquedaDeEmpleado().get(0).setEleccion(sistema.getEmpleadosPretensos().get(4).getTicketDeBusquedaDeEmpleo());
+//
+//        System.out.println(" El empleador2 (su ticket0) elige al empleado0");
+//        sistema.getEmpleadores().get(2).getTicketsDeBusquedaDeEmpleado().get(0).setEleccion(sistema.getEmpleadosPretensos().get(0).getTicketDeBusquedaDeEmpleo());
+//
+//        System.out.println(" El empleado3 (su ticket0) elige al empleado4");
+//        sistema.getEmpleadores().get(3).getTicketsDeBusquedaDeEmpleado().get(0).setEleccion(sistema.getEmpleadosPretensos().get(1).getTicketDeBusquedaDeEmpleo());
+//
+//        System.out.println(" El empleado4 NO elige a ningun empleado pretenso");
+//
+//        try{sistema.getEmpleadosPretensos().get(0).getTicketDeBusquedaDeEmpleo().getState().activar();}
+//        catch (EstadoException e){
+//            System.out.println(e.getMessage());
+//        }
         /*sistema.rondaContrataciones();
 
         System.out.println("\nCONTRATOS: ");

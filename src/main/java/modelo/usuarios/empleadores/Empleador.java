@@ -4,6 +4,7 @@ import modelo.excepciones.DatosMalIngresadosException;
 import modelo.tickets.locaciones.ILocacion;
 import modelo.Sistema;
 import modelo.tickets.Formulario_de_Busqueda;
+import modelo.tickets.Ticket;
 import modelo.tickets.TicketSimplificado;
 import modelo.tickets.Ticket_de_Busqueda_de_Empleado;
 import modelo.tickets.locaciones.LocacionFactory;
@@ -66,6 +67,19 @@ public abstract class Empleador extends UsuarioComun implements Runnable {
 
     public void setPesoPuntajes(int[] pesoPuntajes) {
         this.pesoPuntajes = pesoPuntajes;
+    }
+    
+    // ALTAS BAJAS Y MODIFICACIONES PARA LOS TICKETS
+    
+    public  void agregarTicket(Ticket_de_Busqueda_de_Empleado ticket) {
+    	this.ticketsDeBusquedaDeEmpleado.add(ticket);
+    };
+    public  void eliminarTicket(Ticket_de_Busqueda_de_Empleado ticket) {
+    	this.ticketsDeBusquedaDeEmpleado.remove(ticket);
+    }
+    public  void ModificarTicket(Ticket_de_Busqueda_de_Empleado ticket) {
+    	this.eliminarTicket(ticket);
+    	this.agregarTicket(ticket);
     }
 
     //TO STRING

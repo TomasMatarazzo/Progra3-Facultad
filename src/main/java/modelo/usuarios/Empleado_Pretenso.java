@@ -5,6 +5,7 @@ import modelo.excepciones.TicketYaCreadoException;
 import modelo.Sistema;
 import modelo.tickets.Formulario_de_Busqueda;
 import modelo.tickets.TicketSimplificado;
+import modelo.tickets.Ticket_de_Busqueda_de_Empleado;
 import modelo.tickets.Ticket_de_Busqueda_de_Empleo;
 import util.Util;
 
@@ -41,6 +42,9 @@ public class Empleado_Pretenso extends UsuarioComun implements Runnable, Seriali
         this.ticketDeBusquedaDeEmpleo = null;
         this.ticketSimplificado=null;
     }
+    // ALTAS, BAJAS , MODIFICACIONES DEL TICKET
+    
+    
 
     //GETTERS & SETTERS
     public String getNombre() {
@@ -82,11 +86,17 @@ public class Empleado_Pretenso extends UsuarioComun implements Runnable, Seriali
     public void seteMail(String eMail) {
         this.eMail = eMail;
     }
+    
 
-    public Ticket_de_Busqueda_de_Empleo getTicketDeBusquedaDeEmpleo() {
+    public void setTicketDeBusquedaDeEmpleo(Ticket_de_Busqueda_de_Empleo ticketDeBusquedaDeEmpleo) {
+		this.ticketDeBusquedaDeEmpleo = ticketDeBusquedaDeEmpleo;
+	}
+
+	public Ticket_de_Busqueda_de_Empleo getTicketDeBusquedaDeEmpleo() {
         return ticketDeBusquedaDeEmpleo;
     }
 
+	
     //TO STRING
     @Override
     public String toString() {

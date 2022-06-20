@@ -3,16 +3,14 @@ package vista;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import controlador.ControladorEmpleados;
+import controladores.ControladorEmpleados;
 import modelo.tickets.Formulario_de_Busqueda;
 import modelo.tickets.Ticket_de_Busqueda_de_Empleo;
 import modelo.tickets.locaciones.ILocacion;
 import modelo.tickets.locaciones.LocacionFactory;
-
 import java.awt.Color;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
 import javax.swing.JTabbedPane;
@@ -24,15 +22,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JScrollPane;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
-import javax.swing.AbstractListModel;
 import javax.swing.DefaultListModel;
-import javax.swing.DropMode;
 import javax.swing.BoxLayout;
-import java.awt.FlowLayout;
-import java.awt.BorderLayout;
-import java.awt.CardLayout;
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
 
 public class VentanaEmpleador extends JFrame implements ActionListener {
 
@@ -73,7 +64,6 @@ public class VentanaEmpleador extends JFrame implements ActionListener {
 
 
 	// Listeners a los botones.
-	
 
 	public void setControlador(ControladorEmpleados c) {
 		System.out.println("Se ejecuto el comando");

@@ -9,12 +9,9 @@ import modelo.tickets.Ticket_de_Busqueda_de_Empleo;
 import modelo.tickets.locaciones.ILocacion;
 import modelo.tickets.locaciones.LocacionFactory;
 import modelo.usuarios.Empleado_Pretenso;
-
 import java.awt.Color;
 import javax.swing.JButton;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.awt.event.ActionEvent;
 import java.awt.Font;
 import javax.swing.JTabbedPane;
 import javax.swing.JLabel;
@@ -25,15 +22,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JScrollPane;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
-import javax.swing.AbstractListModel;
 import javax.swing.DefaultListModel;
-import javax.swing.DropMode;
 import javax.swing.BoxLayout;
-import java.awt.FlowLayout;
-import java.awt.BorderLayout;
-import java.awt.CardLayout;
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
 
 public class VentanaEmpleado extends JFrame {
 
@@ -448,5 +438,4 @@ public class VentanaEmpleado extends JFrame {
 		form = new FormTickets();
 
 	}
-
 }

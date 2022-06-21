@@ -3,11 +3,11 @@ package modelo.usuarios;
 import modelo.excepciones.DatosMalIngresadosException;
 import modelo.excepciones.TicketYaCreadoException;
 import modelo.Sistema;
-import modelo.bolsatrabajo.BolsaDeTrabajo;
 import modelo.tickets.Formulario_de_Busqueda;
-import modelo.tickets.TicketSimplificado;
 import modelo.tickets.Ticket_de_Busqueda_de_Empleado;
 import modelo.tickets.Ticket_de_Busqueda_de_Empleo;
+import simulacion.BolsaDeTrabajo;
+import simulacion.TicketSimplificado;
 import util.Util;
 
 import java.io.Serializable;
@@ -221,9 +221,9 @@ public class Empleado_Pretenso extends UsuarioComun implements Runnable, Seriali
         	  aux.setEstado("Finalizado");
         	  this.ticketSimplificado =aux;
           }
-          Util.espera();
+          Util.espera(2000);
           BolsaDeTrabajo.getInstancia().DevulveABolsa(aux, this);
-          Util.espera();
+          Util.espera(2000);
           i++;
         }
     }

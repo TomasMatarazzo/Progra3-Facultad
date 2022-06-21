@@ -1,4 +1,4 @@
-package vista;
+package simulacion;
 
 import java.awt.event.ActionListener;
 import java.util.Iterator;

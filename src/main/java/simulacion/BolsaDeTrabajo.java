@@ -1,11 +1,10 @@
-package modelo.bolsatrabajo;
+package simulacion;
 
 import java.util.ArrayList;
 import java.util.Observable;
 
 import modelo.Sistema;
 import modelo.tickets.Ticket;
-import modelo.tickets.TicketSimplificado;
 import modelo.usuarios.Empleado_Pretenso;
 import modelo.usuarios.UsuarioComun;
 

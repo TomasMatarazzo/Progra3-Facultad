@@ -65,8 +65,9 @@ public class Prueba {
 
         System.out.printf("\n SE ESPECIFICAN TIPOS DE PUESTOS LABOLARES");
 
-        sistema.getAgencia().confeccionarRangoEtario(40,50);
-        sistema.getAgencia().confeccionarTipoDePuesto("JR","SR","MANAGMENT");
+        //ESTO QUE COMENTE YA NO ANDA ATTE: LAUTARO
+        /*sistema.getAgencia().confeccionarRangoEtario(40,50);
+        sistema.getAgencia().confeccionarTipoDePuesto("JR","SR","MANAGMENT");*/
 
         System.out.println("\nSE CREAN LAS LOCACIONES DE LOS TRABAJOS ");
 
@@ -122,11 +123,12 @@ public class Prueba {
         sistema.getEmpleadores().get(2).creaTicket(fbe3,"Camarero",peso3);
         sistema.getEmpleadores().get(3).creaTicket(fbe4,"Taxista",peso4);
         sistema.getEmpleadores().get(4).creaTicket(fbe5,"Bombero",peso5);
-        
-        VentanaEmpleado vista = new VentanaEmpleado(sistema.getEmpleadosPretensos().get(0));
+
+        //NOSE PARA QUE SIRVE ESTO PERO SE ROMPE ATTE: LAUTARO
+        /*VentanaEmpleado vista = new VentanaEmpleado(sistema.getEmpleadosPretensos().get(0));
         System.out.println("nashe" + sistema.getEmpleadosPretensos().get(0).getTicketDeBusquedaDeEmpleo());
         ControladorEmpleados controlador = new ControladorEmpleados(vista, sistema.getEmpleadosPretensos().get(0));
-        vista.arranca();
+        vista.arranca();*/
 
         System.out.println("\nRONDA DE ENCUENTROS LABORALES ");
 

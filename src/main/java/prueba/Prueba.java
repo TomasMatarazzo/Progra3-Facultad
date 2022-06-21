@@ -9,6 +9,8 @@ import modelo.tickets.locaciones.ILocacion;
 import modelo.tickets.Formulario_de_Busqueda;
 import modelo.tickets.locaciones.LocacionFactory;
 import modelo.usuarios.*;
+import vista.VentanaEmpleado;
+import controladores.ControladorEmpleados;
 import modelo.Sistema;
 
 public class Prueba {
@@ -21,14 +23,14 @@ public class Prueba {
             usuarioFactory.creaUsuario("Guillermo","Guille<3","Agencia");
             System.out.println("0");
             //--------------------------------------------------------------------------------------
-            usuarioFactory.creaUsuario("Empleado01","111","Empleado");
+            usuarioFactory.creaUsuario("Empleado01","111","Empleado Pretenso");
             System.out.println("1");
-            usuarioFactory.creaUsuario("Empleado02","222","Empleado");
+            usuarioFactory.creaUsuario("Empleado02","222","Empleado Pretenso");
             System.out.println("2");
-            usuarioFactory.creaUsuario("Empleado03","333","Empleado");
+            usuarioFactory.creaUsuario("Empleado03","333","Empleado Pretenso");
             System.out.println("3");
-            usuarioFactory.creaUsuario("Empleado04","444","Empleado");
-            usuarioFactory.creaUsuario("Empleado05","555","Empleado");
+            usuarioFactory.creaUsuario("Empleado04","444","Empleado Pretenso");
+            usuarioFactory.creaUsuario("Empleado05","555","Empleado Pretenso");
             usuarioFactory.creaUsuario("EmpleadorJuridico1","666","Persona Juridica");
             usuarioFactory.creaUsuario("EmpleadorFisico1","777","Persona Fisica");
             usuarioFactory.creaUsuario("EmpleadorJuridico2","888","Persona Juridica");
@@ -60,6 +62,11 @@ public class Prueba {
         sistema.getAgencia().agregarTipoDeTrabajo("Bombero");
         sistema.getAgencia().agregarTipoDeTrabajo("Piloto");
         sistema.getAgencia().agregarTipoDeTrabajo("Marinero");
+
+        System.out.printf("\n SE ESPECIFICAN TIPOS DE PUESTOS LABOLARES");
+
+        sistema.getAgencia().confeccionarRangoEtario(40,50);
+        sistema.getAgencia().confeccionarTipoDePuesto("JR","SR","MANAGMENT");
 
         System.out.println("\nSE CREAN LAS LOCACIONES DE LOS TRABAJOS ");
 
@@ -116,10 +123,10 @@ public class Prueba {
         sistema.getEmpleadores().get(3).creaTicket(fbe4,"Taxista",peso4);
         sistema.getEmpleadores().get(4).creaTicket(fbe5,"Bombero",peso5);
         
-/*        VentanaEmpleado vista = new VentanaEmpleado(sistema.getEmpleadosPretensos().get(0));
+        VentanaEmpleado vista = new VentanaEmpleado(sistema.getEmpleadosPretensos().get(0));
         System.out.println("nashe" + sistema.getEmpleadosPretensos().get(0).getTicketDeBusquedaDeEmpleo());
         ControladorEmpleados controlador = new ControladorEmpleados(vista, sistema.getEmpleadosPretensos().get(0));
-        vista.arranca();*/
+        vista.arranca();
 
         System.out.println("\nRONDA DE ENCUENTROS LABORALES ");
 

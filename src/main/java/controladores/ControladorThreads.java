@@ -30,12 +30,12 @@ public class ControladorThreads implements ActionListener{
 	    	String comando = e.getActionCommand();
 	    	if (comando.equalsIgnoreCase("Comenzar"))
 	    	{
-	    		for (int t = 0 ; t<3 ; t++) {
+	    		for (int t = 0 ; t<5 ; t++) {
 	    	    	q = new Thread (Sistema.getInstance().getEmpleadosPretensos().get(t));
 	    	    	w = new Thread (Sistema.getInstance().getEmpleadores().get(t));
 	    	    	q.start();
-	    	    	w.start();	    	    
-	    	    }
+	    	    	w.start();	    	
+	     	    }
 	    }
 	   }
 

@@ -47,6 +47,7 @@ public class Empleado_Pretenso extends UsuarioComun implements Runnable, Seriali
     
 
     //GETTERS & SETTERS
+    
     public String getNombre() {
         return nombre;
     }
@@ -213,16 +214,9 @@ public class Empleado_Pretenso extends UsuarioComun implements Runnable, Seriali
         int i=0;
         TicketSimplificado aux=null;
         while (i < 10 && this.ticketSimplificado == null){
-            aux=Sistema.getInstance().getAgencia().SacaBolsa(this.getTicketDeBusquedaDeEmpleo(),this);
-            if(this.ticketDeBusquedaDeEmpleo.getFormularioDeBusqueda().puntajeLocacion(aux.getFormularioDeBusqueda().getLocacion())==1){
-                this.ticketSimplificado=aux;
-            }
-            else{
-            	Util.espera(1000);
-            	Sistema.getInstance().getAgencia().PoneBolsa(aux,this);
-            }
+          Sistema.getInstance().getAgencia().SacaBolsa(this.getTicketDeBusquedaDeEmpleo(),this);  
           i++;
-          Util.espera(1000);
+          Util.espera(1500);
         }
     }
 }

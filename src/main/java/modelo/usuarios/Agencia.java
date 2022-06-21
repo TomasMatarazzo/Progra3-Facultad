@@ -128,7 +128,7 @@ public class Agencia extends Usuario{
     }
 
     //METODOS SYNCHRONIZED
-    public synchronized TicketSimplificado SacaBolsa(Ticket t, Empleado_Pretenso u)
+    public synchronized void SacaBolsa(Ticket t, Empleado_Pretenso u)
     {
         TicketSimplificado aux=null;
         while (((aux = coincidenciaTipoTrabajo(t)) == null))
@@ -136,7 +136,7 @@ public class Agencia extends Usuario{
             try
             {
             	setChanged();
-                notifyObservers(u.getNombreUsuario()+" Esperara a que haya En la bolsa de Trabajo algún trabajo de Su tipo Buscado");
+                notifyObservers(u.getNombreUsuario()+" Esperara por algun trabajo de su Tipo");
             	//System.out.println("El Empleado Pretenso "+ u.getNombreUsuario() + " Esperara a que haya En la bolsa de Trabajo algún trabajo de Su tipo Buscado");
                 wait();
             } catch (InterruptedException e)
@@ -144,13 +144,15 @@ public class Agencia extends Usuario{
                 e.printStackTrace();
             }
         }
-        this.eliminarABolsaDeTrabajo(aux);
         setChanged();
-        notifyObservers(u.getNombreUsuario()+" Saco de la Bolsa un trabajo");
-        //System.out.println("EL empleado "+u.getNombreUsuario()+" Saca de la Bolsa un trabajo para evaluar su Locacion");
+        if(aux.getFormularioDeBusqueda().puntajeLocacion(t.getFormularioDeBusqueda().getLocacion())==1){
+             u.setTicketSimplificado(aux);
+             notifyObservers(u.getNombreUsuario()+" CONSIGUIO EL TRABAJO!!!");
+             Sistema.getInstance().getAgencia().eliminarABolsaDeTrabajo(aux);
+        }else
+        	notifyObservers(u.getNombreUsuario()+" No consiguio el Trabajo por no coincidir la Locacion ");
+        	
         notifyAll();
-        Util.espera(1000);
-        return aux;
     }
 
     public synchronized void PoneBolsa(TicketSimplificado t, UsuarioComun u){
@@ -159,6 +161,5 @@ public class Agencia extends Usuario{
         notifyObservers(u.getNombreUsuario()+" Puso un trabajo En la bolsa de Trabajo");
         //System.out.println("El Usuario "+ u.getNombreUsuario() + " Puso un trabajo En la bolsa de Trabajo");
         notifyAll();
-        Util.espera(1000);
     }
 }

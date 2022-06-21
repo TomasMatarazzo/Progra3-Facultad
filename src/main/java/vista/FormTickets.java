@@ -93,22 +93,31 @@ public class FormTickets extends JFrame {
 		
 		choice = new Choice();
 		choice.setForeground(Color.BLACK);
-		choice.addItem("Option1");
-		choice.addItem("Option2");
-		choice.addItem("Option3");
+		choice.addItem("Home Office");
+		choice.addItem("Presencial");
+		choice.addItem("Indistinto");
 		choice.setBounds(27, 141, 124, 16);
 		contentPane.add(choice);
 		
 		choice_1 = new Choice();
 		choice_1.setBounds(196, 141, 124, 16);
+		choice_1.addItem("Media");
+		choice_1.addItem("Completa");
+		choice_1.addItem("Extendida");
 		contentPane.add(choice_1);
 		
 		choice_2 = new Choice();
 		choice_2.setBounds(196, 79, 124, 21);
+		choice_2.addItem("Jr");
+		choice_2.addItem("Sr");
+		choice_2.addItem("Managment");
 		contentPane.add(choice_2);
 		
 		choice_3 = new Choice();
 		choice_3.setBounds(27, 196, 124, 26);
+		choice_3.addItem("Menos de 40");
+		choice_3.addItem("Menos de 50");
+		choice_3.addItem("Mayor a 50");
 		contentPane.add(choice_3);
 		
 		textField_1 = new JTextField();

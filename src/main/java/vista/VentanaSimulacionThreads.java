@@ -71,16 +71,18 @@ public class VentanaSimulacionThreads extends JFrame implements IVistaSimulacion
 	this.panel_Centro.add(this.textField);
 	this.textField.setColumns(10);
 	
-	this.btnComenzar = new JButton("Comenzar");
-	this.panel_Arriba.add(this.btnComenzar);
-	this.btnComenzar.setActionCommand("Comenzar");
+
 	
 	setPreferredSize(new Dimension(300, 300));
 	//setBorder(new CompoundBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null), new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)),"Title", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0))));
-	setLayout(new BorderLayout(0, 0));
+	getContentPane().setLayout(new BorderLayout(0, 0));
 	
 	this.scrollPane = new JScrollPane();
-	add(this.scrollPane, BorderLayout.CENTER);
+	getContentPane().add(this.scrollPane, BorderLayout.CENTER);
+	
+	this.btnComenzar = new JButton("Comenzar Simulacion");
+	contentPane.add(this.btnComenzar, BorderLayout.SOUTH);
+	this.btnComenzar.setActionCommand("Comenzar");
 	
 	this.textArea = new JTextArea();
 	this.scrollPane.setViewportView(this.textArea);

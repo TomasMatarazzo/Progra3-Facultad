@@ -29,7 +29,6 @@ public class Agencia extends Usuario {
     //FUNCIONALIDADES
     @Override
     public void loguearse() {
-        System.out.println("El usuario [" + nombreUsuario + "] se ha logueado con exito.");
         setChanged();
         notifyObservers("Agencia");
     }
@@ -52,7 +51,7 @@ public class Agencia extends Usuario {
     public void muestraEmpleadosPretensos() {
         for (int i = 0;i < Sistema.getInstance().getEmpleadosPretensos().size();i++) {
             setChanged();
-            notifyObservers(Sistema.getInstance().getEmpleadores().get(i).toString());
+            notifyObservers(Sistema.getInstance().getEmpleadosPretensos().get(i).toString());
         }
     }
 

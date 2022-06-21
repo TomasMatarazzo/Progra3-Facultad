@@ -44,6 +44,8 @@ public class VentanaAgencia extends JFrame implements IVistaAgencia, Observer {
     private JTextField textoTiposDePuestos;
     private JPanel panelTotal;
     private JLabel textoTotal;
+    private JPanel panelTituloVerDatos;
+    private JPanel PanelDatosAlmacenados;
     private Usuario observado;
     //MODELOS PARA LISTAS
     DefaultListModel modeloTiposDeTrabajo = new DefaultListModel();
@@ -288,8 +290,8 @@ public class VentanaAgencia extends JFrame implements IVistaAgencia, Observer {
     }
 
     @Override
-    public void mostrarDatos(JList lista) {
-        lista.setModel(modeloDatosAlmacenados);
+    public void mostrarDatos(JList lista, DefaultListModel modelo) {
+        lista.setModel(modelo);
     }
 
     public void setObservado(Usuario usuario) {

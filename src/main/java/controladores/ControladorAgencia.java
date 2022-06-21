@@ -76,29 +76,29 @@ public class ControladorAgencia implements ActionListener, KeyListener {
                     case 1:
                         vista.limpiaModelo(vista.getModeloDatosAlmacenados());
                         modelo.muestraEmpleadores();
-                        vista.mostrarDatos(vista.getListaDatosAlmacenados());
+                        vista.mostrarDatos(vista.getListaDatosAlmacenados(),vista.getModeloDatosAlmacenados());
                         break;
                     case 2:
                         vista.limpiaModelo(vista.getModeloDatosAlmacenados());
                         modelo.muestraSolicitudesEmpleadores();
-                        vista.mostrarDatos(vista.getListaDatosAlmacenados());
+                        vista.mostrarDatos(vista.getListaDatosAlmacenados(),vista.getModeloDatosAlmacenados());
                         break;
                     case 3:
                         vista.limpiaModelo(vista.getModeloDatosAlmacenados());
                         modelo.muestraEmpleadosPretensos();
-                        vista.mostrarDatos(vista.getListaDatosAlmacenados());
+                        vista.mostrarDatos(vista.getListaDatosAlmacenados(),vista.getModeloDatosAlmacenados());
                         break;
                     case 4:
                         vista.limpiaModelo(vista.getModeloDatosAlmacenados());
                         modelo.muestraSolicitudEmpleadosPretensos();
-                        vista.mostrarDatos(vista.getListaDatosAlmacenados());
+                        vista.mostrarDatos(vista.getListaDatosAlmacenados(),vista.getModeloDatosAlmacenados());
                         break;
                 }
                 break;
             case "Calcular Comisiones":
                 vista.limpiaModelo(vista.getModeloComisiones());
                 modelo.calculaComisiones();
-                vista.mostrarDatos(vista.getListaComisiones());
+                vista.mostrarDatos(vista.getListaComisiones(),vista.getModeloComisiones());
                 vista.getTextoTotal().setText("Total a cobrar: " + modelo.getTotal());
                 break;
         }

@@ -2,7 +2,6 @@ package controladores;
 
 import modelo.usuarios.empleadores.Empleador;
 import vista.VentanaEmpleador;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -18,6 +17,9 @@ public class ControladorEmpleador implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-
+		switch (e.getActionCommand()) {
+		/*	case :
+				break;*/
+		}
 	}
 }

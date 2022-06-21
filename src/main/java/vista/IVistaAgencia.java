@@ -12,5 +12,5 @@ public interface IVistaAgencia extends IVista{
 
     void limpiaModelo(DefaultListModel modelo);
 
-    void mostrarDatos(JList lista);
+    void mostrarDatos(JList lista,DefaultListModel modelo);
 }

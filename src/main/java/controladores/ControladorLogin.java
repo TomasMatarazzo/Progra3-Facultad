@@ -34,12 +34,12 @@ public class ControladorLogin implements ActionListener, KeyListener {
                     modelo.loguearse();
                 } catch (ErrorDeContrasenaException e1) {
                     JOptionPane.showMessageDialog(null, "ERROR: " + e1.getMessage());
-                    vista.getTextoContrasena().setText("\0");
+                    vista.getTextoContrasena().setText("");
                     vista.getBotonLogin().setEnabled(false);
                 } catch (ErrorDeUsuarioException e2) {
                     JOptionPane.showMessageDialog(null, "ERROR: " + e2.getMessage());
-                    vista.getTextoNombreUsuario().setText("\0");
-                    vista.getTextoContrasena().setText("\0");
+                    vista.getTextoNombreUsuario().setText("");
+                    vista.getTextoContrasena().setText("");
                     vista.getBotonLogin().setEnabled(false);
                 }
                 break;

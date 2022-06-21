@@ -13,7 +13,7 @@ public class ControladorEmpleados implements ActionListener {
 	public ControladorEmpleados(VentanaEmpleado vista2, Empleado_Pretenso modelo) {
 		this.modelo = modelo;
 		this.vista = vista2;
-		this.vista.setControlador(this);
+		this.vista.setActionListener(this);
 		vista.llenarDatosEmpleado(modelo.getNombre(),modelo.getApellido(),modelo.geteMail(), modelo.getTelefono(),modelo.getEdad());
 	}
 	

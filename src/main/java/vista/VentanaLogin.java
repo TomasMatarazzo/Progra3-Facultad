@@ -104,7 +104,7 @@ public class VentanaLogin extends JFrame implements IVista,Observer {
                 Empleado_Pretenso empleado = (Empleado_Pretenso) observado;
                 VentanaEmpleado ventanaEmpleado = new VentanaEmpleado();
                 ControladorEmpleados controladorEmpleados = new ControladorEmpleados(ventanaEmpleado,empleado);
-                ventanaEmpleado.arranca();
+                ventanaEmpleado.ejecutar();
                 break;
             case "Empleador":
                 Empleador empleador = (Empleador) observado;

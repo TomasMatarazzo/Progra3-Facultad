@@ -3,7 +3,8 @@ package vista;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import controladores.ControladorEmpleados;
+
+import controladores.ControladorLogin;
 import modelo.tickets.Formulario_de_Busqueda;
 import modelo.tickets.Ticket_de_Busqueda_de_Empleo;
 import modelo.tickets.locaciones.ILocacion;
@@ -16,6 +17,7 @@ import java.awt.Font;
 import javax.swing.JTabbedPane;
 import javax.swing.JLabel;
 import java.awt.Cursor;
+import java.awt.event.KeyListener;
 import javax.swing.SwingConstants;
 import javax.swing.JSeparator;
 import javax.swing.ImageIcon;
@@ -25,7 +27,7 @@ import javax.swing.JOptionPane;
 import javax.swing.DefaultListModel;
 import javax.swing.BoxLayout;
 
-public class VentanaEmpleador extends JFrame implements ActionListener {
+public class VentanaEmpleador extends JFrame implements ActionListener,IVistaUsuarioComun {
 
 	private JPanel contentPane;
 	private JButton btnProfile;
@@ -62,19 +64,23 @@ public class VentanaEmpleador extends JFrame implements ActionListener {
 	private Formulario_de_Busqueda formulario;
 	private Ticket_de_Busqueda_de_Empleo ticket ;
 
-
 	// Listeners a los botones.
 
 	public void setActionListener(ActionListener controlador) {
-		System.out.println("Se ejecuto el comando");
 		this.ticketsButton.addActionListener(controlador);
 		this.btnProfile.addActionListener(controlador);
 		this.eleccionesButton.addActionListener(controlador);
 		this.agregarTicketButton.addActionListener(controlador);
 		this.eliminarTicketButton.addActionListener(controlador);
 	}
-	
-	public void arranca(){
+
+	@Override
+	public void setKeyListener(KeyListener controlador) {
+
+	}
+
+	@Override
+	public void ejecutar() {
 		setTitle("My Linkedn - Grupo 5");
 		pack(); //Coloca los componentes
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -83,10 +89,32 @@ public class VentanaEmpleador extends JFrame implements ActionListener {
 		setResizable(false); //No redimensionable
 		setLocationRelativeTo(null);
 	}
-	
-	public void cambiarPagina(int i) {
-		this.pantallasTab.setSelectedIndex(i);
+
+	@Override
+	public void ocultar() {
+		contentPane.setVisible(false);
 	}
+
+	@Override
+	public void creaOtraVentana(String ventana) {
+		if (ventana.equalsIgnoreCase("Login")) {
+			VentanaLogin ventanaLogin = new VentanaLogin();
+			ControladorLogin controladorLogin = new ControladorLogin(ventanaLogin);
+			this.ocultar();
+			ventanaLogin.ejecutar();
+		}
+	}
+
+	public void lanzarVentanaEmergente(String mensaje) {
+		JFrame jFrame = new JFrame();
+		JOptionPane.showMessageDialog(jFrame, mensaje);
+	}
+
+	@Override
+	public void cambiarPagina(int pagina) {
+		pantallasTab.setSelectedIndex(pagina);
+	}
+
 	// Muestra de datos de empleado
 
 	public void llenarDatosEmpleado(String nombre, String apellido, String email, String telefono , int edad) {
@@ -104,11 +132,7 @@ public class VentanaEmpleador extends JFrame implements ActionListener {
 	}
 	
 	// Ventaja Emergente
-	
-	public void lanzarVentanaEmergente(String mensaje) {
-		JFrame jFrame = new JFrame();
-        JOptionPane.showMessageDialog(jFrame, mensaje);
-	}
+
 
 	public VentanaEmpleador() {
 	    ILocacion indistinto = lc.getLocacion("INDISTINTO");

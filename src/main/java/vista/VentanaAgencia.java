@@ -1,13 +1,15 @@
 package vista;
 
 import controladores.ControladorLogin;
+import modelo.usuarios.Usuario;
 
 import javax.swing.*;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyListener;
-import java.util.ArrayList;
+import java.util.Observable;
+import java.util.Observer;
 
-public class VentanaAgencia extends JFrame implements IVistaAgencia{
+public class VentanaAgencia extends JFrame implements IVistaAgencia, Observer {
     private JPanel panelPrincipal;
     private JTabbedPane panelVentanas;
     private JButton botonComisiones;
@@ -25,7 +27,7 @@ public class VentanaAgencia extends JFrame implements IVistaAgencia{
     private JList<String>  listaTiposDePuestos;
     private JList<String>  listaRangoLaboral;
     private JComboBox<String> boxDatosCargados;
-    private JList<String> listaDatosCargados;
+    private JList<String> listaDatosAlmacenados;
     private JPanel panelTiposDeTrabajo;
     private JPanel panelTiposDePuestos;
     private JPanel panelTextoprincipal;
@@ -40,9 +42,16 @@ public class VentanaAgencia extends JFrame implements IVistaAgencia{
     private JButton botonAgregarDatos;
     private JTextField textoRangoLaboral;
     private JTextField textoTiposDePuestos;
+    private Usuario observado;
+    //MODELOS PARA LISTAS
     DefaultListModel modeloTiposDeTrabajo = new DefaultListModel();
     DefaultListModel modeloRangosLaborales = new DefaultListModel();
     DefaultListModel modeloTiposDePuestos = new DefaultListModel();
+    DefaultListModel modeloDatosAlmacenados = new DefaultListModel<>();
+    DefaultListModel modeloEmpleadores = new DefaultListModel<>();
+    DefaultListModel modeloSolicitudesEmpleadores = new DefaultListModel<>();
+    DefaultListModel modeloEmpleadosPretensos = new DefaultListModel<>();
+    DefaultListModel modeloSolicitudEmpleadosPretensos = new DefaultListModel<>();
 
     public DefaultListModel getModeloTiposDeTrabajo() {
         return modeloTiposDeTrabajo;
@@ -203,6 +212,7 @@ public class VentanaAgencia extends JFrame implements IVistaAgencia{
         listaTiposDeTrabajo.setModel(modeloTiposDeTrabajo);
         listaRangoLaboral.setModel(modeloRangosLaborales);
         listaTiposDePuestos.setModel(modeloTiposDePuestos);
+        listaDatosAlmacenados.setModel(modeloDatosAlmacenados);
     }
 
     @Override
@@ -244,6 +254,35 @@ public class VentanaAgencia extends JFrame implements IVistaAgencia{
         if (!tipoPuesto.isEmpty() && modeloTiposDePuestos.size() < 3) {
             modeloTiposDePuestos.add(modeloTiposDePuestos.size(), tipoPuesto);
             textoTiposDePuestos.setText("");
+        }
+    }
+
+    @Override
+    public void cargarModelo(String dato) {
+        modeloDatosAlmacenados.add(modeloDatosAlmacenados.size(),dato);
+    }
+
+    @Override
+    public void limpiaModelo() {
+        modeloDatosAlmacenados.removeAllElements();
+    }
+
+    @Override
+    public void mostrarDatos() {
+        listaDatosAlmacenados.setModel(modeloDatosAlmacenados);
+    }
+
+    public void setObservado(Usuario usuario) {
+        this.observado = usuario;
+        usuario.addObserver(this);
+    }
+
+    @Override
+    public void update(Observable usuario, Object texto) {
+        if (usuario != observado)
+            throw new IllegalArgumentException();
+        else {
+            cargarModelo((String) texto);
         }
     }
 }

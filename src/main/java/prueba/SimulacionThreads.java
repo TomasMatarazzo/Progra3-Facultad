@@ -40,8 +40,8 @@ public class SimulacionThreads {
        
         sistema.getAgencia().agregarTipoDeTrabajo("Camarero");
         sistema.getAgencia().agregarTipoDeTrabajo("Bombero");
-        sistema.getAgencia().confeccionarRangoEtario(40,50);
-        sistema.getAgencia().confeccionarTipoDePuesto("JR","SR","MANAGMENT");
+/*        sistema.getAgencia().confeccionarRangoEtario(40,50);
+        sistema.getAgencia().confeccionarTipoDePuesto("JR","SR","MANAGMENT");*/
 
         LocacionFactory lc = new LocacionFactory();
 

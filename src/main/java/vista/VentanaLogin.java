@@ -1,6 +1,7 @@
 package vista;
 
 import controladores.ControladorAgencia;
+import controladores.ControladorEmpleador;
 import controladores.ControladorEmpleados;
 import controladores.ControladorRegister;
 import modelo.usuarios.Agencia;
@@ -107,7 +108,8 @@ public class VentanaLogin extends JFrame implements IVista,Observer {
                 break;
             case "Empleador":
                 Empleador empleador = (Empleador) observado;
-
+                VentanaEmpleador ventanaEmpleador = new VentanaEmpleador();
+                ControladorEmpleador controladorEmpleador = new ControladorEmpleador(ventanaEmpleador,empleador);
                 System.out.println("Se abre la ventana de EMPLEADOR");
                 break;
             case "Agencia":

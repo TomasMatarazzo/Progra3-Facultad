@@ -12,9 +12,10 @@ public class ControladorAgencia implements ActionListener, KeyListener {
 
     public ControladorAgencia(VentanaAgencia vista,Agencia modelo) {
         this.vista = vista;
-        this.modelo = modelo;
         vista.setActionListener(this);
         vista.setKeyListener(this);
+        this.modelo = modelo;
+        vista.setObservado(this.modelo);
         vista.getTextoBienvenido().setText("Bienvenido, " + modelo.getNombreUsuario());
     }
 
@@ -70,21 +71,28 @@ public class ControladorAgencia implements ActionListener, KeyListener {
             case "boxDatosCargados":
                 switch (vista.getBoxDatosCargados().getSelectedIndex()) {
                     case 0:
-
+                        vista.limpiaModelo();
                         break;
                     case 1:
-
+                        vista.limpiaModelo();
+                        modelo.muestraEmpleadores();
+                        vista.mostrarDatos();
                         break;
                     case 2:
-
+                        vista.limpiaModelo();
+                        modelo.muestraSolicitudesEmpleadores();
+                        vista.mostrarDatos();
                         break;
                     case 3:
-
+                        vista.limpiaModelo();
+                        modelo.muestraEmpleadosPretensos();
+                        vista.mostrarDatos();
                         break;
                     case 4:
-
+                        vista.limpiaModelo();
+                        modelo.muestraSolicitudEmpleadosPretensos();
+                        vista.mostrarDatos();
                         break;
-
                 }
                 break;
             case "Calcular Comisiones":

@@ -6,12 +6,9 @@ import modelo.tickets.Ticket;
 import modelo.tickets.TicketSimplificado;
 import modelo.tickets.Ticket_de_Busqueda_de_Empleado;
 import modelo.tickets.Ticket_de_Busqueda_de_Empleo;
-import util.Util;
-
 import java.util.ArrayList;
 
-public class Agencia extends Usuario{
-	
+public class Agencia extends Usuario {
     private ArrayList <TicketSimplificado> bolsaDeTrabajo;
 
     public Agencia(String nombreUsuario, String contrasena) {
@@ -28,27 +25,32 @@ public class Agencia extends Usuario{
     }
 
     public void muestraEmpleadores() {
-        System.out.println("Lista de empleadores: ");
-        for (int i = 0;i < Sistema.getInstance().getEmpleadores().size();i++)
-            System.out.println(Sistema.getInstance().getEmpleadores().get(i).toString());
+        for (int i = 0;i < Sistema.getInstance().getEmpleadores().size();i++) {
+            setChanged();
+            notifyObservers(Sistema.getInstance().getEmpleadores().get(i).toString());
+        }
+
     }
 
     public void muestraSolicitudesEmpleadores() {
-        System.out.println("Lista de solicitudes de empleadores: ");
-        for (Ticket_de_Busqueda_de_Empleado i : Sistema.getInstance().getTicketsDeEmpleadores().keySet())
-            System.out.println(i.toString());
+        for (Ticket_de_Busqueda_de_Empleado i : Sistema.getInstance().getTicketsDeEmpleadores().keySet()) {
+            setChanged();
+            notifyObservers(i.toString());
+        }
     }
 
     public void muestraEmpleadosPretensos() {
-        System.out.println("Lista de empleados pretensos: ");
-        for (int i = 0;i < Sistema.getInstance().getEmpleadosPretensos().size();i++)
-            System.out.println(Sistema.getInstance().getEmpleadosPretensos().get(i).toString());
+        for (int i = 0;i < Sistema.getInstance().getEmpleadosPretensos().size();i++) {
+            setChanged();
+            notifyObservers(Sistema.getInstance().getEmpleadores().get(i).toString());
+        }
     }
 
     public void muestraSolicitudEmpleadosPretensos() {
-        System.out.println("Lista de solicitudes de empleadores: ");
-        for (Ticket_de_Busqueda_de_Empleo i : Sistema.getInstance().getTicketsDeEmpleadosPretensos().keySet())
-            System.out.println(i.toString());
+        for (Ticket_de_Busqueda_de_Empleo i : Sistema.getInstance().getTicketsDeEmpleadosPretensos().keySet()) {
+            setChanged();
+            notifyObservers(i.toString());
+        }
     }
 
     public void calculaComisiones() {

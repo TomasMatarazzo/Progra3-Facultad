@@ -65,13 +65,13 @@ public class VentanaEmpleador extends JFrame implements ActionListener {
 
 	// Listeners a los botones.
 
-	public void setControlador(ControladorEmpleados c) {
+	public void setActionListener(ActionListener controlador) {
 		System.out.println("Se ejecuto el comando");
-		this.ticketsButton.addActionListener(c);
-		this.btnProfile.addActionListener(c);
-		this.eleccionesButton.addActionListener(c);
-		this.agregarTicketButton.addActionListener(c);
-		this.eliminarTicketButton.addActionListener(c);
+		this.ticketsButton.addActionListener(controlador);
+		this.btnProfile.addActionListener(controlador);
+		this.eleccionesButton.addActionListener(controlador);
+		this.agregarTicketButton.addActionListener(controlador);
+		this.eliminarTicketButton.addActionListener(controlador);
 	}
 	
 	public void arranca(){

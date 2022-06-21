@@ -9,11 +9,21 @@ import modelo.tickets.Ticket_de_Busqueda_de_Empleo;
 import java.util.ArrayList;
 
 public class Agencia extends Usuario {
+    private double total;
     private ArrayList <TicketSimplificado> bolsaDeTrabajo;
 
     public Agencia(String nombreUsuario, String contrasena) {
         super(nombreUsuario, contrasena);
+        this.total = 0;
         this.bolsaDeTrabajo=new ArrayList<>();
+    }
+
+    public double getTotal() {
+        return total;
+    }
+
+    public void setTotal(double total) {
+        this.total = total;
     }
 
     //FUNCIONALIDADES
@@ -54,23 +64,23 @@ public class Agencia extends Usuario {
     }
 
     public void calculaComisiones() {
-        double total = 0, aux;
+        double aux;
 
         System.out.println("Comision a cobrar a cada Empleador: ");
         for (int i = 0;i < Sistema.getInstance().getContratos().size();i++) {
             aux = Sistema.getInstance().getContratos().get(i).getEmpleador().calculaComision(Sistema.getInstance().getContratos().get(i).getRemuneracion());
-            System.out.println("\tUsuario: " + Sistema.getInstance().getEmpleadores().get(i).getNombreUsuario() + " ~ Comision = $" + aux);
-            total += aux;
+            this.total += aux;
+            setChanged();
+            notifyObservers("Usuario: " + Sistema.getInstance().getEmpleadores().get(i).getNombreUsuario() + " ~ Comision = $" + aux);
         }
 
         System.out.println("Comision a cobrar a cada Empleado pretenso: ");
         for (int i = 0;i < Sistema.getInstance().getEmpleadosPretensos().size();i++) {
             aux = Sistema.getInstance().getContratos().get(i).getEmpleado_pretenso().calculaComision(Sistema.getInstance().getContratos().get(i).getRemuneracion());
-            System.out.println("\tUsuario: " + Sistema.getInstance().getEmpleadosPretensos().get(i).getNombreUsuario() + " ~ Comision = $" + aux);
-            total += aux;
+            this.total += aux;
+            setChanged();
+            notifyObservers("\tUsuario: " + Sistema.getInstance().getEmpleadosPretensos().get(i).getNombreUsuario() + " ~ Comision = $" + aux);
         }
-
-        System.out.println("\nMonto total a cobrar = $" + total);
     }
 
     public void agregarTipoDeTrabajo(String trabajo) {
@@ -90,13 +100,13 @@ public class Agencia extends Usuario {
     }
 
     public void confeccionarTipoDePuesto(String puesto){
-        if (Puntajes.getPuesto1() == "\0")
+        if (Puntajes.getPuesto1().isEmpty())
             Puntajes.setPuesto1(puesto);
         else
-            if (Puntajes.getPuesto2() == "\0")
+            if (Puntajes.getPuesto2().isEmpty())
                 Puntajes.setPuesto2(puesto);
             else
-                if (Puntajes.getPuesto3() == "\0")
+                if (Puntajes.getPuesto3().isEmpty())
                     Puntajes.setPuesto3(puesto);
                 else {
                     Puntajes.setPuesto3(Puntajes.getPuesto2());
@@ -132,7 +142,7 @@ public class Agencia extends Usuario {
     //METODOS SYNCHRONIZED
     public synchronized void SacaBolsa(Ticket t, Empleado_Pretenso u)
     {
-        TicketSimplificado aux=null;
+        TicketSimplificado aux;
         while (((aux = coincidenciaTipoTrabajo(t)) == null))
         {
             try

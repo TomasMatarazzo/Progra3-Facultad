@@ -71,33 +71,35 @@ public class ControladorAgencia implements ActionListener, KeyListener {
             case "boxDatosCargados":
                 switch (vista.getBoxDatosCargados().getSelectedIndex()) {
                     case 0:
-                        vista.limpiaModelo();
+                        vista.limpiaModelo(vista.getModeloDatosAlmacenados());
                         break;
                     case 1:
-                        vista.limpiaModelo();
+                        vista.limpiaModelo(vista.getModeloDatosAlmacenados());
                         modelo.muestraEmpleadores();
-                        vista.mostrarDatos();
+                        vista.mostrarDatos(vista.getListaDatosAlmacenados());
                         break;
                     case 2:
-                        vista.limpiaModelo();
+                        vista.limpiaModelo(vista.getModeloDatosAlmacenados());
                         modelo.muestraSolicitudesEmpleadores();
-                        vista.mostrarDatos();
+                        vista.mostrarDatos(vista.getListaDatosAlmacenados());
                         break;
                     case 3:
-                        vista.limpiaModelo();
+                        vista.limpiaModelo(vista.getModeloDatosAlmacenados());
                         modelo.muestraEmpleadosPretensos();
-                        vista.mostrarDatos();
+                        vista.mostrarDatos(vista.getListaDatosAlmacenados());
                         break;
                     case 4:
-                        vista.limpiaModelo();
+                        vista.limpiaModelo(vista.getModeloDatosAlmacenados());
                         modelo.muestraSolicitudEmpleadosPretensos();
-                        vista.mostrarDatos();
+                        vista.mostrarDatos(vista.getListaDatosAlmacenados());
                         break;
                 }
                 break;
             case "Calcular Comisiones":
+                vista.limpiaModelo(vista.getModeloComisiones());
                 modelo.calculaComisiones();
-
+                vista.mostrarDatos(vista.getListaComisiones());
+                vista.getTextoTotal().setText("Total a cobrar: " + modelo.getTotal());
                 break;
         }
     }

@@ -549,16 +549,30 @@
                   </component>
                 </children>
               </grid>
+              <grid id="afb6f" binding="panelTotal" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
+                <constraints border-constraint="South"/>
+                <properties>
+                  <background color="-16746571"/>
+                  <minimumSize width="600" height="50"/>
+                  <preferredSize width="600" height="50"/>
+                </properties>
+                <border type="none"/>
+                <children>
+                  <component id="a2d7a" class="javax.swing.JLabel" binding="textoTotal">
+                    <constraints/>
+                    <properties>
+                      <focusable value="false"/>
+                      <font name="Segoe UI" size="20"/>
+                      <foreground color="-983056"/>
+                      <text value="Total a cobrar: -"/>
+                    </properties>
+                  </component>
+                </children>
+              </grid>
             </children>
           </grid>
         </children>
       </tabbedpane>
-      <component id="a63ec" class="javax.swing.JList" default-binding="true">
-        <constraints border-constraint="South"/>
-        <properties>
-          <model/>
-        </properties>
-      </component>
     </children>
   </grid>
 </form>

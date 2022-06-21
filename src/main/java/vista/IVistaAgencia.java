@@ -1,14 +1,16 @@
 package vista;
 
+import javax.swing.*;
+
 public interface IVistaAgencia extends IVista{
 
     void cambiarPagina(int pagina);
 
     void agregarDatos(String tipoTrabajo,String rangoLaboral,String tipoPuesto);
 
-    void cargarModelo(String dato);
+    void cargarModelo(DefaultListModel modelo, String dato);
 
-    void limpiaModelo();
+    void limpiaModelo(DefaultListModel modelo);
 
-    void mostrarDatos();
+    void mostrarDatos(JList lista);
 }

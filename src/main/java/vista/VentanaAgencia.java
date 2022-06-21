@@ -42,16 +42,35 @@ public class VentanaAgencia extends JFrame implements IVistaAgencia, Observer {
     private JButton botonAgregarDatos;
     private JTextField textoRangoLaboral;
     private JTextField textoTiposDePuestos;
+    private JPanel panelTotal;
+    private JLabel textoTotal;
     private Usuario observado;
     //MODELOS PARA LISTAS
     DefaultListModel modeloTiposDeTrabajo = new DefaultListModel();
     DefaultListModel modeloRangosLaborales = new DefaultListModel();
     DefaultListModel modeloTiposDePuestos = new DefaultListModel();
     DefaultListModel modeloDatosAlmacenados = new DefaultListModel<>();
-    DefaultListModel modeloEmpleadores = new DefaultListModel<>();
-    DefaultListModel modeloSolicitudesEmpleadores = new DefaultListModel<>();
-    DefaultListModel modeloEmpleadosPretensos = new DefaultListModel<>();
-    DefaultListModel modeloSolicitudEmpleadosPretensos = new DefaultListModel<>();
+    DefaultListModel modeloComisiones = new DefaultListModel<>();
+
+    public JLabel getTextoTotal() {
+        return textoTotal;
+    }
+
+    public JList<String> getListaDatosAlmacenados() {
+        return listaDatosAlmacenados;
+    }
+
+    public JList getListaComisiones() {
+        return listaComisiones;
+    }
+
+    public DefaultListModel getModeloDatosAlmacenados() {
+        return modeloDatosAlmacenados;
+    }
+
+    public DefaultListModel getModeloComisiones() {
+        return modeloComisiones;
+    }
 
     public DefaultListModel getModeloTiposDeTrabajo() {
         return modeloTiposDeTrabajo;
@@ -213,6 +232,7 @@ public class VentanaAgencia extends JFrame implements IVistaAgencia, Observer {
         listaRangoLaboral.setModel(modeloRangosLaborales);
         listaTiposDePuestos.setModel(modeloTiposDePuestos);
         listaDatosAlmacenados.setModel(modeloDatosAlmacenados);
+        listaComisiones.setModel(modeloComisiones);
     }
 
     @Override
@@ -258,18 +278,18 @@ public class VentanaAgencia extends JFrame implements IVistaAgencia, Observer {
     }
 
     @Override
-    public void cargarModelo(String dato) {
+    public void cargarModelo(DefaultListModel modelo, String dato) {
         modeloDatosAlmacenados.add(modeloDatosAlmacenados.size(),dato);
     }
 
     @Override
-    public void limpiaModelo() {
-        modeloDatosAlmacenados.removeAllElements();
+    public void limpiaModelo(DefaultListModel modelo) {
+        modelo.removeAllElements();
     }
 
     @Override
-    public void mostrarDatos() {
-        listaDatosAlmacenados.setModel(modeloDatosAlmacenados);
+    public void mostrarDatos(JList lista) {
+        lista.setModel(modeloDatosAlmacenados);
     }
 
     public void setObservado(Usuario usuario) {
@@ -282,7 +302,12 @@ public class VentanaAgencia extends JFrame implements IVistaAgencia, Observer {
         if (usuario != observado)
             throw new IllegalArgumentException();
         else {
-            cargarModelo((String) texto);
+            if (panelVentanas.getSelectedIndex() == 2) {
+                cargarModelo(modeloDatosAlmacenados, (String) texto);
+            }
+            if (panelVentanas.getSelectedIndex() == 3) {
+                cargarModelo(modeloComisiones, (String) texto);
+            }
         }
     }
 }

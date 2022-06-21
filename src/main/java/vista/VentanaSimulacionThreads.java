@@ -1,6 +1,7 @@
 package vista;
 
 import java.awt.BorderLayout;
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.EventQueue;
@@ -27,9 +28,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 
-import modelo.Sistema;
-import modelo.usuarios.Agencia;
-import modelo.usuarios.Usuario;
+import modelo.bolsatrabajo.*; 
 
 public class VentanaSimulacionThreads extends JFrame implements IVistaSimulacion, Observer{
 	
@@ -43,7 +42,7 @@ public class VentanaSimulacionThreads extends JFrame implements IVistaSimulacion
     private JTextField textField;
     private JScrollPane scrollPane;
 	private JTextArea textArea;
-	private Agencia agencia;
+	private BolsaDeTrabajo bolsa;
 
     
     
@@ -87,8 +86,8 @@ public class VentanaSimulacionThreads extends JFrame implements IVistaSimulacion
 	this.textArea = new JTextArea();
 	this.scrollPane.setViewportView(this.textArea);
 	
-	this.agencia = Sistema.getInstance().getAgencia();
-    this.agencia.addObserver(this);
+	this.bolsa = BolsaDeTrabajo.getInstancia();
+    this.bolsa.addObserver(this);
 
     }
 
@@ -107,7 +106,7 @@ public class VentanaSimulacionThreads extends JFrame implements IVistaSimulacion
 
 	@Override
 	public void update(Observable o, Object arg) {
-		if(o==this.agencia) 
+		if(o==this.bolsa) 
 		{
 		    this.textArea.append(arg+"\n");
 		}

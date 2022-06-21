@@ -3,6 +3,7 @@ package modelo.usuarios.empleadores;
 import modelo.excepciones.DatosMalIngresadosException;
 import modelo.tickets.locaciones.ILocacion;
 import modelo.Sistema;
+import modelo.bolsatrabajo.BolsaDeTrabajo;
 import modelo.tickets.Formulario_de_Busqueda;
 import modelo.tickets.Ticket;
 import modelo.tickets.TicketSimplificado;
@@ -182,8 +183,8 @@ public abstract class Empleador extends UsuarioComun implements Runnable {
         TicketSimplificado ts;
         for (int t =0; t<3; t++) {
             ts = generaTicketRandom();
-            Sistema.getInstance().getAgencia().PoneBolsa(ts, this);
-            Util.espera(2000);
+            BolsaDeTrabajo.getInstancia().PoneBolsa(ts, this);
+            Util.espera();
         }
     }
 }

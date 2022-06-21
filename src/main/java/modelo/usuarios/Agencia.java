@@ -10,12 +10,11 @@ import java.util.ArrayList;
 
 public class Agencia extends Usuario {
     private double total;
-    private ArrayList <TicketSimplificado> bolsaDeTrabajo;
+    
 
     public Agencia(String nombreUsuario, String contrasena) {
         super(nombreUsuario, contrasena);
         this.total = 0;
-        this.bolsaDeTrabajo=new ArrayList<>();
     }
 
     public double getTotal() {
@@ -112,63 +111,5 @@ public class Agencia extends Usuario {
                 }
     }
 
-    public TicketSimplificado coincidenciaTipoTrabajo(Ticket t) {
-        int c = 0;
-        TicketSimplificado aux, retorno = null;
-        if (this.bolsaDeTrabajo.size()!= 0) {
-            aux = this.bolsaDeTrabajo.get(c);
-            c++;
-            while (aux!=null && c<this.bolsaDeTrabajo.size() && retorno== null) {
-                if (aux.getTipoDeTrabajo().equalsIgnoreCase(t.getTipoDeTrabajo()))
-                    retorno = aux;
-                aux = this.bolsaDeTrabajo.get(c);
-                c++;
-
-            }
-        }
-        return retorno;
-    }
-
-    public void agregarABolsaDeTrabajo(TicketSimplificado t){
-        this.bolsaDeTrabajo.add(t);
-    }
-    public void eliminarABolsaDeTrabajo(TicketSimplificado t){
-        this.bolsaDeTrabajo.remove(t);
-    }
-
-    //METODOS SYNCHRONIZED
-    public synchronized void SacaBolsa(Ticket t, Empleado_Pretenso u)
-    {
-        TicketSimplificado aux;
-        while (((aux = coincidenciaTipoTrabajo(t)) == null))
-        {
-            try
-            {
-            	setChanged();
-                notifyObservers(u.getNombreUsuario()+" Esperara por algun trabajo de su Tipo");
-            	//System.out.println("El Empleado Pretenso "+ u.getNombreUsuario() + " Esperara a que haya En la bolsa de Trabajo algún trabajo de Su tipo Buscado");
-                wait();
-            } catch (InterruptedException e)
-            {
-                e.printStackTrace();
-            }
-        }
-        setChanged();
-        if(aux.getFormularioDeBusqueda().puntajeLocacion(t.getFormularioDeBusqueda().getLocacion())==1){
-             u.setTicketSimplificado(aux);
-             notifyObservers(u.getNombreUsuario()+" CONSIGUIO EL TRABAJO!!!");
-             Sistema.getInstance().getAgencia().eliminarABolsaDeTrabajo(aux);
-        }else
-        	notifyObservers(u.getNombreUsuario()+" No consiguio el Trabajo por no coincidir la Locacion ");
-        	
-        notifyAll();
-    }
-
-    public synchronized void PoneBolsa(TicketSimplificado t, UsuarioComun u){
-        this.agregarABolsaDeTrabajo(t);
-        setChanged();
-        notifyObservers(u.getNombreUsuario()+" Puso un trabajo En la bolsa de Trabajo");
-        //System.out.println("El Usuario "+ u.getNombreUsuario() + " Puso un trabajo En la bolsa de Trabajo");
-        notifyAll();
-    }
+    
 }

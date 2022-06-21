@@ -3,6 +3,7 @@ package modelo.usuarios;
 import modelo.excepciones.DatosMalIngresadosException;
 import modelo.excepciones.TicketYaCreadoException;
 import modelo.Sistema;
+import modelo.bolsatrabajo.BolsaDeTrabajo;
 import modelo.tickets.Formulario_de_Busqueda;
 import modelo.tickets.TicketSimplificado;
 import modelo.tickets.Ticket_de_Busqueda_de_Empleado;
@@ -30,6 +31,7 @@ public class Empleado_Pretenso extends UsuarioComun implements Runnable, Seriali
     public Empleado_Pretenso(String nombreUsuario, String contrasena) {
         super(nombreUsuario, contrasena);
         this.ticketDeBusquedaDeEmpleo = null;
+        this.ticketSimplificado = null;
     }
 
     public Empleado_Pretenso(String nombreUsuario, String contrasena, String nombre, String apellido, String telefono, int edad, String eMail) {
@@ -213,10 +215,17 @@ public class Empleado_Pretenso extends UsuarioComun implements Runnable, Seriali
     public void run(){
         int i=0;
         TicketSimplificado aux=null;
-        while (i < 10 && this.ticketSimplificado == null){
-          Sistema.getInstance().getAgencia().SacaBolsa(this.getTicketDeBusquedaDeEmpleo(),this);  
+        while ((i < 10) && (this.ticketSimplificado == null)){	
+          aux = BolsaDeTrabajo.getInstancia().SacaBolsa(this.ticketDeBusquedaDeEmpleo,this);
+          if(aux.getFormularioDeBusqueda().puntajeLocacion(this.ticketDeBusquedaDeEmpleo.getFormularioDeBusqueda().getLocacion())==1) {
+        	  aux.setEstado("Finalizado");
+        	  this.ticketSimplificado =aux;
+          }
+          Util.espera();
+          BolsaDeTrabajo.getInstancia().DevulveABolsa(aux, this);
+          Util.espera();
           i++;
-          Util.espera(1500);
         }
     }
+    
 }

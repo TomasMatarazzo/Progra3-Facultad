@@ -22,16 +22,16 @@ public class SimulacionThreads {
             usuarioFactory.creaUsuario("Guillermo","Guille<3","Agencia");
             
             //--------------------------------------------------------------------------------------
-            usuarioFactory.creaUsuario("Empleado01","111","Empleado Pretenso");
-            usuarioFactory.creaUsuario("Empleado02","222","Empleado Pretenso");
-            usuarioFactory.creaUsuario("Empleado03","333","Empleado Pretenso");
-            usuarioFactory.creaUsuario("Empleado04","444","Empleado Pretenso");
-            usuarioFactory.creaUsuario("Empleado05","555","Empleado Pretenso");
-            usuarioFactory.creaUsuario("EmpleadorJuridico1","666","Persona Juridica");
-            usuarioFactory.creaUsuario("EmpleadorFisico1","777","Persona Fisica");
-            usuarioFactory.creaUsuario("EmpleadorJuridico2","888","Persona Juridica");
-            usuarioFactory.creaUsuario("EmpleadorFisico2","999","Persona Fisica");
-            usuarioFactory.creaUsuario("EmpleadorFisico3","101010","Persona Fisica");
+            usuarioFactory.creaUsuario("Empleado01","111","Empleado");
+            usuarioFactory.creaUsuario("Empleado02","222","Empleado");
+            usuarioFactory.creaUsuario("Empleado03","333","Empleado");
+            usuarioFactory.creaUsuario("Empleado04","444","Empleado");
+            usuarioFactory.creaUsuario("Empleado05","555","Empleado");
+            usuarioFactory.creaUsuario("EMPLEADOR1","666","Persona Juridica");
+            usuarioFactory.creaUsuario("EMPLEADOR2","777","Persona Fisica");
+            usuarioFactory.creaUsuario("EMPLEADOR3","888","Persona Juridica");
+            usuarioFactory.creaUsuario("EMPLEADOR4","999","Persona Fisica");
+            usuarioFactory.creaUsuario("EMPLEADOR5","101010","Persona Fisica");
         } catch (DatosMalIngresadosException e1) {
             System.out.println("El parametro " + e1.getMessage() + " ingresado es incorrecto.");
         } catch (ErrorDeUsuarioException e2) {

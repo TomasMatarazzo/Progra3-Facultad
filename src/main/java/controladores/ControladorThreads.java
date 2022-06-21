@@ -26,15 +26,17 @@ public class ControladorThreads implements ActionListener{
 	    @Override
 	    public void actionPerformed(ActionEvent e)
 	    {
-	    	Thread q,w;
+	    	Thread q;
 	    	String comando = e.getActionCommand();
 	    	if (comando.equalsIgnoreCase("Comenzar"))
 	    	{
-	    		for (int t = 0 ; t<5 ; t++) {
-	    	    	q = new Thread (Sistema.getInstance().getEmpleadosPretensos().get(t));
-	    	    	w = new Thread (Sistema.getInstance().getEmpleadores().get(t));
+	    		for (int t = 0 ; t<Sistema.getInstance().getEmpleadores().size() ; t++) {
+	    	    	q = new Thread (Sistema.getInstance().getEmpleadores().get(t));
 	    	    	q.start();
-	    	    	w.start();	    	
+	     	    }
+	    		for (int t = 0 ; t<Sistema.getInstance().getEmpleadosPretensos().size() ; t++) {
+	    	    	q = new Thread (Sistema.getInstance().getEmpleadosPretensos().get(t));
+	    	    	q.start();
 	     	    }
 	    }
 	   }

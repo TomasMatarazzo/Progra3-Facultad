@@ -64,8 +64,7 @@ public class SimulacionThreads {
 
        // System.out.printf("\n SE ESPECIFICAN TIPOS DE PUESTOS LABOLARES");
 
-        sistema.getAgencia().confeccionarRangoEtario(40,50);
-        sistema.getAgencia().confeccionarTipoDePuesto("JR","SR","MANAGMENT");
+        //CAMBIADO POR LAUTARO
 
         //System.out.println("\nSE CREAN LAS LOCACIONES DE LOS TRABAJOS ");
 

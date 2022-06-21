@@ -26,16 +26,16 @@ public class Puntajes {
     public static final int SENIOR = 1;
     public static final int MANAGMENT = 2;
 
-    private  static String puesto1 = "probando";
-    private  static String puesto2 = "probando";
-    private  static String puesto3 = "probando";
+    private  static String puesto1 = "\0";
+    private  static String puesto2 = "\0";
+    private  static String puesto3 = "\0";
 
 
     public static final int menorEdad1 = 0;
     public static final int menorEdad2 = 1;
     public static final int mayorEdad2 = 2;
-    public static int edad1 ;
-    public static int edad2 = 50 ;
+    public static int edad1 = -1;
+    public static int edad2 = -1 ;
 
     public static final int PRIMARIO = 0;
     public static final int SECUNDARIO = 1;
@@ -65,6 +65,18 @@ public class Puntajes {
 
     public static int getEdad2() {
         return edad2;
+    }
+
+    public static String getPuesto1() {
+        return puesto1;
+    }
+
+    public static String getPuesto2() {
+        return puesto2;
+    }
+
+    public static String getPuesto3() {
+        return puesto3;
     }
 
     public static void setPuesto1(String puesto1) {

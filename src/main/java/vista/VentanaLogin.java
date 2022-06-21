@@ -1,5 +1,6 @@
 package vista;
 
+import controladores.ControladorAgencia;
 import controladores.ControladorEmpleados;
 import controladores.ControladorRegister;
 import modelo.usuarios.Agencia;
@@ -13,17 +14,17 @@ import java.awt.event.KeyListener;
 import java.util.Observable;
 import java.util.Observer;
 
-public class VentanaLogin extends JFrame implements IVista{
+public class VentanaLogin extends JFrame implements IVista,Observer {
     private JPanel panelPrincipal;
     private JPanel panelCentral;
     private JPanel panelInferior;
     private JPanel PanelDatos;
     private JTextField textoNombreUsuario;
-    private JTextField textoContrasena;
     private JButton botonRegistrarse;
     private JButton botonLogin;
     private JPanel panelRegistrarse;
     private JPanel panelLogin;
+    private JPasswordField textoContrasena;
     private Usuario observado;
 
     public JTextField getTextoNombreUsuario() {
@@ -34,11 +35,11 @@ public class VentanaLogin extends JFrame implements IVista{
         this.textoNombreUsuario = textoNombreUsuario;
     }
 
-    public JTextField getTextoContrasena() {
+    public JPasswordField getTextoContrasena() {
         return textoContrasena;
     }
 
-    public void setTextoContrasena(JTextField textoContrasena) {
+    public void setTextoContrasena(JPasswordField textoContrasena) {
         this.textoContrasena = textoContrasena;
     }
 
@@ -111,11 +112,18 @@ public class VentanaLogin extends JFrame implements IVista{
                 break;
             case "Agencia":
                 Agencia agencia = (Agencia) observado;
-
-                System.out.println("Se abre la ventana de AGENCIA ");
+                VentanaAgencia ventanaAgencia = new VentanaAgencia();
+                ControladorAgencia controladorAgencia = new ControladorAgencia(ventanaAgencia,agencia);
+                ventanaAgencia.ejecutar();
                 break;
         }
         this.ocultar();
+    }
+
+    @Override
+    public void lanzarVentanaEmergente(String mensaje) {
+        JFrame jFrame = new JFrame();
+        JOptionPane.showMessageDialog(jFrame, mensaje);
     }
 
     public void setObservado(Usuario usuario) {

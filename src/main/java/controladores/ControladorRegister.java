@@ -4,7 +4,6 @@ import modelo.excepciones.DatosMalIngresadosException;
 import modelo.excepciones.ErrorDeUsuarioException;
 import modelo.usuarios.UsuarioFactoryExtendida;
 import vista.VentanaRegister;
-import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -51,7 +50,15 @@ public class ControladorRegister implements ActionListener, KeyListener {
                         String nombre = vista.getTextoNombre().getText();
                         String apellido = vista.getTextoApellido().getText();
                         String telefono = vista.getTextoTelefono().getText();
-                        int edad = (vista.getTextoEdad().getText().isEmpty())? 0:Integer.parseInt(vista.getTextoEdad().getText());
+                        int edad = 0;
+                        if (!vista.getTextoEdad().getText().isEmpty()) {
+                            try {
+                                edad = Integer.parseInt(vista.getTextoEdad().getText());
+                            } catch (NumberFormatException e1) {
+                                vista.getTextoEdad().setText("");
+                                throw new DatosMalIngresadosException("Ingrese un valor adecuado para la Edad");
+                            }
+                        }
                         String mail = vista.getTextoEMail().getText();
                         
                         modeloFactory.creaUsuario(nombreUsuario,contrasena,tipoUsuario,nombre,apellido,telefono,edad,mail);
@@ -74,10 +81,10 @@ public class ControladorRegister implements ActionListener, KeyListener {
 
                     vista.creaOtraVentana("Login");
                 } catch (DatosMalIngresadosException e1) {
-                    JOptionPane.showMessageDialog(null, "ERROR: " + e1.getMessage());
+                    vista.lanzarVentanaEmergente("ERROR: " + e1.getMessage());
                 } catch (ErrorDeUsuarioException e2) {
-                    JOptionPane.showMessageDialog(null, "ERROR: " + e2.getMessage());
-                    vista.getTextoNombreDeUsuario().setText("\0");
+                    vista.lanzarVentanaEmergente("ERROR: " + e2.getMessage());
+                    vista.getTextoNombreDeUsuario().setText("");
                 }
                 break;
         }

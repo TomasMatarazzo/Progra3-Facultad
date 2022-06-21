@@ -75,19 +75,32 @@ public class Agencia extends Usuario{
         Sistema.getInstance().agregaTiposDeTrabajo(trabajo);
     }
 
-    public void confeccionarRangoEtario(int edad1, int edad2){
-        // hay que ingresar los valores que van a ser usados para el rango de edad
-        // se encuentra definido dentro de las constantes.
-        Puntajes.setEdad2(edad2);
-        Puntajes.setEdad1(edad1);
+    public void confeccionarRangoEtario(int edad){
+        if (Puntajes.getEdad1() == -1)
+            Puntajes.setEdad1(edad);
+        else
+            if (Puntajes.getEdad2() == -1)
+                Puntajes.setEdad2(edad);
+            else if (edad > Puntajes.getEdad1())
+                Puntajes.setEdad2(edad);
+            else
+                Puntajes.setEdad1(edad);
     }
 
-    public void confeccionarTipoDePuesto(String puesto1, String puesto2, String puesto3){
-        // hay que ingresar los valores que van a ser usados para v1 y v2 para el rango de edad
-        // se encuentra definido dentro de las constantes.
-        Puntajes.setPuesto1( puesto1 );
-        Puntajes.setPuesto2( puesto2 );
-        Puntajes.setPuesto3( puesto3 );
+    public void confeccionarTipoDePuesto(String puesto){
+        if (Puntajes.getPuesto1() == "\0")
+            Puntajes.setPuesto1(puesto);
+        else
+            if (Puntajes.getPuesto2() == "\0")
+                Puntajes.setPuesto2(puesto);
+            else
+                if (Puntajes.getPuesto3() == "\0")
+                    Puntajes.setPuesto3(puesto);
+                else {
+                    Puntajes.setPuesto3(Puntajes.getPuesto2());
+                    Puntajes.setPuesto2(Puntajes.getPuesto1());
+                    Puntajes.setPuesto1(puesto);
+                }
     }
 
     public TicketSimplificado coincidenciaTipoTrabajo(Ticket t) {

@@ -163,7 +163,7 @@ public class VentanaEmpleado extends JFrame {
         JOptionPane.showMessageDialog(jFrame, mensaje);
 	}
 
-	public VentanaEmpleado(Empleado_Pretenso modelo) {
+	public VentanaEmpleado() {
 	    ILocacion indistinto = lc.getLocacion("INDISTINTO");
 		formulario = new Formulario_de_Busqueda(indistinto,200000,0,0,1,1,2);
 		ticket = new Ticket_de_Busqueda_de_Empleo(formulario,"Bombero");
@@ -344,7 +344,7 @@ public class VentanaEmpleado extends JFrame {
 		scrollPane = new JScrollPane();
 		scrollPane.setBounds(31, 155, 539, 276);
 		tab2.add(scrollPane);
-		this.renderListaTickets(modelo.getTicketDeBusquedaDeEmpleo());
+		//this.renderListaTickets(modelo.getTicketDeBusquedaDeEmpleo());
 		list_1.setVisibleRowCount(3);
 		scrollPane.setViewportView(list_1);
 		

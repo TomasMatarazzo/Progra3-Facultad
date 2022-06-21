@@ -9,8 +9,6 @@ import modelo.tickets.locaciones.ILocacion;
 import modelo.tickets.Formulario_de_Busqueda;
 import modelo.tickets.locaciones.LocacionFactory;
 import modelo.usuarios.*;
-import vista.VentanaEmpleado;
-import controlador.ControladorEmpleados;
 import modelo.Sistema;
 
 public class Prueba {
@@ -62,11 +60,6 @@ public class Prueba {
         sistema.getAgencia().agregarTipoDeTrabajo("Bombero");
         sistema.getAgencia().agregarTipoDeTrabajo("Piloto");
         sistema.getAgencia().agregarTipoDeTrabajo("Marinero");
-
-        System.out.printf("\n SE ESPECIFICAN TIPOS DE PUESTOS LABOLARES");
-
-        sistema.getAgencia().confeccionarRangoEtario(40,50);
-        sistema.getAgencia().confeccionarTipoDePuesto("JR","SR","MANAGMENT");
 
         System.out.println("\nSE CREAN LAS LOCACIONES DE LOS TRABAJOS ");
 
@@ -123,10 +116,10 @@ public class Prueba {
         sistema.getEmpleadores().get(3).creaTicket(fbe4,"Taxista",peso4);
         sistema.getEmpleadores().get(4).creaTicket(fbe5,"Bombero",peso5);
         
-        VentanaEmpleado vista = new VentanaEmpleado(sistema.getEmpleadosPretensos().get(0));
+/*        VentanaEmpleado vista = new VentanaEmpleado(sistema.getEmpleadosPretensos().get(0));
         System.out.println("nashe" + sistema.getEmpleadosPretensos().get(0).getTicketDeBusquedaDeEmpleo());
         ControladorEmpleados controlador = new ControladorEmpleados(vista, sistema.getEmpleadosPretensos().get(0));
-        vista.arranca();
+        vista.arranca();*/
 
         System.out.println("\nRONDA DE ENCUENTROS LABORALES ");
 

@@ -220,4 +220,10 @@ public class VentanaRegister extends JFrame implements IVistaRegister {
             ventanaLogin.ejecutar();
         }
     }
+
+    @Override
+    public void lanzarVentanaEmergente(String mensaje) {
+        JFrame jFrame = new JFrame();
+        JOptionPane.showMessageDialog(jFrame, mensaje);
+    }
 }

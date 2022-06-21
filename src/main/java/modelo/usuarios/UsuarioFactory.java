@@ -15,15 +15,15 @@ public class UsuarioFactory {
             else
                 throw new DatosMalIngresadosException("Tipo Usuario (ya existe un administrador)");
         else
-        if (tipo.equalsIgnoreCase("Empleado Pretenso"))
-            Sistema.getInstance().registrarUsuario(new Empleado_Pretenso(nombreUsuario, contrasena));
-        else
-        if (tipo.equalsIgnoreCase("Persona Fisica"))
-            Sistema.getInstance().registrarUsuario(new PersonaFisica(nombreUsuario, contrasena));
-        else
-        if (tipo.equalsIgnoreCase("Persona Juridica"))
-            Sistema.getInstance().registrarUsuario(new PersonaJuridica(nombreUsuario, contrasena));
-        else
-            throw new DatosMalIngresadosException("Tipo de Usuario ingresado incorrecto");
+            if (tipo.equalsIgnoreCase("Empleado"))
+                Sistema.getInstance().registrarUsuario(new Empleado_Pretenso(nombreUsuario, contrasena));
+            else
+                if (tipo.equalsIgnoreCase("Persona Fisica"))
+                    Sistema.getInstance().registrarUsuario(new PersonaFisica(nombreUsuario, contrasena));
+                else
+                    if (tipo.equalsIgnoreCase("Persona Juridica"))
+                        Sistema.getInstance().registrarUsuario(new PersonaJuridica(nombreUsuario, contrasena));
+                    else
+                        throw new DatosMalIngresadosException("Tipo de Usuario ingresado incorrecto");
     }
 }

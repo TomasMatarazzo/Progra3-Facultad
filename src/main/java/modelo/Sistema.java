@@ -45,7 +45,6 @@ public class Sistema{
 
     public void setAgencia(Agencia agencia) {
         this.agencia = agencia;
-        //System.out.println("Es un placer [" + agencia.getNombreUsuario() + "], se ha registrado como administrador exitosamente.");
     }
 
     public ArrayList<Empleador> getEmpleadores() {
@@ -138,8 +137,6 @@ public class Sistema{
                 throw new ErrorDeUsuarioException("El nombre de usuario ingresado ya existe.");
         }
         agregaEmpleador(nuevo);
-        //System.out.println("El empleador [" + nuevo.getNombreUsuario() + "] se ha registrado con exito.");
-        //System.out.println("Cantidad de empleadores: " + empleadores.size());
     }
 
     /**
@@ -155,8 +152,6 @@ public class Sistema{
                 throw new ErrorDeUsuarioException("El nombre de usuario ingresado ya existe.");
         }
         agregaEmpleadoPretenso(nuevo);
-        //System.out.println("El empleado pretenso [" + nuevo.getNombreUsuario() + "] se ha registrado con exito.");
-        //System.out.println("Cantidad de empleados: " + empleadosPretensos.size());
     }
 
     /**
@@ -171,9 +166,10 @@ public class Sistema{
     public Usuario login(String nombreUsuario, String contrasena) throws ErrorDeContrasenaException, ErrorDeUsuarioException {
         int i = 0;
 
-        if (nombreUsuario.equalsIgnoreCase("Guille") && contrasena.equalsIgnoreCase("<3")) {
-            return agencia;
-        }
+        if (agencia != null)
+            if (nombreUsuario.equalsIgnoreCase(agencia.getNombreUsuario()) && contrasena.equalsIgnoreCase(agencia.getContrasena()))
+                return agencia;
+
 
         while (i < empleadores.size()) {
             if (empleadores.get(i).getNombreUsuario().equalsIgnoreCase(nombreUsuario))

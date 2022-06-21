@@ -14,4 +14,6 @@ public interface IVista {
     void ocultar();
 
     void creaOtraVentana(String ventana);
+
+    void lanzarVentanaEmergente(String mensaje);
 }

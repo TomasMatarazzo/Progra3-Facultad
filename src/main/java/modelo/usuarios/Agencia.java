@@ -65,15 +65,13 @@ public class Agencia extends Usuario {
     public void calculaComisiones() {
         double aux;
 
-        System.out.println("Comision a cobrar a cada Empleador: ");
         for (int i = 0;i < Sistema.getInstance().getContratos().size();i++) {
             aux = Sistema.getInstance().getContratos().get(i).getEmpleador().calculaComision(Sistema.getInstance().getContratos().get(i).getRemuneracion());
             this.total += aux;
             setChanged();
             notifyObservers("Usuario: " + Sistema.getInstance().getEmpleadores().get(i).getNombreUsuario() + " ~ Comision = $" + aux);
         }
-
-        System.out.println("Comision a cobrar a cada Empleado pretenso: ");
+        
         for (int i = 0;i < Sistema.getInstance().getEmpleadosPretensos().size();i++) {
             aux = Sistema.getInstance().getContratos().get(i).getEmpleado_pretenso().calculaComision(Sistema.getInstance().getContratos().get(i).getRemuneracion());
             this.total += aux;

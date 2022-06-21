@@ -32,7 +32,7 @@ public class VentanaAgencia extends JFrame implements IVistaAgencia, Observer {
     private JPanel panelTiposDePuestos;
     private JPanel panelTextoprincipal;
     private JPanel panelAgregarDatos;
-    private JButton calcularComisionesButton;
+    private JButton botonCalcularComisiones;
     private JList listaComisiones;
     private JPanel panelTextoPrincipal;
     private JPanel panelLista;
@@ -208,6 +208,7 @@ public class VentanaAgencia extends JFrame implements IVistaAgencia, Observer {
         botonRondaDeContrataciones.addActionListener(controlador);
         botonRondaDeEncuentrosLaborales.addActionListener(controlador);
         botonAgregarDatos.addActionListener(controlador);
+        botonCalcularComisiones.addActionListener(controlador);
         boxDatosCargados.addActionListener(controlador);
     }
 

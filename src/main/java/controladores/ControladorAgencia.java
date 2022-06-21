@@ -21,6 +21,7 @@ public class ControladorAgencia implements ActionListener, KeyListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        System.out.println("hola");
         switch (e.getActionCommand()) {
             case "Perfil":
                 vista.cambiarPagina(0);
@@ -96,10 +97,12 @@ public class ControladorAgencia implements ActionListener, KeyListener {
                 }
                 break;
             case "Calcular Comisiones":
+                System.out.println("Entreo");
                 vista.limpiaModelo(vista.getModeloComisiones());
                 modelo.calculaComisiones();
                 vista.mostrarDatos(vista.getListaComisiones(),vista.getModeloComisiones());
                 vista.getTextoTotal().setText("Total a cobrar: " + modelo.getTotal());
+                vista.lanzarVentanaEmergente("Operacion realizada con exito");
                 break;
         }
     }

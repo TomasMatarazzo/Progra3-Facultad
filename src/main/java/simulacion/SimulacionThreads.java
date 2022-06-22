@@ -17,9 +17,6 @@ public class SimulacionThreads {
         UsuarioFactory usuarioFactory = new UsuarioFactory();
 
         try {
-            usuarioFactory.creaUsuario("Guillermo","Guille<3","Agencia");
-            
-            //--------------------------------------------------------------------------------------
             usuarioFactory.creaUsuario("Empleado01","111","Empleado");
             usuarioFactory.creaUsuario("Empleado02","222","Empleado");
             usuarioFactory.creaUsuario("Empleado03","333","Empleado");

@@ -1,15 +1,19 @@
 package controladores;
 
+import modelo.Sistema;
 import modelo.excepciones.DatosMalIngresadosException;
 import modelo.excepciones.ErrorDeUsuarioException;
 import modelo.usuarios.UsuarioFactoryExtendida;
+import persistencia.IPersistencia;
+import persistencia.PersistenciaBIN;
+import persistencia.SistemaDTO;
+import persistencia.Util;
 import vista.VentanaRegister;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 
-public class ControladorRegister implements ActionListener, KeyListener {
+import java.awt.event.*;
+import java.io.IOException;
+
+public class ControladorRegister implements ActionListener, KeyListener, WindowListener {
     private VentanaRegister vista;
     private UsuarioFactoryExtendida modeloFactory;
 
@@ -18,6 +22,7 @@ public class ControladorRegister implements ActionListener, KeyListener {
         this.modeloFactory = modelo;
         this.vista.setActionListener(this);
         this.vista.setKeyListener(this);
+        this.vista.setWindowListener(this);
     }
 
     @Override
@@ -78,7 +83,7 @@ public class ControladorRegister implements ActionListener, KeyListener {
 
                         modeloFactory.creaUsuario(nombreUsuario,contrasena,tipoUsuario,razonSocial,rubro);
                     }
-
+                    vista.lanzarVentanaEmergente("El usuario se ha creado con exito!");
                     vista.creaOtraVentana("Login");
                 } catch (DatosMalIngresadosException e1) {
                     vista.lanzarVentanaEmergente("ERROR: " + e1.getMessage());
@@ -99,7 +104,25 @@ public class ControladorRegister implements ActionListener, KeyListener {
         }
     }
 
+    @Override
+    public void windowClosing(WindowEvent e) {
+        try {
+            IPersistencia bin = new PersistenciaBIN();
+            bin.abrirOutput("Sistema.bin");
+            SistemaDTO sistemaDTO = Util.sistemaDTOFromSistema(Sistema.getInstance());
+            bin.escribir(sistemaDTO);
+            bin.cerrarOutput();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
+
     //METODOS QUE NO SE USAN
+    @Override
+    public void windowClosed(WindowEvent e) {
+
+    }
+
     @Override
     public void keyTyped(KeyEvent e) {
 
@@ -107,6 +130,31 @@ public class ControladorRegister implements ActionListener, KeyListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
+
+    }
+
+    @Override
+    public void windowOpened(WindowEvent e) {
+
+    }
+
+    @Override
+    public void windowIconified(WindowEvent e) {
+
+    }
+
+    @Override
+    public void windowDeiconified(WindowEvent e) {
+
+    }
+
+    @Override
+    public void windowActivated(WindowEvent e) {
+
+    }
+
+    @Override
+    public void windowDeactivated(WindowEvent e) {
 
     }
 }

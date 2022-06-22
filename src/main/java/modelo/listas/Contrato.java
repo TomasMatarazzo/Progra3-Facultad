@@ -1,16 +1,16 @@
 package modelo.listas;
 
-import modelo.usuarios.Empleado_Pretenso;
+import modelo.usuarios.EmpleadoPretenso;
 import modelo.usuarios.empleadores.Empleador;
 
 import java.io.Serializable;
 
 public class Contrato implements Serializable {
     private Empleador empleador;
-    private Empleado_Pretenso empleado_pretenso;
+    private EmpleadoPretenso empleado_pretenso;
     private double remuneracion;
 
-    public Contrato(Empleador empleador, Empleado_Pretenso empleado_pretenso, double remuneracion) {
+    public Contrato(Empleador empleador, EmpleadoPretenso empleado_pretenso, double remuneracion) {
         this.empleador = empleador;
         this.empleado_pretenso = empleado_pretenso;
         this.remuneracion = remuneracion;
@@ -21,7 +21,7 @@ public class Contrato implements Serializable {
         return empleador;
     }
 
-    public Empleado_Pretenso getEmpleado_pretenso() {
+    public EmpleadoPretenso getEmpleado_pretenso() {
         return empleado_pretenso;
     }
 

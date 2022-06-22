@@ -5,6 +5,7 @@ import controladores.ControladorLogin;
 import javax.swing.*;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyListener;
+import java.awt.event.WindowListener;
 
 public class VentanaRegister extends JFrame implements IVistaRegister {
     private JPanel panelPrincipal;
@@ -182,6 +183,11 @@ public class VentanaRegister extends JFrame implements IVistaRegister {
     public void setKeyListener(KeyListener controlador) {
         this.textoNombreDeUsuario.addKeyListener(controlador);
         this.textoContrasena.addKeyListener(controlador);
+    }
+
+    @Override
+    public void setWindowListener(WindowListener controlador) {
+        this.addWindowListener(controlador);
     }
 
     @Override

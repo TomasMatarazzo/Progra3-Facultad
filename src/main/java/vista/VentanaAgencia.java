@@ -5,6 +5,7 @@ import modelo.usuarios.Usuario;
 import javax.swing.*;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyListener;
+import java.awt.event.WindowListener;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -227,6 +228,11 @@ public class VentanaAgencia extends JFrame implements IVistaAgencia, Observer {
         textoTiposDeTrabajo.addKeyListener(controlador);
         textoRangoLaboral.addKeyListener(controlador);
         textoTiposDePuestos.addKeyListener(controlador);
+    }
+
+    @Override
+    public void setWindowListener(WindowListener controlador) {
+        this.addWindowListener(controlador);
     }
 
     @Override

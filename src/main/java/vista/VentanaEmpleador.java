@@ -18,6 +18,7 @@ import javax.swing.JTabbedPane;
 import javax.swing.JLabel;
 import java.awt.Cursor;
 import java.awt.event.KeyListener;
+import java.awt.event.WindowListener;
 import javax.swing.SwingConstants;
 import javax.swing.JSeparator;
 import javax.swing.ImageIcon;
@@ -77,6 +78,11 @@ public class VentanaEmpleador extends JFrame implements ActionListener,IVistaUsu
 	@Override
 	public void setKeyListener(KeyListener controlador) {
 
+	}
+
+	@Override
+	public void setWindowListener(WindowListener controlador) {
+		this.addWindowListener(controlador);
 	}
 
 	@Override

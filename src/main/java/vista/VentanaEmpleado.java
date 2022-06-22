@@ -13,6 +13,7 @@ import java.awt.Color;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyListener;
+import java.awt.event.WindowListener;
 import java.util.ArrayList;
 import java.awt.Font;
 import javax.swing.JTabbedPane;
@@ -92,6 +93,11 @@ public class VentanaEmpleado extends JFrame implements IVistaUsuarioComun {
 	@Override
 	public void setKeyListener(KeyListener controlador) {
 
+	}
+
+	@Override
+	public void setWindowListener(WindowListener controlador) {
+		this.addWindowListener(controlador);
 	}
 
 	@Override

@@ -5,7 +5,6 @@ import modelo.excepciones.EstadoException;
 import modelo.excepciones.TicketYaCreadoException;
 import modelo.Sistema;
 import modelo.tickets.Formulario_de_Busqueda;
-import modelo.tickets.Ticket_de_Busqueda_de_Empleado;
 import modelo.tickets.Ticket_de_Busqueda_de_Empleo;
 import simulacion.BolsaDeTrabajo;
 import simulacion.TicketSimplificado;
@@ -13,7 +12,7 @@ import util.Util;
 
 import java.io.Serializable;
 
-public class Empleado_Pretenso extends UsuarioComun implements Runnable, Serializable {
+public class EmpleadoPretenso extends UsuarioComun implements Runnable, Serializable {
     //Datos personales:
     private String nombre;
     private String apellido;
@@ -26,16 +25,16 @@ public class Empleado_Pretenso extends UsuarioComun implements Runnable, Seriali
 
     //CONSTRUCTORES
 
-    public Empleado_Pretenso() {
+    public EmpleadoPretenso() {
     }
 
-    public Empleado_Pretenso(String nombreUsuario, String contrasena) {
+    public EmpleadoPretenso(String nombreUsuario, String contrasena) {
         super(nombreUsuario, contrasena);
         this.ticketDeBusquedaDeEmpleo = null;
         this.ticketSimplificado = null;
     }
 
-    public Empleado_Pretenso(String nombreUsuario, String contrasena, String nombre, String apellido, String telefono, int edad, String eMail) {
+    public EmpleadoPretenso(String nombreUsuario, String contrasena, String nombre, String apellido, String telefono, int edad, String eMail) {
         super(nombreUsuario, contrasena);
         this.nombre = nombre;
         this.apellido = apellido;
@@ -45,12 +44,8 @@ public class Empleado_Pretenso extends UsuarioComun implements Runnable, Seriali
         this.ticketDeBusquedaDeEmpleo = null;
         this.ticketSimplificado=null;
     }
-    // ALTAS, BAJAS , MODIFICACIONES DEL TICKET
-    
-    
 
     //GETTERS & SETTERS
-    
     public String getNombre() {
         return nombre;
     }
@@ -117,7 +112,6 @@ public class Empleado_Pretenso extends UsuarioComun implements Runnable, Seriali
     //FUNCIONALIDADES
     @Override
     public void loguearse() {
-        System.out.println("El usuario [" + nombreUsuario + "] se ha logueado con exito.");
         setChanged();
         notifyObservers("Empleado Pretenso");
     }

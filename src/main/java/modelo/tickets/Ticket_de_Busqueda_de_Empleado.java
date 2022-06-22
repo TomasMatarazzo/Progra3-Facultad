@@ -7,7 +7,6 @@ public class Ticket_de_Busqueda_de_Empleado extends Ticket implements Serializab
     private Ticket_de_Busqueda_de_Empleo eleccion;
 
     //CONSTRUCTOR
-
     public Ticket_de_Busqueda_de_Empleado() {
     }
 
@@ -37,10 +36,9 @@ public class Ticket_de_Busqueda_de_Empleado extends Ticket implements Serializab
     //TO STRING
     @Override
     public String toString() {
-        return  "   formularioDeBusqueda: \n" + formularioDeBusqueda.toString() +
+        return  "   formularioDeBusqueda: " + formularioDeBusqueda.toString() +
                 "   fechaDeAlta: " + fechaDeAlta.getTime() +
-                "   estado: " + estado+
-                "\n";
+                "   estado: " + estado;
     }
 
     //FUCNIONALIDADES

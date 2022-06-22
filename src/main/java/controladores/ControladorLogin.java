@@ -4,14 +4,16 @@ import modelo.Sistema;
 import modelo.excepciones.ErrorDeContrasenaException;
 import modelo.excepciones.ErrorDeUsuarioException;
 import modelo.usuarios.Usuario;
+import persistencia.IPersistencia;
+import persistencia.PersistenciaBIN;
+import persistencia.SistemaDTO;
+import persistencia.Util;
 import vista.VentanaLogin;
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
+import java.awt.event.*;
+import java.io.IOException;
 
-public class ControladorLogin implements ActionListener, KeyListener {
+public class ControladorLogin implements ActionListener, KeyListener, WindowListener {
     private VentanaLogin vista;
     private Usuario modelo;
 
@@ -19,6 +21,7 @@ public class ControladorLogin implements ActionListener, KeyListener {
         this.vista = vista;
         this.vista.setActionListener(this);
         this.vista.setKeyListener(this);
+        this.vista.setWindowListener(this);
     }
 
     @Override
@@ -58,7 +61,25 @@ public class ControladorLogin implements ActionListener, KeyListener {
         }
     }
 
+    @Override
+    public void windowClosing(WindowEvent e) {
+        try {
+            IPersistencia bin = new PersistenciaBIN();
+            bin.abrirOutput("Sistema.bin");
+            SistemaDTO sistemaDTO = Util.sistemaDTOFromSistema(Sistema.getInstance());
+            bin.escribir(sistemaDTO);
+            bin.cerrarOutput();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
+
     //METODOS QUE NO SE USAN
+    @Override
+    public void windowClosed(WindowEvent e) {
+
+    }
+
     @Override
     public void keyTyped(KeyEvent e) {
 
@@ -66,6 +87,31 @@ public class ControladorLogin implements ActionListener, KeyListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
+
+    }
+
+    @Override
+    public void windowOpened(WindowEvent e) {
+
+    }
+
+    @Override
+    public void windowIconified(WindowEvent e) {
+
+    }
+
+    @Override
+    public void windowDeiconified(WindowEvent e) {
+
+    }
+
+    @Override
+    public void windowActivated(WindowEvent e) {
+
+    }
+
+    @Override
+    public void windowDeactivated(WindowEvent e) {
 
     }
 }

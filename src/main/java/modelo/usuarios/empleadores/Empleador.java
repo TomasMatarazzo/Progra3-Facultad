@@ -14,8 +14,8 @@ import util.Util;
 import java.util.ArrayList;
 
 public abstract class Empleador extends UsuarioComun implements Runnable {
-    private String razonSocial; //Seria el NOMBRE
-    private String rubro; // salud, comercio local o comercio internacional
+    private String razonSocial = " "; //Seria el NOMBRE
+    private String rubro = " "; // salud, comercio local o comercio internacional
     private int[] pesoPuntajes;
     //Tickets
     private ArrayList<Ticket_de_Busqueda_de_Empleado> ticketsDeBusquedaDeEmpleado = new ArrayList<>();
@@ -165,6 +165,7 @@ public abstract class Empleador extends UsuarioComun implements Runnable {
         return ts;
     }
 
+    public abstract String getTipo();
     @Override
     public void run() {
         TicketSimplificado ts;

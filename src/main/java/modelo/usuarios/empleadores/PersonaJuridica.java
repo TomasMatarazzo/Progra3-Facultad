@@ -12,15 +12,6 @@ public class PersonaJuridica extends Empleador {
         super(nombreUsuario, contrasena);
     }
 
-    @Override
-    public double calculaPorcentajeComision() {
-        if (this.getRubro().equalsIgnoreCase("SALUD"))
-            return 0.80;
-        else if (this.getRubro().equalsIgnoreCase("COMERCIO LOCAL"))
-            return  0.90;
-        else //Es rubro COMERCIO INTERNACIONAL
-            return  1.00;
-    }
 
 	@Override
 	public double calculaComision(double remuneracion) {
@@ -33,5 +24,9 @@ public class PersonaJuridica extends Empleador {
             porcentaje -= 0 + (0.01 * this.puntaje);
 
         return remuneracion * porcentaje;
+    }
+    
+    public String getTipo() {
+    	return "Persona Juridica";
     }
 }

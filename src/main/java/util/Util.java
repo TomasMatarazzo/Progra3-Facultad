@@ -23,4 +23,12 @@ public abstract class Util
 	Util.espera(r.nextInt(300));
     }
 
+	public static boolean esNumero(String str) { 
+		  try {  
+		    Double.parseDouble(str);  
+		    return true;
+		  } catch(NumberFormatException e){  
+		    return false;  
+		  }  
+		}
 }

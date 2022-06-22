@@ -21,4 +21,8 @@ public class PersonaJuridica extends Empleador implements Serializable {
         else //Es rubro COMERCIO INTERNACIONAL
             return  1.00;
     }
+    
+    public String getTipo() {
+    	return "Persona Juridica";
+    }
 }

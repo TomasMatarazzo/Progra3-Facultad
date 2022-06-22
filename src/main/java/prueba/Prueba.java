@@ -10,6 +10,8 @@ import modelo.tickets.Formulario_de_Busqueda;
 import modelo.tickets.locaciones.LocacionFactory;
 import modelo.usuarios.*;
 import vista.VentanaEmpleado;
+import vista.VentanaEmpleador;
+import controladores.ControladorEmpleador;
 import controladores.ControladorEmpleados;
 import modelo.Sistema;
 
@@ -118,23 +120,22 @@ public class Prueba {
         System.out.println("\nSE CREAN LOS TICKETS DE BUSQUETA DE EMPLEADO ");
 
         sistema.getEmpleadores().get(0).creaTicket(fbe1,"Bombero",peso1);
-        sistema.getEmpleadores().get(1).creaTicket(fbe2,"Taxista",peso2);
-        sistema.getEmpleadores().get(2).creaTicket(fbe3,"Camarero",peso3);
+        sistema.getEmpleadores().get(0).creaTicket(fbe2,"Taxista",peso2);
+        sistema.getEmpleadores().get(0).creaTicket(fbe3,"Camarero",peso3);
         sistema.getEmpleadores().get(3).creaTicket(fbe4,"Taxista",peso4);
         sistema.getEmpleadores().get(4).creaTicket(fbe5,"Bombero",peso5);
         
-        VentanaEmpleado vista = new VentanaEmpleado(sistema.getEmpleadosPretensos().get(0));
+        VentanaEmpleador vista = new VentanaEmpleador(sistema.getEmpleadores().get(0));
         System.out.println("nashe" + sistema.getEmpleadosPretensos().get(0).getTicketDeBusquedaDeEmpleo());
-        ControladorEmpleados controlador = new ControladorEmpleados(vista, sistema.getEmpleadosPretensos().get(0));
+        ControladorEmpleador controlador = new ControladorEmpleador(vista, sistema.getEmpleadores().get(0));
         vista.arranca();
 
         System.out.println("\nRONDA DE ENCUENTROS LABORALES ");
 
         sistema.rondaEncuentrosLaborales();
 
-        sistema.getEmpleadores().get(0).muestraLista();
 
-        System.out.println("\nRONDA DE ELECCIONES ");
+        System.out.println(sistema.getListas().get(sistema.getEmpleadores().get(0).getTicketsDeBusquedaDeEmpleado().get(0)).getOfertas());
 //
 //
 //        System.out.println("\nELECCIONES DE LOS EMPLEADOS PRETENSOS");

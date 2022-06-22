@@ -71,7 +71,7 @@ public class VentanaEmpleado extends JFrame {
 	private JLabel lblNewLabel;
 	private JLabel nombreCompletooLabel_1;
 	private JList<Ticket_de_Busqueda_de_Empleo> listaElecciones;
-	private DefaultListModel<Ticket_de_Busqueda_de_Empleo> listaTicketsDefault = new DefaultListModel<Ticket_de_Busqueda_de_Empleo>();;
+	private DefaultListModel<Ticket_de_Busqueda_de_Empleo> listaTicketsDefault ;
 	private FormTickets form;
 
 	// Listeners a los botones.
@@ -86,6 +86,10 @@ public class VentanaEmpleado extends JFrame {
 		this.eliminarTicketButton.addActionListener(c);
 		this.seleccionarEmpleadorButton.addActionListener(c);
 		this.form.crearTicketButton.addActionListener(c);
+	}
+	
+	public FormTickets getForm() {
+		return this.form;
 	}
 	
 	public void arranca(){
@@ -115,8 +119,9 @@ public class VentanaEmpleado extends JFrame {
 	}
 	
 	public void renderListaTickets( Ticket_de_Busqueda_de_Empleo ticket) {
+		DefaultListModel<Ticket_de_Busqueda_de_Empleo> listaTicketsDefault = new DefaultListModel<Ticket_de_Busqueda_de_Empleo>();
+		System.out.println("Agregando el nuevo ticket");
 		listaTicketsDefault.addElement(ticket);
-		System.out.println("Se eliminaron todos los tickets");
 		if (list_1.getModel().getSize() != 0)
 			((DefaultListModel) list_1.getModel()).removeAllElements();
 		this.list_1.setModel(listaTicketsDefault);
@@ -127,7 +132,7 @@ public class VentanaEmpleado extends JFrame {
 		if (list == null ) {
 			lblNewLabel = new JLabel("Todavia no se efectuo la ronda de contratos laborales.");
 		}else {
-			lblNewLabel = new JLabel("Ofertas laborales encontradas , seleccione una");
+			lblNewLabel.setText("Ofertas laborales encontradas , seleccione una");
 			DefaultListModel<Ticket_de_Busqueda_de_Empleo> meses2 = new DefaultListModel<Ticket_de_Busqueda_de_Empleo>();
 			meses2.addElement(ticket);
 			this.listaElecciones = new JList<Ticket_de_Busqueda_de_Empleo>();
@@ -137,6 +142,10 @@ public class VentanaEmpleado extends JFrame {
 			listaElecciones.setVisibleRowCount(3);
 			scrollPane_1.setViewportView(listaElecciones);
 		}
+	}
+	
+	public void setCantidadTickets(String cant) {
+		this.cantTicketsLabel.setText(cant);
 	}
 	
 	public void mostrarFormTicket() {
@@ -162,11 +171,13 @@ public class VentanaEmpleado extends JFrame {
 		JFrame jFrame = new JFrame();
         JOptionPane.showMessageDialog(jFrame, mensaje);
 	}
+	public void confirmarSeleccion() {
+		lblNewLabel.setText("Empleado seleccionado , espere los resultados");
+		this.listaElecciones.setVisible(false);
+		this.seleccionarEmpleadorButton.setVisible(false);
+	}
 
 	public VentanaEmpleado(Empleado_Pretenso modelo) {
-	    ILocacion indistinto = lc.getLocacion("INDISTINTO");
-		formulario = new Formulario_de_Busqueda(indistinto,200000,0,0,1,1,2);
-		ticket = new Ticket_de_Busqueda_de_Empleo(formulario,"Bombero");
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 800, 500);

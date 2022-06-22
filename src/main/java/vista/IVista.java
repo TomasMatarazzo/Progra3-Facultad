@@ -8,8 +8,6 @@ public interface IVista {
 
     void setActionListener(ActionListener controlador);
 
-    void setKeyListener(KeyListener controlador);
-
     void setWindowListener(WindowListener controlador);
 
     void ejecutar();

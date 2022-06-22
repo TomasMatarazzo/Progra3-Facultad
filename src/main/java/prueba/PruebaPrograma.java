@@ -22,7 +22,7 @@ public class PruebaPrograma {
         } catch (EstadoException e) {
             e.printStackTrace();
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("no exite archivos previos");
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }

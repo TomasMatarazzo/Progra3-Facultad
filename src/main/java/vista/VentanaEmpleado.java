@@ -91,11 +91,6 @@ public class VentanaEmpleado extends JFrame implements IVistaUsuarioComun {
 	}
 
 	@Override
-	public void setKeyListener(KeyListener controlador) {
-
-	}
-
-	@Override
 	public void setWindowListener(WindowListener controlador) {
 		this.addWindowListener(controlador);
 	}

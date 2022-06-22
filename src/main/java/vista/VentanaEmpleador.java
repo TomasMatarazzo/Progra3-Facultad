@@ -3,7 +3,6 @@ package vista;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-
 import controladores.ControladorLogin;
 import modelo.tickets.Formulario_de_Busqueda;
 import modelo.tickets.Ticket_de_Busqueda_de_Empleo;
@@ -29,7 +28,6 @@ import javax.swing.DefaultListModel;
 import javax.swing.BoxLayout;
 
 public class VentanaEmpleador extends JFrame implements ActionListener,IVistaUsuarioComun {
-
 	private JPanel contentPane;
 	private JButton btnProfile;
 	private JButton ticketsButton;
@@ -73,11 +71,6 @@ public class VentanaEmpleador extends JFrame implements ActionListener,IVistaUsu
 		this.eleccionesButton.addActionListener(controlador);
 		this.agregarTicketButton.addActionListener(controlador);
 		this.eliminarTicketButton.addActionListener(controlador);
-	}
-
-	@Override
-	public void setKeyListener(KeyListener controlador) {
-
 	}
 
 	@Override
@@ -138,7 +131,6 @@ public class VentanaEmpleador extends JFrame implements ActionListener,IVistaUsu
 	}
 	
 	// Ventaja Emergente
-
 
 	public VentanaEmpleador() {
 	    ILocacion indistinto = lc.getLocacion("INDISTINTO");

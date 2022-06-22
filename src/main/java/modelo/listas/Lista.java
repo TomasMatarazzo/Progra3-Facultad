@@ -1,10 +1,12 @@
 package modelo.listas;
 
 import modelo.tickets.Ticket;
+
+import java.io.Serializable;
 import java.util.Calendar;
 import java.util.TreeSet;
 
-public class Lista { //COLECCION
+public class Lista implements Serializable { //COLECCION
     private TreeSet<Ticket> ofertas = new TreeSet<>();
     private Calendar fechaDeCreacion = Calendar.getInstance();
 

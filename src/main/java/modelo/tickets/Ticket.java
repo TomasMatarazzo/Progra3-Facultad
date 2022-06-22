@@ -5,10 +5,12 @@ import modelo.excepciones.EstadoException;
 import modelo.tickets.locaciones.ILocacion;
 import modelo.tickets.Estados.IStateTickets;
 import modelo.constantes.Puntajes;
+
+import java.io.Serializable;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
-public abstract class Ticket implements Comparable, IStateTickets {
+public abstract class Ticket implements Comparable, IStateTickets, Serializable {
     protected transient Formulario_de_Busqueda formularioDeBusqueda;
     protected Calendar fechaDeAlta = Calendar.getInstance();
     protected String estado; // activo-suspendido-cancelado-finalizado

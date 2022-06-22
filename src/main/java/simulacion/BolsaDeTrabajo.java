@@ -73,6 +73,7 @@ public class BolsaDeTrabajo extends Observable{
     		setChanged();
     		notifyObservers(u.getNombreUsuario()+" OBTUVO EL TRABAJO!!!");
     	}else {
+    		t.setEstado("Activo");
     		this.agregarABolsaDeTrabajo(t);
     		setChanged();
     		notifyObservers(u.getNombreUsuario()+" Devolvio el trabajo a la bolsa por no coincidir su Locacion");

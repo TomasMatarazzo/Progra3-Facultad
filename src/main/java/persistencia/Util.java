@@ -79,5 +79,16 @@ public class Util {
                 key.finalizar();
 
         }
+        for(Ticket_de_Busqueda_de_Empleo key: sistema.getTicketsDeEmpleadosPretensos().keySet()) {
+            if(key.getEstado().equals("activado"))
+                key.activar();
+            else if(key.getEstado().equals("cancelado"))
+                key.cancelar();
+            else if(key.getEstado().equals("suspender"))
+                key.suspender();
+            else if(key.getEstado().equals("finalizar"))
+                key.finalizar();
+
+        }
     }
 }

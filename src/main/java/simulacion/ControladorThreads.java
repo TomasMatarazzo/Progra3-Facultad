@@ -3,12 +3,7 @@ package simulacion;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JOptionPane;
-
 import modelo.Sistema;
-import modelo.usuarios.Empleado_Pretenso;
-import modelo.usuarios.Usuario;
-import util.Util;
 
 
 public class ControladorThreads implements ActionListener{

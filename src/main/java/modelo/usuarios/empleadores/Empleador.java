@@ -109,17 +109,7 @@ public abstract class Empleador extends UsuarioComun implements Runnable {
      * @return monto * porcentaje
      */
     @Override
-    public double calculaComision(double remuneracion) {
-        double porcentaje;
-
-        porcentaje = calculaPorcentajeComision();
-
-        //Por cada punto obtenido se le resta un 1% al valor de la comisión
-        if (this.puntaje > 0)
-            porcentaje -= 0 + (0.01 * this.puntaje);
-
-        return remuneracion * porcentaje;
-    }
+    public abstract double calculaComision(double remuneracion);
 
     public void creaTicket(Formulario_de_Busqueda formulario, String tipoTrabajo, int[] pesoAspectos) {
         Ticket_de_Busqueda_de_Empleado nuevo;

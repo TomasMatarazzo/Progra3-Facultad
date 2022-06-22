@@ -51,6 +51,7 @@ public class Util {
 
         empleadosPretensos.addAll(sistemaDTO.getEmpleadosPretensos());
         empleadores.addAll(sistemaDTO.getEmpleadores());
+        
         contratos.addAll(sistemaDTO.getContratos());
         listas.putAll(sistemaDTO.getListas());
         ticketsDeEmpleadores.putAll(sistemaDTO.getTicketsDeEmpleadores());

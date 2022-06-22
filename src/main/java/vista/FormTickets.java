@@ -9,8 +9,6 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JTextPane;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-
 import java.awt.Font;
 import java.awt.Choice;
 import javax.swing.JButton;
@@ -25,25 +23,14 @@ public class FormTickets extends JFrame {
 	private JLabel lblRangoHorario;
 	private JLabel lblExperienciaPrevia;
 	private JLabel lblEstudiosCursados;
-	private Choice estudiosForm;
-	private Choice cargaHorariaaForm;
-	private Choice tipoPueestoLaboral;
-	private Choice edadForm;
+	private Choice choice;
+	private Choice choice_1;
+	private Choice choice_2;
+	private Choice choice_3;
+	private JTextField textField_1;
 	private JLabel lblNewLabel_1;
-	private JTextField formRenumeracion;
+	private JTextField textField_2;
 	public JButton crearTicketButton;
-	public String puesto ;
-	public String renumeracion ;
-	public int cargaHoraria ;
-	public int  estudios ;
-	public int edad ;
-	public int experiencia;
-	public int tipoPuesto;
-	private Choice locacionForm;
-	private Choice lblLocacion;
-	private JLabel lblLocacion_1;
-	public String locacion;
-	private Choice experienciaForm;
 
 	/**
 	 * Launch the application.
@@ -81,70 +68,72 @@ public class FormTickets extends JFrame {
 		
 		lblCargaHoraria = new JLabel("Carga horaria");
 		lblCargaHoraria.setFont(new Font("Segoe UI Light", Font.BOLD, 15));
-		lblCargaHoraria.setBounds(172, 108, 122, 27);
+		lblCargaHoraria.setBounds(27, 108, 122, 27);
 		contentPane.add(lblCargaHoraria);
 		
 		lblTipoPuestoLaboral = new JLabel("Tipo Puesto Laboral");
 		lblTipoPuestoLaboral.setFont(new Font("Segoe UI Light", Font.BOLD, 15));
-		lblTipoPuestoLaboral.setBounds(173, 163, 165, 27);
+		lblTipoPuestoLaboral.setBounds(196, 163, 165, 27);
 		contentPane.add(lblTipoPuestoLaboral);
 		
-		lblRangoHorario = new JLabel("Rango Etario");
+		lblRangoHorario = new JLabel("Rango Horario");
 		lblRangoHorario.setFont(new Font("Segoe UI Light", Font.BOLD, 15));
 		lblRangoHorario.setBounds(27, 163, 165, 27);
 		contentPane.add(lblRangoHorario);
 		
 		lblExperienciaPrevia = new JLabel("Experiencia previa");
 		lblExperienciaPrevia.setFont(new Font("Segoe UI Light", Font.BOLD, 15));
-		lblExperienciaPrevia.setBounds(173, 44, 165, 27);
+		lblExperienciaPrevia.setBounds(196, 44, 165, 27);
 		contentPane.add(lblExperienciaPrevia);
 		
 		lblEstudiosCursados = new JLabel("Estudios cursados");
 		lblEstudiosCursados.setFont(new Font("Segoe UI Light", Font.BOLD, 15));
-		lblEstudiosCursados.setBounds(27, 108, 165, 27);
+		lblEstudiosCursados.setBounds(196, 108, 165, 27);
 		contentPane.add(lblEstudiosCursados);
 		
-		estudiosForm = new Choice();
-		estudiosForm.setForeground(Color.BLACK);
-		estudiosForm.addItem("Primario");
-		estudiosForm.addItem("Secundario");
-		estudiosForm.addItem("Terciario");
-		estudiosForm.setBounds(27, 141, 124, 16);
-		contentPane.add(estudiosForm);
+		choice = new Choice();
+		choice.setForeground(Color.BLACK);
+		choice.addItem("Home Office");
+		choice.addItem("Presencial");
+		choice.addItem("Indistinto");
+		choice.setBounds(27, 141, 124, 16);
+		contentPane.add(choice);
 		
-		cargaHorariaaForm = new Choice();
-		cargaHorariaaForm.setForeground(Color.BLACK);
-		cargaHorariaaForm.setBounds(173, 141, 124, 16);
-		cargaHorariaaForm.addItem("Media");
-		cargaHorariaaForm.addItem("Completa");
-		cargaHorariaaForm.addItem("Extendida");
-		contentPane.add(cargaHorariaaForm);
+		choice_1 = new Choice();
+		choice_1.setBounds(196, 141, 124, 16);
+		choice_1.addItem("Media");
+		choice_1.addItem("Completa");
+		choice_1.addItem("Extendida");
+		contentPane.add(choice_1);
 		
-		tipoPueestoLaboral = new Choice();
-		tipoPueestoLaboral.setForeground(Color.BLACK);
-		tipoPueestoLaboral.setBounds(173, 196, 124, 21);
-		tipoPueestoLaboral.addItem("Jr");
-		tipoPueestoLaboral.addItem("Sr");
-		tipoPueestoLaboral.addItem("Managment");
-		contentPane.add(tipoPueestoLaboral);
+		choice_2 = new Choice();
+		choice_2.setBounds(196, 79, 124, 21);
+		choice_2.addItem("Jr");
+		choice_2.addItem("Sr");
+		choice_2.addItem("Managment");
+		contentPane.add(choice_2);
 		
-		edadForm = new Choice();
-		edadForm.setForeground(Color.BLACK);
-		edadForm.setBounds(27, 196, 124, 26);
-		edadForm.addItem("Menos de 40");
-		edadForm.addItem("Menos de 50");
-		edadForm.addItem("Mayor a 50");
-		contentPane.add(edadForm);
+		choice_3 = new Choice();
+		choice_3.setBounds(27, 196, 124, 26);
+		choice_3.addItem("Menos de 40");
+		choice_3.addItem("Menos de 50");
+		choice_3.addItem("Mayor a 50");
+		contentPane.add(choice_3);
+		
+		textField_1 = new JTextField();
+		textField_1.setColumns(10);
+		textField_1.setBounds(196, 198, 124, 21);
+		contentPane.add(textField_1);
 		
 		lblNewLabel_1 = new JLabel("Formulario de Ticket");
 		lblNewLabel_1.setFont(new Font("Segoe UI Light", Font.PLAIN, 24));
 		lblNewLabel_1.setBounds(75, 8, 223, 28);
 		contentPane.add(lblNewLabel_1);
 		
-		formRenumeracion = new JTextField();
-		formRenumeracion.setColumns(10);
-		formRenumeracion.setBounds(27, 79, 124, 21);
-		contentPane.add(formRenumeracion);
+		textField_2 = new JTextField();
+		textField_2.setColumns(10);
+		textField_2.setBounds(27, 79, 124, 21);
+		contentPane.add(textField_2);
 		
 		crearTicketButton = new JButton("Crear Ticket");
 		crearTicketButton.setActionCommand("CREARTICKET");
@@ -152,42 +141,5 @@ public class FormTickets extends JFrame {
 		crearTicketButton.setBackground(new Color(240, 240, 240));
 		crearTicketButton.setBounds(121, 227, 138, 25);
 		contentPane.add(crearTicketButton);
-		
-		locacionForm = new Choice();
-		locacionForm.setForeground(Color.BLACK);
-		locacionForm.setBounds(302, 141, 124, 16);
-		locacionForm.addItem("HomeOffice");
-		locacionForm.addItem("Presencial");
-		locacionForm.addItem("Indistinto");
-		contentPane.add(locacionForm);
-		
-		
-		lblLocacion_1 = new JLabel("Locacion");
-		lblLocacion_1.setFont(new Font("Segoe UI Light", Font.BOLD, 15));
-		lblLocacion_1.setBounds(302, 108, 165, 27);
-		contentPane.add(lblLocacion_1);
-		
-		experienciaForm = new Choice();
-		experienciaForm.setForeground(Color.BLACK);
-		experienciaForm.setBounds(170, 77, 124, 16);
-		experienciaForm.addItem("Nada");
-		experienciaForm.addItem("Media");
-		experienciaForm.addItem("Mucha");
-		contentPane.add(experienciaForm);
-	}
-	
-	public void obtenerDatos() {
-		 experiencia = this.experienciaForm.getSelectedIndex();
-		 renumeracion = this.formRenumeracion.getText();
-		 estudios =  this.estudiosForm.getSelectedIndex();
-		 cargaHoraria = this.cargaHorariaaForm.getSelectedIndex();
-		 edad = this.edadForm.getSelectedIndex();
-		 tipoPuesto = this.tipoPueestoLaboral.getSelectedIndex();
-		 locacion = this.locacionForm.getItem(this.locacionForm.getSelectedIndex());
-
-	}
-	
-	public void cleanForms() {
-		this.formRenumeracion.setText("");
 	}
 }

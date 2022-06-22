@@ -1,106 +1,26 @@
 package controladores;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 
 import modelo.Sistema;
-import modelo.tickets.Formulario_de_Busqueda;
-import modelo.tickets.locaciones.ILocacion;
-import modelo.tickets.locaciones.LocacionFactory;
-import modelo.usuarios.Empleado_Pretenso;
 import modelo.usuarios.empleadores.Empleador;
-import util.Util;
-import vista.VentanaEmpleado;
+import persistencia.IPersistencia;
+import persistencia.PersistenciaBIN;
+import persistencia.SistemaDTO;
+import persistencia.Util;
 import vista.VentanaEmpleador;
 
-public class ControladorEmpleador implements ActionListener {
+import java.awt.event.*;
+import java.io.IOException;
+
+public class ControladorEmpleador implements ActionListener, WindowListener {
 	private VentanaEmpleador vista;
 	private Empleador modelo;
 
 	public ControladorEmpleador(VentanaEmpleador vista, Empleador modelo) {
-		this.modelo = modelo;
 		this.vista = vista;
-		this.vista.setControlador(this);
-		vista.llenarDatosEmpleador(modelo.getRazonSocial(),modelo.getTipo(),modelo.getRubro(),modelo.getNombreUsuario());
-		vista.renderListaTickets(modelo.getTicketsDeBusquedaDeEmpleado());
+		this.vista.setActionListener(this);
+		this.vista.setWindowListener(this);
+		this.modelo = modelo;
 	}
-	
-
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		if (e.getActionCommand().equals("iniciarTICKETS")) {
-			vista.cambiarPagina(1);
-		}else if (e.getActionCommand().equals("iniciarPERFIL")) {
-			vista.cambiarPagina(0);
-		}else if (e.getActionCommand().equals("iniciarELECCIONES")) {
-			vista.cambiarPagina(2);
-			vista.renderListaElecciones(Sistema.getInstance().getListas().get(modelo.getTicketsDeBusquedaDeEmpleado().get(0)).getOfertas());
-			//vista.renderListaElecciones();
-		}else if (e.getActionCommand().equals("CONTRATOS")){
-			vista.cambiarPagina(3);
-		}else if (e.getActionCommand().equals("CERRARSESION")){
-			vista.lanzarVentanaEmergente("a");
-		}
-		else if (e.getActionCommand().equals("AGREGARTICKET")) {
-			if ( modelo.getTicketsDeBusquedaDeEmpleado() != null || modelo.getTicketsDeBusquedaDeEmpleado().size() != 0) {
-//				Sistema.getInstance().agregaTicketDeEmpleadores(modelo, vista.getTicketSeleccionado());
-//				modelo.setTicketDeBusquedaDeEmpleo(vista.getTicketSeleccionado());
-				vista.mostrarFormTicket();
-			}else {
-				System.out.println("AGREGANDOO " +modelo.getTicketsDeBusquedaDeEmpleado());
-				System.out.println("AGREGANDOO" +modelo.getTicketsDeBusquedaDeEmpleado().size());
-				vista.lanzarVentanaEmergente("Ya creo un ticket.");
-			}
-		}else if (e.getActionCommand().equals("ELIMINARTICKET")) {
-			// VERIFICA QUE SE HAYA SELECCIONADO UN TICKET
-			if (vista.getTicketSeleccionado() != null) {
-				Sistema.getInstance().eliminaTicketDeEmpleadores(modelo,vista.getTicketSeleccionado() );
-//				Sistema.getInstance().eliminaTicketDeEmpleadosPretensos(vista.getTicketSeleccionado());
-				modelo.eliminarTicket(vista.getTicketSeleccionado());
-				vista.lanzarVentanaEmergente("Se elimino el ticket.");
-				System.out.println(modelo.getTicketsDeBusquedaDeEmpleado());
-				vista.renderListaTickets(modelo.getTicketsDeBusquedaDeEmpleado());
-			}
-			else 
-				vista.lanzarVentanaEmergente("Seleccione el ticket a eliminar.");
-			
-		}else if (e.getActionCommand().equals("EMPLEADORELEGIDO")) {
-			if (vista.getTicketEleccionesSeleccionado() != null) {
-				vista.lanzarVentanaEmergente("Se elegio un empleado.");
-				vista.confirmarSeleccion();
-//				Sistema.getInstance().getEmpleadosPretensos().get(0).getTicketDeBusquedaDeEmpleo().setEleccion(sistema.getEmpleadores().get(1).getTicketsDeBusquedaDeEmpleado().get(0));
-			}
-			else
-				vista.lanzarVentanaEmergente("Seleccion un ticket de la ronda de elecciones.");
-		}else if (e.getActionCommand().equals("CREARTICKET")) {
-			vista.getForm().obtenerDatos();
-			if (vista.getForm().renumeracion.equals("") ){
-				JFrame jFrame = new JFrame();
-		        JOptionPane.showMessageDialog(jFrame, "Complete todos los campos");
-			} else if (!Util.esNumero(vista.getForm().renumeracion) ){
-				JFrame jFrame = new JFrame();
-		        JOptionPane.showMessageDialog(jFrame, "Renumeracion tiene que ser un numero");
-			}else {
-				JFrame jFrame = new JFrame();
-		        JOptionPane.showMessageDialog(jFrame, "Se creo el ticket");
-		        vista.ocultarFormTicket();
-		        LocacionFactory locacion = new LocacionFactory();
-		        ILocacion locacionFac = locacion.getLocacion("indistinto");
-		        Formulario_de_Busqueda formulario = new Formulario_de_Busqueda(locacionFac,Integer.parseInt(vista.getForm().renumeracion),vista.getForm().cargaHoraria,vista.getForm().tipoPuesto,vista.getForm().edad,vista.getForm().experiencia,vista.getForm().estudios);
-				try {
-					modelo.creaTicket(formulario, "Bombero", modelo.getPesoPuntajes());
-					System.out.println("se creo un ticket");
-				}
-		        catch(Exception exc) {
-		        	exc.getMessage();
-		        }
-		        vista.renderListaTickets(modelo.getTicketsDeBusquedaDeEmpleado());
-		        vista.getForm().cleanForms();
-		}
-		}
-}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -154,5 +74,3 @@ public class ControladorEmpleador implements ActionListener {
 
 	}
 }
-
-

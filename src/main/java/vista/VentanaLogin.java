@@ -4,11 +4,16 @@ import controladores.ControladorAgencia;
 import controladores.ControladorEmpleador;
 import controladores.ControladorEmpleados;
 import controladores.ControladorRegister;
+import modelo.excepciones.EstadoException;
 import modelo.usuarios.Agencia;
 import modelo.usuarios.Empleado_Pretenso;
 import modelo.usuarios.Usuario;
 import modelo.usuarios.UsuarioFactoryExtendida;
 import modelo.usuarios.empleadores.Empleador;
+import simulacion.ControladorThreads;
+import simulacion.SimulacionThreads;
+import simulacion.VentanaSimulacionThreads;
+
 import javax.swing.*;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyListener;
@@ -26,6 +31,10 @@ public class VentanaLogin extends JFrame implements IVista,Observer {
     private JPanel panelRegistrarse;
     private JPanel panelLogin;
     private JPasswordField textoContrasena;
+    private JLabel labelNombreUsuario;
+    private JLabel labelContrasena;
+    private JLabel labelTitulo;
+    private JButton botonSimulacion;
     private Usuario observado;
 
     public JTextField getTextoNombreUsuario() {
@@ -64,6 +73,7 @@ public class VentanaLogin extends JFrame implements IVista,Observer {
     public void setActionListener(ActionListener controlador) {
         this.botonLogin.addActionListener(controlador);
         this.botonRegistrarse.addActionListener(controlador);
+        this.botonSimulacion.addActionListener(controlador);
     }
 
     @Override
@@ -117,6 +127,13 @@ public class VentanaLogin extends JFrame implements IVista,Observer {
                 VentanaAgencia ventanaAgencia = new VentanaAgencia();
                 ControladorAgencia controladorAgencia = new ControladorAgencia(ventanaAgencia,agencia);
                 ventanaAgencia.ejecutar();
+                break;
+            case "Simulacion":
+                try {
+                    SimulacionThreads.main();
+                } catch (EstadoException e) {
+                    e.printStackTrace();
+                }
                 break;
         }
         this.ocultar();

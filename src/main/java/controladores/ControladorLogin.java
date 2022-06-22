@@ -43,6 +43,9 @@ public class ControladorLogin implements ActionListener, KeyListener {
                     vista.getBotonLogin().setEnabled(false);
                 }
                 break;
+            case "Simulacion":
+                vista.creaOtraVentana("Simulacion");
+                break;
         }
     }
 

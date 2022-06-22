@@ -12,7 +12,7 @@ import modelo.usuarios.UsuarioFactory;
 
 public class SimulacionThreads {
 
-	public static void main(String[] args) throws EstadoException {
+	public static void main() throws EstadoException {
         Sistema sistema = Sistema.getInstance();
         UsuarioFactory usuarioFactory = new UsuarioFactory();
 
@@ -62,11 +62,9 @@ public class SimulacionThreads {
         } catch (TicketYaCreadoException e) {
             System.out.println(e.getMessage());
         }
- 
-        VentanaSimulacionThreads frame = new VentanaSimulacionThreads();
-        
-        ControladorThreads controlThread = new ControladorThreads(frame);
-        
-        frame.setVisible(true);   
+
+        VentanaSimulacionThreads ventanaSimulacionThreads = new VentanaSimulacionThreads();
+        ControladorThreads controladorThreads = new ControladorThreads(ventanaSimulacionThreads);
+        ventanaSimulacionThreads.setVisible(true);
 	}
 }

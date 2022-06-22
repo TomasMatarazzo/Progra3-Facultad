@@ -2,7 +2,6 @@ package vista;
 
 import controladores.ControladorLogin;
 import modelo.usuarios.Usuario;
-
 import javax.swing.*;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyListener;
@@ -46,6 +45,17 @@ public class VentanaAgencia extends JFrame implements IVistaAgencia, Observer {
     private JLabel textoTotal;
     private JPanel panelTituloVerDatos;
     private JPanel PanelDatosAlmacenados;
+    private JLabel labelLinkdn;
+    private JPanel panelPerfil;
+    private JPanel panelIngresarDatos;
+    private JPanel panelVerDatos;
+    private JPanel panelComisiones;
+    private JLabel labelTiposDeTrabajo;
+    private JLabel labelTiposDePuestos;
+    private JLabel labelTitulo1;
+    private JLabel labelRangoLaboral;
+    private JLabel labelTitulo2;
+    private JLabel labelTitulo3;
     private Usuario observado;
     //MODELOS PARA LISTAS
     DefaultListModel modeloTiposDeTrabajo = new DefaultListModel();

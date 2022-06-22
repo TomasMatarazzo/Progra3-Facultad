@@ -20,7 +20,7 @@
         </properties>
         <border type="none"/>
         <children>
-          <component id="f6445" class="javax.swing.JLabel">
+          <component id="f6445" class="javax.swing.JLabel" binding="labelLinkdn">
             <constraints>
               <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
@@ -133,7 +133,7 @@
           <font/>
         </border>
         <children>
-          <grid id="1b671" layout-manager="BorderLayout" hgap="0" vgap="0">
+          <grid id="1b671" binding="panelPerfil" layout-manager="BorderLayout" hgap="0" vgap="0">
             <constraints>
               <tabbedpane title="Perfil">
                 <tooltip value=""/>
@@ -223,7 +223,7 @@
               </grid>
             </children>
           </grid>
-          <grid id="394b2" layout-manager="BorderLayout" hgap="0" vgap="0">
+          <grid id="394b2" binding="panelIngresarDatos" layout-manager="BorderLayout" hgap="0" vgap="0">
             <constraints>
               <tabbedpane title="Ingresar datos"/>
             </constraints>
@@ -245,7 +245,7 @@
                   <size top="10" left="10" bottom="10" right="10"/>
                 </border>
                 <children>
-                  <component id="4c298" class="javax.swing.JLabel">
+                  <component id="4c298" class="javax.swing.JLabel" binding="labelTiposDeTrabajo">
                     <constraints>
                       <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                     </constraints>
@@ -288,7 +288,7 @@
                   <size top="10" left="10" bottom="10" right="10"/>
                 </border>
                 <children>
-                  <component id="b5a4e" class="javax.swing.JLabel">
+                  <component id="b5a4e" class="javax.swing.JLabel" binding="labelTiposDePuestos">
                     <constraints>
                       <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                     </constraints>
@@ -331,7 +331,7 @@
                   <size top="5" left="5" bottom="5" right="5"/>
                 </border>
                 <children>
-                  <component id="b02f1" class="javax.swing.JLabel">
+                  <component id="b02f1" class="javax.swing.JLabel" binding="labelTitulo1">
                     <constraints>
                       <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                     </constraints>
@@ -378,7 +378,7 @@
                   <size top="10" left="10" bottom="10" right="10"/>
                 </border>
                 <children>
-                  <component id="d6d6b" class="javax.swing.JLabel">
+                  <component id="d6d6b" class="javax.swing.JLabel" binding="labelRangoLaboral">
                     <constraints>
                       <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                     </constraints>
@@ -411,7 +411,7 @@
               </grid>
             </children>
           </grid>
-          <grid id="d1727" layout-manager="BorderLayout" hgap="0" vgap="0">
+          <grid id="d1727" binding="panelVerDatos" layout-manager="BorderLayout" hgap="0" vgap="0">
             <constraints>
               <tabbedpane title="Ver datos"/>
             </constraints>
@@ -433,7 +433,7 @@
                 </properties>
                 <border type="none"/>
                 <children>
-                  <component id="9ce4a" class="javax.swing.JLabel">
+                  <component id="9ce4a" class="javax.swing.JLabel" binding="labelTitulo2">
                     <constraints border-constraint="Center"/>
                     <properties>
                       <font name="Segoe UI" size="20" style="1"/>
@@ -496,7 +496,7 @@
               </grid>
             </children>
           </grid>
-          <grid id="21124" layout-manager="BorderLayout" hgap="0" vgap="0">
+          <grid id="21124" binding="panelComisiones" layout-manager="BorderLayout" hgap="0" vgap="0">
             <constraints>
               <tabbedpane title="Comisiones"/>
             </constraints>
@@ -518,7 +518,7 @@
                   <size top="5" left="5" bottom="5" right="5"/>
                 </border>
                 <children>
-                  <component id="74a08" class="javax.swing.JLabel">
+                  <component id="74a08" class="javax.swing.JLabel" binding="labelTitulo3">
                     <constraints>
                       <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                     </constraints>

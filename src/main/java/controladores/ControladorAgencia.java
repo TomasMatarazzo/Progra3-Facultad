@@ -1,6 +1,7 @@
 package controladores;
 
 import modelo.Sistema;
+import modelo.excepciones.EstadoException;
 import modelo.usuarios.Agencia;
 import vista.VentanaAgencia;
 import javax.swing.*;
@@ -46,7 +47,12 @@ public class ControladorAgencia implements ActionListener, KeyListener {
                 JOptionPane.showMessageDialog(null, "Se ha efectuado la ronda de Encuentros Laborales con exito!");
                 break;
             case "Ronda de Contrataciones":
-                Sistema.getInstance().rondaContrataciones();
+			try {
+				Sistema.getInstance().rondaContrataciones();
+			} catch (EstadoException e2) {
+				// TODO Auto-generated catch block
+				e2.printStackTrace();
+			}
                 JOptionPane.showMessageDialog(null, "Se ha efectuado la ronda de Contrataciones con exito!");
                 break;
             case "Agregar Datos":

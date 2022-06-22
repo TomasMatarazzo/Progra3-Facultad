@@ -1,7 +1,8 @@
-package modelo.tickets;
+package simulacion;
 
 import modelo.Sistema;
-import modelo.bolsatrabajo.BolsaDeTrabajo;
+import modelo.tickets.Formulario_de_Busqueda;
+import modelo.tickets.Ticket;
 import modelo.usuarios.Agencia;
 import modelo.usuarios.empleadores.Empleador;
 

@@ -34,6 +34,11 @@ public class VentanaRegister extends JFrame implements IVistaRegister {
     private JRadioButton juridicaRadioButton;
     private JPanel panelRubros;
     private JPanel panelPersonas;
+    private JPanel panelRazonSocial;
+    private JLabel labelTipoDePersona;
+    private JLabel labelRubro;
+    private JLabel labelRazonSocial;
+    private JLabel labelCamposOpcionales;
 
     public JRadioButton getSaludRadioButton() {
         return saludRadioButton;

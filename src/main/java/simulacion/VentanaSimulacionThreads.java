@@ -1,4 +1,4 @@
-package vista;
+package simulacion;
 
 import java.awt.BorderLayout;
 
@@ -26,9 +26,7 @@ import javax.swing.border.BevelBorder;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.EtchedBorder;
-import javax.swing.border.TitledBorder;
-
-import modelo.bolsatrabajo.*; 
+import javax.swing.border.TitledBorder; 
 
 public class VentanaSimulacionThreads extends JFrame implements IVistaSimulacion, Observer{
 	
@@ -38,7 +36,6 @@ public class VentanaSimulacionThreads extends JFrame implements IVistaSimulacion
     private JPanel panel_Arriba;
     private JPanel panel_Centro;
     private JPanel panel;
-    private PanelThread panelthread;
     private JTextField textField;
     private JScrollPane scrollPane;
 	private JTextArea textArea;

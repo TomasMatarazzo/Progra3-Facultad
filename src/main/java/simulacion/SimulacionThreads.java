@@ -1,20 +1,18 @@
-package prueba;
+package simulacion;
 
 import modelo.excepciones.DatosMalIngresadosException;
 import modelo.excepciones.ErrorDeUsuarioException;
 import modelo.excepciones.EstadoException;
 import modelo.excepciones.TicketYaCreadoException;
 import modelo.tickets.locaciones.ILocacion;
-import controladores.ControladorThreads;
 import modelo.Sistema;
 import modelo.tickets.Formulario_de_Busqueda;
 import modelo.tickets.locaciones.LocacionFactory;
 import modelo.usuarios.UsuarioFactory;
-import vista.VentanaSimulacionThreads;
 
 public class SimulacionThreads {
 
-	public static void main(String[] args) throws EstadoException {
+	public static void main() throws EstadoException {
         Sistema sistema = Sistema.getInstance();
         UsuarioFactory usuarioFactory = new UsuarioFactory();
 
@@ -64,11 +62,9 @@ public class SimulacionThreads {
         } catch (TicketYaCreadoException e) {
             System.out.println(e.getMessage());
         }
- 
-        VentanaSimulacionThreads frame = new VentanaSimulacionThreads();
-        
-        ControladorThreads controlThread = new ControladorThreads(frame);
-        
-        frame.setVisible(true);   
+
+        VentanaSimulacionThreads ventanaSimulacionThreads = new VentanaSimulacionThreads();
+        ControladorThreads controladorThreads = new ControladorThreads(ventanaSimulacionThreads);
+        ventanaSimulacionThreads.setVisible(true);
 	}
 }

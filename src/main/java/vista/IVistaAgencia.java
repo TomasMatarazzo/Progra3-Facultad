@@ -1,8 +1,11 @@
 package vista;
 
 import javax.swing.*;
+import java.awt.event.KeyListener;
 
 public interface IVistaAgencia extends IVista{
+
+    void setKeyListener(KeyListener controlador);
 
     void cambiarPagina(int pagina);
 

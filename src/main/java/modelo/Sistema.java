@@ -2,6 +2,7 @@ package modelo;
 
 import modelo.excepciones.ErrorDeContrasenaException;
 import modelo.excepciones.ErrorDeUsuarioException;
+import modelo.excepciones.EstadoException;
 import modelo.listas.Contrato;
 import modelo.tickets.Ticket;
 import modelo.tickets.Ticket_de_Busqueda_de_Empleado;
@@ -255,8 +256,9 @@ public class Sistema{
      * Lista de Tickets de Empleados Pretensos y de Empleadores inicializada (!=null).<br>
      * <b>post:</b> Se ha verificado la existencia de coincidencias de elecciones entre Empleados
      * Pretensos y Empleadores <br>
+     * @throws EstadoException 
      */
-    public void rondaContrataciones() {
+    public void rondaContrataciones() throws EstadoException {
         HashMap <Empleador,Boolean> elegidos = empleadosElegidos();
         for (Ticket_de_Busqueda_de_Empleo clave:Sistema.getInstance().ticketsDeEmpleadosPretensos.keySet()) {
             if ((clave.getEstado().equalsIgnoreCase("Activo")) && (clave.getEleccion()!=null  && clave.getEleccion().getEstado().equalsIgnoreCase("Activo"))) {
@@ -265,7 +267,9 @@ public class Sistema{
                     Contrato contrato = new Contrato(this.ticketsDeEmpleadores.get(clave.getEleccion()),this.ticketsDeEmpleadosPretensos.get(clave),clave.getEleccion().getRemuneracion());
                     this.contratos.add(contrato);
                     clave.setEstado("Finalizado");
+                    clave.finalizar();
                     clave.getEleccion().setEstado("Finalizado");
+                    clave.getEleccion().finalizar();
                     this.ticketsDeEmpleadores.get(clave.getEleccion()).setPuntaje(this.ticketsDeEmpleadores.get(clave.getEleccion()).getPuntaje()+50);
                     this.ticketsDeEmpleadosPretensos.get(clave).setPuntaje(this.ticketsDeEmpleadosPretensos.get(clave).getPuntaje()+10);
                 }

@@ -1,6 +1,7 @@
 package modelo.usuarios.empleadores;
 
 import modelo.excepciones.DatosMalIngresadosException;
+import modelo.excepciones.EstadoException;
 import modelo.tickets.locaciones.ILocacion;
 import modelo.Sistema;
 import modelo.tickets.Formulario_de_Busqueda;
@@ -130,30 +131,28 @@ public abstract class Empleador extends UsuarioComun implements Runnable {
         Sistema.getInstance().agregaTicketDeEmpleadores(this,nuevo);
     }
 
-    public void gestionaTicket(Ticket_de_Busqueda_de_Empleado ticket,String estado) {
-        try {
-            if (!estado.equalsIgnoreCase("FINALIZADO")) {
-                if (estado.equalsIgnoreCase("ACTIVO"))
-                    if (ticket.getEstado().equalsIgnoreCase("SUSPENDIDO"))
-                        ticket.setEstado(estado);
-                    else
-                        throw new DatosMalIngresadosException("No es posible activar un ticket de estado: " + ticket.getEstado());
-                else
-                if (estado.equalsIgnoreCase("SUSPENDIDO"))
-                    if (ticket.getEstado().equalsIgnoreCase("ACTIVO"))
-                        ticket.setEstado(estado);
-                    else
-                        throw new DatosMalIngresadosException("No es posible suspender un ticket de estado: " + ticket.getEstado());
-                else
-                if (estado.equalsIgnoreCase("CANCELADO")) {
-                    this.puntaje--;
-                    ticket.setEstado(estado);
-                }
-            } else
-                throw new DatosMalIngresadosException("No tiene los permisos para realizar esta accion.");
-        } catch (DatosMalIngresadosException e) {
-            System.out.println(e.getMessage());
-        }
+    public void gestionaTicket(Ticket_de_Busqueda_de_Empleado ticket,String estado) throws EstadoException {
+    	String mayu = estado;
+    	mayu.toUpperCase();
+    	switch (estado) {
+    	case "ACTIVO" : 
+    		ticket.activar();
+    		ticket.setEstado(mayu);
+    		break;
+    	case "SUSPENDIDO" : 
+    		ticket.suspender();
+    		ticket.setEstado(mayu);
+    		break;
+    	case "CANCELADO" : 
+    		ticket.cancelar();
+    		ticket.setEstado(mayu);
+    		this.puntaje--;
+    		break;
+    	case "FINALIZADO" : 
+    		ticket.finalizar();
+    		ticket.setEstado(mayu);
+    		break;
+    	}
     }
 
     public void muestraLista() {

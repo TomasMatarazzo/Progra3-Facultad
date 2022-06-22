@@ -18,7 +18,8 @@
         <constraints border-constraint="North"/>
         <properties>
           <background color="-16746571"/>
-          <preferredSize width="100" height="60"/>
+          <minimumSize width="500" height="60"/>
+          <preferredSize width="500" height="60"/>
         </properties>
         <border type="empty">
           <size top="10" left="10" bottom="10" right="10"/>
@@ -66,8 +67,9 @@
         <constraints border-constraint="Center"/>
         <properties>
           <background color="-16746571"/>
+          <minimumSize width="500" height="300"/>
           <opaque value="false"/>
-          <preferredSize width="450" height="300"/>
+          <preferredSize width="500" height="300"/>
         </properties>
         <border type="empty">
           <size top="10" left="10" bottom="10" right="10"/>
@@ -78,7 +80,8 @@
             <constraints border-constraint="North"/>
             <properties>
               <background color="-16746571"/>
-              <preferredSize width="450" height="50"/>
+              <minimumSize width="500" height="50"/>
+              <preferredSize width="500" height="50"/>
             </properties>
             <border type="none"/>
             <children>
@@ -128,7 +131,8 @@
             <constraints border-constraint="Center"/>
             <properties>
               <background color="-16746571"/>
-              <preferredSize width="450" height="100"/>
+              <minimumSize width="500" height="100"/>
+              <preferredSize width="500" height="100"/>
             </properties>
             <border type="none"/>
             <children>
@@ -144,11 +148,11 @@
                 <children>
                   <grid id="cfd01" binding="panelDatosEmpleado" layout-manager="GridLayoutManager" row-count="6" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
                     <margin top="0" left="0" bottom="0" right="0"/>
-                    <constraints border-constraint="East"/>
+                    <constraints border-constraint="West"/>
                     <properties>
                       <background color="-16746571"/>
-                      <minimumSize width="440" height="200"/>
-                      <preferredSize width="440" height="200"/>
+                      <minimumSize width="450" height="200"/>
+                      <preferredSize width="450" height="200"/>
                       <requestFocusEnabled value="false"/>
                       <visible value="true"/>
                     </properties>
@@ -174,14 +178,6 @@
                         </constraints>
                         <properties/>
                       </component>
-                      <component id="a514d" class="javax.swing.JTextField" binding="textoApellido">
-                        <constraints>
-                          <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
-                            <preferred-size width="150" height="-1"/>
-                          </grid>
-                        </constraints>
-                        <properties/>
-                      </component>
                       <component id="c5df3" class="javax.swing.JLabel">
                         <constraints>
                           <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
@@ -191,6 +187,14 @@
                           <foreground color="-983056"/>
                           <text value="Apellido*"/>
                         </properties>
+                      </component>
+                      <component id="a514d" class="javax.swing.JTextField" binding="textoApellido">
+                        <constraints>
+                          <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                            <preferred-size width="150" height="-1"/>
+                          </grid>
+                        </constraints>
+                        <properties/>
                       </component>
                       <component id="1656e" class="javax.swing.JLabel">
                         <constraints>
@@ -248,11 +252,12 @@
                       </component>
                     </children>
                   </grid>
-                  <grid id="eef7a" binding="panelDatosEmpleador" layout-manager="GridLayoutManager" row-count="4" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                  <grid id="eef7a" binding="panelDatosEmpleador" layout-manager="GridLayoutManager" row-count="3" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
                     <margin top="0" left="0" bottom="0" right="0"/>
-                    <constraints border-constraint="West"/>
+                    <constraints border-constraint="East"/>
                     <properties>
                       <background color="-16746571"/>
+                      <minimumSize width="450" height="200"/>
                       <preferredSize width="450" height="200"/>
                       <visible value="false"/>
                     </properties>
@@ -260,16 +265,59 @@
                       <size top="10" left="10" bottom="10" right="10"/>
                     </border>
                     <children>
-                      <component id="9fef2" class="javax.swing.JLabel">
+                      <grid id="53a67" binding="panelPersonas" layout-manager="GridLayoutManager" row-count="2" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                        <margin top="0" left="0" bottom="0" right="0"/>
                         <constraints>
-                          <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
+                            <preferred-size width="129" height="23"/>
+                          </grid>
                         </constraints>
                         <properties>
-                          <font name="Segoe UI Semibold" size="15"/>
-                          <foreground color="-983056"/>
-                          <text value="Nombre o Razon Social*"/>
+                          <background color="-16746571"/>
                         </properties>
-                      </component>
+                        <border type="empty">
+                          <size top="5" left="5" bottom="5" right="5"/>
+                        </border>
+                        <children>
+                          <component id="cfec5" class="javax.swing.JLabel" binding="labelTipoDePersona">
+                            <constraints>
+                              <grid row="0" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                            </constraints>
+                            <properties>
+                              <font name="Segoe UI Semibold" size="15"/>
+                              <foreground color="-983056"/>
+                              <text value="Tipo de Persona"/>
+                            </properties>
+                          </component>
+                          <component id="11431" class="javax.swing.JRadioButton" binding="fisicaRadioButton" default-binding="true">
+                            <constraints>
+                              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
+                            </constraints>
+                            <properties>
+                              <actionCommand value="Persona Fisica"/>
+                              <background color="-16746571"/>
+                              <focusable value="false"/>
+                              <font name="Segoe UI Semibold" size="13"/>
+                              <foreground color="-983056"/>
+                              <selected value="false"/>
+                              <text value="Fisica"/>
+                            </properties>
+                          </component>
+                          <component id="a824a" class="javax.swing.JRadioButton" binding="juridicaRadioButton" default-binding="true">
+                            <constraints>
+                              <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                            </constraints>
+                            <properties>
+                              <actionCommand value="Persona Juridica"/>
+                              <background color="-16746571"/>
+                              <focusable value="false"/>
+                              <font name="Segoe UI Semibold" size="13"/>
+                              <foreground color="-983056"/>
+                              <text value="Juridica"/>
+                            </properties>
+                          </component>
+                        </children>
+                      </grid>
                       <grid id="977d" binding="panelRubros" layout-manager="GridLayoutManager" row-count="4" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
                         <margin top="0" left="0" bottom="0" right="0"/>
                         <constraints>
@@ -316,7 +364,7 @@
                               <text value="Comercio internacional"/>
                             </properties>
                           </component>
-                          <component id="95997" class="javax.swing.JLabel">
+                          <component id="95997" class="javax.swing.JLabel" binding="labelRubro">
                             <constraints>
                               <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                             </constraints>
@@ -328,65 +376,34 @@
                           </component>
                         </children>
                       </grid>
-                      <component id="25272" class="javax.swing.JTextField" binding="textoRazonSocial">
-                        <constraints>
-                          <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
-                            <preferred-size width="150" height="-1"/>
-                          </grid>
-                        </constraints>
-                        <properties>
-                          <name value=""/>
-                        </properties>
-                      </component>
-                      <grid id="53a67" binding="panelPersonas" layout-manager="GridLayoutManager" row-count="2" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                      <grid id="18858" binding="panelRazonSocial" layout-manager="GridLayoutManager" row-count="2" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
                         <margin top="0" left="0" bottom="0" right="0"/>
                         <constraints>
-                          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
-                            <preferred-size width="129" height="23"/>
-                          </grid>
+                          <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
                         </constraints>
                         <properties>
                           <background color="-16746571"/>
                         </properties>
-                        <border type="empty">
-                          <size top="5" left="5" bottom="5" right="5"/>
-                        </border>
+                        <border type="none"/>
                         <children>
-                          <component id="cfec5" class="javax.swing.JLabel">
+                          <component id="9fef2" class="javax.swing.JLabel" binding="labelRazonSocial">
                             <constraints>
-                              <grid row="0" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                             </constraints>
                             <properties>
                               <font name="Segoe UI Semibold" size="15"/>
                               <foreground color="-983056"/>
-                              <text value="Tipo de Persona"/>
+                              <text value="Nombre o Razon Social*"/>
                             </properties>
                           </component>
-                          <component id="11431" class="javax.swing.JRadioButton" binding="fisicaRadioButton" default-binding="true">
+                          <component id="25272" class="javax.swing.JTextField" binding="textoRazonSocial">
                             <constraints>
-                              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
+                              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                                <preferred-size width="150" height="-1"/>
+                              </grid>
                             </constraints>
                             <properties>
-                              <actionCommand value="Persona Fisica"/>
-                              <background color="-16746571"/>
-                              <focusable value="false"/>
-                              <font name="Segoe UI Semibold" size="13"/>
-                              <foreground color="-983056"/>
-                              <selected value="false"/>
-                              <text value="Fisica"/>
-                            </properties>
-                          </component>
-                          <component id="a824a" class="javax.swing.JRadioButton" binding="juridicaRadioButton" default-binding="true">
-                            <constraints>
-                              <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-                            </constraints>
-                            <properties>
-                              <actionCommand value="Persona Juridica"/>
-                              <background color="-16746571"/>
-                              <focusable value="false"/>
-                              <font name="Segoe UI Semibold" size="13"/>
-                              <foreground color="-983056"/>
-                              <text value="Juridica"/>
+                              <name value=""/>
                             </properties>
                           </component>
                         </children>
@@ -410,7 +427,7 @@
           <font/>
         </border>
         <children>
-          <component id="f9547" class="javax.swing.JLabel">
+          <component id="f9547" class="javax.swing.JLabel" binding="labelCamposOpcionales">
             <constraints border-constraint="North"/>
             <properties>
               <font name="Segoe UI Semibold" size="12"/>

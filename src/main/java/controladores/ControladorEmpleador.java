@@ -5,21 +5,17 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.io.IOException;
-
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-
 import modelo.Sistema;
 import modelo.tickets.Formulario_de_Busqueda;
 import modelo.tickets.locaciones.ILocacion;
 import modelo.tickets.locaciones.LocacionFactory;
-import modelo.usuarios.EmpleadoPretenso;
 import modelo.usuarios.empleadores.Empleador;
 import persistencia.IPersistencia;
 import persistencia.PersistenciaBIN;
 import persistencia.SistemaDTO;
 import util.Util;
-import vista.VentanaEmpleado;
 import vista.VentanaEmpleador;
 
 public class ControladorEmpleador implements ActionListener, WindowListener{
@@ -33,7 +29,6 @@ public class ControladorEmpleador implements ActionListener, WindowListener{
 		vista.llenarDatosEmpleador(modelo.getRazonSocial(),modelo.getNombre(),modelo.getRubro(),modelo.getNombreUsuario());
 		vista.renderListaTickets(modelo.getTicketsDeBusquedaDeEmpleado());
 	}
-	
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -105,11 +100,9 @@ public class ControladorEmpleador implements ActionListener, WindowListener{
 		        }
 		        vista.renderListaTickets(modelo.getTicketsDeBusquedaDeEmpleado());
 		        vista.getForm().cleanForms();
+			}
 		}
-		}
-}
-
-
+	}
 
 	@Override
 	public void windowClosing(WindowEvent e) {
@@ -125,14 +118,10 @@ public class ControladorEmpleador implements ActionListener, WindowListener{
 	}
 
 	//METODOS QUE NO SE USAN
-
-
 	@Override
 	public void windowOpened(WindowEvent e) {
 		// TODO Auto-generated method stub
-		
 	}
-
 
 	@Override
 	public void windowClosed(WindowEvent e) {
@@ -140,31 +129,25 @@ public class ControladorEmpleador implements ActionListener, WindowListener{
 		
 	}
 
-
 	@Override
 	public void windowIconified(WindowEvent e) {
 		// TODO Auto-generated method stub
-		
 	}
-
 
 	@Override
 	public void windowDeiconified(WindowEvent e) {
 		// TODO Auto-generated method stub
-		
 	}
 
 
 	@Override
 	public void windowActivated(WindowEvent e) {
 		// TODO Auto-generated method stub
-		
 	}
 
 
 	@Override
 	public void windowDeactivated(WindowEvent e) {
 		// TODO Auto-generated method stub
-		
 	}
 }

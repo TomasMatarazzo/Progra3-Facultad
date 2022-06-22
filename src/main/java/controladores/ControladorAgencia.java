@@ -21,8 +21,8 @@ public class ControladorAgencia implements ActionListener, KeyListener, WindowLi
         vista.setActionListener(this);
         vista.setKeyListener(this);
         this.vista.setWindowListener(this);
-        this.modelo = modelo;
         vista.setObservado(this.modelo);
+        this.modelo = modelo;
         vista.getTextoBienvenido().setText("Bienvenido, " + modelo.getNombreUsuario());
     }
 

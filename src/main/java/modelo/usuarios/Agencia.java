@@ -2,16 +2,11 @@ package modelo.usuarios;
 
 import modelo.Sistema;
 import modelo.constantes.Puntajes;
-import modelo.tickets.Ticket;
 import modelo.tickets.Ticket_de_Busqueda_de_Empleado;
 import modelo.tickets.Ticket_de_Busqueda_de_Empleo;
-import simulacion.TicketSimplificado;
-
-import java.util.ArrayList;
 
 public class Agencia extends Usuario {
     private double total;
-    
 
     public Agencia(String nombreUsuario, String contrasena) {
         super(nombreUsuario, contrasena);
@@ -38,7 +33,6 @@ public class Agencia extends Usuario {
             setChanged();
             notifyObservers(Sistema.getInstance().getEmpleadores().get(i).toString());
         }
-
     }
 
     public void muestraSolicitudesEmpleadores() {
@@ -111,6 +105,4 @@ public class Agencia extends Usuario {
                     Puntajes.setPuesto1(puesto);
                 }
     }
-
-    
 }

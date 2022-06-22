@@ -4,14 +4,17 @@ package vista;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import controladores.ControladorEmpleados;
+
+import controladores.ControladorLogin;
 import modelo.tickets.Formulario_de_Busqueda;
 import modelo.tickets.Ticket_de_Busqueda_de_Empleo;
-import modelo.tickets.locaciones.ILocacion;
 import modelo.tickets.locaciones.LocacionFactory;
-import modelo.usuarios.Empleado_Pretenso;
+import modelo.usuarios.EmpleadoPretenso;
+
 import java.awt.Color;
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.WindowListener;
 import java.util.ArrayList;
 import java.awt.Font;
 import javax.swing.JTabbedPane;
@@ -26,8 +29,7 @@ import javax.swing.JOptionPane;
 import javax.swing.DefaultListModel;
 import javax.swing.BoxLayout;
 
-public class VentanaEmpleado extends JFrame {
-
+public class VentanaEmpleado extends JFrame implements IVistaUsuarioComun {
 	private JPanel contentPane;
 	private JButton btnProfile;
 	private JButton ticketsButton;
@@ -75,25 +77,24 @@ public class VentanaEmpleado extends JFrame {
 	private DefaultListModel<Ticket_de_Busqueda_de_Empleo> listaTicketsDefault ;
 	private FormTickets form;
 
-	// Listeners a los botones.
-	
+	@Override
+	public void setActionListener(ActionListener controlador) {
+		this.ticketsButton.addActionListener(controlador);
+		this.btnProfile.addActionListener(controlador);
+		this.eleccionesButton.addActionListener(controlador);
+		this.agregarTicketButton.addActionListener(controlador);
+		this.eliminarTicketButton.addActionListener(controlador);
+		this.seleccionarEmpleadorButton.addActionListener(controlador);
+		this.form.crearTicketButton.addActionListener(controlador);
+	}
 
-	public void setControlador(ControladorEmpleados c) {
-		System.out.println("Se ejecuto el comando");
-		this.ticketsButton.addActionListener(c);
-		this.btnProfile.addActionListener(c);
-		this.eleccionesButton.addActionListener(c);
-		this.agregarTicketButton.addActionListener(c);
-		this.eliminarTicketButton.addActionListener(c);
-		this.seleccionarEmpleadorButton.addActionListener(c);
-		this.form.crearTicketButton.addActionListener(c);
+	@Override
+	public void setWindowListener(WindowListener controlador) {
+		this.addWindowListener(controlador);
 	}
-	
-	public FormTickets getForm() {
-		return this.form;
-	}
-	
-	public void arranca(){
+
+	@Override
+	public void ejecutar() {
 		setTitle("My Linkedn - Grupo 5");
 		pack(); //Coloca los componentes
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -102,11 +103,35 @@ public class VentanaEmpleado extends JFrame {
 		setResizable(false); //No redimensionable
 		setLocationRelativeTo(null);
 	}
-	
+
+	@Override
+	public void ocultar() {
+		this.setVisible(false);
+	}
+
+	@Override
+	public void creaOtraVentana(String ventana) {
+		if (ventana.equalsIgnoreCase("Login")) {
+			VentanaLogin ventanaLogin = new VentanaLogin();
+			ControladorLogin controladorLogin = new ControladorLogin(ventanaLogin);
+			this.ocultar();
+			ventanaLogin.ejecutar();
+		}
+	}
+
+	public void lanzarVentanaEmergente(String mensaje) {
+		JFrame jFrame = new JFrame();
+		JOptionPane.showMessageDialog(jFrame, mensaje);
+	}
+
 	public void cambiarPagina(int i) {
 		this.pantallasTab.setSelectedIndex(i);
 	}
-	// Muestra de datos de empleado
+
+	@Override
+	public FormTickets getForm() {
+		return this.form;
+	}
 
 	public void llenarDatosEmpleado(String nombre, String apellido, String email, String telefono , int edad) {
 		this.nombreLabel.setText(nombre);
@@ -116,7 +141,6 @@ public class VentanaEmpleado extends JFrame {
 		this.edadLabel.setText(String.valueOf(edad));
 		this.nombreCompletooLabel.setText(nombre + " " + apellido);
 		this.cantTicketsLabel.setText(Integer.toString(this.list_1.getWidth()));
-
 	}
 	
 	public void renderListaTickets( Ticket_de_Busqueda_de_Empleo ticket) {
@@ -167,19 +191,13 @@ public class VentanaEmpleado extends JFrame {
 	}
 	
 	// Ventaja Emergente
-	
-	public void lanzarVentanaEmergente(String mensaje) {
-		JFrame jFrame = new JFrame();
-        JOptionPane.showMessageDialog(jFrame, mensaje);
-	}
 	public void confirmarSeleccion() {
 		lblNewLabel.setText("Empleado seleccionado , espere los resultados");
 		this.listaElecciones.setVisible(false);
 		this.seleccionarEmpleadorButton.setVisible(false);
 	}
 
-	public VentanaEmpleado(Empleado_Pretenso modelo) {
-		
+	public VentanaEmpleado(EmpleadoPretenso modelo) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 800, 500);
 		contentPane = new JPanel();

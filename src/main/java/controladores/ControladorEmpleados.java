@@ -5,10 +5,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.io.IOException;
-
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-
 import modelo.Sistema;
 import modelo.tickets.Formulario_de_Busqueda;
 import modelo.tickets.locaciones.ILocacion;
@@ -20,18 +18,17 @@ import persistencia.SistemaDTO;
 import util.Util;
 import vista.VentanaEmpleado;
 
-public class ControladorEmpleados implements ActionListener , WindowListener{
+public class ControladorEmpleados implements ActionListener, WindowListener {
 	private VentanaEmpleado vista;
 	private EmpleadoPretenso modelo;
 
 	public ControladorEmpleados(VentanaEmpleado vista2, EmpleadoPretenso modelo) {
 		this.modelo = modelo;
 		this.vista = vista2;
-		this.vista.setControlador(this);
+		this.vista.setActionListener(this);
 		vista.llenarDatosEmpleado(modelo.getNombre(),modelo.getApellido(),modelo.geteMail(), modelo.getTelefono(),modelo.getEdad());
 		vista.renderListaTickets(modelo.getTicketDeBusquedaDeEmpleo());
 	}
-	
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -109,11 +106,9 @@ public class ControladorEmpleados implements ActionListener , WindowListener{
 		}
 	}
 
-
 	@Override
 	public void windowOpened(WindowEvent e) {
 		// TODO Auto-generated method stub
-		
 	}
 
 
@@ -121,34 +116,29 @@ public class ControladorEmpleados implements ActionListener , WindowListener{
 	@Override
 	public void windowClosed(WindowEvent e) {
 		// TODO Auto-generated method stub
-		
 	}
 
 
 	@Override
 	public void windowIconified(WindowEvent e) {
 		// TODO Auto-generated method stub
-		
 	}
 
 
 	@Override
 	public void windowDeiconified(WindowEvent e) {
 		// TODO Auto-generated method stub
-		
 	}
 
 
 	@Override
 	public void windowActivated(WindowEvent e) {
 		// TODO Auto-generated method stub
-		
 	}
 
 
 	@Override
 	public void windowDeactivated(WindowEvent e) {
 		// TODO Auto-generated method stub
-		
 	}
 }

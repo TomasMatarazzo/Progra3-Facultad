@@ -11,7 +11,6 @@ import modelo.usuarios.Usuario;
 import modelo.usuarios.UsuarioFactoryExtendida;
 import modelo.usuarios.empleadores.Empleador;
 import simulacion.SimulacionThreads;
-
 import javax.swing.*;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyListener;
@@ -116,13 +115,13 @@ public class VentanaLogin extends JFrame implements IVistaLogin, Observer {
                 break;
             case "Empleado Pretenso":
                 EmpleadoPretenso empleado = (EmpleadoPretenso) observado;
-                VentanaEmpleado ventanaEmpleado = new VentanaEmpleado();
+                VentanaEmpleado ventanaEmpleado = new VentanaEmpleado(empleado);
                 ControladorEmpleados controladorEmpleados = new ControladorEmpleados(ventanaEmpleado,empleado);
                 ventanaEmpleado.ejecutar();
                 break;
             case "Empleador":
                 Empleador empleador = (Empleador) observado;
-                VentanaEmpleador ventanaEmpleador = new VentanaEmpleador();
+                VentanaEmpleador ventanaEmpleador = new VentanaEmpleador(empleador);
                 ControladorEmpleador controladorEmpleador = new ControladorEmpleador(ventanaEmpleador,empleador);
                 ventanaEmpleador.ejecutar();
                 break;

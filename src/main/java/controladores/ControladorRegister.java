@@ -9,7 +9,6 @@ import persistencia.PersistenciaBIN;
 import persistencia.SistemaDTO;
 import persistencia.Util;
 import vista.VentanaRegister;
-
 import java.awt.event.*;
 import java.io.IOException;
 

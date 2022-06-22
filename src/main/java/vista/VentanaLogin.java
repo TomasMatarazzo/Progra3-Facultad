@@ -6,13 +6,11 @@ import controladores.ControladorEmpleados;
 import controladores.ControladorRegister;
 import modelo.excepciones.EstadoException;
 import modelo.usuarios.Agencia;
-import modelo.usuarios.Empleado_Pretenso;
+import modelo.usuarios.EmpleadoPretenso;
 import modelo.usuarios.Usuario;
 import modelo.usuarios.UsuarioFactoryExtendida;
 import modelo.usuarios.empleadores.Empleador;
-import simulacion.ControladorThreads;
 import simulacion.SimulacionThreads;
-import simulacion.VentanaSimulacionThreads;
 
 import javax.swing.*;
 import java.awt.event.ActionListener;
@@ -117,7 +115,7 @@ public class VentanaLogin extends JFrame implements IVista,Observer {
                 vista.ejecutar();
                 break;
             case "Empleado Pretenso":
-                Empleado_Pretenso empleado = (Empleado_Pretenso) observado;
+                EmpleadoPretenso empleado = (EmpleadoPretenso) observado;
                 VentanaEmpleado ventanaEmpleado = new VentanaEmpleado();
                 ControladorEmpleados controladorEmpleados = new ControladorEmpleados(ventanaEmpleado,empleado);
                 ventanaEmpleado.ejecutar();

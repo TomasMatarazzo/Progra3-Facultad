@@ -4,7 +4,7 @@ import java.awt.event.*;
 import java.io.IOException;
 
 import modelo.Sistema;
-import modelo.usuarios.Empleado_Pretenso;
+import modelo.usuarios.EmpleadoPretenso;
 import persistencia.IPersistencia;
 import persistencia.PersistenciaBIN;
 import persistencia.SistemaDTO;
@@ -25,9 +25,9 @@ import vista.VentanaEmpleado;
 
 public class ControladorEmpleados implements ActionListener, WindowListener {
 	private VentanaEmpleado vista;
-	private Empleado_Pretenso modelo;
+	private EmpleadoPretenso modelo;
 
-	public ControladorEmpleados(VentanaEmpleado vista2, Empleado_Pretenso modelo) {
+	public ControladorEmpleados(VentanaEmpleado vista2, EmpleadoPretenso modelo) {
 		this.modelo = modelo;
 		this.vista = vista2;
 		this.vista.setActionListener(this);

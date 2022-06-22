@@ -119,6 +119,14 @@ public class Sistema{
         return listas;
     }
 
+    public void setListas(HashMap<Ticket, Lista> listas) {
+        this.listas = listas;
+    }
+
+    public void setContratos(ArrayList<Contrato> contratos) {
+        this.contratos = contratos;
+    }
+
     public ArrayList<Contrato> getContratos() {
         return contratos;
     }

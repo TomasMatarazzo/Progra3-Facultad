@@ -2,7 +2,7 @@ package modelo.usuarios.empleadores;
 
 import java.io.Serializable;
 
-public class PersonaJuridica extends Empleador implements Serializable {
+public class PersonaJuridica extends Empleador {
 
     public PersonaJuridica(String nombreUsuario, String contrasena) {
         super(nombreUsuario, contrasena);

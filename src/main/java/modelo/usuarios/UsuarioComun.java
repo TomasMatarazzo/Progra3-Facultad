@@ -2,7 +2,9 @@ package modelo.usuarios;
 
 import modelo.tickets.Ticket;
 
-public abstract class UsuarioComun extends Usuario{
+import java.io.Serializable;
+
+public abstract class UsuarioComun extends Usuario implements Serializable {
     protected int puntaje;
 
     public UsuarioComun(String nombreUsuario, String contrasena) {

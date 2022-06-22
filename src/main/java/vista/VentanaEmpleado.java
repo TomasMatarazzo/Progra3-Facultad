@@ -3,17 +3,14 @@ package vista;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-
-import controladores.ControladorLogin;
+import controladores.ControladorEmpleados;
 import modelo.tickets.Formulario_de_Busqueda;
 import modelo.tickets.Ticket_de_Busqueda_de_Empleo;
 import modelo.tickets.locaciones.ILocacion;
 import modelo.tickets.locaciones.LocacionFactory;
+import modelo.usuarios.EmpleadoPretenso;
 import java.awt.Color;
 import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyListener;
-import java.awt.event.WindowListener;
 import java.util.ArrayList;
 import java.awt.Font;
 import javax.swing.JTabbedPane;
@@ -28,7 +25,7 @@ import javax.swing.JOptionPane;
 import javax.swing.DefaultListModel;
 import javax.swing.BoxLayout;
 
-public class VentanaEmpleado extends JFrame implements IVistaUsuarioComun {
+public class VentanaEmpleado extends JFrame {
 
 	private JPanel contentPane;
 	private JButton btnProfile;
@@ -74,34 +71,28 @@ public class VentanaEmpleado extends JFrame implements IVistaUsuarioComun {
 	private JLabel lblNewLabel;
 	private JLabel nombreCompletooLabel_1;
 	private JList<Ticket_de_Busqueda_de_Empleo> listaElecciones;
-	private DefaultListModel<Ticket_de_Busqueda_de_Empleo> listaTicketsDefault = new DefaultListModel<Ticket_de_Busqueda_de_Empleo>();;
+	private DefaultListModel<Ticket_de_Busqueda_de_Empleo> listaTicketsDefault ;
 	private FormTickets form;
 
 	// Listeners a los botones.
+	
 
-	@Override
-	public void setActionListener(ActionListener controlador) {
-		this.ticketsButton.addActionListener(controlador);
-		this.btnProfile.addActionListener(controlador);
-		this.eleccionesButton.addActionListener(controlador);
-		this.agregarTicketButton.addActionListener(controlador);
-		this.eliminarTicketButton.addActionListener(controlador);
-		this.seleccionarEmpleadorButton.addActionListener(controlador);
-		this.form.crearTicketButton.addActionListener(controlador);
+	public void setControlador(ControladorEmpleados c) {
+		System.out.println("Se ejecuto el comando");
+		this.ticketsButton.addActionListener(c);
+		this.btnProfile.addActionListener(c);
+		this.eleccionesButton.addActionListener(c);
+		this.agregarTicketButton.addActionListener(c);
+		this.eliminarTicketButton.addActionListener(c);
+		this.seleccionarEmpleadorButton.addActionListener(c);
+		this.form.crearTicketButton.addActionListener(c);
 	}
-
-	@Override
-	public void setKeyListener(KeyListener controlador) {
-
+	
+	public FormTickets getForm() {
+		return this.form;
 	}
-
-	@Override
-	public void setWindowListener(WindowListener controlador) {
-		this.addWindowListener(controlador);
-	}
-
-	@Override
-	public void ejecutar(){
+	
+	public void arranca(){
 		setTitle("My Linkedn - Grupo 5");
 		pack(); //Coloca los componentes
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -110,28 +101,12 @@ public class VentanaEmpleado extends JFrame implements IVistaUsuarioComun {
 		setResizable(false); //No redimensionable
 		setLocationRelativeTo(null);
 	}
-
-	@Override
-	public void ocultar() {
-		contentPane.setVisible(false);
-	}
-
-	@Override
-	public void creaOtraVentana(String ventana) {
-		if (ventana.equalsIgnoreCase("Login")) {
-			VentanaLogin ventanaLogin = new VentanaLogin();
-			ControladorLogin controladorLogin = new ControladorLogin(ventanaLogin);
-			this.ocultar();
-			ventanaLogin.ejecutar();
-		}
-	}
-
-	@Override
+	
 	public void cambiarPagina(int i) {
 		this.pantallasTab.setSelectedIndex(i);
 	}
-
 	// Muestra de datos de empleado
+
 	public void llenarDatosEmpleado(String nombre, String apellido, String email, String telefono , int edad) {
 		this.nombreLabel.setText(nombre);
 		this.apellidoLabel.setText(apellido);
@@ -144,8 +119,9 @@ public class VentanaEmpleado extends JFrame implements IVistaUsuarioComun {
 	}
 	
 	public void renderListaTickets( Ticket_de_Busqueda_de_Empleo ticket) {
+		DefaultListModel<Ticket_de_Busqueda_de_Empleo> listaTicketsDefault = new DefaultListModel<Ticket_de_Busqueda_de_Empleo>();
+		System.out.println("Agregando el nuevo ticket");
 		listaTicketsDefault.addElement(ticket);
-		System.out.println("Se eliminaron todos los tickets");
 		if (list_1.getModel().getSize() != 0)
 			((DefaultListModel) list_1.getModel()).removeAllElements();
 		this.list_1.setModel(listaTicketsDefault);
@@ -156,7 +132,7 @@ public class VentanaEmpleado extends JFrame implements IVistaUsuarioComun {
 		if (list == null ) {
 			lblNewLabel = new JLabel("Todavia no se efectuo la ronda de contratos laborales.");
 		}else {
-			lblNewLabel = new JLabel("Ofertas laborales encontradas , seleccione una");
+			lblNewLabel.setText("Ofertas laborales encontradas , seleccione una");
 			DefaultListModel<Ticket_de_Busqueda_de_Empleo> meses2 = new DefaultListModel<Ticket_de_Busqueda_de_Empleo>();
 			meses2.addElement(ticket);
 			this.listaElecciones = new JList<Ticket_de_Busqueda_de_Empleo>();
@@ -166,6 +142,10 @@ public class VentanaEmpleado extends JFrame implements IVistaUsuarioComun {
 			listaElecciones.setVisibleRowCount(3);
 			scrollPane_1.setViewportView(listaElecciones);
 		}
+	}
+	
+	public void setCantidadTickets(String cant) {
+		this.cantTicketsLabel.setText(cant);
 	}
 	
 	public void mostrarFormTicket() {
@@ -191,11 +171,13 @@ public class VentanaEmpleado extends JFrame implements IVistaUsuarioComun {
 		JFrame jFrame = new JFrame();
         JOptionPane.showMessageDialog(jFrame, mensaje);
 	}
+	public void confirmarSeleccion() {
+		lblNewLabel.setText("Empleado seleccionado , espere los resultados");
+		this.listaElecciones.setVisible(false);
+		this.seleccionarEmpleadorButton.setVisible(false);
+	}
 
-	public VentanaEmpleado() {
-	    ILocacion indistinto = lc.getLocacion("INDISTINTO");
-		formulario = new Formulario_de_Busqueda(indistinto,200000,0,0,1,1,2);
-		ticket = new Ticket_de_Busqueda_de_Empleo(formulario,"Bombero");
+	public VentanaEmpleado(EmpleadoPretenso modelo) {
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 800, 500);
@@ -373,7 +355,7 @@ public class VentanaEmpleado extends JFrame implements IVistaUsuarioComun {
 		scrollPane = new JScrollPane();
 		scrollPane.setBounds(31, 155, 539, 276);
 		tab2.add(scrollPane);
-		//this.renderListaTickets(modelo.getTicketDeBusquedaDeEmpleo());
+		this.renderListaTickets(modelo.getTicketDeBusquedaDeEmpleo());
 		list_1.setVisibleRowCount(3);
 		scrollPane.setViewportView(list_1);
 		

@@ -174,4 +174,6 @@ public abstract class Empleador extends UsuarioComun implements Runnable {
             Util.espera(2000);
         }
     }
+    
+	public abstract String getNombre();
 }

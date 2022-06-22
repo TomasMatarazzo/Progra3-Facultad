@@ -34,4 +34,8 @@ public class PersonaJuridica extends Empleador {
 
         return remuneracion * porcentaje;
     }
+	
+	public String getNombre() {
+		return "Persona Juridica";
+	}
 }

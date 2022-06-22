@@ -1,76 +1,101 @@
 package controladores;
 
-import java.awt.event.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.io.IOException;
 
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
 import modelo.Sistema;
+import modelo.tickets.Formulario_de_Busqueda;
+import modelo.tickets.locaciones.ILocacion;
+import modelo.tickets.locaciones.LocacionFactory;
 import modelo.usuarios.EmpleadoPretenso;
 import persistencia.IPersistencia;
 import persistencia.PersistenciaBIN;
 import persistencia.SistemaDTO;
-import persistencia.Util;
+import util.Util;
 import vista.VentanaEmpleado;
 
-public class ControladorEmpleados implements ActionListener, WindowListener {
+public class ControladorEmpleados implements ActionListener , WindowListener{
 	private VentanaEmpleado vista;
 	private EmpleadoPretenso modelo;
 
 	public ControladorEmpleados(VentanaEmpleado vista2, EmpleadoPretenso modelo) {
 		this.modelo = modelo;
 		this.vista = vista2;
-		this.vista.setActionListener(this);
-		this.vista.setWindowListener(this);
+		this.vista.setControlador(this);
 		vista.llenarDatosEmpleado(modelo.getNombre(),modelo.getApellido(),modelo.geteMail(), modelo.getTelefono(),modelo.getEdad());
+		vista.renderListaTickets(modelo.getTicketDeBusquedaDeEmpleo());
 	}
+	
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		switch (e.getActionCommand()) {
-			case "iniciarPERFIL":
-				vista.cambiarPagina(0);
-				break;
-			case "iniciarTICKETS":
-				vista.cambiarPagina(1);
-				break;
-			case "iniciarELECCIONES":
-				vista.cambiarPagina(2);
-				break;
-			case "AGREGARTICKET":
-				//agrego un nuevo ticket
-				//tengo que eliminar el ticket dentro del usuario y del sistema
-				if (modelo.getTicketDeBusquedaDeEmpleo() == null) {
-					Sistema.getInstance().agregaTicketDeEmpleadosPretensos(modelo, vista.getTicketSeleccionado());
-					modelo.setTicketDeBusquedaDeEmpleo(vista.getTicketSeleccionado());
-					vista.mostrarFormTicket();
-				}else {
-					vista.lanzarVentanaEmergente("Ya creo un ticket.");
-				}
-				break;
-			case "ELIMINARTICKET":
-				// VERIFICA QUE SE HAYA SELECCIONADO UN TICKET
-				if (vista.getTicketSeleccionado() != null) {
-					Sistema.getInstance().eliminaTicketDeEmpleadosPretensos(vista.getTicketSeleccionado());
-					modelo.setTicketDeBusquedaDeEmpleo(null);
-					vista.lanzarVentanaEmergente("Se elimino el ticket.");
+		if (e.getActionCommand().equals("iniciarTICKETS")) {
+			vista.cambiarPagina(1);
+		}else if (e.getActionCommand().equals("iniciarPERFIL")) {
+			vista.cambiarPagina(0);
+		}else if (e.getActionCommand().equals("iniciarELECCIONES")) {
+			vista.cambiarPagina(2);
+		}else if (e.getActionCommand().equals("AGREGARTICKET")) {
+			if (modelo.getTicketDeBusquedaDeEmpleo() == null) {
+//				Sistema.getInstance().agregaTicketDeEmpleadosPretensos(modelo, vista.getTicketSeleccionado());
+//				modelo.setTicketDeBusquedaDeEmpleo(vista.getTicketSeleccionado());
+				vista.mostrarFormTicket();
+			}else 
+				vista.lanzarVentanaEmergente("Ya creo un ticket.");
+			
+		}else if (e.getActionCommand().equals("ELIMINARTICKET")) {
+			// VERIFICA QUE SE HAYA SELECCIONADO UN TICKET
+			if (vista.getTicketSeleccionado() != null) {
+				Sistema.getInstance().eliminaTicketDeEmpleadosPretensos(vista.getTicketSeleccionado());
+				modelo.setTicketDeBusquedaDeEmpleo(null);
+				vista.lanzarVentanaEmergente("Se elimino el ticket.");
+				System.out.println(modelo.getTicketDeBusquedaDeEmpleo());
+				vista.renderListaTickets(modelo.getTicketDeBusquedaDeEmpleo());
+			}
+			else 
+				vista.lanzarVentanaEmergente("Seleccione el ticket a eliminar.");
+			
+		}else if (e.getActionCommand().equals("EMPLEADORELEGIDO")) {
+			if (vista.getTicketEleccionesSeleccionado() != null) {
+				vista.confirmarSeleccion();
+				vista.lanzarVentanaEmergente("Se elegio un empleado.");
+			}
+			else
+				vista.lanzarVentanaEmergente("Seleccion un ticket de la ronda de elecciones.");
+		}else if (e.getActionCommand().equals("CREARTICKET")) {
+			vista.getForm().obtenerDatos();
+			if (vista.getForm().renumeracion.equals("") ){
+				JFrame jFrame = new JFrame();
+		        JOptionPane.showMessageDialog(jFrame, "Complete todos los campos");
+			} else if (!Util.esNumero(vista.getForm().renumeracion)){
+				JFrame jFrame = new JFrame();
+		        JOptionPane.showMessageDialog(jFrame, "Renumeracion tiene que ser un numero");
+			}
+			else{
+				JFrame jFrame = new JFrame();
+		        JOptionPane.showMessageDialog(jFrame, "Se creo el ticket");
+		        LocacionFactory locacion = new LocacionFactory();
+		        ILocacion locacionFac = locacion.getLocacion("indistinto");
+		        Formulario_de_Busqueda formulario = new Formulario_de_Busqueda(locacionFac,Integer.parseInt(vista.getForm().renumeracion),vista.getForm().cargaHoraria,vista.getForm().tipoPuesto,vista.getForm().edad,vista.getForm().experiencia,vista.getForm().estudios);
+				try {
+					modelo.creaTicket(formulario, "Bombero");
 					System.out.println(modelo.getTicketDeBusquedaDeEmpleo());
-					vista.renderListaTickets(modelo.getTicketDeBusquedaDeEmpleo());
-				} else
-					vista.lanzarVentanaEmergente("Seleccione el ticket a eliminar.");
-				break;
-			case "EMPLEADORELEGIDO":
-				if (vista.getTicketEleccionesSeleccionado() != null) {
-
 				}
-				else
-					vista.lanzarVentanaEmergente("Seleccion un ticket de la ronda de elecciones.");
-				break;
-			case "CREARTICKET":
-				System.out.println("Se creo un ticket");
-				vista.ocultarFormTicket();
-				break;
+		        catch(Exception exc) {
+		        	exc.getMessage();
+		        }
+		        vista.renderListaTickets(modelo.getTicketDeBusquedaDeEmpleo());
+		        vista.getForm().cleanForms();
+		}
 		}
 	}
-
+	
 	@Override
 	public void windowClosing(WindowEvent e) {
 		try {
@@ -84,34 +109,46 @@ public class ControladorEmpleados implements ActionListener, WindowListener {
 		}
 	}
 
-	//METODOS QUE NO SE USAN
-	@Override
-	public void windowClosed(WindowEvent e) {
-
-	}
 
 	@Override
 	public void windowOpened(WindowEvent e) {
-
+		// TODO Auto-generated method stub
+		
 	}
+
+
+
+	@Override
+	public void windowClosed(WindowEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
 
 	@Override
 	public void windowIconified(WindowEvent e) {
-
+		// TODO Auto-generated method stub
+		
 	}
+
 
 	@Override
 	public void windowDeiconified(WindowEvent e) {
-
+		// TODO Auto-generated method stub
+		
 	}
+
 
 	@Override
 	public void windowActivated(WindowEvent e) {
-
+		// TODO Auto-generated method stub
+		
 	}
+
 
 	@Override
 	public void windowDeactivated(WindowEvent e) {
-
+		// TODO Auto-generated method stub
+		
 	}
 }

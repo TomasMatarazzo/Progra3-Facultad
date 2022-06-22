@@ -21,4 +21,17 @@ public class PersonaJuridica extends Empleador {
         else //Es rubro COMERCIO INTERNACIONAL
             return  1.00;
     }
+
+	@Override
+	public double calculaComision(double remuneracion) {
+        double porcentaje;
+
+        porcentaje = calculaPorcentajeComision();
+
+        //Por cada punto obtenido se le resta un 1% al valor de la comisión
+        if (this.puntaje > 0)
+            porcentaje -= 0 + (0.01 * this.puntaje);
+
+        return remuneracion * porcentaje;
+    }
 }

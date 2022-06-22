@@ -3,8 +3,9 @@ package simulacion;
 import java.util.ArrayList;
 import java.util.Observable;
 
+import modelo.Sistema;
 import modelo.tickets.Ticket;
-import modelo.usuarios.EmpleadoPretenso;
+import modelo.usuarios.Empleado_Pretenso;
 import modelo.usuarios.UsuarioComun;
 
 public class BolsaDeTrabajo extends Observable{
@@ -44,7 +45,7 @@ public class BolsaDeTrabajo extends Observable{
     }
 
     //METODOS SYNCHRONIZED
-    public synchronized TicketSimplificado SacaBolsa(Ticket t, EmpleadoPretenso u)
+    public synchronized TicketSimplificado SacaBolsa(Ticket t, Empleado_Pretenso u)
     {
         TicketSimplificado aux;
         while (((aux = coincidenciaTipoTrabajo(t)) == null)&&((t.getEstado().equalsIgnoreCase("Activo"))||(t.getEstado().equalsIgnoreCase("Suspenso"))))

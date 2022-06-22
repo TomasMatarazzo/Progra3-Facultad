@@ -16,7 +16,7 @@ public class UsuarioFactory {
                 throw new DatosMalIngresadosException("Tipo Usuario (ya existe un administrador)");
         else
             if (tipo.equalsIgnoreCase("Empleado"))
-                Sistema.getInstance().registrarUsuario(new EmpleadoPretenso(nombreUsuario, contrasena));
+                Sistema.getInstance().registrarUsuario(new Empleado_Pretenso(nombreUsuario, contrasena));
             else
                 if (tipo.equalsIgnoreCase("Persona Fisica"))
                     Sistema.getInstance().registrarUsuario(new PersonaFisica(nombreUsuario, contrasena));

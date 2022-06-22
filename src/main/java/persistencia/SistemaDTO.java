@@ -5,7 +5,7 @@ import modelo.listas.Lista;
 import modelo.tickets.Ticket;
 import modelo.tickets.Ticket_de_Busqueda_de_Empleado;
 import modelo.tickets.Ticket_de_Busqueda_de_Empleo;
-import modelo.usuarios.EmpleadoPretenso;
+import modelo.usuarios.Empleado_Pretenso;
 import modelo.usuarios.empleadores.Empleador;
 
 import java.io.Serializable;
@@ -14,11 +14,11 @@ import java.util.HashMap;
 
 public class SistemaDTO implements Serializable {
     private ArrayList<Empleador> empleadores = new ArrayList<>();
-    private ArrayList<EmpleadoPretenso> empleadosPretensos = new ArrayList<>();
+    private ArrayList<Empleado_Pretenso> empleadosPretensos = new ArrayList<>();
     private HashMap<Ticket, Lista> listas = new HashMap<>();
     private ArrayList<Contrato> contratos = new ArrayList<>();
     private HashMap<Ticket_de_Busqueda_de_Empleado,Empleador> ticketsDeEmpleadores = new HashMap<>();
-    private HashMap<Ticket_de_Busqueda_de_Empleo, EmpleadoPretenso> ticketsDeEmpleadosPretensos = new HashMap<>();
+    private HashMap<Ticket_de_Busqueda_de_Empleo,Empleado_Pretenso> ticketsDeEmpleadosPretensos = new HashMap<>();
 
     public ArrayList<Empleador> getEmpleadores() {
         return empleadores;
@@ -28,11 +28,11 @@ public class SistemaDTO implements Serializable {
         this.empleadores = empleadores;
     }
 
-    public ArrayList<EmpleadoPretenso> getEmpleadosPretensos() {
+    public ArrayList<Empleado_Pretenso> getEmpleadosPretensos() {
         return empleadosPretensos;
     }
 
-    public void setEmpleadosPretensos(ArrayList<EmpleadoPretenso> empleadosPretensos) {
+    public void setEmpleadosPretensos(ArrayList<Empleado_Pretenso> empleadosPretensos) {
         this.empleadosPretensos = empleadosPretensos;
     }
 
@@ -60,11 +60,11 @@ public class SistemaDTO implements Serializable {
         this.ticketsDeEmpleadores = ticketsDeEmpleadores;
     }
 
-    public HashMap<Ticket_de_Busqueda_de_Empleo, EmpleadoPretenso> getTicketsDeEmpleadosPretensos() {
+    public HashMap<Ticket_de_Busqueda_de_Empleo, Empleado_Pretenso> getTicketsDeEmpleadosPretensos() {
         return ticketsDeEmpleadosPretensos;
     }
 
-    public void setTicketsDeEmpleadosPretensos(HashMap<Ticket_de_Busqueda_de_Empleo, EmpleadoPretenso> ticketsDeEmpleadosPretensos) {
+    public void setTicketsDeEmpleadosPretensos(HashMap<Ticket_de_Busqueda_de_Empleo, Empleado_Pretenso> ticketsDeEmpleadosPretensos) {
         this.ticketsDeEmpleadosPretensos = ticketsDeEmpleadosPretensos;
     }
 }

@@ -10,7 +10,7 @@ public class UsuarioFactoryExtendida extends UsuarioFactory {
     public void creaUsuario(String nombreUsuario, String contrasena, String tipo, String nombre, String apellido, String telefono, int edad, String mail) throws DatosMalIngresadosException, ErrorDeUsuarioException {
         super.creaUsuario(nombreUsuario,contrasena,tipo);
 
-        EmpleadoPretenso empleado;
+        Empleado_Pretenso empleado;
         empleado = Sistema.getInstance().getEmpleadosPretensos().get(Sistema.getInstance().getEmpleadosPretensos().size()-1);
 
         empleado.setNombre(nombre.isEmpty()?"-":nombre);

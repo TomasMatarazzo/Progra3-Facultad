@@ -8,7 +8,7 @@ import modelo.tickets.Ticket;
 import modelo.tickets.Ticket_de_Busqueda_de_Empleado;
 import modelo.tickets.Ticket_de_Busqueda_de_Empleo;
 import modelo.usuarios.Agencia;
-import modelo.usuarios.EmpleadoPretenso;
+import modelo.usuarios.Empleado_Pretenso;
 import modelo.usuarios.Usuario;
 import modelo.usuarios.empleadores.Empleador;
 import modelo.listas.Lista;
@@ -22,10 +22,10 @@ public class Sistema{
     private static Sistema instance = null;
     private Agencia agencia = null;
     private ArrayList<Empleador> empleadores = new ArrayList<>();
-    private ArrayList<EmpleadoPretenso> empleadosPretensos = new ArrayList<>();
+    private ArrayList<Empleado_Pretenso> empleadosPretensos = new ArrayList<>();
     private ArrayList<String> tiposDeTrabajo = new ArrayList<>();
     private HashMap<Ticket_de_Busqueda_de_Empleado,Empleador> ticketsDeEmpleadores = new HashMap<>();
-    private HashMap<Ticket_de_Busqueda_de_Empleo, EmpleadoPretenso> ticketsDeEmpleadosPretensos = new HashMap<>();
+    private HashMap<Ticket_de_Busqueda_de_Empleo,Empleado_Pretenso> ticketsDeEmpleadosPretensos = new HashMap<>();
     private HashMap<Ticket,Lista> listas = new HashMap<>();
     private ArrayList<Contrato> contratos = new ArrayList<>();
 
@@ -52,7 +52,7 @@ public class Sistema{
         return empleadores;
     }
 
-    public ArrayList<EmpleadoPretenso> getEmpleadosPretensos() {
+    public ArrayList<Empleado_Pretenso> getEmpleadosPretensos() {
         return empleadosPretensos;
     }
 
@@ -64,7 +64,7 @@ public class Sistema{
         return ticketsDeEmpleadores;
     }
 
-    public HashMap<Ticket_de_Busqueda_de_Empleo, EmpleadoPretenso> getTicketsDeEmpleadosPretensos() {
+    public HashMap<Ticket_de_Busqueda_de_Empleo, Empleado_Pretenso> getTicketsDeEmpleadosPretensos() {
         return ticketsDeEmpleadosPretensos;
     }
 
@@ -72,7 +72,7 @@ public class Sistema{
         this.empleadores = empleadores;
     }
 
-    public void setEmpleadosPretensos(ArrayList<EmpleadoPretenso> empleadosPretensos) {
+    public void setEmpleadosPretensos(ArrayList<Empleado_Pretenso> empleadosPretensos) {
         this.empleadosPretensos = empleadosPretensos;
     }
 
@@ -80,7 +80,7 @@ public class Sistema{
         this.ticketsDeEmpleadores = ticketsDeEmpleadores;
     }
 
-    public void setTicketsDeEmpleadosPretensos(HashMap<Ticket_de_Busqueda_de_Empleo, EmpleadoPretenso> ticketsDeEmpleadosPretensos) {
+    public void setTicketsDeEmpleadosPretensos(HashMap<Ticket_de_Busqueda_de_Empleo, Empleado_Pretenso> ticketsDeEmpleadosPretensos) {
         this.ticketsDeEmpleadosPretensos = ticketsDeEmpleadosPretensos;
     }
 
@@ -88,7 +88,7 @@ public class Sistema{
         empleadores.add(nuevo);
     }
 
-    public void agregaEmpleadoPretenso(EmpleadoPretenso nuevo) {
+    public void agregaEmpleadoPretenso(Empleado_Pretenso nuevo) {
         empleadosPretensos.add(nuevo);
     }
 
@@ -96,7 +96,7 @@ public class Sistema{
         tiposDeTrabajo.add(nuevo);
     }
 
-    public void agregaTicketDeEmpleadosPretensos(EmpleadoPretenso usuario, Ticket_de_Busqueda_de_Empleo ticket) {
+    public void agregaTicketDeEmpleadosPretensos(Empleado_Pretenso usuario,Ticket_de_Busqueda_de_Empleo ticket) {
         ticketsDeEmpleadosPretensos.put(ticket,usuario);
     }
 
@@ -155,7 +155,7 @@ public class Sistema{
      * @param nuevo: de tipo Empleado_Pretenso, representa un usuario en el sistema
      * @throws ErrorDeUsuarioException
      */
-    public void registrarUsuario(EmpleadoPretenso nuevo) throws ErrorDeUsuarioException {
+    public void registrarUsuario(Empleado_Pretenso nuevo) throws ErrorDeUsuarioException {
         for (int i = 0; i < empleadosPretensos.size(); i++) {
             if (empleadosPretensos.get(i).getNombreUsuario().equalsIgnoreCase(nuevo.getNombreUsuario()))
                 throw new ErrorDeUsuarioException("El nombre de usuario ingresado ya existe.");

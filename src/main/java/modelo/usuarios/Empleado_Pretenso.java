@@ -5,6 +5,7 @@ import modelo.excepciones.EstadoException;
 import modelo.excepciones.TicketYaCreadoException;
 import modelo.Sistema;
 import modelo.tickets.Formulario_de_Busqueda;
+import modelo.tickets.Ticket_de_Busqueda_de_Empleado;
 import modelo.tickets.Ticket_de_Busqueda_de_Empleo;
 import simulacion.BolsaDeTrabajo;
 import simulacion.TicketSimplificado;
@@ -12,7 +13,7 @@ import util.Util;
 
 import java.io.Serializable;
 
-public class EmpleadoPretenso extends UsuarioComun implements Runnable, Serializable {
+public class Empleado_Pretenso extends UsuarioComun implements Runnable, Serializable {
     //Datos personales:
     private String nombre;
     private String apellido;
@@ -25,16 +26,16 @@ public class EmpleadoPretenso extends UsuarioComun implements Runnable, Serializ
 
     //CONSTRUCTORES
 
-    public EmpleadoPretenso() {
+    public Empleado_Pretenso() {
     }
 
-    public EmpleadoPretenso(String nombreUsuario, String contrasena) {
+    public Empleado_Pretenso(String nombreUsuario, String contrasena) {
         super(nombreUsuario, contrasena);
         this.ticketDeBusquedaDeEmpleo = null;
         this.ticketSimplificado = null;
     }
 
-    public EmpleadoPretenso(String nombreUsuario, String contrasena, String nombre, String apellido, String telefono, int edad, String eMail) {
+    public Empleado_Pretenso(String nombreUsuario, String contrasena, String nombre, String apellido, String telefono, int edad, String eMail) {
         super(nombreUsuario, contrasena);
         this.nombre = nombre;
         this.apellido = apellido;

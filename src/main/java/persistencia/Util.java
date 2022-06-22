@@ -7,7 +7,7 @@ import modelo.listas.Lista;
 import modelo.tickets.Ticket;
 import modelo.tickets.Ticket_de_Busqueda_de_Empleado;
 import modelo.tickets.Ticket_de_Busqueda_de_Empleo;
-import modelo.usuarios.EmpleadoPretenso;
+import modelo.usuarios.Empleado_Pretenso;
 import modelo.usuarios.empleadores.Empleador;
 
 import java.util.ArrayList;
@@ -16,12 +16,12 @@ import java.util.HashMap;
 public class Util {
     public static SistemaDTO sistemaDTOFromSistema(Sistema sistema){
         SistemaDTO respuesta=new SistemaDTO();
-        ArrayList<EmpleadoPretenso> empleadosPretensos=new ArrayList<>();
+        ArrayList<Empleado_Pretenso> empleadosPretensos=new ArrayList<>();
         ArrayList<Empleador> empleadores = new ArrayList<>();
         HashMap<Ticket, Lista> listas = new HashMap<>();
         ArrayList<Contrato> contratos = new ArrayList<>();
         HashMap<Ticket_de_Busqueda_de_Empleado,Empleador> ticketsDeEmpleadores = new HashMap<>();
-        HashMap<Ticket_de_Busqueda_de_Empleo, EmpleadoPretenso> ticketsDeEmpleadosPretensos = new HashMap<>();
+        HashMap<Ticket_de_Busqueda_de_Empleo,Empleado_Pretenso> ticketsDeEmpleadosPretensos = new HashMap<>();
 
         empleadosPretensos.addAll(sistema.getEmpleadosPretensos());
         empleadores.addAll(sistema.getEmpleadores());
@@ -42,12 +42,12 @@ public class Util {
 
     public static void sistemaFromSistemaDTO(SistemaDTO sistemaDTO) throws EstadoException {
 
-        ArrayList<EmpleadoPretenso> empleadosPretensos=new ArrayList<>();
+        ArrayList<Empleado_Pretenso> empleadosPretensos=new ArrayList<>();
         ArrayList<Empleador> empleadores = new ArrayList<>();
         ArrayList<Contrato> contratos = new ArrayList<>();
         HashMap<Ticket, Lista> listas = new HashMap<>();
         HashMap<Ticket_de_Busqueda_de_Empleado,Empleador> ticketsDeEmpleadores = new HashMap<>();
-        HashMap<Ticket_de_Busqueda_de_Empleo, EmpleadoPretenso> ticketsDeEmpleadosPretensos = new HashMap<>();
+        HashMap<Ticket_de_Busqueda_de_Empleo,Empleado_Pretenso> ticketsDeEmpleadosPretensos = new HashMap<>();
 
         empleadosPretensos.addAll(sistemaDTO.getEmpleadosPretensos());
         empleadores.addAll(sistemaDTO.getEmpleadores());

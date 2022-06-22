@@ -9,6 +9,7 @@ import modelo.tickets.Formulario_de_Busqueda;
 import modelo.tickets.Ticket_de_Busqueda_de_Empleo;
 import modelo.tickets.locaciones.ILocacion;
 import modelo.tickets.locaciones.LocacionFactory;
+import modelo.usuarios.EmpleadoPretenso;
 import modelo.usuarios.Empleado_Pretenso;
 import java.awt.Color;
 import javax.swing.JButton;
@@ -178,7 +179,7 @@ public class VentanaEmpleado extends JFrame {
 		this.seleccionarEmpleadorButton.setVisible(false);
 	}
 
-	public VentanaEmpleado(Empleado_Pretenso modelo) {
+	public VentanaEmpleado(EmpleadoPretenso modelo) {
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 800, 500);

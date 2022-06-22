@@ -282,7 +282,6 @@ public class Sistema{
                     this.ticketsDeEmpleadosPretensos.get(clave).setPuntaje(this.ticketsDeEmpleadosPretensos.get(clave).getPuntaje()+10);
                 }
             }
-
         }
 
         for (Empleador clave:elegidos.keySet())

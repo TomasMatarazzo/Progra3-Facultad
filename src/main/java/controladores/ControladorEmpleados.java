@@ -1,12 +1,17 @@
 package controladores;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
+import java.io.IOException;
+
 import modelo.Sistema;
 import modelo.usuarios.Empleado_Pretenso;
+import persistencia.IPersistencia;
+import persistencia.PersistenciaBIN;
+import persistencia.SistemaDTO;
+import persistencia.Util;
 import vista.VentanaEmpleado;
 
-public class ControladorEmpleados implements ActionListener {
+public class ControladorEmpleados implements ActionListener, WindowListener {
 	private VentanaEmpleado vista;
 	private Empleado_Pretenso modelo;
 
@@ -14,6 +19,7 @@ public class ControladorEmpleados implements ActionListener {
 		this.modelo = modelo;
 		this.vista = vista2;
 		this.vista.setActionListener(this);
+		this.vista.setWindowListener(this);
 		vista.llenarDatosEmpleado(modelo.getNombre(),modelo.getApellido(),modelo.geteMail(), modelo.getTelefono(),modelo.getEdad());
 	}
 
@@ -63,5 +69,49 @@ public class ControladorEmpleados implements ActionListener {
 				vista.ocultarFormTicket();
 				break;
 		}
+	}
+
+	@Override
+	public void windowClosing(WindowEvent e) {
+		try {
+			IPersistencia bin = new PersistenciaBIN();
+			bin.abrirOutput("Sistema.bin");
+			SistemaDTO sistemaDTO = Util.sistemaDTOFromSistema(Sistema.getInstance());
+			bin.escribir(sistemaDTO);
+			bin.cerrarOutput();
+		} catch (IOException ex) {
+			ex.printStackTrace();
+		}
+	}
+
+	//METODOS QUE NO SE USAN
+	@Override
+	public void windowClosed(WindowEvent e) {
+
+	}
+
+	@Override
+	public void windowOpened(WindowEvent e) {
+
+	}
+
+	@Override
+	public void windowIconified(WindowEvent e) {
+
+	}
+
+	@Override
+	public void windowDeiconified(WindowEvent e) {
+
+	}
+
+	@Override
+	public void windowActivated(WindowEvent e) {
+
+	}
+
+	@Override
+	public void windowDeactivated(WindowEvent e) {
+
 	}
 }

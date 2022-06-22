@@ -45,12 +45,8 @@ public class Empleado_Pretenso extends UsuarioComun implements Runnable, Seriali
         this.ticketDeBusquedaDeEmpleo = null;
         this.ticketSimplificado=null;
     }
-    // ALTAS, BAJAS , MODIFICACIONES DEL TICKET
-    
-    
 
     //GETTERS & SETTERS
-    
     public String getNombre() {
         return nombre;
     }
@@ -117,7 +113,6 @@ public class Empleado_Pretenso extends UsuarioComun implements Runnable, Seriali
     //FUNCIONALIDADES
     @Override
     public void loguearse() {
-        System.out.println("El usuario [" + nombreUsuario + "] se ha logueado con exito.");
         setChanged();
         notifyObservers("Empleado Pretenso");
     }

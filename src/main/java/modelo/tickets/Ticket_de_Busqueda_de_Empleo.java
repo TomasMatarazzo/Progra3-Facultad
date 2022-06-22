@@ -7,7 +7,6 @@ public class Ticket_de_Busqueda_de_Empleo extends Ticket implements Serializable
     private Ticket_de_Busqueda_de_Empleado eleccion;
 
     //CONSTRUCTOR
-
     public Ticket_de_Busqueda_de_Empleo() {
     }
 
@@ -40,6 +39,6 @@ public class Ticket_de_Busqueda_de_Empleo extends Ticket implements Serializable
         return  "   formularioDeBusqueda: " + formularioDeBusqueda.toString() +
                 "   fechaDeAlta: " + fechaDeAlta.getTime() +
                 "   estado: " + estado +
-                "   resultado: " + resultado + "\n";
+                "   resultado: " + resultado;
     }
 }

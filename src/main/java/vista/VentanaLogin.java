@@ -17,6 +17,7 @@ import simulacion.VentanaSimulacionThreads;
 import javax.swing.*;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyListener;
+import java.awt.event.WindowListener;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -83,6 +84,11 @@ public class VentanaLogin extends JFrame implements IVista,Observer {
     }
 
     @Override
+    public void setWindowListener(WindowListener controlador) {
+        this.addWindowListener(controlador);
+    }
+
+    @Override
     public void ejecutar() {
         setTitle("My Linkedn - Grupo 5");
         pack(); //Coloca los componentes
@@ -120,7 +126,7 @@ public class VentanaLogin extends JFrame implements IVista,Observer {
                 Empleador empleador = (Empleador) observado;
                 VentanaEmpleador ventanaEmpleador = new VentanaEmpleador();
                 ControladorEmpleador controladorEmpleador = new ControladorEmpleador(ventanaEmpleador,empleador);
-                System.out.println("Se abre la ventana de EMPLEADOR");
+                ventanaEmpleador.ejecutar();
                 break;
             case "Agencia":
                 Agencia agencia = (Agencia) observado;

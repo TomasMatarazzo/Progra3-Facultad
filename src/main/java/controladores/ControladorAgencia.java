@@ -1,12 +1,18 @@
 package controladores;
 
 import modelo.Sistema;
+import modelo.excepciones.EstadoException;
 import modelo.usuarios.Agencia;
+import persistencia.IPersistencia;
+import persistencia.PersistenciaBIN;
+import persistencia.SistemaDTO;
+import persistencia.Util;
 import vista.VentanaAgencia;
 import javax.swing.*;
 import java.awt.event.*;
+import java.io.IOException;
 
-public class ControladorAgencia implements ActionListener, KeyListener {
+public class ControladorAgencia implements ActionListener, KeyListener, WindowListener {
     private VentanaAgencia vista;
     private Agencia modelo;
 
@@ -14,6 +20,7 @@ public class ControladorAgencia implements ActionListener, KeyListener {
         this.vista = vista;
         vista.setActionListener(this);
         vista.setKeyListener(this);
+        this.vista.setWindowListener(this);
         this.modelo = modelo;
         vista.setObservado(this.modelo);
         vista.getTextoBienvenido().setText("Bienvenido, " + modelo.getNombreUsuario());
@@ -21,7 +28,6 @@ public class ControladorAgencia implements ActionListener, KeyListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        System.out.println("hola");
         switch (e.getActionCommand()) {
             case "Perfil":
                 vista.cambiarPagina(0);
@@ -46,7 +52,11 @@ public class ControladorAgencia implements ActionListener, KeyListener {
                 JOptionPane.showMessageDialog(null, "Se ha efectuado la ronda de Encuentros Laborales con exito!");
                 break;
             case "Ronda de Contrataciones":
-                Sistema.getInstance().rondaContrataciones();
+                try {
+                    Sistema.getInstance().rondaContrataciones();
+                } catch (EstadoException ex) {
+                    vista.lanzarVentanaEmergente(ex.getMessage());
+                }
                 JOptionPane.showMessageDialog(null, "Se ha efectuado la ronda de Contrataciones con exito!");
                 break;
             case "Agregar Datos":
@@ -97,7 +107,6 @@ public class ControladorAgencia implements ActionListener, KeyListener {
                 }
                 break;
             case "Calcular Comisiones":
-                System.out.println("Entreo");
                 vista.limpiaModelo(vista.getModeloComisiones());
                 modelo.calculaComisiones();
                 vista.mostrarDatos(vista.getListaComisiones(),vista.getModeloComisiones());
@@ -129,9 +138,52 @@ public class ControladorAgencia implements ActionListener, KeyListener {
         }
     }
 
-    //METODOS NO USADOS
+    @Override
+    public void windowClosing(WindowEvent e) {
+        try {
+            IPersistencia bin = new PersistenciaBIN();
+            bin.abrirOutput("Sistema.bin");
+            SistemaDTO sistemaDTO = Util.sistemaDTOFromSistema(Sistema.getInstance());
+            bin.escribir(sistemaDTO);
+            bin.cerrarOutput();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    //METODOS QUE NO SE USAN
+    @Override
+    public void windowClosed(WindowEvent e) {
+
+    }
+
     @Override
     public void keyTyped(KeyEvent e) {
+
+    }
+
+    @Override
+    public void windowOpened(WindowEvent e) {
+
+    }
+
+    @Override
+    public void windowIconified(WindowEvent e) {
+
+    }
+
+    @Override
+    public void windowDeiconified(WindowEvent e) {
+
+    }
+
+    @Override
+    public void windowActivated(WindowEvent e) {
+
+    }
+
+    @Override
+    public void windowDeactivated(WindowEvent e) {
 
     }
 }

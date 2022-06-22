@@ -128,7 +128,7 @@ public class Prueba {
         VentanaEmpleador vista = new VentanaEmpleador(sistema.getEmpleadores().get(0));
         System.out.println("nashe" + sistema.getEmpleadosPretensos().get(0).getTicketDeBusquedaDeEmpleo());
         ControladorEmpleador controlador = new ControladorEmpleador(vista, sistema.getEmpleadores().get(0));
-        vista.arranca();
+        vista.ejecutar();
 
         System.out.println("\nRONDA DE ENCUENTROS LABORALES ");
 

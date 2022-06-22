@@ -10,7 +10,6 @@ import modelo.tickets.Formulario_de_Busqueda;
 import modelo.tickets.Ticket_de_Busqueda_de_Empleo;
 import modelo.tickets.locaciones.LocacionFactory;
 import modelo.usuarios.EmpleadoPretenso;
-
 import java.awt.Color;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;

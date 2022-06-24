@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="Progra3-Linkedin:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/Progra3_Linkedin_jar</output-path>
+    <root id="archive" name="Progra3-Linkedin.jar">
+      <element id="module-output" name="Progra3-Linkedin" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/jetbrains/annotations/23.0.0/annotations-23.0.0.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>

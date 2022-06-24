@@ -8,19 +8,20 @@ import persistencia.IPersistencia;
 import persistencia.PersistenciaBIN;
 import persistencia.SistemaDTO;
 import persistencia.Util;
+import vista.IVistaLogin;
 import vista.VentanaLogin;
 import javax.swing.*;
 import java.awt.event.*;
 import java.io.IOException;
 
-public class ControladorLogin implements ActionListener, KeyListener, WindowListener {
-    private VentanaLogin vista;
+public class ControladorLogin implements ActionListener, WindowListener {
+    private IVistaLogin vista;
     private Usuario modelo;
 
     public ControladorLogin(VentanaLogin vista) {
         this.vista = vista;
         this.vista.setActionListener(this);
-        this.vista.setKeyListener(this);
+        this.vista.setKeyListener();
         this.vista.setWindowListener(this);
     }
 
@@ -32,32 +33,20 @@ public class ControladorLogin implements ActionListener, KeyListener, WindowList
                 break;
             case "Login":
                 try {
-                    modelo = Sistema.getInstance().login(vista.getTextoNombreUsuario().getText(),vista.getTextoContrasena().getText());
+                    modelo = Sistema.getInstance().login(vista.getNombreUsuario(),vista.getContrasena());
                     vista.setObservado(modelo);
                     modelo.loguearse();
                 } catch (ErrorDeContrasenaException e1) {
                     JOptionPane.showMessageDialog(null, "ERROR: " + e1.getMessage());
-                    vista.getTextoContrasena().setText("");
-                    vista.getBotonLogin().setEnabled(false);
+                    vista.contrasenaInvalida();
                 } catch (ErrorDeUsuarioException e2) {
                     JOptionPane.showMessageDialog(null, "ERROR: " + e2.getMessage());
-                    vista.getTextoNombreUsuario().setText("");
-                    vista.getTextoContrasena().setText("");
-                    vista.getBotonLogin().setEnabled(false);
+                    vista.nombreUsuarioInvalido();
                 }
                 break;
             case "Simulacion":
                 vista.creaOtraVentana("Simulacion");
                 break;
-        }
-    }
-
-    @Override
-    public void keyReleased(KeyEvent e) {
-        if (vista.getTextoNombreUsuario().getText().isEmpty() || vista.getTextoContrasena().getText().isEmpty()) {
-            vista.getBotonLogin().setEnabled(false);
-        } else {
-            vista.getBotonLogin().setEnabled(true);
         }
     }
 
@@ -74,19 +63,9 @@ public class ControladorLogin implements ActionListener, KeyListener, WindowList
         }
     }
 
-    //METODOS QUE NO SE USAN
+    //METODOS NO USADOS
     @Override
     public void windowClosed(WindowEvent e) {
-
-    }
-
-    @Override
-    public void keyTyped(KeyEvent e) {
-
-    }
-
-    @Override
-    public void keyPressed(KeyEvent e) {
 
     }
 

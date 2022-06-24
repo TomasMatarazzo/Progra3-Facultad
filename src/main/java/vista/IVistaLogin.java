@@ -1,9 +1,18 @@
 package vista;
 
-import java.awt.event.KeyListener;
+import modelo.usuarios.Usuario;
 
 public interface IVistaLogin extends IVista {
 
-    void setKeyListener(KeyListener controlador);
+    void setKeyListener();
 
+    void setObservado(Usuario usuario);
+
+    String getNombreUsuario();
+
+    String getContrasena();
+
+    void nombreUsuarioInvalido();
+
+    void contrasenaInvalida();
 }

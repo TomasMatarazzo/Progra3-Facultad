@@ -66,7 +66,7 @@ public class Agencia extends Usuario {
             notifyObservers("Usuario: " + Sistema.getInstance().getEmpleadores().get(i).getNombreUsuario() + " ~ Comision = $" + aux);
         }
         
-        for (int i = 0;i < Sistema.getInstance().getEmpleadosPretensos().size();i++) {
+        for (int i = 0;i < Sistema.getInstance().getContratos().size();i++) {
             aux = Sistema.getInstance().getContratos().get(i).getEmpleado_pretenso().calculaComision(Sistema.getInstance().getContratos().get(i).getRemuneracion());
             this.total += aux;
             setChanged();

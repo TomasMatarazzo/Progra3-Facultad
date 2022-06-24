@@ -4,12 +4,13 @@ import controladores.ControladorLogin;
 import modelo.usuarios.Usuario;
 import javax.swing.*;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.WindowListener;
 import java.util.Observable;
 import java.util.Observer;
 
-public class VentanaAgencia extends JFrame implements IVistaAgencia, Observer {
+public class VentanaAgencia extends JFrame implements IVistaAgencia, KeyListener,Observer {
     private JPanel panelPrincipal;
     private JTabbedPane panelVentanas;
     private JButton botonComisiones;
@@ -33,7 +34,7 @@ public class VentanaAgencia extends JFrame implements IVistaAgencia, Observer {
     private JPanel panelTextoprincipal;
     private JPanel panelAgregarDatos;
     private JButton botonCalcularComisiones;
-    private JList listaComisiones;
+    private JList<String> listaComisiones;
     private JPanel panelTextoPrincipal;
     private JPanel panelLista;
     private JLabel textoBienvenido;
@@ -57,157 +58,14 @@ public class VentanaAgencia extends JFrame implements IVistaAgencia, Observer {
     private JLabel labelRangoLaboral;
     private JLabel labelTitulo2;
     private JLabel labelTitulo3;
+    private JButton botonDesloguearse;
     private Usuario observado;
     //MODELOS PARA LISTAS
-    DefaultListModel modeloTiposDeTrabajo = new DefaultListModel();
-    DefaultListModel modeloRangosLaborales = new DefaultListModel();
-    DefaultListModel modeloTiposDePuestos = new DefaultListModel();
-    DefaultListModel modeloDatosAlmacenados = new DefaultListModel<>();
-    DefaultListModel modeloComisiones = new DefaultListModel<>();
-
-    public JLabel getTextoTotal() {
-        return textoTotal;
-    }
-
-    public JList<String> getListaDatosAlmacenados() {
-        return listaDatosAlmacenados;
-    }
-
-    public JList getListaComisiones() {
-        return listaComisiones;
-    }
-
-    public DefaultListModel getModeloDatosAlmacenados() {
-        return modeloDatosAlmacenados;
-    }
-
-    public DefaultListModel getModeloComisiones() {
-        return modeloComisiones;
-    }
-
-    public DefaultListModel getModeloTiposDeTrabajo() {
-        return modeloTiposDeTrabajo;
-    }
-
-    public DefaultListModel getModeloRangosLaborales() {
-        return modeloRangosLaborales;
-    }
-
-    public DefaultListModel getModeloTiposDePuestos() {
-        return modeloTiposDePuestos;
-    }
-
-    public JComboBox getBoxDatosCargados() {
-        return boxDatosCargados;
-    }
-
-    public void setBoxDatosCargados(JComboBox boxDatosCargados) {
-        this.boxDatosCargados = boxDatosCargados;
-    }
-
-    public JTextField getTextoTiposDeTrabajo() {
-        return textoTiposDeTrabajo;
-    }
-
-    public void setTextoTiposDeTrabajo(JTextField textoTiposDeTrabajo) {
-        this.textoTiposDeTrabajo = textoTiposDeTrabajo;
-    }
-
-    public JTextField getTextoRangoLaboral() {
-        return textoRangoLaboral;
-    }
-
-    public void setTextoRangoLaboral(JTextField textoRangoLaboral) {
-        this.textoRangoLaboral = textoRangoLaboral;
-    }
-
-    public JTextField getTextoTiposDePuestos() {
-        return textoTiposDePuestos;
-    }
-
-    public void setTextoTiposDePuestos(JTextField textoTiposDePuestos) {
-        this.textoTiposDePuestos = textoTiposDePuestos;
-    }
-
-    public JButton getBotonAgregarDatos() {
-        return botonAgregarDatos;
-    }
-
-    public void setBotonAgregarDatos(JButton botonAgregarDatos) {
-        this.botonAgregarDatos = botonAgregarDatos;
-    }
-
-    public JButton getBotonComisiones() {
-        return botonComisiones;
-    }
-
-    public void setBotonComisiones(JButton botonComisiones) {
-        this.botonComisiones = botonComisiones;
-    }
-
-    public JButton getBotonVerDatos() {
-        return botonVerDatos;
-    }
-
-    public void setBotonVerDatos(JButton botonVerDatos) {
-        this.botonVerDatos = botonVerDatos;
-    }
-
-    public JButton getBotonIngresarDatos() {
-        return botonIngresarDatos;
-    }
-
-    public void setBotonIngresarDatos(JButton botonIngresarDatos) {
-        this.botonIngresarDatos = botonIngresarDatos;
-    }
-
-    public JButton getBotonPerfil() {
-        return botonPerfil;
-    }
-
-    public void setBotonPerfil(JButton botonPerfil) {
-        this.botonPerfil = botonPerfil;
-    }
-
-    public JButton getBotonDarDeBaja() {
-        return botonDarDeBaja;
-    }
-
-    public void setBotonDarDeBaja(JButton botonDarDeBaja) {
-        this.botonDarDeBaja = botonDarDeBaja;
-    }
-
-    public JButton getBotonRondaDeEncuentrosLaborales() {
-        return botonRondaDeEncuentrosLaborales;
-    }
-
-    public void setBotonRondaDeEncuentrosLaborales(JButton botonRondaDeEncuentrosLaborales) {
-        this.botonRondaDeEncuentrosLaborales = botonRondaDeEncuentrosLaborales;
-    }
-
-    public JButton getBotonRondaDeContrataciones() {
-        return botonRondaDeContrataciones;
-    }
-
-    public void setBotonRondaDeContrataciones(JButton botonRondaDeContrataciones) {
-        this.botonRondaDeContrataciones = botonRondaDeContrataciones;
-    }
-
-    public JLabel getTextoBienvenido() {
-        return textoBienvenido;
-    }
-
-    public void setTextoBienvenido(JLabel textoBienvenido) {
-        this.textoBienvenido = textoBienvenido;
-    }
-
-    public JLabel getTextoAgencia() {
-        return textoAgencia;
-    }
-
-    public void setTextoAgencia(JLabel textoAgencia) {
-        this.textoAgencia = textoAgencia;
-    }
+    DefaultListModel<String> modeloTiposDeTrabajo = new DefaultListModel<> ();
+    DefaultListModel<String>  modeloRangosLaborales = new DefaultListModel<>();
+    DefaultListModel<String>  modeloTiposDePuestos = new DefaultListModel<>();
+    DefaultListModel<String>  modeloDatosAlmacenados = new DefaultListModel<>();
+    DefaultListModel<String>  modeloComisiones = new DefaultListModel<>();
 
     @Override
     public void setActionListener(ActionListener controlador) {
@@ -215,6 +73,7 @@ public class VentanaAgencia extends JFrame implements IVistaAgencia, Observer {
         botonIngresarDatos.addActionListener(controlador);
         botonVerDatos.addActionListener(controlador);
         botonComisiones.addActionListener(controlador);
+        botonDesloguearse.addActionListener(controlador);
         botonDarDeBaja.addActionListener(controlador);
         botonRondaDeContrataciones.addActionListener(controlador);
         botonRondaDeEncuentrosLaborales.addActionListener(controlador);
@@ -224,10 +83,36 @@ public class VentanaAgencia extends JFrame implements IVistaAgencia, Observer {
     }
 
     @Override
-    public void setKeyListener(KeyListener controlador) {
-        textoTiposDeTrabajo.addKeyListener(controlador);
-        textoRangoLaboral.addKeyListener(controlador);
-        textoTiposDePuestos.addKeyListener(controlador);
+    public void setKeyListener() {
+        textoTiposDeTrabajo.addKeyListener(this);
+        textoRangoLaboral.addKeyListener(this);
+        textoTiposDePuestos.addKeyListener(this);
+    }
+
+    @Override
+    public String getTipoDeTrabajo() {
+        return textoTiposDeTrabajo.getText();
+    }
+
+    @Override
+    public int getRangoLaboral() {
+        int aux = -1;
+
+        if (!textoRangoLaboral.getText().isEmpty()) {
+            try {
+                aux = Integer.parseInt(textoRangoLaboral.getText());
+            } catch (NumberFormatException e1) {
+                lanzarVentanaEmergente("ERROR: Ingrese un valor numerico entero en el campo Rango Laboral");
+                textoRangoLaboral.setText("");
+            }
+        }
+
+        return aux;
+    }
+
+    @Override
+    public String getTipoDePuesto() {
+        return textoTiposDePuestos.getText();
     }
 
     @Override
@@ -237,7 +122,7 @@ public class VentanaAgencia extends JFrame implements IVistaAgencia, Observer {
 
     @Override
     public void ejecutar() {
-        setTitle("My Linkedn - Grupo 5");
+        setTitle("My Linkedn - Grupo 10");
         pack(); //Coloca los componentes
         setContentPane(panelPrincipal);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -255,8 +140,9 @@ public class VentanaAgencia extends JFrame implements IVistaAgencia, Observer {
     }
 
     @Override
-    public void ocultar() {
-        this.setVisible(false);
+    public void cerrarVentana() {
+        setVisible(false); //Oculto la ventana
+        dispose(); //Cierro la ventana
     }
 
     @Override
@@ -264,7 +150,7 @@ public class VentanaAgencia extends JFrame implements IVistaAgencia, Observer {
         if (ventana.equalsIgnoreCase("Login")) {
             VentanaLogin ventanaLogin = new VentanaLogin();
             ControladorLogin controladorLogin = new ControladorLogin(ventanaLogin);
-            this.ocultar();
+            this.cerrarVentana();
             ventanaLogin.ejecutar();
         }
     }
@@ -276,8 +162,26 @@ public class VentanaAgencia extends JFrame implements IVistaAgencia, Observer {
     }
 
     @Override
+    public int getIndiceSeleccionado() {
+        return boxDatosCargados.getSelectedIndex();
+    }
+
+    @Override
     public void cambiarPagina(int pagina) {
         panelVentanas.setSelectedIndex(pagina);
+    }
+
+    @Override
+    public void cambiarTitulo(String nombreAgencia) {
+        textoBienvenido.setText("Bienvenido, " + nombreAgencia);
+    }
+
+    @Override
+    public void cambiarTotal(double total) {
+        if (total == 0)
+            textoTotal.setText("Total a cobrar: -" );
+        else
+            textoTotal.setText("Total a cobrar: " + total);
     }
 
     @Override
@@ -297,23 +201,51 @@ public class VentanaAgencia extends JFrame implements IVistaAgencia, Observer {
     }
 
     @Override
-    public void cargarModelo(DefaultListModel modelo, String dato) {
-        modeloDatosAlmacenados.add(modeloDatosAlmacenados.size(),dato);
+    public void cargarModelo(DefaultListModel<String> modelo, String dato) {
+        modelo.add(modelo.size(),dato); //Agrego al final
     }
 
     @Override
-    public void limpiaModelo(DefaultListModel modelo) {
-        modelo.removeAllElements();
+    public void limpiaModelo(String aux) {
+        if (aux.equalsIgnoreCase("Comisiones"))
+            modeloComisiones.removeAllElements();
+        else
+            if (aux.equalsIgnoreCase("Datos Almacenados"))
+                modeloDatosAlmacenados.removeAllElements();
     }
 
     @Override
-    public void mostrarDatos(JList lista, DefaultListModel modelo) {
-        lista.setModel(modelo);
+    public void mostrarDatos(String dato) {
+        if (dato.equalsIgnoreCase("Datos Almacenados"))
+            listaDatosAlmacenados.setModel(modeloDatosAlmacenados);
+        else
+            if (dato.equalsIgnoreCase("Comisiones"))
+                listaComisiones.setModel(modeloComisiones);
     }
 
     public void setObservado(Usuario usuario) {
         this.observado = usuario;
         usuario.addObserver(this);
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+        if (textoTiposDeTrabajo.getText().isEmpty() && textoRangoLaboral.getText().isEmpty() && textoTiposDePuestos.getText().isEmpty())
+            botonAgregarDatos.setEnabled(false);
+        else
+            botonAgregarDatos.setEnabled(true);
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+        if (modeloRangosLaborales.size() == 2) {
+            textoRangoLaboral.setText("");
+            textoRangoLaboral.setEnabled(false);
+        }
+        if (modeloTiposDePuestos.size() == 3) {
+            textoTiposDePuestos.setText("");
+            textoTiposDePuestos.setEnabled(false);
+        }
     }
 
     @Override
@@ -328,5 +260,11 @@ public class VentanaAgencia extends JFrame implements IVistaAgencia, Observer {
                 cargarModelo(modeloComisiones, (String) texto);
             }
         }
+    }
+
+    //METODOS NO USADOS
+    @Override
+    public void keyTyped(KeyEvent e) {
+
     }
 }

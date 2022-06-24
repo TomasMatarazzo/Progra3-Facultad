@@ -9,6 +9,7 @@ import persistencia.PersistenciaBIN;
 import persistencia.SistemaDTO;
 import persistencia.Util;
 import vista.VentanaLogin;
+import javax.swing.*;
 import java.io.IOException;
 
 public class PruebaPrograma {
@@ -22,7 +23,7 @@ public class PruebaPrograma {
         } catch (EstadoException e) {
             e.printStackTrace();
         } catch (IOException e) {
-            System.out.println("no exite archivos previos");
+            JOptionPane.showMessageDialog(null,"Se ha creado un archivo binario nuevo");
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }

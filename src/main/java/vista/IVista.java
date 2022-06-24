@@ -1,7 +1,6 @@
 package vista;
 
 import java.awt.event.ActionListener;
-import java.awt.event.KeyListener;
 import java.awt.event.WindowListener;
 
 public interface IVista {
@@ -12,7 +11,7 @@ public interface IVista {
 
     void ejecutar();
 
-    void ocultar();
+    void cerrarVentana();
 
     void creaOtraVentana(String ventana);
 

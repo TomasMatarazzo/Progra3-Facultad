@@ -2,7 +2,7 @@ package modelo.tickets;
 
 import java.io.Serializable;
 
-public class Ticket_de_Busqueda_de_Empleado extends Ticket implements Serializable{
+public class Ticket_de_Busqueda_de_Empleado extends Ticket {
     private int[] pesoAspectos; //Pesos de [1,3] vector de 7 dimensiones
     private Ticket_de_Busqueda_de_Empleo eleccion;
 

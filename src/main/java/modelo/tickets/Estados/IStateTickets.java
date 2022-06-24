@@ -2,7 +2,9 @@ package modelo.tickets.Estados;
 
 import modelo.excepciones.EstadoException;
 
-public interface IStateTickets {
+import java.io.Serializable;
+
+public interface IStateTickets extends Serializable {
     void activar() throws EstadoException;
     void suspender() throws EstadoException;
     void cancelar() throws EstadoException;

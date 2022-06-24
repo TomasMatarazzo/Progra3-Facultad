@@ -10,11 +10,11 @@ import java.io.Serializable;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
-public abstract class Ticket implements Comparable, IStateTickets, Serializable {
+public abstract class Ticket implements Comparable, Serializable,IStateTickets {
     protected transient Formulario_de_Busqueda formularioDeBusqueda;
     protected Calendar fechaDeAlta = Calendar.getInstance();
     protected String estado; // activo-suspendido-cancelado-finalizado
-    private transient IStateTickets IStateTickets;
+    private IStateTickets IStateTickets;
     protected String tipoDeTrabajo;
     protected double puntajeTotal;
 

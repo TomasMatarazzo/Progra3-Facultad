@@ -63,32 +63,5 @@ public class Util {
         Sistema.getInstance().setListas(listas);
         Sistema.getInstance().setTicketsDeEmpleadores(ticketsDeEmpleadores);
         Sistema.getInstance().setTicketsDeEmpleadosPretensos(ticketsDeEmpleadosPretensos);
-
-        Sistema sistema=Sistema.getInstance();
-
-        int i;
-
-        for(Ticket_de_Busqueda_de_Empleado key: sistema.getTicketsDeEmpleadores().keySet()) {
-            if(key.getEstado().equals("activado"))
-                key.activar();
-            else if(key.getEstado().equals("cancelado"))
-                key.cancelar();
-            else if(key.getEstado().equals("suspender"))
-                key.suspender();
-            else if(key.getEstado().equals("finalizar"))
-                key.finalizar();
-
-        }
-        for(Ticket_de_Busqueda_de_Empleo key: sistema.getTicketsDeEmpleadosPretensos().keySet()) {
-            if(key.getEstado().equals("activado"))
-                key.activar();
-            else if(key.getEstado().equals("cancelado"))
-                key.cancelar();
-            else if(key.getEstado().equals("suspender"))
-                key.suspender();
-            else if(key.getEstado().equals("finalizar"))
-                key.finalizar();
-
-        }
     }
 }

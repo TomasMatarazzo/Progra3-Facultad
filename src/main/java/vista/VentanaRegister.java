@@ -1,13 +1,14 @@
 package vista;
 
 import controladores.ControladorLogin;
-
+import modelo.excepciones.DatosMalIngresadosException;
 import javax.swing.*;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.WindowListener;
 
-public class VentanaRegister extends JFrame implements IVistaRegister {
+public class VentanaRegister extends JFrame implements IVistaRegister, KeyListener {
     private JPanel panelPrincipal;
     private JPanel panelTipos;
     private JRadioButton empleadoRadioButton;
@@ -39,150 +40,21 @@ public class VentanaRegister extends JFrame implements IVistaRegister {
     private JLabel labelTipoDePersona;
     private JLabel labelRubro;
     private JLabel labelRazonSocial;
-    private JLabel labelCamposOpcionales;
-
-    public JRadioButton getSaludRadioButton() {
-        return saludRadioButton;
-    }
-
-    public void setSaludRadioButton(JRadioButton saludRadioButton) {
-        this.saludRadioButton = saludRadioButton;
-    }
-
-    public JRadioButton getComercioLocalRadioButton() {
-        return comercioLocalRadioButton;
-    }
-
-    public void setComercioLocalRadioButton(JRadioButton comercioLocalRadioButton) {
-        this.comercioLocalRadioButton = comercioLocalRadioButton;
-    }
-
-    public JRadioButton getComercioInternacionalRadioButton() {
-        return comercioInternacionalRadioButton;
-    }
-
-    public void setComercioInternacionalRadioButton(JRadioButton comercioInternacionalRadioButton) {
-        this.comercioInternacionalRadioButton = comercioInternacionalRadioButton;
-    }
-
-    public JRadioButton getEmpleadoRadioButton() {
-        return empleadoRadioButton;
-    }
-
-    public void setEmpleadoRadioButton(JRadioButton empleadoRadioButton) {
-        this.empleadoRadioButton = empleadoRadioButton;
-    }
-
-    public JRadioButton getEmpleadorRadioButton() {
-        return empleadorRadioButton;
-    }
-
-    public void setEmpleadorRadioButton(JRadioButton empleadorRadioButton) {
-        this.empleadorRadioButton = empleadorRadioButton;
-    }
-
-    public JRadioButton getFisicaRadioButton() {
-        return fisicaRadioButton;
-    }
-
-    public void setFisicaRadioButton(JRadioButton fisicaRadioButton) {
-        this.fisicaRadioButton = fisicaRadioButton;
-    }
-
-    public JRadioButton getJuridicaRadioButton() {
-        return juridicaRadioButton;
-    }
-
-    public void setJuridicaRadioButton(JRadioButton juridicaRadioButton) {
-        this.juridicaRadioButton = juridicaRadioButton;
-    }
-
-    public JTextField getTextoNombreDeUsuario() {
-        return textoNombreDeUsuario;
-    }
-
-    public void setTextoNombreDeUsuario(JTextField textoNombreDeUsuario) {
-        this.textoNombreDeUsuario = textoNombreDeUsuario;
-    }
-
-    public JTextField getTextoContrasena() {
-        return textoContrasena;
-    }
-
-    public void setTextoContrasena(JTextField textoContrasena) {
-        this.textoContrasena = textoContrasena;
-    }
-
-    public JTextField getTextoNombre() {
-        return textoNombre;
-    }
-
-    public void setTextoNombre(JTextField textoNombre) {
-        this.textoNombre = textoNombre;
-    }
-
-    public JTextField getTextoApellido() {
-        return textoApellido;
-    }
-
-    public void setTextoApellido(JTextField textoApellido) {
-        this.textoApellido = textoApellido;
-    }
-
-    public JTextField getTextoTelefono() {
-        return textoTelefono;
-    }
-
-    public void setTextoTelefono(JTextField textoTelefono) {
-        this.textoTelefono = textoTelefono;
-    }
-
-    public JTextField getTextoEdad() {
-        return textoEdad;
-    }
-
-    public void setTextoEdad(JTextField textoEdad) {
-        this.textoEdad = textoEdad;
-    }
-
-    public JTextField getTextoEMail() {
-        return textoEMail;
-    }
-
-    public void setTextoEMail(JTextField textoEMail) {
-        this.textoEMail = textoEMail;
-    }
-
-    public JTextField getTextoRazonSocial() {
-        return textoRazonSocial;
-    }
-
-    public void setTextoRazonSocial(JTextField textoRazonSocial) {
-        this.textoRazonSocial = textoRazonSocial;
-    }
-
-    public JButton getBotonRegistrarse() {
-        return botonRegistrarse;
-    }
-
-    public void setBotonRegistrarse(JButton botonRegistrarse) {
-        this.botonRegistrarse = botonRegistrarse;
-    }
+    private JLabel labelCamposObligatorios;
+    private JButton botonVolver;
 
     @Override
     public void setActionListener(ActionListener controlador) {
         this.empleadoRadioButton.addActionListener(controlador);
         this.empleadorRadioButton.addActionListener(controlador);
-
-        //AGREGAR EL RESTO
-
+        this.botonVolver.addActionListener(controlador);
         this.botonRegistrarse.addActionListener(controlador);
     }
 
     @Override
-    public void setKeyListener(KeyListener controlador) {
-        this.textoNombreDeUsuario.addKeyListener(controlador);
-        this.textoContrasena.addKeyListener(controlador);
+    public void setKeyListener() {
+        this.textoNombreDeUsuario.addKeyListener(this);
+        this.textoContrasena.addKeyListener(this);
     }
 
     @Override
@@ -191,22 +63,120 @@ public class VentanaRegister extends JFrame implements IVistaRegister {
     }
 
     @Override
+    public void creaOtraVentana(String ventana) {
+        if (ventana.equalsIgnoreCase("Login")) {
+            VentanaLogin ventanaLogin = new VentanaLogin();
+            ControladorLogin controladorLogin = new ControladorLogin(ventanaLogin);
+            this.cerrarVentana();
+            ventanaLogin.ejecutar();
+        }
+    }
+
+    @Override
+    public void lanzarVentanaEmergente(String mensaje) {
+        JFrame jFrame = new JFrame();
+        JOptionPane.showMessageDialog(jFrame, mensaje);
+    }
+
+    @Override
+    public boolean esEmpleado() {
+        return empleadoRadioButton.isSelected();
+    }
+
+    @Override
+    public String getTipoUsuario() {
+        if (empleadoRadioButton.isSelected())
+            return empleadoRadioButton.getActionCommand();
+        else {
+            if (fisicaRadioButton.isSelected())
+                return fisicaRadioButton.getActionCommand();
+            else
+                return juridicaRadioButton.getActionCommand();
+        }
+    }
+
+    @Override
+    public String getNombreUsuario() {
+        return textoNombreDeUsuario.getText();
+    }
+
+    @Override
+    public String getContrasena() {
+        return textoContrasena.getText();
+    }
+
+    @Override
+    public String getNombre() {
+        return textoNombre.getText();
+    }
+
+    @Override
+    public String getApellido() {
+        return textoApellido.getText();
+    }
+
+    @Override
+    public String getTelefono() {
+        return textoTelefono.getText();
+    }
+
+    @Override
+    public int getEdad() throws DatosMalIngresadosException {
+        int edad = 0;
+
+        if (!textoEdad.getText().isEmpty()) {
+            try {
+                edad = Integer.parseInt(textoEdad.getText());
+            } catch (NumberFormatException e1) {
+                textoEdad.setText("");
+                throw new DatosMalIngresadosException("Ingrese un valor adecuado para la Edad");
+            }
+        }
+
+        return edad;
+    }
+
+    @Override
+    public String getEmail() {
+        return textoEMail.getText();
+    }
+
+    @Override
+    public String getRazonSocial() {
+        return textoRazonSocial.getText();
+    }
+
+    @Override
+    public String getRubro() {
+        if (saludRadioButton.isSelected())
+            return saludRadioButton.getActionCommand();
+        else
+            if (comercioLocalRadioButton.isSelected())
+                return comercioLocalRadioButton.getActionCommand();
+            else
+                if (comercioInternacionalRadioButton.isSelected())
+                    return comercioInternacionalRadioButton.getActionCommand();
+                else
+                    return  "-";
+    }
+
+    @Override
     public void ejecutar() {
-        setTitle("My Linkedn - Grupo 5");
+        setTitle("My Linkedn - Grupo 10");
         pack(); //Coloca los componentes
         setContentPane(panelPrincipal);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
-        setSize(500,500); //Dimensiones del JFrame
+        setSize(500,550); //Dimensiones del JFrame
         setResizable(false); //No redimensionable
         setLocationRelativeTo(null);
         botonRegistrarse.setEnabled(false);
     }
 
     @Override
-    public void ocultar() {
-        setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-        setVisible(false);
+    public void cerrarVentana() {
+        setVisible(false); //Oculto la ventana
+        dispose(); //Cierro la ventana
     }
 
     public void muestraOpcionEmpleado() {
@@ -217,24 +187,34 @@ public class VentanaRegister extends JFrame implements IVistaRegister {
     }
 
     public void muestraOpcionEmpleador() {
-        panelDatosEmpleado.setVisible(false);
         panelDatosEmpleador.setVisible(true);
+        panelDatosEmpleado.setVisible(false);
         fisicaRadioButton.setSelected(true);
     }
 
     @Override
-    public void creaOtraVentana(String ventana) {
-        if (ventana.equalsIgnoreCase("Login")) {
-            VentanaLogin ventanaLogin = new VentanaLogin();
-            ControladorLogin controladorLogin = new ControladorLogin(ventanaLogin);
-            this.ocultar();
-            ventanaLogin.ejecutar();
-        }
+    public void nombreUsuarioInvalido() {
+        textoNombreDeUsuario.setText("");
+        botonRegistrarse.setEnabled(false);
     }
 
     @Override
-    public void lanzarVentanaEmergente(String mensaje) {
-        JFrame jFrame = new JFrame();
-        JOptionPane.showMessageDialog(jFrame, mensaje);
+    public void keyReleased(KeyEvent e) {
+        if (textoNombreDeUsuario.getText().isEmpty() || textoContrasena.getText().isEmpty()) {
+            botonRegistrarse.setEnabled(false);
+        } else {
+            botonRegistrarse.setEnabled(true);
+        }
+    }
+
+    //METODOS NO USADOS
+    @Override
+    public void keyTyped(KeyEvent e) {
+
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+
     }
 }

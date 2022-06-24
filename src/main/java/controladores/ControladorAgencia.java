@@ -7,23 +7,24 @@ import persistencia.IPersistencia;
 import persistencia.PersistenciaBIN;
 import persistencia.SistemaDTO;
 import persistencia.Util;
+import vista.IVistaAgencia;
 import vista.VentanaAgencia;
 import javax.swing.*;
 import java.awt.event.*;
 import java.io.IOException;
 
-public class ControladorAgencia implements ActionListener, KeyListener, WindowListener {
-    private VentanaAgencia vista;
+public class ControladorAgencia implements ActionListener, WindowListener {
+    private IVistaAgencia vista;
     private Agencia modelo;
 
     public ControladorAgencia(VentanaAgencia vista,Agencia modelo) {
         this.vista = vista;
         vista.setActionListener(this);
-        vista.setKeyListener(this);
+        vista.setKeyListener();
         this.vista.setWindowListener(this);
-        vista.setObservado(this.modelo);
         this.modelo = modelo;
-        vista.getTextoBienvenido().setText("Bienvenido, " + modelo.getNombreUsuario());
+        vista.setObservado(this.modelo);
+        vista.cambiarTitulo(modelo.getNombreUsuario());
     }
 
     @Override
@@ -41,9 +42,15 @@ public class ControladorAgencia implements ActionListener, KeyListener, WindowLi
             case "Comisiones":
                 vista.cambiarPagina(3);
                 break;
-            case "Dar de baja":
-                Sistema.getInstance().setAgencia(null);
+            case "Desloguearse":
                 vista.creaOtraVentana("Login");
+                vista.cerrarVentana();
+                JOptionPane.showMessageDialog(null, "Te has deslogueado con exito");
+                break;
+            case "Dar de baja":
+                vista.creaOtraVentana("Login");
+                Sistema.getInstance().setAgencia(null);
+                vista.cerrarVentana();
                 JOptionPane.showMessageDialog(null, "Se ha eliminado la Agencia con exito!");
                 this.modelo = null;
                 break;
@@ -60,81 +67,57 @@ public class ControladorAgencia implements ActionListener, KeyListener, WindowLi
                 JOptionPane.showMessageDialog(null, "Se ha efectuado la ronda de Contrataciones con exito!");
                 break;
             case "Agregar Datos":
-                String tipoTrabajo = vista.getTextoTiposDeTrabajo().getText();
-                String rangoLaboral = vista.getTextoRangoLaboral().getText();
-                String tipoPuesto = vista.getTextoTiposDePuestos().getText();
+                String tipoTrabajo = vista.getTipoDeTrabajo();
+                int rangoLaboral = vista.getRangoLaboral();
+                String auxRango;
+                String tipoPuesto = vista.getTipoDePuesto();
 
                 if (!tipoTrabajo.isEmpty())
                     Sistema.getInstance().agregaTiposDeTrabajo(tipoTrabajo);
-                if (!rangoLaboral.isEmpty())
-                    try {
-                        modelo.confeccionarRangoEtario(Integer.parseInt(rangoLaboral));
-                    } catch (NumberFormatException e1) {
-                        vista.lanzarVentanaEmergente("ERROR: Ingrese un valor numerico entero de Rango");
-                        vista.getTextoRangoLaboral().setText("");
-                        rangoLaboral = "";
-                    }
+                if (rangoLaboral > 0) {
+                    modelo.confeccionarRangoEtario(rangoLaboral);
+                    auxRango = String.valueOf(rangoLaboral);
+                } else
+                    auxRango = "";
                 if (!tipoPuesto.isEmpty())
                     modelo.confeccionarTipoDePuesto(tipoPuesto);
 
-                vista.agregarDatos(tipoTrabajo,rangoLaboral,tipoPuesto);
+                vista.agregarDatos(tipoTrabajo,auxRango,tipoPuesto);
                 break;
             case "boxDatosCargados":
-                switch (vista.getBoxDatosCargados().getSelectedIndex()) {
+                switch (vista.getIndiceSeleccionado()) {
                     case 0:
-                        vista.limpiaModelo(vista.getModeloDatosAlmacenados());
+                        vista.limpiaModelo("Datos Almacenados");
                         break;
                     case 1:
-                        vista.limpiaModelo(vista.getModeloDatosAlmacenados());
+                        vista.limpiaModelo("Datos Almacenados");
                         modelo.muestraEmpleadores();
-                        vista.mostrarDatos(vista.getListaDatosAlmacenados(),vista.getModeloDatosAlmacenados());
+                        vista.mostrarDatos("Datos Almacenados");
                         break;
                     case 2:
-                        vista.limpiaModelo(vista.getModeloDatosAlmacenados());
+                        vista.limpiaModelo("Datos Almacenados");
                         modelo.muestraSolicitudesEmpleadores();
-                        vista.mostrarDatos(vista.getListaDatosAlmacenados(),vista.getModeloDatosAlmacenados());
+                        vista.mostrarDatos("Datos Almacenados");
                         break;
                     case 3:
-                        vista.limpiaModelo(vista.getModeloDatosAlmacenados());
+                        vista.limpiaModelo("Datos Almacenados");
                         modelo.muestraEmpleadosPretensos();
-                        vista.mostrarDatos(vista.getListaDatosAlmacenados(),vista.getModeloDatosAlmacenados());
+                        vista.mostrarDatos("Datos Almacenados");
                         break;
                     case 4:
-                        vista.limpiaModelo(vista.getModeloDatosAlmacenados());
+                        vista.limpiaModelo("Datos Almacenados");
                         modelo.muestraSolicitudEmpleadosPretensos();
-                        vista.mostrarDatos(vista.getListaDatosAlmacenados(),vista.getModeloDatosAlmacenados());
+                        vista.mostrarDatos("Datos Almacenados");
                         break;
                 }
                 break;
             case "Calcular Comisiones":
-                vista.limpiaModelo(vista.getModeloComisiones());
+                vista.limpiaModelo("Comisiones");
                 modelo.calculaComisiones();
-                vista.mostrarDatos(vista.getListaComisiones(),vista.getModeloComisiones());
-                vista.getTextoTotal().setText("Total a cobrar: " + modelo.getTotal());
+                vista.mostrarDatos("Comisiones");
+                vista.cambiarTotal(modelo.getTotal());
                 vista.lanzarVentanaEmergente("Operacion realizada con exito");
                 break;
-        }
-    }
-
-    @Override
-    public void keyReleased(KeyEvent e) {
-        if (vista.getTextoTiposDeTrabajo().getText().isEmpty() && vista.getTextoRangoLaboral().getText().isEmpty() && vista.getTextoTiposDePuestos().getText().isEmpty())
-            vista.getBotonAgregarDatos().setEnabled(false);
-        else
-            vista.getBotonAgregarDatos().setEnabled(true);
-
-
-    }
-
-    @Override
-    public void keyPressed(KeyEvent e) {
-        if (vista.getModeloRangosLaborales().size() == 2) {
-            vista.getTextoRangoLaboral().setText("");
-            vista.getTextoRangoLaboral().setEnabled(false);
-        }
-        if (vista.getModeloTiposDePuestos().size() == 3) {
-            vista.getTextoTiposDePuestos().setText("");
-            vista.getTextoTiposDePuestos().setEnabled(false);
         }
     }
 
@@ -151,14 +134,9 @@ public class ControladorAgencia implements ActionListener, KeyListener, WindowLi
         }
     }
 
-    //METODOS QUE NO SE USAN
+    //METODOS NO USADOS
     @Override
     public void windowClosed(WindowEvent e) {
-
-    }
-
-    @Override
-    public void keyTyped(KeyEvent e) {
 
     }
 

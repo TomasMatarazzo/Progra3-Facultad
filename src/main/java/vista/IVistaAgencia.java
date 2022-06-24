@@ -1,19 +1,30 @@
 package vista;
 
 import javax.swing.*;
-import java.awt.event.KeyListener;
 
 public interface IVistaAgencia extends IVista{
 
-    void setKeyListener(KeyListener controlador);
+    void setKeyListener();
+
+    String getTipoDeTrabajo();
+
+    int getRangoLaboral();
+
+    String getTipoDePuesto();
+
+    int getIndiceSeleccionado();
 
     void cambiarPagina(int pagina);
 
+    void cambiarTitulo(String nombreAgencia);
+
+    void cambiarTotal(double total);
+
     void agregarDatos(String tipoTrabajo,String rangoLaboral,String tipoPuesto);
 
-    void cargarModelo(DefaultListModel modelo, String dato);
+    void cargarModelo(DefaultListModel<String> modelo, String dato);
 
-    void limpiaModelo(DefaultListModel modelo);
+    void limpiaModelo(String modelo);
 
-    void mostrarDatos(JList lista,DefaultListModel modelo);
+    void mostrarDatos(String dato);
 }

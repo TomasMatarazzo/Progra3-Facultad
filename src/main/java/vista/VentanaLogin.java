@@ -13,12 +13,13 @@ import modelo.usuarios.empleadores.Empleador;
 import simulacion.SimulacionThreads;
 import javax.swing.*;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.WindowListener;
 import java.util.Observable;
 import java.util.Observer;
 
-public class VentanaLogin extends JFrame implements IVistaLogin, Observer {
+public class VentanaLogin extends JFrame implements IVistaLogin, KeyListener, Observer {
     private JPanel panelPrincipal;
     private JPanel panelCentral;
     private JPanel panelInferior;
@@ -33,39 +34,9 @@ public class VentanaLogin extends JFrame implements IVistaLogin, Observer {
     private JLabel labelContrasena;
     private JLabel labelTitulo;
     private JButton botonSimulacion;
+    private JPanel panelSuperior;
+    private JLabel labelTituloPrincipal;
     private Usuario observado;
-
-    public JTextField getTextoNombreUsuario() {
-        return textoNombreUsuario;
-    }
-
-    public void setTextoNombreUsuario(JTextField textoNombreUsuario) {
-        this.textoNombreUsuario = textoNombreUsuario;
-    }
-
-    public JPasswordField getTextoContrasena() {
-        return textoContrasena;
-    }
-
-    public void setTextoContrasena(JPasswordField textoContrasena) {
-        this.textoContrasena = textoContrasena;
-    }
-
-    public JButton getBotonRegistrarse() {
-        return botonRegistrarse;
-    }
-
-    public void setBotonRegistrarse(JButton botonRegistrarse) {
-        this.botonRegistrarse = botonRegistrarse;
-    }
-
-    public JButton getBotonLogin() {
-        return botonLogin;
-    }
-
-    public void setBotonLogin(JButton botonLogin) {
-        this.botonLogin = botonLogin;
-    }
 
     @Override
     public void setActionListener(ActionListener controlador) {
@@ -75,9 +46,9 @@ public class VentanaLogin extends JFrame implements IVistaLogin, Observer {
     }
 
     @Override
-    public void setKeyListener(KeyListener controlador) {
-        this.textoNombreUsuario.addKeyListener(controlador);
-        this.textoContrasena.addKeyListener(controlador);
+    public void setKeyListener() {
+        this.textoNombreUsuario.addKeyListener(this);
+        this.textoContrasena.addKeyListener(this);
     }
 
     @Override
@@ -86,22 +57,28 @@ public class VentanaLogin extends JFrame implements IVistaLogin, Observer {
     }
 
     @Override
+    public void setObservado(Usuario usuario) {
+        this.observado = usuario;
+        usuario.addObserver(this);
+    }
+
+    @Override
     public void ejecutar() {
-        setTitle("My Linkedn - Grupo 5");
+        setTitle("My Linkedn - Grupo 10");
         pack(); //Coloca los componentes
         setContentPane(panelPrincipal);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
-        setSize(500,400); //Dimensiones del JFrame
+        setSize(500,500); //Dimensiones del JFrame
         setResizable(false); //No redimensionable
         setLocationRelativeTo(null);
         botonLogin.setEnabled(false);
     }
 
     @Override
-    public void ocultar() {
-        setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-        setVisible(false);
+    public void cerrarVentana() {
+        setVisible(false); //Oculto la ventana
+        dispose(); //Cierro la ventana
     }
 
     @Override
@@ -139,7 +116,7 @@ public class VentanaLogin extends JFrame implements IVistaLogin, Observer {
                 }
                 break;
         }
-        this.ocultar();
+        this.cerrarVentana();
     }
 
     @Override
@@ -148,9 +125,36 @@ public class VentanaLogin extends JFrame implements IVistaLogin, Observer {
         JOptionPane.showMessageDialog(jFrame, mensaje);
     }
 
-    public void setObservado(Usuario usuario) {
-        this.observado = usuario;
-        usuario.addObserver(this);
+    @Override
+    public String getNombreUsuario() {
+        return textoNombreUsuario.getText();
+    }
+
+    @Override
+    public String getContrasena() {
+        return textoContrasena.getText();
+    }
+
+    @Override
+    public void nombreUsuarioInvalido() {
+        textoNombreUsuario.setText("");
+        textoContrasena.setText("");
+        botonLogin.setEnabled(false);
+    }
+
+    @Override
+    public void contrasenaInvalida() {
+        textoContrasena.setText("");
+        botonLogin.setEnabled(false);
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+        if (textoNombreUsuario.getText().isEmpty() || textoContrasena.getText().isEmpty()) {
+            botonLogin.setEnabled(false);
+        } else {
+            botonLogin.setEnabled(true);
+        }
     }
 
     @Override
@@ -162,5 +166,16 @@ public class VentanaLogin extends JFrame implements IVistaLogin, Observer {
             String tipoUsuario = (String) arg;
             creaOtraVentana(tipoUsuario);
         }
+    }
+
+    //METODOS NO USADOS
+    @Override
+    public void keyTyped(KeyEvent e) {
+
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+
     }
 }

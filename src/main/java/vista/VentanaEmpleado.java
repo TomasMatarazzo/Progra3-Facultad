@@ -102,7 +102,7 @@ public class VentanaEmpleado extends JFrame implements IVistaUsuarioComun {
 	}
 
 	@Override
-	public void ocultar() {
+	public void cerrarVentana() {
 		this.setVisible(false);
 	}
 
@@ -111,7 +111,7 @@ public class VentanaEmpleado extends JFrame implements IVistaUsuarioComun {
 		if (ventana.equalsIgnoreCase("Login")) {
 			VentanaLogin ventanaLogin = new VentanaLogin();
 			ControladorLogin controladorLogin = new ControladorLogin(ventanaLogin);
-			this.ocultar();
+			this.cerrarVentana();
 			ventanaLogin.ejecutar();
 		}
 	}

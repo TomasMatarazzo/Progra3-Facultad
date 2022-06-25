@@ -9,10 +9,8 @@ import modelo.tickets.locaciones.ILocacion;
 import modelo.tickets.Formulario_de_Busqueda;
 import modelo.tickets.locaciones.LocacionFactory;
 import modelo.usuarios.*;
-import vista.VentanaEmpleado;
 import vista.VentanaEmpleador;
 import controladores.ControladorEmpleador;
-import controladores.ControladorEmpleados;
 import modelo.Sistema;
 
 public class Prueba {

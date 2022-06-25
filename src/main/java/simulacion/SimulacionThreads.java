@@ -11,7 +11,6 @@ import modelo.tickets.locaciones.LocacionFactory;
 import modelo.usuarios.UsuarioFactory;
 
 public class SimulacionThreads {
-
 	public static void main() throws EstadoException {
         Sistema sistema = Sistema.getInstance();
         UsuarioFactory usuarioFactory = new UsuarioFactory();
@@ -35,8 +34,6 @@ public class SimulacionThreads {
        
         sistema.getAgencia().agregarTipoDeTrabajo("Camarero");
         sistema.getAgencia().agregarTipoDeTrabajo("Bombero");
-/*        sistema.getAgencia().confeccionarRangoEtario(40,50);
-        sistema.getAgencia().confeccionarTipoDePuesto("JR","SR","MANAGMENT");*/
 
         LocacionFactory lc = new LocacionFactory();
 
@@ -64,4 +61,8 @@ public class SimulacionThreads {
         ControladorThreads controladorThreads = new ControladorThreads(ventanaSimulacionThreads);
         ventanaSimulacionThreads.setVisible(true);
 	}
+
+    public static void detenerSimulacion() {
+
+    }
 }

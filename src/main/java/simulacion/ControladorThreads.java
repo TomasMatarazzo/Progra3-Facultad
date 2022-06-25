@@ -4,12 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
-import java.io.IOException;
 import modelo.Sistema;
-import persistencia.IPersistencia;
-import persistencia.PersistenciaBIN;
-import persistencia.SistemaDTO;
-import persistencia.Util;
 import vista.IVista;
 import javax.swing.*;
 
@@ -46,6 +41,8 @@ public class ControladorThreads implements ActionListener, WindowListener {
 
 	@Override
 	public void windowClosing(WindowEvent e) {
+		//PONGO ESTO?
+
 /*		try {
 			IPersistencia bin = new PersistenciaBIN();
 			bin.abrirOutput("Sistema.bin");
@@ -55,9 +52,6 @@ public class ControladorThreads implements ActionListener, WindowListener {
 		} catch (IOException ex) {
 			ex.printStackTrace();
 		}*/
-
-		while (Thread.currentThread().isAlive())
-			Thread.currentThread().interrupt();
 	}
 
 	//METODOS NO USADOS

@@ -36,9 +36,8 @@ public class Ticket_de_Busqueda_de_Empleado extends Ticket {
     //TO STRING
     @Override
     public String toString() {
-        return  "   formularioDeBusqueda: " + formularioDeBusqueda.toString() +
-                "   fechaDeAlta: " + fechaDeAlta.getTime() +
-                "   estado: " + estado;
+        return  "   Ticket -- " + "Estado: " + estado + formularioDeBusqueda.toString() +
+                "   Fecha: " + fechaDeAlta.getTime() ;
     }
 
     //FUCNIONALIDADES

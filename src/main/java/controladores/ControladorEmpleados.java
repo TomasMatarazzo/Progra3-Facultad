@@ -16,10 +16,11 @@ import persistencia.IPersistencia;
 import persistencia.PersistenciaBIN;
 import persistencia.SistemaDTO;
 import util.Util;
+import vista.IVistaUsuarioComun;
 import vista.VentanaEmpleado;
 
 public class ControladorEmpleados implements ActionListener, WindowListener {
-	private VentanaEmpleado vista;
+	private IVistaUsuarioComun vista;
 	private EmpleadoPretenso modelo;
 
 	public ControladorEmpleados(VentanaEmpleado vista2, EmpleadoPretenso modelo) {
@@ -62,6 +63,7 @@ public class ControladorEmpleados implements ActionListener, WindowListener {
 			if (vista.getTicketEleccionesSeleccionado() != null) {
 				vista.confirmarSeleccion();
 				vista.lanzarVentanaEmergente("Se elegio un empleado.");
+				modelo.getTicketDeBusquedaDeEmpleo().setEleccion(vista.getTicketEleccionesSeleccionado());
 			}
 			else
 				vista.lanzarVentanaEmergente("Seleccion un ticket de la ronda de elecciones.");

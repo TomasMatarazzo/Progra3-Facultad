@@ -46,7 +46,7 @@ public class BolsaDeTrabajo extends Observable{
     //METODOS SYNCHRONIZED
     public synchronized TicketSimplificado SacaBolsa(Ticket t, EmpleadoPretenso u) {
         TicketSimplificado aux = coincidenciaTipoTrabajo(t);
-        while ((aux == null) &&((t.getEstado().equalsIgnoreCase("Finalizado"))||(t.getEstado().equalsIgnoreCase("Suspenso")))) {
+        while ((aux == null) || (aux!=null && aux.getEstado().equalsIgnoreCase("Finalizado")) || (aux!=null && aux.getEstado().equalsIgnoreCase("Suspenso"))) {
             try {
             	setChanged();
                 notifyObservers(u.getNombreUsuario()+" Esperara por algun trabajo de su Tipo");

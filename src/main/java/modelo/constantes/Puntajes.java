@@ -43,19 +43,19 @@ public class Puntajes {
 
     public static String[][] NOMBRES_FORM_BUSQUEDA = {{"Media","Completa","Extendida"},
                                                       {puesto1,puesto2,puesto3},
-                                                      {"edad menor a " + Puntajes.getEdad1(), "entre" + Puntajes.getEdad1() + "y" + edad2, "edad mayor a " + Puntajes.getEdad2()},
-                                                      {"sin experiencia","experiencia media", "mucha experiencia"},
+                                                      {"edad menor a " + Puntajes.getEdad1()," entre " + Puntajes.getEdad1() + " y " + edad2, "edad mayor a " + Puntajes.getEdad2()},
+                                                      {"sin experiencia","experiencia media","mucha experiencia"},
                                                       {"primerio","secundario","terciario"}};
 
     public static void setEdad1(int edad) {
         edad1 = edad;
-        Puntajes.NOMBRES_FORM_BUSQUEDA[2][1] = "entre" + edad1 + "y" + edad2;
+        Puntajes.NOMBRES_FORM_BUSQUEDA[2][1] = "entre " + edad1 + " y " + edad2;
         Puntajes.NOMBRES_FORM_BUSQUEDA[2][0] = "edad menor a " + edad1;
     }
 
     public static void setEdad2(int edad) {
         edad2 = edad;
-        Puntajes.NOMBRES_FORM_BUSQUEDA[2][1] = "entre" + edad1 + "y" + edad2;
+        Puntajes.NOMBRES_FORM_BUSQUEDA[2][1] = "entre " + edad1 + " y " + edad2;
         Puntajes.NOMBRES_FORM_BUSQUEDA[2][2] = "edad mayor a " + edad2;
     }
 

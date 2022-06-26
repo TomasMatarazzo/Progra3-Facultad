@@ -7,7 +7,6 @@ import modelo.usuarios.EmpleadoPretenso;
 import modelo.usuarios.UsuarioComun;
 
 public class BolsaDeTrabajo extends Observable{
-
 	private static BolsaDeTrabajo instancia = null;	
 	private ArrayList <TicketSimplificado> bolsa = new ArrayList<>();
 	
@@ -52,7 +51,7 @@ public class BolsaDeTrabajo extends Observable{
                 notifyObservers(u.getNombreUsuario()+" Esperara por algun trabajo de su Tipo");
                 wait();
             } catch (InterruptedException e) {
-                e.printStackTrace();
+
             }
         }
         aux.setEstado("Suspenso");

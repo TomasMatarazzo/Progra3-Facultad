@@ -4,6 +4,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import controladores.ControladorLogin;
+import modelo.listas.Contrato;
 import modelo.tickets.Ticket;
 import modelo.tickets.Ticket_de_Busqueda_de_Empleado;
 import modelo.tickets.locaciones.LocacionFactory;
@@ -84,6 +85,7 @@ public class VentanaEmpleador extends JFrame implements IVistaUsuarioComun {
 	private JPanel tab2;
 	private JButton btnBaja;
 	private JButton btnActivarTicket;
+	private JList<Contrato> listaContratos;
 
 	public VentanaEmpleador() {
 		setBounds(100, 100, 800, 500);
@@ -269,7 +271,6 @@ public class VentanaEmpleador extends JFrame implements IVistaUsuarioComun {
 		scrollPane = new JScrollPane();
 		scrollPane.setBounds(31, 155, 539, 276);
 		tab2.add(scrollPane);
-		//this.renderListaTickets(modelo.getTicketDeBusquedaDeEmpleo());
 		list_1.setVisibleRowCount(3);
 		scrollPane.setViewportView(list_1);
 		this.scrollPane.setVisible(true);
@@ -367,6 +368,7 @@ public class VentanaEmpleador extends JFrame implements IVistaUsuarioComun {
 		tab4.setBackground(new Color(30, 144, 255));
 		pantallasTab.addTab("Contratos", null, tab4, null);
 
+		listaContratos = new JList<Contrato>();
 		scrollPane_2 = new JScrollPane();
 		scrollPane_2.setBounds(31, 155, 539, 276);
 		tab4.add(scrollPane_2);
@@ -485,21 +487,23 @@ public class VentanaEmpleador extends JFrame implements IVistaUsuarioComun {
 
 	@Override
 	public void llenarDatosEmpleador(String nombre, String tipoPersona, String rubro, String usuario) {
-		if (nombre.equals(" "))
+		if (nombre.isEmpty())
 			this.nombreLabel.setText("-");
 		else
 			this.nombreLabel.setText(nombre);
-		if (rubro.equals(" "))
+		if (rubro.isEmpty())
 			this.rubroLabel.setText("-");
 		else
 			this.rubroLabel.setText(rubro);
 		this.usuarioLabel.setText(usuario);
 		this.entidadLabel.setText(tipoPersona);
 		this.nombreCompletooLabel.setText(nombre);
+		this.nombreCompletooLabel_1.setText(nombre);
+		this.nombreCompletooLabel_2.setText(nombre);
 	}
 
 	public void renderListaTicketsEmpleador(ArrayList<Ticket_de_Busqueda_de_Empleado> tickets) {
-		DefaultListModel<Ticket_de_Busqueda_de_Empleado> listaTicketsDefault = new DefaultListModel<Ticket_de_Busqueda_de_Empleado>();
+		DefaultListModel<Ticket_de_Busqueda_de_Empleado> listaTicketsDefault = new DefaultListModel<>();
 
 		for(int i = 0 ; i < tickets.size() ; i++)
 			listaTicketsDefault.addElement(tickets.get(i));
@@ -508,6 +512,15 @@ public class VentanaEmpleador extends JFrame implements IVistaUsuarioComun {
 		this.list_1.setModel(listaTicketsDefault);
 		scrollPane.setViewportView(list_1);
 		this.setCantidadTickets(Integer.toString(tickets.size()));
+	}
+
+	public void renderListaContratos(ArrayList<Contrato> contratos) {
+		DefaultListModel<Contrato> listaContratoDefault = new DefaultListModel<>();
+
+		for(int i = 0 ; i < contratos.size() ; i++)
+			listaContratoDefault.addElement(contratos.get(i));
+		this.listaContratos.setModel(listaContratoDefault);
+		scrollPane.setViewportView(listaContratos);
 	}
 	
 	@Override

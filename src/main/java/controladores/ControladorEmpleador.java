@@ -6,7 +6,6 @@ import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.io.IOException;
 import java.util.ArrayList;
-
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import modelo.Sistema;
@@ -32,8 +31,9 @@ public class ControladorEmpleador implements ActionListener, WindowListener{
 		this.vista = vista;
 		this.vista.setActionListener(this);
 		this.vista.setWindowListener(this);
-		//this.vista.llenarDatosEmpleador(modelo.getRazonSocial(),modelo.getNombre(),modelo.getRubro(),modelo.getNombreUsuario());
+		this.vista.llenarDatosEmpleador(modelo.getRazonSocial(),modelo.getNombre(),modelo.getRubro(),modelo.getNombreUsuario());
 		this.vista.renderListaTicketsEmpleador(modelo.getTicketsDeBusquedaDeEmpleado());
+		this.vista.renderListaContratos(Sistema.getInstance().getContratos());
 	}
 
 	@Override

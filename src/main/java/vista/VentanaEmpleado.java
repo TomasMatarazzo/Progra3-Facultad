@@ -4,6 +4,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import controladores.ControladorLogin;
+import modelo.listas.Contrato;
 import modelo.tickets.Ticket;
 import modelo.tickets.Ticket_de_Busqueda_de_Empleo;
 import modelo.tickets.locaciones.LocacionFactory;
@@ -12,6 +13,7 @@ import java.awt.Color;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowListener;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.TreeSet;
 import java.awt.Font;
@@ -478,6 +480,7 @@ public class VentanaEmpleado extends JFrame implements IVistaUsuarioComun, Actio
 		this.edadLabel.setText(String.valueOf(edad));
 		this.nombreCompletooLabel.setText(nombre + " " + apellido);
 		this.cantTicketsLabel.setText(Integer.toString(this.list_1.getWidth()));
+		this.nombreCompletooLabel_1.setText(nombre + " " + apellido);
 	}
 	
 	@Override
@@ -489,7 +492,16 @@ public class VentanaEmpleado extends JFrame implements IVistaUsuarioComun, Actio
 		this.list_1.setModel(listaTicketsDefault);
 		scrollPane.setViewportView(list_1);
 	}
-	
+
+/*	public void renderListaContratos(ArrayList<Contrato> contratos) {
+		DefaultListModel<Contrato> listaContratoDefault = new DefaultListModel<>();
+
+		for(int i = 0 ; i < contratos.size() ; i++)
+			listaContratoDefault.addElement(contratos.get(i));
+		this.listaContratos.setModel(listaContratoDefault);
+		scrollPane.setViewportView(listaContratos);
+	}
+	*/
 	@Override
 	public void renderListaElecciones(TreeSet<Ticket> list) {
 		if (list == null || list.size() == 0) {
@@ -518,16 +530,17 @@ public class VentanaEmpleado extends JFrame implements IVistaUsuarioComun, Actio
 	public Ticket getTicketEleccionesSeleccionado() {
 		return (this.listaElecciones == null ? null : this.listaElecciones.getSelectedValue());
 	}
-	
+
+	@Override
+	public void llenarDatosEmpleador(String nombre, String tipoPersona, String rubro, String usuario) {
+
+	}
+
 	@Override
 	public void setCantidadTickets(String cant) {
 		this.cantTicketsLabel.setText(cant);
 	}
 
-	@Override
-	public void llenarDatosEmpleador(String nombre, String tipoPersona, String rubro, String usuario) {
-		// TODO Auto-generated method stub
-	}
 	public void actionPerformed(ActionEvent e) {
 	}
 }

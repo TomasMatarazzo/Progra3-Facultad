@@ -151,7 +151,7 @@ public class VentanaEmpleador extends JFrame implements IVistaUsuarioComun {
 		btnContratos.setBounds(0, 275, 186, 35);
 		panel.add(btnContratos);
 
-		btnBaja = new JButton("Dar de baja perfil");
+		btnBaja = new JButton("Dar de baja");
 		btnBaja.setSelected(true);
 		btnBaja.setFont(new Font("Segoe UI Semibold", Font.BOLD, 14));
 		btnBaja.setBorder(null);
@@ -481,7 +481,7 @@ public class VentanaEmpleador extends JFrame implements IVistaUsuarioComun {
 		if (nombre.equals(" "))
 			this.nombreLabel.setText("-");
 		else
-			this.nombreLabel.setText(rubro);
+			this.nombreLabel.setText(nombre);
 		if (rubro.equals(" "))
 			this.rubroLabel.setText("-");
 		else
@@ -543,7 +543,7 @@ public class VentanaEmpleador extends JFrame implements IVistaUsuarioComun {
 
 	@Override
 	public Ticket getTicketEleccionesSeleccionado() {
-		return this.listaElecciones.getSelectedValue();
+		return (this.listaElecciones == null ? null : this.listaElecciones.getSelectedValue());
 	}
 
 	@Override

@@ -89,12 +89,12 @@ public class ControladorEmpleado implements ActionListener, WindowListener {
 						Formulario_de_Busqueda formulario = new Formulario_de_Busqueda(locacionFac, Integer.parseInt(vista.getForm().renumeracion), vista.getForm().cargaHoraria, vista.getForm().tipoPuesto, vista.getForm().edad, vista.getForm().experiencia, vista.getForm().estudios);
 						try {
 							modelo.creaTicket(formulario, "Bombero");
-							System.out.println(modelo.getTicketDeBusquedaDeEmpleo());
 						} catch (Exception e2) {
 							vista.lanzarVentanaEmergente(e2.getMessage());
 						}
 						vista.renderListaTicketsEmpleado(modelo.getTicketDeBusquedaDeEmpleo());
 						vista.getForm().cleanForms();
+						vista.getForm().dispose();
 					}
 				break;
 			case "SUSPENDERTICKET":
@@ -123,7 +123,6 @@ public class ControladorEmpleado implements ActionListener, WindowListener {
 				vista.creaOtraVentana("Login");
 				vista.cerrarVentana();
 				JOptionPane.showMessageDialog(null, "Se ha eliminado el empleado con exito!");
-				vista.getForm().dispose();
 				break;
 		}
 	}

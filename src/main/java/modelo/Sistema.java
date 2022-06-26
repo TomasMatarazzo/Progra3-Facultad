@@ -252,8 +252,8 @@ public class Sistema{
                     nuevalista.getOfertas().add(ticketEmpleador);
                 }
             }
-            Ticket ultimoTicketEmpresa = (Ticket_de_Busqueda_de_Empleado)nuevalista.getOfertas().last(); // EN REALIDAD ES TICKET DE UNA EMPRESA
-            ticketsDeEmpleadores.get(ultimoTicketEmpresa).setPuntaje(ticketsDeEmpleadores.get(ultimoTicketEmpresa).getPuntaje()+10);
+            Ticket ultimoTicketEmpresa = nuevalista.getOfertas().last(); // EN REALIDAD ES TICKET DE UNA EMPRESA
+            ticketsDeEmpleadores.get(ultimoTicketEmpresa).setPuntaje(ticketsDeEmpleadores.get(ultimoTicketEmpresa).getPuntaje() + 10);
             listas.put(ticketEmpleado,nuevalista);
         }
     }

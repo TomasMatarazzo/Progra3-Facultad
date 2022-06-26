@@ -309,7 +309,7 @@ public class VentanaEmpleado extends JFrame implements IVistaUsuarioComun, Actio
 		eliminarTicketButton.setBounds(128, 128, 87, 19);
 		tab2.add(eliminarTicketButton);
 		
-		btnModificarTicket = new JButton("Modificar Ticket");
+		btnModificarTicket = new JButton("Suspender Ticket");
 		btnModificarTicket.setBounds(223, 128, 100, 19);
 		tab2.add(btnModificarTicket);
 		
@@ -507,7 +507,7 @@ public class VentanaEmpleado extends JFrame implements IVistaUsuarioComun, Actio
 
 	@Override
 	public Ticket getTicketEleccionesSeleccionado() {
-		return this.listaElecciones.getSelectedValue();
+		return (this.listaElecciones == null ? null : this.listaElecciones.getSelectedValue());
 	}
 	
 	@Override

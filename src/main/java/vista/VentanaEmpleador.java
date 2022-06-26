@@ -87,6 +87,7 @@ public class VentanaEmpleador extends JFrame implements IVistaUsuarioComun, Acti
 	private JButton btnBaja;
 	private JButton btnActivarTicket;
 	private JList<Contrato> listaContratos;
+	private JScrollPane scrollPane_1;
 
 	public VentanaEmpleador() {
 		setBounds(100, 100, 800, 500);
@@ -102,6 +103,7 @@ public class VentanaEmpleador extends JFrame implements IVistaUsuarioComun, Acti
 		panel.setLayout(null);
 
 		ticketsButton = new JButton("Tickets");
+		ticketsButton.addActionListener(this);
 		ticketsButton.setSelected(true);
 		ticketsButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		ticketsButton.setBackground(new Color(100, 149, 237));
@@ -329,12 +331,17 @@ public class VentanaEmpleador extends JFrame implements IVistaUsuarioComun, Acti
 		btnActivarTicket.setBounds(328, 128, 100, 19);
 		tab2.add(btnActivarTicket);
 
+		scrollPane_1 = new JScrollPane();
+		scrollPane_1.setBackground(Color.RED);
+		scrollPane_1.setBounds(31, 155, 539, 276);
+		
 		//this.renderVentanaVistas(3);
 
 		tab3 = new JPanel();
 		tab3.setLayout(null);
 		tab3.setBackground(new Color(30, 144, 255));
 		pantallasTab.addTab("Elecciones", null, tab3, null);
+		tab3.add(scrollPane_1);
 
 		seleccionarEmpleadorButton = new JButton("Confirmar Empleador");
 		seleccionarEmpleadorButton.setActionCommand("EMPLEADORELEGIDO");
@@ -364,6 +371,7 @@ public class VentanaEmpleador extends JFrame implements IVistaUsuarioComun, Acti
 		nombreCompletooLabel_1.setFont(new Font("Segoe UI", Font.PLAIN, 25));
 		nombreCompletooLabel_1.setBounds(164, 24, 231, 29);
 		tab3.add(nombreCompletooLabel_1);
+		
 
 		tab4 = new JPanel();
 		tab4.setLayout(null);
@@ -511,6 +519,7 @@ public class VentanaEmpleador extends JFrame implements IVistaUsuarioComun, Acti
 			listaTicketsDefault.addElement(tickets.get(i));
 		if (list_1.getModel().getSize() != 0)
 			((DefaultListModel) list_1.getModel()).removeAllElements();
+		
 		this.list_1.setModel(listaTicketsDefault);
 		scrollPane.setViewportView(list_1);
 		this.setCantidadTickets(Integer.toString(tickets.size()));
@@ -527,28 +536,18 @@ public class VentanaEmpleador extends JFrame implements IVistaUsuarioComun, Acti
 	
 	@Override
 	public void renderListaElecciones(TreeSet<Ticket> list) {
-	}
-
-	public void renderVentanaVistas(int cantidad, TreeSet<Ticket> list) {
-		tabbedPane = new JTabbedPane(JTabbedPane.TOP);
-		tabbedPane.setBounds(31, 155, 539, 276);
 		if (list == null || list.size() == 0)
 			lblNewLabel = new JLabel("Todavia no se efectuo la ronda de contratos laborales.");
 		else {
-			for (int i = 0 ; i< cantidad ; i++) {
-				tab3.add(tabbedPane);
-				scrollPane_3 = new JScrollPane();
-				tabbedPane.addTab("Ticket " + (1 + i), null, scrollPane_3, null);
-				lblNewLabel.setText("Ofertas laborales encontradas , seleccione una");
-				DefaultListModel<Ticket> tickets = new DefaultListModel<Ticket>();
-				Iterator <Ticket>it = list.iterator();
-				while (it.hasNext())
-					tickets.addElement(it.next());
-				this.listaElecciones = new JList<>();
-				this.listaElecciones.setModel(tickets);
-				scrollPane_3.setViewportView(listaElecciones);
-			}
-		}
+			DefaultListModel<Ticket> tickets = new DefaultListModel<Ticket>();
+			Iterator <Ticket>it = list.iterator();
+			while (it.hasNext())
+				tickets.addElement(it.next());
+			this.listaElecciones = new JList<Ticket>();
+			this.listaElecciones.setModel(tickets);
+			listaElecciones.setVisibleRowCount(3);
+			scrollPane_1.setViewportView(listaElecciones);
+	}
 	}
 
 	@Override
@@ -569,9 +568,7 @@ public class VentanaEmpleador extends JFrame implements IVistaUsuarioComun, Acti
 	}
 
 
-	public int getTabSeleccionado() {
-		return tabbedPane.getSelectedIndex();
-	}
+
 
 	//METODOS QUE NO SE USAN
 	@Override

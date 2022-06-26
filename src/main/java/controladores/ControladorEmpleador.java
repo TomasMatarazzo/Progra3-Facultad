@@ -31,9 +31,9 @@ public class ControladorEmpleador implements ActionListener, WindowListener{
 		this.vista = vista;
 		this.vista.setActionListener(this);
 		this.vista.setWindowListener(this);
-		this.vista.llenarDatosEmpleador(modelo.getRazonSocial(),modelo.getNombre(),modelo.getRubro(),modelo.getNombreUsuario());
+		//this.vista.llenarDatosEmpleador(modelo.getRazonSocial(),modelo.getNombre(),modelo.getRubro(),modelo.getNombreUsuario());
 		this.vista.renderListaTicketsEmpleador(modelo.getTicketsDeBusquedaDeEmpleado());
-		this.vista.renderListaContratos(Sistema.getInstance().getContratos());
+		//this.vista.renderListaContratos(Sistema.getInstance().getContratos());
 	}
 
 	@Override
@@ -48,9 +48,10 @@ public class ControladorEmpleador implements ActionListener, WindowListener{
 				break;
 			case "iniciarELECCIONES":
 				vista.cambiarPagina(2);
-				vista.renderVentanaVistas(3,Sistema.getInstance().getListas().get(modelo.getTicketsDeBusquedaDeEmpleado().get(0)).getOfertas());
+				//vista.renderVentanaVistas(3,Sistema.getInstance().getListas().get(modelo.getTicketsDeBusquedaDeEmpleado().get(0)).getOfertas());
 				//vista.renderListaElecciones();
-				//this.vista.renderListaElecciones(Sistema.getInstance().getListas().get(modelo.getTicketsDeBusquedaDeEmpleado().get(0)).getOfertas());
+				this.vista.renderListaElecciones(Sistema.getInstance().getListas().get(modelo.getTicketsDeBusquedaDeEmpleado().get(0)).getOfertas());
+				System.out.println(Sistema.getInstance().getListas().get(modelo.getTicketsDeBusquedaDeEmpleado().get(0)).getOfertas());
 				break;
 			case "CONTRATOS":
 				vista.cambiarPagina(3);
@@ -83,7 +84,7 @@ public class ControladorEmpleador implements ActionListener, WindowListener{
 				if (vista.getTicketEleccionesSeleccionado() != null ) {
 					vista.lanzarVentanaEmergente("Se elegio un empleado.");
 					vista.confirmarSeleccion();
-					modelo.getTicketsDeBusquedaDeEmpleado().get(vista.getTabSeleccionado()).setEleccion( (Ticket_de_Busqueda_de_Empleo)vista.getTicketEleccionesSeleccionado());
+					modelo.getTicketsDeBusquedaDeEmpleado().get(0).setEleccion( (Ticket_de_Busqueda_de_Empleo)vista.getTicketEleccionesSeleccionado());
 				} else
 					vista.lanzarVentanaEmergente("Seleccion un ticket de la ronda de elecciones.");
 				break;

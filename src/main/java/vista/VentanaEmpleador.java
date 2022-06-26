@@ -7,6 +7,7 @@ import javax.swing.border.EmptyBorder;
 
 import controladores.ControladorEmpleador;
 import controladores.ControladorEmpleados;
+import controladores.ControladorLogin;
 import modelo.tickets.Formulario_de_Busqueda;
 import modelo.tickets.Ticket;
 import modelo.tickets.Ticket_de_Busqueda_de_Empleado;
@@ -34,9 +35,10 @@ import javax.swing.JOptionPane;
 import javax.swing.DefaultListModel;
 import javax.swing.BoxLayout;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowListener;
 import java.awt.event.ActionEvent;
 
-public class VentanaEmpleador extends JFrame implements ActionListener {
+public class VentanaEmpleador extends JFrame implements ActionListener,IVistaUsuarioComun {
 
 	private JPanel contentPane;
 	private JButton btnProfile;
@@ -62,7 +64,7 @@ public class VentanaEmpleador extends JFrame implements ActionListener {
 	private JPanel panel_4;
 	private JButton agregarTicketButton;
 	private JButton eliminarTicketButton;
-	private JButton btnModificarTicket;
+	private JButton btnSuspenderTicket;
     private LocacionFactory lc = new LocacionFactory();
 	private Formulario_de_Busqueda formulario;
 	private Ticket_de_Busqueda_de_Empleado ticket ;
@@ -89,119 +91,13 @@ public class VentanaEmpleador extends JFrame implements ActionListener {
 	private JSeparator separator_6;
 	private JLabel contratosLbl;
 	private JLabel nombreCompletooLabel_2;
+	private JTabbedPane tabbedPane;
+	private JScrollPane scrollPane_3;
+	private JList list_2;
+	private JPanel tab2;
+	private JButton btnBaja;
 
-	// Listeners a los botones.
 	
-
-	public void setControlador(ControladorEmpleador c) {
-		System.out.println("Se ejecuto el comando");
-		this.ticketsButton.addActionListener(c);
-		this.btnProfile.addActionListener(c);
-		this.eleccionesButton.addActionListener(c);
-		this.agregarTicketButton.addActionListener(c);
-		this.eliminarTicketButton.addActionListener(c);
-		this.seleccionarEmpleadorButton.addActionListener(c);
-		this.form.crearTicketButton.addActionListener(c);
-		this.btnContratos.addActionListener(c);
-		this.btnCerrarSesion.addActionListener(c);
-	}
-	
-	public FormTickets getForm() {
-		return this.form;
-	}
-	
-	public void ejecutar(){
-		setTitle("My Linkedn - Grupo 5");
-		pack(); //Coloca los componentes
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setVisible(true);
-		setSize(800,500); //Dimensiones del JFrame
-		setResizable(false); //No redimensionable
-		setLocationRelativeTo(null);
-	}
-	
-	public void cambiarPagina(int i) {
-		this.pantallasTab.setSelectedIndex(i);
-	}
-	
-	public void setCantidadTickets(String cant) {
-		this.cantTicketsLabel.setText(cant);
-	}
-	// Muestra de datos de empleado
-
-	public void llenarDatosEmpleador(String nombre, String tipoPersona, String rubro, String usuario) {
-		if (nombreLabel.equals(" "))
-			this.nombreLabel.setText("------");
-		else
-			this.nombreLabel.setText(rubro);
-		if (tipoPersona.equals(" "))
-			this.rubroLabel.setText("------");
-		else
-			this.rubroLabel.setText(rubro);
-		this.usuarioLabel.setText(usuario);
-		this.entidadLabel.setText(tipoPersona);
-
-	}
-	
-	public void renderListaTickets(ArrayList<Ticket_de_Busqueda_de_Empleado> tickets) {
-		DefaultListModel<Ticket_de_Busqueda_de_Empleado> listaTicketsDefault = new DefaultListModel<Ticket_de_Busqueda_de_Empleado>();
-		System.out.println("Agregando el nuevo ticket");
-		for(int i = 0 ; i < tickets.size() ; i++)
-			listaTicketsDefault.addElement(tickets.get(i));
-		if (list_1.getModel().getSize() != 0)
-			((DefaultListModel) list_1.getModel()).removeAllElements();
-		this.list_1.setModel(listaTicketsDefault);
-		scrollPane.setViewportView(list_1);
-		this.setCantidadTickets(Integer.toString(tickets.size()));
-	}
-	
-	public void renderListaElecciones( TreeSet<Ticket> list) {
-		if (list == null || list.size() == 0) {
-			lblNewLabel = new JLabel("Todavia no se efectuo la ronda de contratos laborales.");
-		}else {
-			lblNewLabel.setText("Ofertas laborales encontradas , seleccione una");
-			DefaultListModel<Ticket> tickets = new DefaultListModel<Ticket>();
-			Iterator <Ticket>it = list.iterator();
-			while (it.hasNext())
-				tickets.addElement(it.next());
-			this.listaElecciones = new JList<Ticket>();
-			
-			// Inicializo vista con los tickets del modelo
-			this.listaElecciones.setModel(tickets);
-			listaElecciones.setVisibleRowCount(3);
-			scrollPane_1.setViewportView(listaElecciones);
-		}
-	}
-	
-	public void mostrarFormTicket() {
-		this.form.setVisible(true);
-	}
-	
-	public void ocultarFormTicket() {
-		this.form.setVisible(false);
-	}
-	
-	// Manejo de la lista de tickets
-	
-	public Ticket_de_Busqueda_de_Empleado getTicketSeleccionado() {
-		return this.list_1.getSelectedValue();
-	}
-	public Ticket getTicketEleccionesSeleccionado() {
-		return this.listaElecciones.getSelectedValue();
-	}
-	
-	public void confirmarSeleccion() {
-		lblNewLabel.setText("Empleado seleccionado , espere los resultados");
-		this.listaElecciones.setVisible(false);
-		this.seleccionarEmpleadorButton.setVisible(false);
-	}
-	
-	// Ventaja Emergente
-	
-	public void lanzarVentanaEmergente(String mensaje) {
-		JFrame jFrame = new JFrame();
-        JOptionPane.showMessageDialog(jFrame, mensaje);
-	}
 
 	public VentanaEmpleador(Empleador modelo) {
 		
@@ -220,6 +116,7 @@ public class VentanaEmpleador extends JFrame implements ActionListener {
 		panel.setLayout(null);
 		
 		ticketsButton = new JButton("Tickets");
+		ticketsButton.addActionListener(this);
 		ticketsButton.setSelected(true);
 		ticketsButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		ticketsButton.setBackground(new Color(100, 149, 237));
@@ -274,6 +171,16 @@ public class VentanaEmpleador extends JFrame implements ActionListener {
 		btnContratos.setActionCommand("CONTRATOS");
 		btnContratos.setBounds(0, 275, 186, 35);
 		panel.add(btnContratos);
+		
+		btnBaja = new JButton("Dar de baja perfil");
+		btnBaja.setSelected(true);
+		btnBaja.setFont(new Font("Segoe UI Semibold", Font.BOLD, 14));
+		btnBaja.setBorder(null);
+		btnBaja.setBackground(new Color(100, 149, 237));
+		btnBaja.setActionCommand("CERRARSESION");
+		btnBaja.setBounds(0, 403, 186, 35);
+		btnBaja.setActionCommand("BAJA");
+		panel.add(btnBaja);
 		
 		pantallasTab = new JTabbedPane(JTabbedPane.TOP);
 		pantallasTab.setBounds(187, 0, 599, 464);
@@ -374,7 +281,7 @@ public class VentanaEmpleador extends JFrame implements ActionListener {
 		separator_4.setBounds(275, 255, 69, 40);
 		tab1.add(separator_4);
 		
-		JPanel tab2 = new JPanel();
+		tab2 = new JPanel();
 		tab2.setBackground(new Color(30, 144, 255));
 		pantallasTab.addTab("Tickets", null, tab2, null);
 		tab2.setLayout(null);
@@ -385,6 +292,7 @@ public class VentanaEmpleador extends JFrame implements ActionListener {
 		//this.renderListaTickets(modelo.getTicketDeBusquedaDeEmpleo());
 		list_1.setVisibleRowCount(3);
 		scrollPane.setViewportView(list_1);
+		this.scrollPane.setVisible(false);
 		
 		panel_4 = new JPanel();
 		scrollPane.setRowHeaderView(panel_4);
@@ -395,14 +303,15 @@ public class VentanaEmpleador extends JFrame implements ActionListener {
 		agregarTicketButton.setBounds(31, 128, 89, 19);
 		tab2.add(agregarTicketButton);
 		
-		eliminarTicketButton = new JButton("Eliminar Ticket");
+		eliminarTicketButton = new JButton("Cancelar");
 		eliminarTicketButton.setActionCommand("ELIMINARTICKET");
 		eliminarTicketButton.setBounds(128, 128, 87, 19);
 		tab2.add(eliminarTicketButton);
 		
-		btnModificarTicket = new JButton("Modificar Ticket");
-		btnModificarTicket.setBounds(223, 128, 100, 19);
-		tab2.add(btnModificarTicket);
+		btnSuspenderTicket = new JButton("Suspender ticket");
+		btnSuspenderTicket.setBounds(223, 128, 100, 19);
+		tab2.add(btnSuspenderTicket);
+		btnSuspenderTicket.setActionCommand("SUSPENDERTICKET");
 		
 		lblEtiqueta_1 = new JLabel("Empleador: ");
 		lblEtiqueta_1.setForeground(new Color(253, 245, 230));
@@ -432,7 +341,7 @@ public class VentanaEmpleador extends JFrame implements ActionListener {
 		nombreCompletooLabel.setBounds(164, 24, 231, 29);
 		tab2.add(nombreCompletooLabel);
 		
-		pantallasTab.setSelectedIndex(0);
+		this.renderVentanaVistas(3);
 		
 		tab3 = new JPanel();
 		tab3.setLayout(null);
@@ -442,6 +351,7 @@ public class VentanaEmpleador extends JFrame implements ActionListener {
 		scrollPane_1 = new JScrollPane();
 		scrollPane_1.setBounds(31, 155, 539, 276);
 		tab3.add(scrollPane_1);
+		
 		
 		
 		seleccionarEmpleadorButton = new JButton("Confirmar Empleador");
@@ -510,5 +420,180 @@ public class VentanaEmpleador extends JFrame implements ActionListener {
 
 	}
 	public void actionPerformed(ActionEvent e) {
+	}
+	
+	public void setActionListener(ActionListener c) {
+		System.out.println("Se ejecuto el comando");
+		this.ticketsButton.addActionListener(c);
+		this.btnProfile.addActionListener(c);
+		this.eleccionesButton.addActionListener(c);
+		this.agregarTicketButton.addActionListener(c);
+		this.eliminarTicketButton.addActionListener(c);
+		this.seleccionarEmpleadorButton.addActionListener(c);
+		this.form.crearTicketButton.addActionListener(c);
+		this.btnContratos.addActionListener(c);
+		this.btnCerrarSesion.addActionListener(c);
+		this.btnSuspenderTicket.addActionListener(c);
+		this.btnBaja.addActionListener(c);
+	}
+	
+	@Override
+	public void setWindowListener(WindowListener controlador) {
+		this.addWindowListener(controlador);
+	}
+	
+	@Override
+	public void cerrarVentana() {
+		this.setVisible(false);
+	}
+	
+	@Override
+	public void creaOtraVentana(String ventana) {
+		if (ventana.equalsIgnoreCase("Login")) {
+			VentanaLogin ventanaLogin = new VentanaLogin();
+			ControladorLogin controladorLogin = new ControladorLogin(ventanaLogin);
+			this.cerrarVentana();
+			ventanaLogin.ejecutar();
+		}
+	}
+	
+	@Override
+	public void lanzarVentanaEmergente(String mensaje) {
+		JFrame jFrame = new JFrame();
+		JOptionPane.showMessageDialog(jFrame, mensaje);
+	}
+	
+	// Para el formulario
+	
+	public FormTickets getForm() {
+		return this.form;
+	}
+	
+	
+	public void mostrarFormTicket() {
+		this.form.setVisible(true);
+	}
+	
+	public void ocultarFormTicket() {
+		this.form.setVisible(false);
+	}
+	
+	// Ventanas
+	
+	public void ejecutar(){
+		setTitle("My Linkedn - Grupo 5");
+		pack(); //Coloca los componentes
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setVisible(true);
+		setSize(800,500); //Dimensiones del JFrame
+		setResizable(false); //No redimensionable
+		setLocationRelativeTo(null);
+	}
+	
+	public void cambiarPagina(int i) {
+		this.pantallasTab.setSelectedIndex(i);
+	}
+	
+	
+	public void setCantidadTickets(String cant) {
+		this.cantTicketsLabel.setText(cant);
+	}
+	// Muestra de datos de empleado
+
+	@Override
+	public void llenarDatosEmpleador(String nombre, String tipoPersona, String rubro, String usuario) {
+		if (nombreLabel.equals(" "))
+			this.nombreLabel.setText("------");
+		else
+			this.nombreLabel.setText(rubro);
+		if (tipoPersona.equals(" "))
+			this.rubroLabel.setText("------");
+		else
+			this.rubroLabel.setText(rubro);
+		this.usuarioLabel.setText(usuario);
+		this.entidadLabel.setText(tipoPersona);
+
+	}
+	
+	public void renderListaTickets(ArrayList<Ticket_de_Busqueda_de_Empleado> tickets) {
+		DefaultListModel<Ticket_de_Busqueda_de_Empleado> listaTicketsDefault = new DefaultListModel<Ticket_de_Busqueda_de_Empleado>();
+		System.out.println("Agregando el nuevo ticket");
+		for(int i = 0 ; i < tickets.size() ; i++)
+			listaTicketsDefault.addElement(tickets.get(i));
+		if (list_1.getModel().getSize() != 0)
+			((DefaultListModel) list_1.getModel()).removeAllElements();
+		this.list_1.setModel(listaTicketsDefault);
+		scrollPane.setViewportView(list_1);
+		this.setCantidadTickets(Integer.toString(tickets.size()));
+	}
+	
+	@Override
+	public void renderListaElecciones( TreeSet<Ticket> list) {
+		if (list == null || list.size() == 0) {
+			lblNewLabel = new JLabel("Todavia no se efectuo la ronda de contratos laborales.");
+		}else {
+			lblNewLabel.setText("Ofertas laborales encontradas , seleccione una");
+			DefaultListModel<Ticket> tickets = new DefaultListModel<Ticket>();
+			Iterator <Ticket>it = list.iterator();
+			while (it.hasNext())
+				tickets.addElement(it.next());
+			this.listaElecciones = new JList<Ticket>();
+			
+			// Inicializo vista con los tickets del modelo
+			this.listaElecciones.setModel(tickets);
+			listaElecciones.setVisibleRowCount(3);
+			scrollPane_1.setViewportView(listaElecciones);
+		}
+	}
+
+	
+	// Manejo de la lista de tickets
+	
+	public void renderVentanaVistas( int cantidad) {
+		tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+		tabbedPane.setBounds(15, 212, 221, 183);
+		for (int i = 0 ; i< cantidad ; i++) {
+			tab2.add(tabbedPane);
+			
+			scrollPane_3 = new JScrollPane();
+			tabbedPane.addTab("Ticket " + (1 + i), null, scrollPane_3, null);
+			
+			list_2 = new JList();
+			scrollPane_3.setRowHeaderView(list_2);
+			pantallasTab.setSelectedIndex(0);
+		}
+		
+	}
+	
+	public Ticket getTicketSeleccionado() {
+		return this.list_1.getSelectedValue();
+	}
+	public Ticket getTicketEleccionesSeleccionado() {
+		return this.listaElecciones.getSelectedValue();
+	}
+	
+	public void confirmarSeleccion() {
+		lblNewLabel.setText("Empleado seleccionado , espere los resultados");
+		this.listaElecciones.setVisible(false);
+		this.seleccionarEmpleadorButton.setVisible(false);
+	}
+	
+
+	@Override
+	public void llenarDatosEmpleado(String nombre, String apellido, String email, String telefono, int edad) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void renderListaTicketsEmpleado(Ticket ticket) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void renderListaTicketsEmpleador(ArrayList<Ticket_de_Busqueda_de_Empleo> tickets) {
+		// TODO Auto-generated method stub
+		
 	}
 }

@@ -5,6 +5,8 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import controladores.ControladorLogin;
 import modelo.tickets.Formulario_de_Busqueda;
+import modelo.tickets.Ticket;
+import modelo.tickets.Ticket_de_Busqueda_de_Empleado;
 import modelo.tickets.Ticket_de_Busqueda_de_Empleo;
 import modelo.tickets.locaciones.LocacionFactory;
 import modelo.usuarios.EmpleadoPretenso;
@@ -13,6 +15,8 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowListener;
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.TreeSet;
 import java.awt.Font;
 import javax.swing.JTabbedPane;
 import javax.swing.JLabel;
@@ -70,124 +74,11 @@ public class VentanaEmpleado extends JFrame implements IVistaUsuarioComun {
 	private JSeparator separator_5;
 	private JLabel lblNewLabel;
 	private JLabel nombreCompletooLabel_1;
-	private JList<Ticket_de_Busqueda_de_Empleo> listaElecciones;
-	private DefaultListModel<Ticket_de_Busqueda_de_Empleo> listaTicketsDefault ;
+	private JList<Ticket> listaElecciones;
+	private DefaultListModel<Ticket> listaTicketsDefault ;
 	private FormTickets form;
+	private JPanel tab2;
 
-	@Override
-	public void setActionListener(ActionListener controlador) {
-		this.ticketsButton.addActionListener(controlador);
-		this.btnProfile.addActionListener(controlador);
-		this.eleccionesButton.addActionListener(controlador);
-		this.agregarTicketButton.addActionListener(controlador);
-		this.eliminarTicketButton.addActionListener(controlador);
-		this.seleccionarEmpleadorButton.addActionListener(controlador);
-		this.form.crearTicketButton.addActionListener(controlador);
-	}
-
-	@Override
-	public void setWindowListener(WindowListener controlador) {
-		this.addWindowListener(controlador);
-	}
-
-	@Override
-	public void ejecutar() {
-		setTitle("My Linkedn - Grupo 5");
-		pack(); //Coloca los componentes
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setVisible(true);
-		setSize(800,500); //Dimensiones del JFrame
-		setResizable(false); //No redimensionable
-		setLocationRelativeTo(null);
-	}
-
-	@Override
-	public void cerrarVentana() {
-		this.setVisible(false);
-	}
-
-	@Override
-	public void creaOtraVentana(String ventana) {
-		if (ventana.equalsIgnoreCase("Login")) {
-			VentanaLogin ventanaLogin = new VentanaLogin();
-			ControladorLogin controladorLogin = new ControladorLogin(ventanaLogin);
-			this.cerrarVentana();
-			ventanaLogin.ejecutar();
-		}
-	}
-
-	public void lanzarVentanaEmergente(String mensaje) {
-		JFrame jFrame = new JFrame();
-		JOptionPane.showMessageDialog(jFrame, mensaje);
-	}
-
-	public void cambiarPagina(int i) {
-		this.pantallasTab.setSelectedIndex(i);
-	}
-
-	@Override
-	public FormTickets getForm() {
-		return this.form;
-	}
-
-	public void llenarDatosEmpleado(String nombre, String apellido, String email, String telefono , int edad) {
-		this.nombreLabel.setText(nombre);
-		this.apellidoLabel.setText(apellido);
-		this.mailLabel.setText(email);
-		this.telefonoLabel.setText(telefono);
-		this.edadLabel.setText(String.valueOf(edad));
-		this.nombreCompletooLabel.setText(nombre + " " + apellido);
-		this.cantTicketsLabel.setText(Integer.toString(this.list_1.getWidth()));
-	}
-	
-	public void renderListaTickets( Ticket_de_Busqueda_de_Empleo ticket) {
-		DefaultListModel<Ticket_de_Busqueda_de_Empleo> listaTicketsDefault = new DefaultListModel<Ticket_de_Busqueda_de_Empleo>();
-		System.out.println("Agregando el nuevo ticket");
-		listaTicketsDefault.addElement(ticket);
-		if (list_1.getModel().getSize() != 0)
-			((DefaultListModel) list_1.getModel()).removeAllElements();
-		this.list_1.setModel(listaTicketsDefault);
-		scrollPane.setViewportView(list_1);
-	}
-	
-	public void renderListaElecciones( ArrayList<Ticket_de_Busqueda_de_Empleo> list) {
-		if (list == null ) {
-			lblNewLabel = new JLabel("Todavia no se efectuo la ronda de contratos laborales.");
-		}else {
-			lblNewLabel.setText("Ofertas laborales encontradas , seleccione una");
-			DefaultListModel<Ticket_de_Busqueda_de_Empleo> meses2 = new DefaultListModel<Ticket_de_Busqueda_de_Empleo>();
-			meses2.addElement(ticket);
-			this.listaElecciones = new JList<Ticket_de_Busqueda_de_Empleo>();
-			
-			// Inicializo vista con los tickets del modelo
-			this.listaElecciones.setModel(meses2);
-			listaElecciones.setVisibleRowCount(3);
-			scrollPane_1.setViewportView(listaElecciones);
-		}
-	}
-	
-	public void setCantidadTickets(String cant) {
-		this.cantTicketsLabel.setText(cant);
-	}
-	
-	public void mostrarFormTicket() {
-		this.form.setVisible(true);
-	}
-	
-	public void ocultarFormTicket() {
-		this.form.setVisible(false);
-	}
-	
-	// Manejo de la lista de tickets
-	
-	public Ticket_de_Busqueda_de_Empleo getTicketSeleccionado() {
-		return this.list_1.getSelectedValue();
-	}
-
-	public Ticket_de_Busqueda_de_Empleo getTicketEleccionesSeleccionado() {
-		return this.listaElecciones.getSelectedValue();
-	}
-	
 	// Ventaja Emergente
 	public void confirmarSeleccion() {
 		lblNewLabel.setText("Empleado seleccionado , espere los resultados");
@@ -364,7 +255,7 @@ public class VentanaEmpleado extends JFrame implements IVistaUsuarioComun {
 		separator_6.setBounds(283, 263, 69, 40);
 		tab1.add(separator_6);
 		
-		JPanel tab2 = new JPanel();
+		tab2 = new JPanel();
 		tab2.setBackground(new Color(30, 144, 255));
 		pantallasTab.addTab("Tickets", null, tab2, null);
 		tab2.setLayout(null);
@@ -372,7 +263,7 @@ public class VentanaEmpleado extends JFrame implements IVistaUsuarioComun {
 		scrollPane = new JScrollPane();
 		scrollPane.setBounds(31, 155, 539, 276);
 		tab2.add(scrollPane);
-		this.renderListaTickets(modelo.getTicketDeBusquedaDeEmpleo());
+		this.renderListaTicketsEmpleado(modelo.getTicketDeBusquedaDeEmpleo());
 		list_1.setVisibleRowCount(3);
 		scrollPane.setViewportView(list_1);
 		
@@ -465,4 +356,151 @@ public class VentanaEmpleado extends JFrame implements IVistaUsuarioComun {
 		
 		form = new FormTickets();
 	}
+	
+	//Funcionalidades de ventana
+	
+	@Override
+	public void setActionListener(ActionListener controlador) {
+		this.ticketsButton.addActionListener(controlador);
+		this.btnProfile.addActionListener(controlador);
+		this.eleccionesButton.addActionListener(controlador);
+		this.agregarTicketButton.addActionListener(controlador);
+		this.eliminarTicketButton.addActionListener(controlador);
+		this.seleccionarEmpleadorButton.addActionListener(controlador);
+		this.form.crearTicketButton.addActionListener(controlador);
+	}
+
+	@Override
+	public void setWindowListener(WindowListener controlador) {
+		this.addWindowListener(controlador);
+	}
+
+	@Override
+	public void ejecutar() {
+		setTitle("My Linkedn - Grupo 5");
+		pack(); //Coloca los componentes
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setVisible(true);
+		setSize(800,500); //Dimensiones del JFrame
+		setResizable(false); //No redimensionable
+		setLocationRelativeTo(null);
+	}
+
+	@Override
+	public void cerrarVentana() {
+		this.setVisible(false);
+	}
+
+	@Override
+	public void creaOtraVentana(String ventana) {
+		if (ventana.equalsIgnoreCase("Login")) {
+			VentanaLogin ventanaLogin = new VentanaLogin();
+			ControladorLogin controladorLogin = new ControladorLogin(ventanaLogin);
+			this.cerrarVentana();
+			ventanaLogin.ejecutar();
+		}
+	}
+	
+	@Override
+	public void lanzarVentanaEmergente(String mensaje) {
+		JFrame jFrame = new JFrame();
+		JOptionPane.showMessageDialog(jFrame, mensaje);
+	}
+
+	@Override
+	public void cambiarPagina(int i) {
+		this.pantallasTab.setSelectedIndex(i);
+	}
+	
+	// Formulario de los tickets
+	
+	@Override
+	public void mostrarFormTicket() {
+		this.form.setVisible(true);
+	}
+	
+	@Override
+	public void ocultarFormTicket() {
+		this.form.setVisible(false);
+	}
+
+	@Override
+	public FormTickets getForm() {
+		return this.form;
+	}
+	
+	
+	// Listas de tickets
+	
+	@Override
+	public void llenarDatosEmpleado(String nombre, String apellido, String email, String telefono , int edad) {
+		this.nombreLabel.setText(nombre);
+		this.apellidoLabel.setText(apellido);
+		this.mailLabel.setText(email);
+		this.telefonoLabel.setText(telefono);
+		this.edadLabel.setText(String.valueOf(edad));
+		this.nombreCompletooLabel.setText(nombre + " " + apellido);
+		this.cantTicketsLabel.setText(Integer.toString(this.list_1.getWidth()));
+	}
+	
+	@Override
+	public void renderListaTicketsEmpleado( Ticket ticket) {
+		DefaultListModel<Ticket_de_Busqueda_de_Empleo> listaTicketsDefault = new DefaultListModel<Ticket_de_Busqueda_de_Empleo>();
+		System.out.println("Agregando el nuevo ticket");
+		listaTicketsDefault.addElement((Ticket_de_Busqueda_de_Empleo)ticket);
+		if (list_1.getModel().getSize() != 0)
+			((DefaultListModel) list_1.getModel()).removeAllElements();
+		this.list_1.setModel(listaTicketsDefault);
+		scrollPane.setViewportView(list_1);
+	}
+	
+	@Override
+	public void renderListaElecciones( TreeSet<Ticket> list) {
+		if (list == null || list.size() == 0) {
+			lblNewLabel = new JLabel("Todavia no se efectuo la ronda de contratos laborales.");
+		}else {
+			lblNewLabel.setText("Ofertas laborales encontradas , seleccione una");
+			DefaultListModel<Ticket> tickets = new DefaultListModel<Ticket>();
+			Iterator <Ticket>it = list.iterator();
+			while (it.hasNext())
+				tickets.addElement(it.next());
+			this.listaElecciones = new JList<Ticket>();
+			
+			// Inicializo vista con los tickets del modelo
+			this.listaElecciones.setModel(tickets);
+			listaElecciones.setVisibleRowCount(3);
+			scrollPane_1.setViewportView(listaElecciones);
+		}
+	}
+
+	@Override
+	public Ticket getTicketSeleccionado() {
+		return this.list_1.getSelectedValue();
+	}
+
+	@Override
+	public Ticket getTicketEleccionesSeleccionado() {
+		return this.listaElecciones.getSelectedValue();
+	}
+	
+	@Override
+	public void setCantidadTickets(String cant) {
+		this.cantTicketsLabel.setText(cant);
+	}
+
+
+	@Override
+	public void llenarDatosEmpleador(String nombre, String tipoPersona, String rubro, String usuario) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void renderListaTicketsEmpleador(ArrayList<Ticket_de_Busqueda_de_Empleo> tickets) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	
 }

@@ -12,7 +12,7 @@ import util.Util;
 
 import java.io.Serializable;
 
-public class EmpleadoPretenso extends UsuarioComun implements Runnable {
+public class EmpleadoPretenso extends UsuarioComun implements Runnable, Serializable {
     //Datos personales:
     private String nombre;
     private String apellido;
@@ -21,7 +21,7 @@ public class EmpleadoPretenso extends UsuarioComun implements Runnable {
     private String eMail;
     //Ticket
     private Ticket_de_Busqueda_de_Empleo ticketDeBusquedaDeEmpleo;
-    private transient TicketSimplificado ticketSimplificado;
+    private TicketSimplificado ticketSimplificado;
 
     //CONSTRUCTORES
 
@@ -101,11 +101,11 @@ public class EmpleadoPretenso extends UsuarioComun implements Runnable {
     public String toString() {
         return  "   nombreUsuario: " + nombreUsuario +
                 "   contrasena: " + contrasena + //La muestro?
-                "   nombre: " + nombre +
-                "   apellido: " + apellido +
-                "   telefono: " + telefono +
-                "   edad: " + edad +
-                "   eMail: " + eMail +
+                "   nombre: " + (nombre == null?"-":nombre) +
+                "   apellido: " + (apellido == null?"-":apellido) +
+                "   telefono: " + (telefono == null?"-":telefono) +
+                "   edad: " + (edad == 0?"-":edad) +
+                "   eMail: " + (eMail == null?"-":eMail) +
                 "   puntaje: " + puntaje;
     }
 

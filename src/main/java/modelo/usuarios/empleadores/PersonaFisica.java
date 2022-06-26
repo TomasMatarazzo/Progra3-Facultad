@@ -1,7 +1,5 @@
 package modelo.usuarios.empleadores;
 
-import java.io.Serializable;
-
 public class PersonaFisica extends Empleador {
 
     public PersonaFisica(String nombreUsuario, String contrasena) {
@@ -33,7 +31,8 @@ public class PersonaFisica extends Empleador {
 
         return remuneracion * porcentaje;
     }
-	
+
+    @Override
 	public String getNombre() {
 		return "Persona Fisica";
 	}

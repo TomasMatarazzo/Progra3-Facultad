@@ -4,7 +4,7 @@ import modelo.tickets.Ticket;
 
 import java.io.Serializable;
 
-public abstract class UsuarioComun extends Usuario {
+public abstract class UsuarioComun extends Usuario implements Serializable {
     protected int puntaje;
 
     public UsuarioComun(String nombreUsuario, String contrasena) {

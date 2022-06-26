@@ -10,8 +10,8 @@ import java.io.Serializable;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
-public abstract class Ticket implements Comparable, Serializable {
-    protected Formulario_de_Busqueda formularioDeBusqueda;
+public abstract class Ticket implements Comparable, Serializable,IStateTickets {
+    protected transient Formulario_de_Busqueda formularioDeBusqueda;
     protected Calendar fechaDeAlta = Calendar.getInstance();
     protected String estado; // activo-suspendido-cancelado-finalizado
     private IStateTickets IStateTickets;
@@ -31,15 +31,19 @@ public abstract class Ticket implements Comparable, Serializable {
     protected Ticket() {
     }
 
+    @Override
     public void activar() throws EstadoException {
         this.IStateTickets.activar();
     }
+    @Override
     public void cancelar() throws EstadoException {
         this.IStateTickets.cancelar();
     }
+    @Override
     public void finalizar() throws EstadoException {
         this.IStateTickets.finalizar();
     }
+    @Override
     public void suspender() throws EstadoException {
         this.IStateTickets.suspender();
     }

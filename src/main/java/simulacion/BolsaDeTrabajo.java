@@ -35,7 +35,7 @@ public class BolsaDeTrabajo extends Observable{
         }
         return retorno;
     }
-
+	
     public void agregarABolsaDeTrabajo(TicketSimplificado t){
         this.bolsa.add(t);
     }

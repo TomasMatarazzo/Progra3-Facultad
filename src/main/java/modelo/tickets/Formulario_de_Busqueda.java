@@ -3,9 +3,7 @@ package modelo.tickets;
 import modelo.tickets.locaciones.ILocacion;
 import modelo.constantes.Puntajes;
 
-import java.io.Serializable;
-
-public class Formulario_de_Busqueda implements Serializable {
+public class Formulario_de_Busqueda {
     private ILocacion locacion;
     private double remuneracion;
     private int cargaHoraria;
@@ -61,12 +59,12 @@ public class Formulario_de_Busqueda implements Serializable {
     //TO STRING
     @Override
     public String toString() {
-        return  "   locacion: " + locacion.toString() +
-                "   remuneracion: " + remuneracion +
-                "   cargaHoraria: " + Puntajes.NOMBRES_FORM_BUSQUEDA[0][cargaHoraria] +
-                "   tipoPuestoLaboral: " + Puntajes.NOMBRES_FORM_BUSQUEDA[1][tipoPuestoLaboral]+
-                "   rangoEtario: " + Puntajes.NOMBRES_FORM_BUSQUEDA[2][rangoEtario] +
-                "   experienciaPrevia: " + Puntajes.NOMBRES_FORM_BUSQUEDA[3][experienciaPrevia] +
-                "   estudiosCursados: " + Puntajes.NOMBRES_FORM_BUSQUEDA[4][estudiosCursados];
+        return  "   LOC: " + locacion.toString() +
+                "   REN: " + remuneracion +
+                "   CH: " + Puntajes.NOMBRES_FORM_BUSQUEDA[0][cargaHoraria] +
+                "   PL: " + Puntajes.NOMBRES_FORM_BUSQUEDA[1][tipoPuestoLaboral]+
+                "   RE: " + Puntajes.NOMBRES_FORM_BUSQUEDA[2][rangoEtario] +
+                "   EP: " + Puntajes.NOMBRES_FORM_BUSQUEDA[3][experienciaPrevia] +
+                "   EC: " + Puntajes.NOMBRES_FORM_BUSQUEDA[4][estudiosCursados];
     }
 }

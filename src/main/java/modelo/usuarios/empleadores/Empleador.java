@@ -10,7 +10,6 @@ import modelo.usuarios.UsuarioComun;
 import simulacion.BolsaDeTrabajo;
 import simulacion.TicketSimplificado;
 import util.Util;
-
 import java.util.ArrayList;
 
 public abstract class Empleador extends UsuarioComun implements Runnable {
@@ -34,7 +33,6 @@ public abstract class Empleador extends UsuarioComun implements Runnable {
         this.rubro = rubro;
         this.pesoPuntajes = new int[7];
     }
-
 
     //GETTERS & SETTERS & ADDERS
     public String getRazonSocial() {
@@ -88,8 +86,8 @@ public abstract class Empleador extends UsuarioComun implements Runnable {
     public String toString() {
         return  "   nombreUsuario: " + nombreUsuario +
                 "   contrasena: " + contrasena + //Esta bien mostrarla?
-                "   razonSocial: " + razonSocial +
-                "   rubro: " + rubro +
+                "   razonSocial: " + (razonSocial == null?"-":razonSocial) +
+                "   rubro: " + (rubro == null?"-":rubro) +
                 "   puntaje: " + puntaje;
     }
 
@@ -174,6 +172,6 @@ public abstract class Empleador extends UsuarioComun implements Runnable {
             Util.espera(2000);
         }
     }
-    
+
 	public abstract String getNombre();
 }

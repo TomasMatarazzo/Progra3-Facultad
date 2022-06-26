@@ -488,25 +488,28 @@
                       </model>
                     </properties>
                   </component>
-                  <component id="71fd0" class="javax.swing.JList" binding="listaDatosAlmacenados">
+                  <scrollpane id="cbce4" binding="datosAlmacenadosScrollPane">
                     <constraints>
-                      <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="2" anchor="0" fill="3" indent="0" use-parent-layout="false">
-                        <minimum-size width="600" height="450"/>
-                        <preferred-size width="600" height="450"/>
-                        <maximum-size width="600" height="450"/>
-                      </grid>
+                      <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
                     </constraints>
-                    <properties>
-                      <doubleBuffered value="false"/>
-                      <dragEnabled value="false"/>
-                      <dropMode value="USE_SELECTION"/>
-                      <focusCycleRoot value="false"/>
-                      <focusable value="false"/>
-                      <inheritsPopupMenu value="false"/>
-                      <layoutOrientation value="0"/>
-                      <valueIsAdjusting value="false"/>
-                    </properties>
-                  </component>
+                    <properties/>
+                    <border type="none"/>
+                    <children>
+                      <component id="71fd0" class="javax.swing.JList" binding="listaDatosAlmacenados">
+                        <constraints/>
+                        <properties>
+                          <doubleBuffered value="false"/>
+                          <dragEnabled value="false"/>
+                          <dropMode value="USE_SELECTION"/>
+                          <focusCycleRoot value="false"/>
+                          <focusable value="false"/>
+                          <inheritsPopupMenu value="false"/>
+                          <layoutOrientation value="0"/>
+                          <valueIsAdjusting value="false"/>
+                        </properties>
+                      </component>
+                    </children>
+                  </scrollpane>
                 </children>
               </grid>
             </children>
@@ -569,15 +572,19 @@
                       <text value="Calcular Comisiones"/>
                     </properties>
                   </component>
-                  <component id="a7f99" class="javax.swing.JList" binding="listaComisiones">
+                  <scrollpane id="cf2bf" binding="comisionesScrollPane">
                     <constraints>
-                      <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="2" anchor="0" fill="3" indent="0" use-parent-layout="false">
-                        <minimum-size width="150" height="50"/>
-                        <preferred-size width="150" height="50"/>
-                      </grid>
+                      <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
                     </constraints>
                     <properties/>
-                  </component>
+                    <border type="none"/>
+                    <children>
+                      <component id="a7f99" class="javax.swing.JList" binding="listaComisiones">
+                        <constraints/>
+                        <properties/>
+                      </component>
+                    </children>
+                  </scrollpane>
                 </children>
               </grid>
               <grid id="afb6f" binding="panelTotal" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">

@@ -491,7 +491,7 @@ public class VentanaEmpleador extends JFrame implements IVistaUsuarioComun {
 	}
 
 	public void renderListaTicketsEmpleador(ArrayList<Ticket_de_Busqueda_de_Empleado> tickets) {
-		DefaultListModel<Ticket_de_Busqueda_de_Empleado> listaTicketsDefault = new DefaultListModel<>();
+		DefaultListModel<Ticket_de_Busqueda_de_Empleado> listaTicketsDefault = new DefaultListModel<Ticket_de_Busqueda_de_Empleado>();
 
 		for(int i = 0 ; i < tickets.size() ; i++)
 			listaTicketsDefault.addElement(tickets.get(i));

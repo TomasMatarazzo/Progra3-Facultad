@@ -8,6 +8,7 @@ import java.io.IOException;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import modelo.Sistema;
+import modelo.excepciones.EstadoException;
 import modelo.tickets.Formulario_de_Busqueda;
 import modelo.tickets.Ticket_de_Busqueda_de_Empleado;
 import modelo.tickets.Ticket_de_Busqueda_de_Empleo;
@@ -95,6 +96,21 @@ public class ControladorEmpleado implements ActionListener, WindowListener {
 						vista.renderListaTicketsEmpleado(modelo.getTicketDeBusquedaDeEmpleo());
 						vista.getForm().cleanForms();
 					}
+				break;
+			case "SUSPENDERTICKET":
+				if (vista.getTicketSeleccionado() != null) {
+					if (vista.getTicketSeleccionado().getEstado().equalsIgnoreCase("suspender"))
+						this.vista.lanzarVentanaEmergente("El ticket ya se encuentra suspendido");
+					else {
+						try {
+							this.vista.getTicketSeleccionado().suspender();
+							this.vista.renderListaElecciones(null);
+						} catch (EstadoException e1) {
+							e1.printStackTrace();
+						}
+					}
+				} else
+					this.vista.lanzarVentanaEmergente("Seleccione el ticket a suspender");
 				break;
 			case "CERRARSESION":
 				vista.creaOtraVentana("Login");

@@ -48,9 +48,9 @@ public class ControladorEmpleador implements ActionListener, WindowListener{
 				break;
 			case "iniciarELECCIONES":
 				vista.cambiarPagina(2);
-				//vista.renderVentanaVistas(3,Sistema.getInstance().getListas().get(modelo.getTicketsDeBusquedaDeEmpleado().get(0)).getOfertas());
-				//vista.renderListaElecciones(Sistema.getInstance().getListas().get(modelo.getTicketsDeBusquedaDeEmpleado().get(0)).getOfertas());
+				vista.renderVentanaVistas(3,Sistema.getInstance().getListas().get(modelo.getTicketsDeBusquedaDeEmpleado().get(0)).getOfertas());
 				//vista.renderListaElecciones();
+				//this.vista.renderListaElecciones(Sistema.getInstance().getListas().get(modelo.getTicketsDeBusquedaDeEmpleado().get(0)).getOfertas());
 				break;
 			case "CONTRATOS":
 				vista.cambiarPagina(3);
@@ -59,6 +59,7 @@ public class ControladorEmpleador implements ActionListener, WindowListener{
 				if ( modelo.getTicketsDeBusquedaDeEmpleado() != null || modelo.getTicketsDeBusquedaDeEmpleado().size() != 0) {
 //				Sistema.getInstance().agregaTicketDeEmpleadores(modelo, vista.getTicketSeleccionado());
 //				modelo.setTicketDeBusquedaDeEmpleo(vista.getTicketSeleccionado());
+					
 					vista.mostrarFormTicket();
 				}else {
 					System.out.println("AGREGANDOO " +modelo.getTicketsDeBusquedaDeEmpleado());

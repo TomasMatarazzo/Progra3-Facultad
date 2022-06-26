@@ -31,7 +31,6 @@ public class ControladorEmpleado implements ActionListener, WindowListener {
 		this.vista.setActionListener(this);
 		this.vista.setWindowListener(this);
 		this.vista.llenarDatosEmpleado(modelo.getNombre(),modelo.getApellido(),modelo.geteMail(),modelo.getTelefono(),modelo.getEdad());
-		this.vista.renderListaTicketsEmpleado(modelo.getTicketDeBusquedaDeEmpleo());
 	}
 
 	@Override
@@ -46,6 +45,7 @@ public class ControladorEmpleado implements ActionListener, WindowListener {
 				break;
 			case "iniciarELECCIONES":
 				vista.cambiarPagina(2);
+				this.vista.renderListaElecciones(Sistema.getInstance().getListas().get(modelo.getTicketDeBusquedaDeEmpleo()).getOfertas());
 				break;
 			case "AGREGARTICKET":
 				if (modelo.getTicketDeBusquedaDeEmpleo() == null) {

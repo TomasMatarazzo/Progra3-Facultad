@@ -26,8 +26,9 @@ import javax.swing.DefaultListModel;
 import javax.swing.BoxLayout;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowListener;
+import java.awt.event.ActionEvent;
 
-public class VentanaEmpleador extends JFrame implements IVistaUsuarioComun {
+public class VentanaEmpleador extends JFrame implements IVistaUsuarioComun, ActionListener {
 	private JPanel contentPane;
 	private JPanel panel;
 	private JButton btnProfile;
@@ -109,6 +110,7 @@ public class VentanaEmpleador extends JFrame implements IVistaUsuarioComun {
 		panel.add(ticketsButton);
 
 		eleccionesButton = new JButton("Elecciones");
+		eleccionesButton.addActionListener(this);
 		eleccionesButton.setSelected(true);
 		eleccionesButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		eleccionesButton.setBackground(new Color(100, 149, 237));
@@ -512,35 +514,27 @@ public class VentanaEmpleador extends JFrame implements IVistaUsuarioComun {
 	
 	@Override
 	public void renderListaElecciones(TreeSet<Ticket> list) {
-		if (list == null || list.size() == 0)
-			lblNewLabel = new JLabel("Todavia no se efectuo la ronda de contratos laborales.");
-		else {
-			lblNewLabel.setText("Ofertas laborales encontradas , seleccione una");
-			DefaultListModel<Ticket> tickets = new DefaultListModel<Ticket>();
-			Iterator <Ticket>it = list.iterator();
-			while (it.hasNext())
-				tickets.addElement(it.next());
-			this.listaElecciones = new JList<Ticket>();
-			this.listaElecciones.setModel(tickets);
-			//scrollPane_1.setViewportView(listaElecciones);
-		}
 	}
 
 	public void renderVentanaVistas(int cantidad, TreeSet<Ticket> list) {
 		tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		tabbedPane.setBounds(31, 155, 539, 276);
-		for (int i = 0 ; i< cantidad ; i++) {
-			tab3.add(tabbedPane);
-			scrollPane_3 = new JScrollPane();
-			tabbedPane.addTab("Ticket " + (1 + i), null, scrollPane_3, null);
-			lblNewLabel.setText("Ofertas laborales encontradas , seleccione una");
-			DefaultListModel<Ticket> tickets = new DefaultListModel<Ticket>();
-			Iterator <Ticket>it = list.iterator();
-			while (it.hasNext())
-				tickets.addElement(it.next());
-			this.listaElecciones = new JList<>();
-			this.listaElecciones.setModel(tickets);
-			scrollPane_3.setViewportView(listaElecciones);
+		if (list == null || list.size() == 0)
+			lblNewLabel = new JLabel("Todavia no se efectuo la ronda de contratos laborales.");
+		else {
+			for (int i = 0 ; i< cantidad ; i++) {
+				tab3.add(tabbedPane);
+				scrollPane_3 = new JScrollPane();
+				tabbedPane.addTab("Ticket " + (1 + i), null, scrollPane_3, null);
+				lblNewLabel.setText("Ofertas laborales encontradas , seleccione una");
+				DefaultListModel<Ticket> tickets = new DefaultListModel<Ticket>();
+				Iterator <Ticket>it = list.iterator();
+				while (it.hasNext())
+					tickets.addElement(it.next());
+				this.listaElecciones = new JList<>();
+				this.listaElecciones.setModel(tickets);
+				scrollPane_3.setViewportView(listaElecciones);
+			}
 		}
 	}
 
@@ -575,5 +569,7 @@ public class VentanaEmpleador extends JFrame implements IVistaUsuarioComun {
 	@Override
 	public void renderListaTicketsEmpleado(Ticket ticket) {
 		// TODO Auto-generated method stub
+	}
+	public void actionPerformed(ActionEvent e) {
 	}
 }

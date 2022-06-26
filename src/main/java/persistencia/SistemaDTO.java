@@ -7,7 +7,6 @@ import modelo.tickets.Ticket_de_Busqueda_de_Empleado;
 import modelo.tickets.Ticket_de_Busqueda_de_Empleo;
 import modelo.usuarios.EmpleadoPretenso;
 import modelo.usuarios.empleadores.Empleador;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;

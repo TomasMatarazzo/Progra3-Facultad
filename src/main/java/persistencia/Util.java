@@ -9,7 +9,6 @@ import modelo.tickets.Ticket_de_Busqueda_de_Empleado;
 import modelo.tickets.Ticket_de_Busqueda_de_Empleo;
 import modelo.usuarios.EmpleadoPretenso;
 import modelo.usuarios.empleadores.Empleador;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -29,7 +28,6 @@ public class Util {
         contratos.addAll(sistema.getContratos());
         ticketsDeEmpleadores.putAll(sistema.getTicketsDeEmpleadores());
         ticketsDeEmpleadosPretensos.putAll(sistema.getTicketsDeEmpleadosPretensos());
-
         respuesta.setEmpleadosPretensos(empleadosPretensos);
         respuesta.setEmpleadores(empleadores);
         respuesta.setContratos(contratos);
@@ -51,7 +49,7 @@ public class Util {
 
         empleadosPretensos.addAll(sistemaDTO.getEmpleadosPretensos());
         empleadores.addAll(sistemaDTO.getEmpleadores());
-        
+
         contratos.addAll(sistemaDTO.getContratos());
         listas.putAll(sistemaDTO.getListas());
         ticketsDeEmpleadores.putAll(sistemaDTO.getTicketsDeEmpleadores());

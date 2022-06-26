@@ -484,7 +484,7 @@
                         <item value="Empleadores"/>
                         <item value="Solicitudes de los empleadores"/>
                         <item value="Empleados Pretensos"/>
-                        <item value="Solicitud de cada empleado pretenso"/>
+                        <item value="Solicitud de empleado pretenso"/>
                       </model>
                     </properties>
                   </component>

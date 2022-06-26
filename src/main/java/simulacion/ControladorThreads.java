@@ -2,14 +2,12 @@ package simulacion;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
 import java.util.ArrayList;
 import modelo.Sistema;
 import vista.IVista;
 import javax.swing.*;
 
-public class ControladorThreads implements ActionListener, WindowListener {
+public class ControladorThreads implements ActionListener {
 	private IVista vista;
 	private ArrayList<Thread> threads = new ArrayList<>();
 	
@@ -51,51 +49,5 @@ public class ControladorThreads implements ActionListener, WindowListener {
 				JOptionPane.showMessageDialog(null, "Se ha detenido la simulacion");
 				
 			}
-	}
-	
-	@Override
-	public void windowClosing(WindowEvent e) {
-		//PONGO ESTO?
-
-/*		try {
-			IPersistencia bin = new PersistenciaBIN();
-			bin.abrirOutput("Sistema.bin");
-			SistemaDTO sistemaDTO = Util.sistemaDTOFromSistema(Sistema.getInstance());
-			bin.escribir(sistemaDTO);
-			bin.cerrarOutput();
-		} catch (IOException ex) {
-			ex.printStackTrace();
-		}*/
-	}
-
-	//METODOS NO USADOS
-	@Override
-	public void windowOpened(WindowEvent e) {
-
-	}
-
-	@Override
-	public void windowClosed(WindowEvent e) {
-
-	}
-
-	@Override
-	public void windowIconified(WindowEvent e) {
-
-	}
-
-	@Override
-	public void windowDeiconified(WindowEvent e) {
-
-	}
-
-	@Override
-	public void windowActivated(WindowEvent e) {
-
-	}
-
-	@Override
-	public void windowDeactivated(WindowEvent e) {
-
 	}
 }

@@ -2,7 +2,6 @@ package simulacion;
 
 import java.util.ArrayList;
 import java.util.Observable;
-
 import modelo.tickets.Ticket;
 import modelo.usuarios.EmpleadoPretenso;
 import modelo.usuarios.UsuarioComun;
@@ -39,23 +38,20 @@ public class BolsaDeTrabajo extends Observable{
     public void agregarABolsaDeTrabajo(TicketSimplificado t){
         this.bolsa.add(t);
     }
+
     public void eliminarABolsaDeTrabajo(TicketSimplificado t){
         this.bolsa.remove(t);
     }
 
     //METODOS SYNCHRONIZED
-    public synchronized TicketSimplificado SacaBolsa(Ticket t, EmpleadoPretenso u)
-    {
+    public synchronized TicketSimplificado SacaBolsa(Ticket t, EmpleadoPretenso u) {
         TicketSimplificado aux;
-        while (((aux = coincidenciaTipoTrabajo(t)) == null)&&((t.getEstado().equalsIgnoreCase("Activo"))||(t.getEstado().equalsIgnoreCase("Suspenso"))))
-        {
-            try
-            {
+        while (((aux = coincidenciaTipoTrabajo(t)) == null)&&((t.getEstado().equalsIgnoreCase("Finalizado"))||(t.getEstado().equalsIgnoreCase("Suspenso")))) {
+            try {
             	setChanged();
                 notifyObservers(u.getNombreUsuario()+" Esperara por algun trabajo de su Tipo");
                 wait();
-            } catch (InterruptedException e)
-            {
+            } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }
@@ -71,7 +67,7 @@ public class BolsaDeTrabajo extends Observable{
     	if (t.getEstado().equalsIgnoreCase("Finalizado")) {
     		setChanged();
     		notifyObservers(u.getNombreUsuario()+" OBTUVO EL TRABAJO!!!");
-    	}else {
+    	} else {
     		t.setEstado("Activo");
     		this.agregarABolsaDeTrabajo(t);
     		setChanged();

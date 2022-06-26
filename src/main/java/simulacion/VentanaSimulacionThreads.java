@@ -89,11 +89,6 @@ public class VentanaSimulacionThreads extends JFrame implements IVista, Observer
 	}
 
 	@Override
-	public void setWindowListener(WindowListener controlador) {
-		this.addWindowListener(controlador);
-	}
-
-	@Override
 	public void cerrarVentana() {
 		setVisible(false); //Oculto la ventana
 		dispose(); //Cierro la ventana
@@ -119,12 +114,14 @@ public class VentanaSimulacionThreads extends JFrame implements IVista, Observer
 
 	//METODOS NO USADOS
 	@Override
-	public void ejecutar() {
+	public void setWindowListener(WindowListener controlador) {
+	}
 
+	@Override
+	public void ejecutar() {
 	}
 
 	@Override
 	public void lanzarVentanaEmergente(String mensaje) {
-
 	}
 }

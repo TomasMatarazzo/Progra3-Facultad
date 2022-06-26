@@ -60,7 +60,7 @@ public class VentanaEmpleado extends JFrame implements IVistaUsuarioComun, Actio
 	private JPanel panel_4;
 	private JButton agregarTicketButton;
 	private JButton eliminarTicketButton;
-	private JButton btnModificarTicket;
+	private JButton btnSuspender;
     private LocacionFactory lc = new LocacionFactory();
 	private JLabel lblEtiqueta_1;
 	private JSeparator separator_7;
@@ -310,10 +310,10 @@ public class VentanaEmpleado extends JFrame implements IVistaUsuarioComun, Actio
 		eliminarTicketButton.setBounds(128, 128, 87, 19);
 		tab2.add(eliminarTicketButton);
 		
-		btnModificarTicket = new JButton("Suspender Ticket");
-		btnModificarTicket.setActionCommand("SUSPENDERTICKET");
-		btnModificarTicket.setBounds(223, 128, 100, 19);
-		tab2.add(btnModificarTicket);
+		btnSuspender = new JButton("Suspender Ticket");
+		btnSuspender.setActionCommand("SUSPENDERTICKET");
+		btnSuspender.setBounds(223, 128, 100, 19);
+		tab2.add(btnSuspender);
 		
 		lblEtiqueta_1 = new JLabel("Empleado: ");
 		lblEtiqueta_1.setForeground(new Color(253, 245, 230));
@@ -404,6 +404,8 @@ public class VentanaEmpleado extends JFrame implements IVistaUsuarioComun, Actio
 		this.cerrarSesionBtn.addActionListener(controlador);
 		this.btnDarDeBaja.addActionListener(controlador);
 		this.btnContratos.addActionListener(controlador);
+		this.btnSuspender.addActionListener(controlador);
+		this.btnActivar.addActionListener(controlador);
 	}
 
 	@Override

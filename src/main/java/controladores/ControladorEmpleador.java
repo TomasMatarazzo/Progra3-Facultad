@@ -163,7 +163,7 @@ public class ControladorEmpleador implements ActionListener, WindowListener{
 						}
 					}
 				} else
-					this.vista.lanzarVentanaEmergente("Seleccione el ticket a suspender");
+					this.vista.lanzarVentanaEmergente("Seleccione el ticket a activar");
 				break;
 			case "CERRARSESION":
 				vista.creaOtraVentana("Login");

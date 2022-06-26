@@ -80,6 +80,7 @@ public class VentanaEmpleado extends JFrame implements IVistaUsuarioComun, Actio
 	private JButton cerrarSesionBtn;
 	private JButton btnDarDeBaja;
 	private JButton btnContratos;
+	private JButton btnActivar;
 
 	// Ventaja Emergente
 	public void confirmarSeleccion() {
@@ -304,12 +305,13 @@ public class VentanaEmpleado extends JFrame implements IVistaUsuarioComun, Actio
 		agregarTicketButton.setBounds(31, 128, 89, 19);
 		tab2.add(agregarTicketButton);
 		
-		eliminarTicketButton = new JButton("Eliminar Ticket");
+		eliminarTicketButton = new JButton("Cancelar");
 		eliminarTicketButton.setActionCommand("ELIMINARTICKET");
 		eliminarTicketButton.setBounds(128, 128, 87, 19);
 		tab2.add(eliminarTicketButton);
 		
 		btnModificarTicket = new JButton("Suspender Ticket");
+		btnModificarTicket.setActionCommand("SUSPENDERTICKET");
 		btnModificarTicket.setBounds(223, 128, 100, 19);
 		tab2.add(btnModificarTicket);
 		
@@ -340,6 +342,11 @@ public class VentanaEmpleado extends JFrame implements IVistaUsuarioComun, Actio
 		nombreCompletooLabel.setFont(new Font("Segoe UI", Font.PLAIN, 25));
 		nombreCompletooLabel.setBounds(164, 24, 231, 29);
 		tab2.add(nombreCompletooLabel);
+		
+		btnActivar = new JButton("Activar");
+		btnActivar.setActionCommand("ACTIVARTICKET");
+		btnActivar.setBounds(335, 128, 100, 19);
+		tab2.add(btnActivar);
 		
 		pantallasTab.setSelectedIndex(0);
 		

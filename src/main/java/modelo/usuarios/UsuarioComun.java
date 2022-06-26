@@ -1,7 +1,5 @@
 package modelo.usuarios;
 
-import modelo.tickets.Ticket;
-
 import java.io.Serializable;
 
 public abstract class UsuarioComun extends Usuario implements Serializable {

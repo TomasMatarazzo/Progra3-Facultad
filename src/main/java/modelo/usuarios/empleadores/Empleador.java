@@ -95,7 +95,7 @@ public abstract class Empleador extends UsuarioComun implements Runnable {
     @Override
     public void loguearse() {
         setChanged();
-        notifyObservers("Empleado");
+        notifyObservers("Empleador");
     }
 
     public abstract double calculaPorcentajeComision();

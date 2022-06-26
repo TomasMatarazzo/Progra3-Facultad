@@ -12,7 +12,6 @@ import java.awt.Color;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowListener;
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.TreeSet;
 import java.awt.Font;
@@ -438,8 +437,8 @@ public class VentanaEmpleado extends JFrame implements IVistaUsuarioComun {
 	}
 	
 	@Override
-	public void renderListaTicketsEmpleado( Ticket ticket) {
-		DefaultListModel<Ticket_de_Busqueda_de_Empleo> listaTicketsDefault = new DefaultListModel<Ticket_de_Busqueda_de_Empleo>();
+	public void renderListaTicketsEmpleado(Ticket ticket) {
+		DefaultListModel<Ticket_de_Busqueda_de_Empleo> listaTicketsDefault = new DefaultListModel<>();
 		listaTicketsDefault.addElement((Ticket_de_Busqueda_de_Empleo)ticket);
 		if (list_1.getModel().getSize() != 0)
 			((DefaultListModel) list_1.getModel()).removeAllElements();

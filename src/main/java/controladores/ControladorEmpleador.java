@@ -31,7 +31,7 @@ public class ControladorEmpleador implements ActionListener, WindowListener{
 		this.vista.setActionListener(this);
 		this.vista.setWindowListener(this);
 		this.vista.llenarDatosEmpleador(modelo.getRazonSocial(),modelo.getNombre(),modelo.getRubro(),modelo.getNombreUsuario());
-		this.vista.renderListaTickets(modelo.getTicketsDeBusquedaDeEmpleado());
+		this.vista.renderListaTicketsEmpleador(modelo.getTicketsDeBusquedaDeEmpleado());
 	}
 
 	@Override
@@ -71,7 +71,7 @@ public class ControladorEmpleador implements ActionListener, WindowListener{
 					modelo.eliminarTicket((Ticket_de_Busqueda_de_Empleado)vista.getTicketSeleccionado());
 					vista.lanzarVentanaEmergente("Se elimino el ticket.");
 					System.out.println(modelo.getTicketsDeBusquedaDeEmpleado());
-					vista.renderListaTickets(modelo.getTicketsDeBusquedaDeEmpleado());
+					vista.renderListaTicketsEmpleador(modelo.getTicketsDeBusquedaDeEmpleado());
 				}
 				else
 					vista.lanzarVentanaEmergente("Seleccione el ticket a eliminar.");
@@ -101,7 +101,7 @@ public class ControladorEmpleador implements ActionListener, WindowListener{
 						ILocacion locacionFac = locacion.getLocacion("indistinto");
 						Formulario_de_Busqueda formulario = new Formulario_de_Busqueda(locacionFac, Integer.parseInt(vista.getForm().renumeracion), vista.getForm().cargaHoraria, vista.getForm().tipoPuesto, vista.getForm().edad, vista.getForm().experiencia, vista.getForm().estudios);
 						modelo.creaTicket(formulario, "Bombero", modelo.getPesoPuntajes());
-						vista.renderListaTickets(modelo.getTicketsDeBusquedaDeEmpleado());
+						vista.renderListaTicketsEmpleador(modelo.getTicketsDeBusquedaDeEmpleado());
 						vista.getForm().cleanForms();
 					}
 				}

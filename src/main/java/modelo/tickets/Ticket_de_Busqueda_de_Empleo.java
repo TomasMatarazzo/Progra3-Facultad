@@ -36,8 +36,8 @@ public class Ticket_de_Busqueda_de_Empleo extends Ticket implements Serializable
     //TO STRING
     @Override
     public String toString() {
-        return  "   formularioDeBusqueda: " + formularioDeBusqueda.toString() +
-                "   fechaDeAlta: " + fechaDeAlta.getTime() +
+        return  "   formularioDeBusqueda: " + (formularioDeBusqueda == null?"-":formularioDeBusqueda.toString()) +
+                "   fechaDeAlta: " + fechaDeAlta.getTime().toLocaleString() +
                 "   estado: " + estado +
                 "   resultado: " + resultado;
     }

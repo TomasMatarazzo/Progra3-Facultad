@@ -35,7 +35,6 @@ public abstract class Empleador extends UsuarioComun implements Runnable {
         this.pesoPuntajes = new int[7];
     }
 
-
     //GETTERS & SETTERS & ADDERS
     public String getRazonSocial() {
         return razonSocial;
@@ -88,8 +87,8 @@ public abstract class Empleador extends UsuarioComun implements Runnable {
     public String toString() {
         return  "   nombreUsuario: " + nombreUsuario +
                 "   contrasena: " + contrasena + //Esta bien mostrarla?
-                "   razonSocial: " + razonSocial +
-                "   rubro: " + rubro +
+                "   razonSocial: " + (razonSocial == null?"-":razonSocial) +
+                "   rubro: " + (rubro == null?"-":rubro) +
                 "   puntaje: " + puntaje;
     }
 

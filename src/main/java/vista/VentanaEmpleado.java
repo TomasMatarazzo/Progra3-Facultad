@@ -159,7 +159,7 @@ public class VentanaEmpleado extends JFrame implements IVistaUsuarioComun {
 		tab1.add(separator);
 		
 		JLabel lblNewLabel_2 = new JLabel("");
-		lblNewLabel_2.setIcon(new ImageIcon("C:\\Users\\tomas\\Desktop\\tp-progra\\Progra3-Linkedin\\src\\icons8-donald-trump-96.png"));
+		lblNewLabel_2.setIcon(new ImageIcon("src/icons8-donald-trump-96.png"));
 		lblNewLabel_2.setBounds(37, 133, 266, 183);
 		tab1.add(lblNewLabel_2);
 		
@@ -355,7 +355,6 @@ public class VentanaEmpleado extends JFrame implements IVistaUsuarioComun {
 		tab3.add(nombreCompletooLabel_1);
 		
 		form = new FormTickets();
-
 	}
 	
 	//Funcionalidades de ventana

@@ -34,11 +34,16 @@ public class Ticket_de_Busqueda_de_Empleo extends Ticket implements Serializable
     }
 
     //TO STRING
+
+
     @Override
     public String toString() {
-        return  "   formularioDeBusqueda: " + (formularioDeBusqueda == null?"-":formularioDeBusqueda.toString()) +
-                "   fechaDeAlta: " + fechaDeAlta.getTime().toLocaleString() +
-                "   estado: " + estado +
-                "   resultado: " + resultado;
+        return "formularioDeBusqueda: " + (formularioDeBusqueda == null ? "-" : formularioDeBusqueda.toString()) +
+                " fechaDeAlta: " + fechaDeAlta.getTime() +
+                " estado: " + (estado == null ? "-" : estado)  +
+                " tipoDeTrabajo " + (tipoDeTrabajo == null ? "-" : tipoDeTrabajo)  +
+                " puntajeTotal: " + puntajeTotal  +
+                " resultado: " + (resultado == null ? "pendiente" : resultado)  +
+                " eleccion: " + (eleccion == null ? "-" : eleccion);
     }
 }

@@ -37,7 +37,6 @@ public class ControladorEmpleador implements ActionListener, WindowListener{
 	public void actionPerformed(ActionEvent e) {
 		if (e.getActionCommand().equals("iniciarTICKETS")) {
 			vista.cambiarPagina(1);
-			
 		}else if (e.getActionCommand().equals("iniciarPERFIL")) {
 			vista.cambiarPagina(0);
 		}else if (e.getActionCommand().equals("iniciarELECCIONES")) {
@@ -55,7 +54,7 @@ public class ControladorEmpleador implements ActionListener, WindowListener{
 			}else {
 				System.out.println("AGREGANDOO " +modelo.getTicketsDeBusquedaDeEmpleado());
 				System.out.println("AGREGANDOO" +modelo.getTicketsDeBusquedaDeEmpleado().size());
-				vista.lanzarVentanaEmergente("Ya creo un ticket.");
+				vista.lanzarVentanaEmergente("Ya creo un ticket");
 			}
 		}else if (e.getActionCommand().equals("ELIMINARTICKET")) {
 			// VERIFICA QUE SE HAYA SELECCIONADO UN TICKET
@@ -79,7 +78,7 @@ public class ControladorEmpleador implements ActionListener, WindowListener{
 			}
 			else
 				vista.lanzarVentanaEmergente("Seleccion un ticket de la ronda de elecciones.");
-		}else if (e.getActionCommand().equals("CREARTICKET")) {
+		} else if (e.getActionCommand().equals("CREARTICKET")) {
 			vista.getForm().obtenerDatos();
 			if (vista.getForm().renumeracion.equals("") ){
 				JFrame jFrame = new JFrame();
@@ -96,41 +95,37 @@ public class ControladorEmpleador implements ActionListener, WindowListener{
 		        Formulario_de_Busqueda formulario = new Formulario_de_Busqueda(locacionFac,Integer.parseInt(vista.getForm().renumeracion),vista.getForm().cargaHoraria,vista.getForm().tipoPuesto,vista.getForm().edad,vista.getForm().experiencia,vista.getForm().estudios);
 				try {
 					modelo.creaTicket(formulario, "Bombero", modelo.getPesoPuntajes());
-					System.out.println("se creo un ticket");
-				}
-		        catch(Exception exc) {
+				} catch(Exception exc) {
 		        	exc.getMessage();
 		        }
 		        vista.renderListaTickets(modelo.getTicketsDeBusquedaDeEmpleado());
 		        vista.getForm().cleanForms();
-				}
-			}else if (e.getActionCommand().equalsIgnoreCase("SUSPENDERTICKET")) {
-				if (vista.getTicketSeleccionado() != null) {
-					if (vista.getTicketSeleccionado().getEstado().equalsIgnoreCase("suspender"))
-						this.vista.lanzarVentanaEmergente("El ticket ya se encuentra suspendido");
-					else
-						try {
-							this.vista.getTicketSeleccionado().suspender();
-							this.vista.renderListaElecciones(null);
-						} catch (EstadoException e1) {
-							// TODO Auto-generated catch block
-							e1.printStackTrace();
-						}
-					
-				}else {
-					this.vista.lanzarVentanaEmergente("Seleccione el ticket a suspender");
-				}
-			}else if (e.getActionCommand().equalsIgnoreCase("CERRARSESION")) {
-	            vista.creaOtraVentana("Login");
-	            vista.cerrarVentana();
-	            JOptionPane.showMessageDialog(null, "Te has deslogueado con exito");
-			}else if (e.getActionCommand().equalsIgnoreCase("BAJA")) {
-	            JOptionPane.showMessageDialog(null, "Se ha eliminado el Empleado con exito!");
-	            vista.creaOtraVentana("Login");
-	            Sistema.getInstance().setAgencia(null);
-	            vista.cerrarVentana();
 			}
+		} else if (e.getActionCommand().equalsIgnoreCase("SUSPENDERTICKET")) {
+			if (vista.getTicketSeleccionado() != null) {
+				if (vista.getTicketSeleccionado().getEstado().equalsIgnoreCase("suspender"))
+					this.vista.lanzarVentanaEmergente("El ticket ya se encuentra suspendido");
+				else
+					try {
+						this.vista.getTicketSeleccionado().suspender();
+						this.vista.renderListaElecciones(null);
+					} catch (EstadoException e1) {
+						e1.printStackTrace();
+					}
+			}else {
+				this.vista.lanzarVentanaEmergente("Seleccione el ticket a suspender");
+			}
+		} else if (e.getActionCommand().equalsIgnoreCase("CERRARSESION")) {
+			vista.creaOtraVentana("Login");
+			vista.cerrarVentana();
+			JOptionPane.showMessageDialog(null, "Te has deslogueado con exito");
+		} else if (e.getActionCommand().equalsIgnoreCase("BAJA")) {
+			JOptionPane.showMessageDialog(null, "Se ha eliminado el Empleado con exito!");
+			vista.creaOtraVentana("Login");
+			Sistema.getInstance().setAgencia(null);
+			vista.cerrarVentana();
 		}
+	}
 
 	@Override
 	public void windowClosing(WindowEvent e) {

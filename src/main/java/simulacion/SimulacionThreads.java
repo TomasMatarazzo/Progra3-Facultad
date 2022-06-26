@@ -21,11 +21,11 @@ public class SimulacionThreads {
             usuarioFactory.creaUsuario("Empleado03","333","Empleado");
             usuarioFactory.creaUsuario("Empleado04","444","Empleado");
             usuarioFactory.creaUsuario("Empleado05","555","Empleado");
-            usuarioFactory.creaUsuario("EMPLEADOR1","666","Persona Juridica");
-            usuarioFactory.creaUsuario("EMPLEADOR2","777","Persona Fisica");
-            usuarioFactory.creaUsuario("EMPLEADOR3","888","Persona Juridica");
-            usuarioFactory.creaUsuario("EMPLEADOR4","999","Persona Fisica");
-            usuarioFactory.creaUsuario("EMPLEADOR5","101010","Persona Fisica");
+            usuarioFactory.creaUsuario("empleador01","666","Persona Juridica");
+            usuarioFactory.creaUsuario("empleador02","777","Persona Fisica");
+            usuarioFactory.creaUsuario("empleador03","888","Persona Juridica");
+            usuarioFactory.creaUsuario("empleador04","999","Persona Fisica");
+            usuarioFactory.creaUsuario("empleador05","101010","Persona Fisica");
         } catch (DatosMalIngresadosException e1) {
             System.out.println("El parametro " + e1.getMessage() + " ingresado es incorrecto.");
         } catch (ErrorDeUsuarioException e2) {
@@ -61,8 +61,4 @@ public class SimulacionThreads {
         ControladorThreads controladorThreads = new ControladorThreads(ventanaSimulacionThreads);
         ventanaSimulacionThreads.setVisible(true);
 	}
-
-    public static void detenerSimulacion() {
-
-    }
 }

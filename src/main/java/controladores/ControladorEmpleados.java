@@ -121,6 +121,7 @@ public class ControladorEmpleados implements ActionListener, WindowListener {
 		}
 	}
 
+	//METODOS NO USADOS
 	@Override
 	public void windowOpened(WindowEvent e) {
 		// TODO Auto-generated method stub

@@ -5,13 +5,11 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.util.ArrayList;
-
 import modelo.Sistema;
 import vista.IVista;
 import javax.swing.*;
 
 public class ControladorThreads implements ActionListener, WindowListener {
-	
 	private IVista vista;
 	private ArrayList<Thread> threads = new ArrayList<>();
 	
@@ -45,8 +43,8 @@ public class ControladorThreads implements ActionListener, WindowListener {
 			}
 		} else
 			if (comando.equalsIgnoreCase("Volver")) {
-				for (int t = 0;t < this.threads.size();t++) { 
-					this.threads.get(t).stop();
+				for (int t = 0;t < this.threads.size();t++) {
+					this.threads.get(t).interrupt();
 				}
 				vista.creaOtraVentana("Login");
 				vista.cerrarVentana();

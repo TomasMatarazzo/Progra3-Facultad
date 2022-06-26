@@ -29,7 +29,7 @@ public class PruebaPrograma {
         }
 
         //INICIO EL PROGRAMA
-        Sistema.getInstance().setAgencia(new Agencia("Guille","<3"));
+        Sistema.getInstance().setAgencia(new Agencia("Guille","123"));
         VentanaLogin ventanaLogin = new VentanaLogin();
         ControladorLogin controladorLogin = new ControladorLogin(ventanaLogin);
         ventanaLogin.ejecutar();

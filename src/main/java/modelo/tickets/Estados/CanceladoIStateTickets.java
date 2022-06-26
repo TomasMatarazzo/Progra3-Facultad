@@ -29,4 +29,9 @@ public class CanceladoIStateTickets implements IStateTickets {
     public void finalizar() throws EstadoException {
         throw new EstadoException("Un ticket cancelado no se puede finalizar");
     }
+
+	@Override
+	public String getNombreEstado() {
+		return "Cancelado";
+	}
 }

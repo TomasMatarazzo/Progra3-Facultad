@@ -5,6 +5,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import modelo.Sistema;
@@ -30,7 +32,7 @@ public class ControladorEmpleador implements ActionListener, WindowListener{
 		this.vista = vista;
 		this.vista.setActionListener(this);
 		this.vista.setWindowListener(this);
-		this.vista.llenarDatosEmpleador(modelo.getRazonSocial(),modelo.getNombre(),modelo.getRubro(),modelo.getNombreUsuario());
+		//this.vista.llenarDatosEmpleador(modelo.getRazonSocial(),modelo.getNombre(),modelo.getRubro(),modelo.getNombreUsuario());
 		this.vista.renderListaTicketsEmpleador(modelo.getTicketsDeBusquedaDeEmpleado());
 	}
 
@@ -109,12 +111,53 @@ public class ControladorEmpleador implements ActionListener, WindowListener{
 				break;
 			case "SUSPENDERTICKET":
 				if (vista.getTicketSeleccionado() != null) {
-					if (vista.getTicketSeleccionado().getEstado().equalsIgnoreCase("suspender"))
+					if (vista.getTicketSeleccionado().getState().getNombreEstado().equalsIgnoreCase("suspendido"))
 						this.vista.lanzarVentanaEmergente("El ticket ya se encuentra suspendido");
 					else {
 						try {
-							this.vista.getTicketSeleccionado().suspender();
-							this.vista.renderListaElecciones(null);
+							ArrayList<Ticket_de_Busqueda_de_Empleado> lista = new ArrayList();
+							for (int i = 0 ; i < this.modelo.getTicketsDeBusquedaDeEmpleado().size() ; i++) {
+								if (this.vista.getTicketSeleccionado() == this.modelo.getTicketsDeBusquedaDeEmpleado().get(i)) {
+									Ticket_de_Busqueda_de_Empleado ticket = this.modelo.getTicketsDeBusquedaDeEmpleado().get(i);
+									ticket.suspender();
+									System.out.println(ticket);
+									lista.add(ticket);
+								}else
+									lista.add(this.modelo.getTicketsDeBusquedaDeEmpleado().get(i));
+							}
+							this.modelo.setTicketsDeBusquedaDeEmpleado(lista);
+							//this.modelo.setTicketsDeBusquedaDeEmpleado();
+							//this.vista.getTicketSeleccionado().suspender();
+							System.out.println(modelo.getTicketsDeBusquedaDeEmpleado());
+							this.vista.renderListaTicketsEmpleador(modelo.getTicketsDeBusquedaDeEmpleado());
+						} catch (EstadoException e1) {
+							e1.printStackTrace();
+						}
+					}
+				} else
+					this.vista.lanzarVentanaEmergente("Seleccione el ticket a suspender");
+				break;
+			case "ACTIVARTICKET":
+				if (vista.getTicketSeleccionado() != null) {
+					if (vista.getTicketSeleccionado().getState().getNombreEstado().equalsIgnoreCase("activado"))
+						this.vista.lanzarVentanaEmergente("El ticket ya se encuentra Activado");
+					else {
+						try {
+							ArrayList<Ticket_de_Busqueda_de_Empleado> lista = new ArrayList();
+							for (int i = 0 ; i < this.modelo.getTicketsDeBusquedaDeEmpleado().size() ; i++) {
+								if (this.vista.getTicketSeleccionado() == this.modelo.getTicketsDeBusquedaDeEmpleado().get(i)) {
+									Ticket_de_Busqueda_de_Empleado ticket = this.modelo.getTicketsDeBusquedaDeEmpleado().get(i);
+									ticket.activar();
+									System.out.println(ticket);
+									lista.add(ticket);
+								}else
+									lista.add(this.modelo.getTicketsDeBusquedaDeEmpleado().get(i));
+							}
+							this.modelo.setTicketsDeBusquedaDeEmpleado(lista);
+							//this.modelo.setTicketsDeBusquedaDeEmpleado();
+							//this.vista.getTicketSeleccionado().suspender();
+							System.out.println(modelo.getTicketsDeBusquedaDeEmpleado());
+							this.vista.renderListaTicketsEmpleador(modelo.getTicketsDeBusquedaDeEmpleado());
 						} catch (EstadoException e1) {
 							e1.printStackTrace();
 						}

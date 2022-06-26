@@ -149,7 +149,7 @@ public class EmpleadoPretenso extends UsuarioComun implements Runnable{
      * @throws TicketYaCreadoException
      */
     public void creaTicket(Formulario_de_Busqueda formulario,String tipoTrabajo) throws TicketYaCreadoException {
-        if (this.ticketDeBusquedaDeEmpleo == null || this.ticketDeBusquedaDeEmpleo.getEstado().equalsIgnoreCase("CANCELADO") || this.ticketDeBusquedaDeEmpleo.getEstado().equalsIgnoreCase("FINALIZADO")) {
+        if (this.ticketDeBusquedaDeEmpleo == null || this.ticketDeBusquedaDeEmpleo.getState().getNombreEstado().equalsIgnoreCase("CANCELADO") || this.ticketDeBusquedaDeEmpleo.getState().getNombreEstado().equalsIgnoreCase("FINALIZADO")) {
             this.ticketDeBusquedaDeEmpleo = new Ticket_de_Busqueda_de_Empleo(formulario,tipoTrabajo);
             Sistema.getInstance().agregaTicketDeEmpleadosPretensos(this,this.ticketDeBusquedaDeEmpleo);
         } else

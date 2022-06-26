@@ -10,10 +10,9 @@ import java.io.Serializable;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
-public abstract class Ticket implements Comparable, Serializable,IStateTickets {
+public abstract class Ticket implements Comparable, Serializable {
     protected transient Formulario_de_Busqueda formularioDeBusqueda;
     protected Calendar fechaDeAlta = Calendar.getInstance();
-    protected String estado; // activo-suspendido-cancelado-finalizado
     private IStateTickets IStateTickets;
     protected String tipoDeTrabajo;
     protected double puntajeTotal;
@@ -23,7 +22,6 @@ public abstract class Ticket implements Comparable, Serializable,IStateTickets {
         this.formularioDeBusqueda = formularioDeBusqueda;
         this.IStateTickets = new ActivadoIStateTickets(this);
         this.fechaDeAlta = new GregorianCalendar();
-        this.estado = "Activo";
         this.tipoDeTrabajo = tipoDeTrabajo;
         this.puntajeTotal = 0;
     }
@@ -31,19 +29,15 @@ public abstract class Ticket implements Comparable, Serializable,IStateTickets {
     protected Ticket() {
     }
 
-    @Override
     public void activar() throws EstadoException {
         this.IStateTickets.activar();
     }
-    @Override
     public void cancelar() throws EstadoException {
         this.IStateTickets.cancelar();
     }
-    @Override
     public void finalizar() throws EstadoException {
         this.IStateTickets.finalizar();
     }
-    @Override
     public void suspender() throws EstadoException {
         this.IStateTickets.suspender();
     }
@@ -51,10 +45,6 @@ public abstract class Ticket implements Comparable, Serializable,IStateTickets {
     // GETTERS && SETTERS
     public Formulario_de_Busqueda getFormularioDeBusqueda() {
         return formularioDeBusqueda;
-    }
-
-    public String getEstado() {
-        return estado;
     }
 
     public String getTipoDeTrabajo() {
@@ -89,9 +79,6 @@ public abstract class Ticket implements Comparable, Serializable,IStateTickets {
         return puntajeTotal;
     }
 
-    public void setEstado(String estado) {
-        this.estado = estado;
-    }
 
     public void setState(IStateTickets IStateTickets){
         this.IStateTickets = IStateTickets;

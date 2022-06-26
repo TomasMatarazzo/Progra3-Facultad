@@ -28,4 +28,8 @@ public class FinalizadoIStateTickets implements IStateTickets {
     public void finalizar() throws EstadoException {
         throw new EstadoException("ERROR. Mismo estado");
     }
+	@Override
+	public String getNombreEstado() {
+		return "Finalizado";
+	}
 }

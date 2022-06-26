@@ -36,11 +36,14 @@ public class Ticket_de_Busqueda_de_Empleado extends Ticket {
 
     @Override
     public String toString() {
-        return "formularioDeBusqueda: " + (formularioDeBusqueda == null ? "-" : formularioDeBusqueda.toString()) +
+    			return "Ticket: " +
+                " Estado: " + (this.getState().getNombreEstado() == null ? "-" : this.getState().getNombreEstado())  +
+        		(formularioDeBusqueda == null ? "-" : formularioDeBusqueda.toString()) +
                 " fechaDeAlta: " + fechaDeAlta.getTime() +
-                " estado: " + (estado == null ? "-" : estado) +
-                " tipoDeTrabajo: " + (tipoDeTrabajo == null ? "-" : tipoDeTrabajo) +
-                " puntajeTotal: " + puntajeTotal;
+                " estado: " + (this.getState().getNombreEstado() == null ? "-" : this.getState().getNombreEstado())  +
+                " tipoDeTrabajo " + (tipoDeTrabajo == null ? "-" : tipoDeTrabajo)  +
+                " puntajeTotal: " + puntajeTotal  +
+                " eleccion: " + (eleccion == null ? "-" : eleccion);
     }
 
     //FUCNIONALIDADES

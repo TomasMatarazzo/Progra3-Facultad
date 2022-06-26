@@ -83,6 +83,7 @@ public class VentanaEmpleador extends JFrame implements IVistaUsuarioComun {
 	private JScrollPane scrollPane_3;
 	private JPanel tab2;
 	private JButton btnBaja;
+	private JButton btnActivarTicket;
 
 	public VentanaEmpleador() {
 		setBounds(100, 100, 800, 500);
@@ -271,7 +272,7 @@ public class VentanaEmpleador extends JFrame implements IVistaUsuarioComun {
 		//this.renderListaTickets(modelo.getTicketDeBusquedaDeEmpleo());
 		list_1.setVisibleRowCount(3);
 		scrollPane.setViewportView(list_1);
-		this.scrollPane.setVisible(false);
+		this.scrollPane.setVisible(true);
 
 		panel_4 = new JPanel();
 		scrollPane.setRowHeaderView(panel_4);
@@ -319,6 +320,11 @@ public class VentanaEmpleador extends JFrame implements IVistaUsuarioComun {
 		nombreCompletooLabel.setFont(new Font("Segoe UI", Font.PLAIN, 25));
 		nombreCompletooLabel.setBounds(164, 24, 231, 29);
 		tab2.add(nombreCompletooLabel);
+		
+		btnActivarTicket = new JButton("Activar");
+		btnActivarTicket.setActionCommand("ACTIVARTICKET");
+		btnActivarTicket.setBounds(328, 128, 100, 19);
+		tab2.add(btnActivarTicket);
 
 		//this.renderVentanaVistas(3);
 
@@ -406,6 +412,7 @@ public class VentanaEmpleador extends JFrame implements IVistaUsuarioComun {
 		this.btnCerrarSesion.addActionListener(controlador);
 		this.btnSuspenderTicket.addActionListener(controlador);
 		this.btnBaja.addActionListener(controlador);
+		this.btnActivarTicket.addActionListener(controlador);
 	}
 	
 	@Override
@@ -488,6 +495,7 @@ public class VentanaEmpleador extends JFrame implements IVistaUsuarioComun {
 			this.rubroLabel.setText(rubro);
 		this.usuarioLabel.setText(usuario);
 		this.entidadLabel.setText(tipoPersona);
+		this.nombreCompletooLabel.setText(nombre);
 	}
 
 	public void renderListaTicketsEmpleador(ArrayList<Ticket_de_Busqueda_de_Empleado> tickets) {

@@ -28,4 +28,8 @@ public class SuspendidoIStateTickets implements IStateTickets {
     public void finalizar() throws EstadoException {
         throw new EstadoException("Un ticket suspendido no se puede finalizar");
     }
+	@Override
+	public String getNombreEstado() {
+		return "Suspendido";
+	}
 }

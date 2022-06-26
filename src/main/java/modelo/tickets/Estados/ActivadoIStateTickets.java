@@ -30,4 +30,10 @@ public class ActivadoIStateTickets implements IStateTickets {
     public void finalizar(){
         this.t.setState(new FinalizadoIStateTickets(this.t));
     }
+
+	@Override
+	public String getNombreEstado() {
+		return "Activado";
+		
+	}
 }

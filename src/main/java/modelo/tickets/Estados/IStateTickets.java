@@ -9,4 +9,5 @@ public interface IStateTickets extends Serializable {
     void suspender() throws EstadoException;
     void cancelar() throws EstadoException;
     void finalizar() throws EstadoException;
+    String getNombreEstado() ;
 }

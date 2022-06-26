@@ -5,7 +5,6 @@ import modelo.excepciones.EstadoException;
 import modelo.tickets.locaciones.ILocacion;
 import modelo.tickets.Estados.IStateTickets;
 import modelo.constantes.Puntajes;
-
 import java.io.Serializable;
 import java.util.Calendar;
 import java.util.GregorianCalendar;

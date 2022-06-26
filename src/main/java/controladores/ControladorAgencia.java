@@ -42,17 +42,17 @@ public class ControladorAgencia implements ActionListener, WindowListener {
             case "Comisiones":
                 vista.cambiarPagina(3);
                 break;
-            case "Desloguearse":
+            case "Cerrar Sesion":
                 vista.creaOtraVentana("Login");
                 vista.cerrarVentana();
                 JOptionPane.showMessageDialog(null, "Te has deslogueado con exito");
                 break;
             case "Dar de baja":
                 vista.creaOtraVentana("Login");
-                Sistema.getInstance().setAgencia(null);
                 vista.cerrarVentana();
-                JOptionPane.showMessageDialog(null, "Se ha eliminado la Agencia con exito!");
+                Sistema.getInstance().setAgencia(null);
                 this.modelo = null;
+                JOptionPane.showMessageDialog(null, "Se ha eliminado la Agencia con exito!");
                 break;
             case "Ronda de Encuentros Laborales":
                 Sistema.getInstance().rondaEncuentrosLaborales();

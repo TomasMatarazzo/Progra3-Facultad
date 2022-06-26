@@ -58,7 +58,7 @@ public class VentanaAgencia extends JFrame implements IVistaAgencia, KeyListener
     private JLabel labelRangoLaboral;
     private JLabel labelTitulo2;
     private JLabel labelTitulo3;
-    private JButton botonDesloguearse;
+    private JButton botonCerrarSesion;
     private JScrollPane comisionesScrollPane;
     private JScrollPane datosAlmacenadosScrollPane;
     private Usuario observado;
@@ -75,7 +75,7 @@ public class VentanaAgencia extends JFrame implements IVistaAgencia, KeyListener
         botonIngresarDatos.addActionListener(controlador);
         botonVerDatos.addActionListener(controlador);
         botonComisiones.addActionListener(controlador);
-        botonDesloguearse.addActionListener(controlador);
+        botonCerrarSesion.addActionListener(controlador);
         botonDarDeBaja.addActionListener(controlador);
         botonRondaDeContrataciones.addActionListener(controlador);
         botonRondaDeEncuentrosLaborales.addActionListener(controlador);

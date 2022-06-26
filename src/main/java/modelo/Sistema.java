@@ -103,7 +103,15 @@ public class Sistema{
     public void agregaTicketDeEmpleadores(Empleador usuario,Ticket_de_Busqueda_de_Empleado ticket) {
         ticketsDeEmpleadores.put(ticket,usuario);
     }
-    
+
+    public void eliminaEmpleador(Empleador elim) {
+        empleadores.remove(elim);
+    }
+
+    public void eliminaEmpleado(EmpleadoPretenso elim) {
+        empleadosPretensos.remove(elim);
+    }
+
     public void eliminaTicketDeEmpleadosPretensos( Ticket_de_Busqueda_de_Empleo ticket) {
     	ticketsDeEmpleadosPretensos.remove(ticket);
     }	

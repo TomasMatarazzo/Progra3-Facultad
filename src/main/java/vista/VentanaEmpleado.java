@@ -90,6 +90,7 @@ public class VentanaEmpleado extends JFrame implements IVistaUsuarioComun, Actio
 	private JSeparator separator_8;
 	private JLabel lblNewLabel_8;
 	private JLabel nombreCompletooLabel_2;
+	private JList<Contrato> listaContratos;
 
 	// Ventaja Emergente
 	public void confirmarSeleccion() {
@@ -435,6 +436,7 @@ public class VentanaEmpleado extends JFrame implements IVistaUsuarioComun, Actio
 		nombreCompletooLabel_2.setFont(new Font("Segoe UI", Font.PLAIN, 25));
 		nombreCompletooLabel_2.setBounds(164, 24, 231, 29);
 		tab4.add(nombreCompletooLabel_2);
+		listaContratos = new JList<>();
 		
 		form = new FormTickets();
 	}
@@ -526,6 +528,7 @@ public class VentanaEmpleado extends JFrame implements IVistaUsuarioComun, Actio
 		this.nombreCompletooLabel.setText(nombre + " " + apellido);
 		this.cantTicketsLabel.setText(Integer.toString(this.list_1.getWidth()));
 		this.nombreCompletooLabel_1.setText(nombre + " " + apellido);
+		this.nombreCompletooLabel_2.setText(nombre + " " + apellido);
 	}
 	
 	@Override
@@ -538,15 +541,14 @@ public class VentanaEmpleado extends JFrame implements IVistaUsuarioComun, Actio
 		scrollPane.setViewportView(list_1);
 	}
 
-/*	public void renderListaContratos(ArrayList<Contrato> contratos) {
+	public void renderListaContratos(ArrayList<Contrato> contratos) {
 		DefaultListModel<Contrato> listaContratoDefault = new DefaultListModel<>();
-
 		for(int i = 0 ; i < contratos.size() ; i++)
 			listaContratoDefault.addElement(contratos.get(i));
 		this.listaContratos.setModel(listaContratoDefault);
 		scrollPane.setViewportView(listaContratos);
 	}
-	*/
+
 	@Override
 	public void renderListaElecciones(TreeSet<Ticket> list) {
 		if (list == null || list.size() == 0) {

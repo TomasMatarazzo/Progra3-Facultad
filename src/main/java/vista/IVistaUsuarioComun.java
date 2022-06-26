@@ -34,7 +34,6 @@ public interface IVistaUsuarioComun extends IVista{
 
 	void confirmarSeleccion();
 	
-	void renderContratos( ArrayList<Ticket> list);
 	
-	public void renderListaContratos(ArrayList<Ticket> contratos);
+	public void renderListaContratos(ArrayList<Contrato> contratos);
 }

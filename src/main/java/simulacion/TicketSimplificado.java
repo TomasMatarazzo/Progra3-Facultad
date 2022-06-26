@@ -1,5 +1,6 @@
 package simulacion;
 
+import modelo.Sistema;
 import modelo.tickets.Formulario_de_Busqueda;
 import modelo.tickets.Ticket;
 import modelo.usuarios.Agencia;

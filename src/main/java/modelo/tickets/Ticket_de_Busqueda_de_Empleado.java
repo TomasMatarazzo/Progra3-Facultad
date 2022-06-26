@@ -1,5 +1,7 @@
 package modelo.tickets;
 
+import java.io.Serializable;
+
 public class Ticket_de_Busqueda_de_Empleado extends Ticket {
     private int[] pesoAspectos; //Pesos de [1,3] vector de 7 dimensiones
     private Ticket_de_Busqueda_de_Empleo eleccion;
@@ -32,15 +34,11 @@ public class Ticket_de_Busqueda_de_Empleado extends Ticket {
     }
 
     //TO STRING
-
-
     @Override
     public String toString() {
-        return "formularioDeBusqueda: " + (formularioDeBusqueda == null ? "-" : formularioDeBusqueda.toString()) +
-                " fechaDeAlta: " + fechaDeAlta.getTime() +
-                " estado: " + (estado == null ? "-" : estado) +
-                " tipoDeTrabajo: " + (tipoDeTrabajo == null ? "-" : tipoDeTrabajo) +
-                " puntajeTotal: " + puntajeTotal;
+        return  "   formularioDeBusqueda: " + formularioDeBusqueda.toString() +
+                "   fechaDeAlta: " + fechaDeAlta.getTime() +
+                "   estado: " + estado;
     }
 
     //FUCNIONALIDADES

@@ -2,7 +2,7 @@ package vista;
 
 import controladores.ControladorAgencia;
 import controladores.ControladorEmpleador;
-import controladores.ControladorEmpleado;
+import controladores.ControladorEmpleados;
 import controladores.ControladorRegister;
 import modelo.excepciones.EstadoException;
 import modelo.usuarios.Agencia;
@@ -93,12 +93,12 @@ public class VentanaLogin extends JFrame implements IVistaLogin, KeyListener, Ob
             case "Empleado Pretenso":
                 EmpleadoPretenso empleado = (EmpleadoPretenso) observado;
                 VentanaEmpleado ventanaEmpleado = new VentanaEmpleado(empleado);
-                ControladorEmpleado controladorEmpleados = new ControladorEmpleado(ventanaEmpleado,empleado);
+                ControladorEmpleados controladorEmpleados = new ControladorEmpleados(ventanaEmpleado,empleado);
                 ventanaEmpleado.ejecutar();
                 break;
             case "Empleador":
                 Empleador empleador = (Empleador) observado;
-                VentanaEmpleador ventanaEmpleador = new VentanaEmpleador();
+                VentanaEmpleador ventanaEmpleador = new VentanaEmpleador(empleador);
                 ControladorEmpleador controladorEmpleador = new ControladorEmpleador(ventanaEmpleador,empleador);
                 ventanaEmpleador.ejecutar();
                 break;

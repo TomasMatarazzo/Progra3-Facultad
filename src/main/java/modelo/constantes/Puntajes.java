@@ -26,14 +26,14 @@ public class Puntajes {
     public static final int SENIOR = 1;
     public static final int MANAGMENT = 2;
 
-    private static String puesto1 = "\0";
-    private static String puesto2 = "\0";
-    private static String puesto3 = "\0";
+    private  static String puesto1 = "\0";
+    private  static String puesto2 = "\0";
+    private  static String puesto3 = "\0";
+
 
     public static final int menorEdad1 = 0;
     public static final int menorEdad2 = 1;
     public static final int mayorEdad2 = 2;
-
     public static int edad1 = -1;
     public static int edad2 = -1 ;
 

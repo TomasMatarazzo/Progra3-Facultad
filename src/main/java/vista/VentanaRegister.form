@@ -484,7 +484,6 @@
               </grid>
             </constraints>
             <properties>
-              <focusable value="false"/>
               <maximumSize width="200" height="30"/>
               <minimumSize width="200" height="30"/>
               <preferredSize width="200" height="30"/>

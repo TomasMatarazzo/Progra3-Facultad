@@ -1,8 +1,8 @@
 package util;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
+
 import modelo.Sistema;
 import modelo.excepciones.EstadoException;
 import modelo.listas.Contrato;
@@ -18,12 +18,17 @@ public abstract class Util
 {
     public static final Random r = new Random();
 
-    public static void espera(int milisegundos) {
-        try {
-            Thread.sleep(milisegundos);
-        } catch (InterruptedException e) {
+    public static void espera(int milisegundos)
+    {
+	try
+	{
+	    Thread.sleep(milisegundos);
+	} catch (InterruptedException e)
+	{
+	    // TODO Auto-generated catch block
+	    e.printStackTrace();
+	}
 
-        }
     }
 
     public static void espera()

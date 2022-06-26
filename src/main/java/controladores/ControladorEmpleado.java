@@ -31,6 +31,8 @@ public class ControladorEmpleado implements ActionListener, WindowListener {
 		this.vista.setActionListener(this);
 		this.vista.setWindowListener(this);
 		this.vista.llenarDatosEmpleado(modelo.getNombre(),modelo.getApellido(),modelo.geteMail(),modelo.getTelefono(),modelo.getEdad());
+		this.vista.renderListaTicketsEmpleado(modelo.getTicketDeBusquedaDeEmpleo());
+		this.vista.renderListaContratos(Sistema.getInstance().getContratos());
 	}
 
 	@Override
@@ -45,7 +47,6 @@ public class ControladorEmpleado implements ActionListener, WindowListener {
 				break;
 			case "iniciarELECCIONES":
 				vista.cambiarPagina(2);
-				this.vista.renderListaElecciones(Sistema.getInstance().getListas().get(modelo.getTicketDeBusquedaDeEmpleo()).getOfertas());
 				break;
 			case "AGREGARTICKET":
 				if (modelo.getTicketDeBusquedaDeEmpleo() == null) {
@@ -99,18 +100,33 @@ public class ControladorEmpleado implements ActionListener, WindowListener {
 				break;
 			case "SUSPENDERTICKET":
 				if (vista.getTicketSeleccionado() != null) {
-					if (vista.getTicketSeleccionado().getState().getNombreEstado().equalsIgnoreCase("suspender"))
+					if (vista.getTicketSeleccionado().getState().getNombreEstado().equalsIgnoreCase("suspendido"))
 						this.vista.lanzarVentanaEmergente("El ticket ya se encuentra suspendido");
 					else {
 						try {
 							this.vista.getTicketSeleccionado().suspender();
-							this.vista.renderListaElecciones(null);
+							this.vista.renderListaTicketsEmpleado(modelo.getTicketDeBusquedaDeEmpleo());
 						} catch (EstadoException e1) {
 							e1.printStackTrace();
 						}
 					}
 				} else
 					this.vista.lanzarVentanaEmergente("Seleccione el ticket a suspender");
+				break;
+			case "ACTIVARTICKET":
+				if (vista.getTicketSeleccionado() != null) {
+					if (vista.getTicketSeleccionado().getState().getNombreEstado().equalsIgnoreCase("activado"))
+						this.vista.lanzarVentanaEmergente("El ticket ya se encuentra activado");
+					else {
+						try {
+							this.vista.getTicketSeleccionado().activar();
+							this.vista.renderListaTicketsEmpleado(modelo.getTicketDeBusquedaDeEmpleo());
+						} catch (EstadoException e1) {
+							e1.printStackTrace();
+						}
+					}
+				} else
+					this.vista.lanzarVentanaEmergente("Seleccione el ticket a activar");
 				break;
 			case "CERRARSESION":
 				vista.creaOtraVentana("Login");

@@ -29,83 +29,85 @@ public class ControladorEmpleados implements ActionListener, WindowListener {
 		this.modelo = modelo;
 		this.vista = vista2;
 		this.vista.setActionListener(this);
-		vista.llenarDatosEmpleado(modelo.getNombre(),modelo.getApellido(),modelo.geteMail(), modelo.getTelefono(),modelo.getEdad());
-		vista.renderListaTicketsEmpleado((Ticket_de_Busqueda_de_Empleo)modelo.getTicketDeBusquedaDeEmpleo());
+		vista.llenarDatosEmpleado(modelo.getNombre(), modelo.getApellido(), modelo.geteMail(), modelo.getTelefono(),
+				modelo.getEdad());
+		vista.renderListaTicketsEmpleado((Ticket_de_Busqueda_de_Empleo) modelo.getTicketDeBusquedaDeEmpleo());
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getActionCommand().equals("iniciarTICKETS")) {
 			vista.cambiarPagina(1);
-		}else if (e.getActionCommand().equals("iniciarPERFIL")) {
+		} else if (e.getActionCommand().equals("iniciarPERFIL")) {
 			vista.cambiarPagina(0);
-		}else if (e.getActionCommand().equals("iniciarELECCIONES")) {
+		} else if (e.getActionCommand().equals("iniciarELECCIONES")) {
 			vista.cambiarPagina(2);
-		}else if (e.getActionCommand().equals("AGREGARTICKET")) {
+		} else if (e.getActionCommand().equals("AGREGARTICKET")) {
 			if (modelo.getTicketDeBusquedaDeEmpleo() == null) {
 //				Sistema.getInstance().agregaTicketDeEmpleadosPretensos(modelo, vista.getTicketSeleccionado());
 //				modelo.setTicketDeBusquedaDeEmpleo(vista.getTicketSeleccionado());
 				vista.mostrarFormTicket();
-			}else 
+			} else
 				vista.lanzarVentanaEmergente("Ya creo un ticket.");
-			
-		}else if (e.getActionCommand().equals("ELIMINARTICKET")) {
+
+		} else if (e.getActionCommand().equals("ELIMINARTICKET")) {
 			// VERIFICA QUE SE HAYA SELECCIONADO UN TICKET
 			if (vista.getTicketSeleccionado() != null) {
-				Sistema.getInstance().eliminaTicketDeEmpleadosPretensos((Ticket_de_Busqueda_de_Empleo)vista.getTicketSeleccionado());
+				Sistema.getInstance().eliminaTicketDeEmpleadosPretensos(
+						(Ticket_de_Busqueda_de_Empleo) vista.getTicketSeleccionado());
 				modelo.setTicketDeBusquedaDeEmpleo(null);
 				vista.lanzarVentanaEmergente("Se elimino el ticket.");
 				System.out.println(modelo.getTicketDeBusquedaDeEmpleo());
 				vista.renderListaTicketsEmpleado(modelo.getTicketDeBusquedaDeEmpleo());
-			}
-			else 
+			} else
 				vista.lanzarVentanaEmergente("Seleccione el ticket a eliminar.");
-			
-		}else if (e.getActionCommand().equals("EMPLEADORELEGIDO")) {
+
+		} else if (e.getActionCommand().equals("EMPLEADORELEGIDO")) {
 			if (vista.getTicketEleccionesSeleccionado() != null) {
 				vista.confirmarSeleccion();
 				vista.lanzarVentanaEmergente("Se elegio un empleado.");
-				modelo.getTicketDeBusquedaDeEmpleo().setEleccion((Ticket_de_Busqueda_de_Empleado)vista.getTicketEleccionesSeleccionado());
-			}
-			else
+				modelo.getTicketDeBusquedaDeEmpleo()
+						.setEleccion((Ticket_de_Busqueda_de_Empleado) vista.getTicketEleccionesSeleccionado());
+			} else
 				vista.lanzarVentanaEmergente("Seleccion un ticket de la ronda de elecciones.");
-		}else if (e.getActionCommand().equals("CREARTICKET")) {
+		} else if (e.getActionCommand().equals("CREARTICKET")) {
 			vista.getForm().obtenerDatos();
-			if (vista.getForm().renumeracion.equals("") ){
+			if (vista.getForm().renumeracion.equals("")) {
 				JFrame jFrame = new JFrame();
-		        JOptionPane.showMessageDialog(jFrame, "Complete todos los campos");
-			} else if (!Util.esNumero(vista.getForm().renumeracion)){
+				JOptionPane.showMessageDialog(jFrame, "Complete todos los campos");
+			} else if (!Util.esNumero(vista.getForm().renumeracion)) {
 				JFrame jFrame = new JFrame();
-		        JOptionPane.showMessageDialog(jFrame, "Renumeracion tiene que ser un numero");
-			}
-			else{
+				JOptionPane.showMessageDialog(jFrame, "Renumeracion tiene que ser un numero");
+			} else {
 				JFrame jFrame = new JFrame();
-		        JOptionPane.showMessageDialog(jFrame, "Se creo el ticket");
-		        LocacionFactory locacion = new LocacionFactory();
-		        ILocacion locacionFac = locacion.getLocacion("indistinto");
-		        Formulario_de_Busqueda formulario = new Formulario_de_Busqueda(locacionFac,Integer.parseInt(vista.getForm().renumeracion),vista.getForm().cargaHoraria,vista.getForm().tipoPuesto,vista.getForm().edad,vista.getForm().experiencia,vista.getForm().estudios);
+				JOptionPane.showMessageDialog(jFrame, "Se creo el ticket");
+				LocacionFactory locacion = new LocacionFactory();
+				ILocacion locacionFac = locacion.getLocacion("indistinto");
+				Formulario_de_Busqueda formulario = new Formulario_de_Busqueda(locacionFac,
+						Integer.parseInt(vista.getForm().renumeracion), vista.getForm().cargaHoraria,
+						vista.getForm().tipoPuesto, vista.getForm().edad, vista.getForm().experiencia,
+						vista.getForm().estudios);
 				try {
 					modelo.creaTicket(formulario, "Bombero");
 					System.out.println(modelo.getTicketDeBusquedaDeEmpleo());
+				} catch (Exception exc) {
+					exc.getMessage();
 				}
-		        catch(Exception exc) {
-		        	exc.getMessage();
-		        }
-		        vista.renderListaTicketsEmpleado(modelo.getTicketDeBusquedaDeEmpleo());
-		        vista.getForm().cleanForms();
-		}
-		}else if (e.getActionCommand().equalsIgnoreCase("CERRARSESION")) {
-            vista.creaOtraVentana("Login");
-            vista.cerrarVentana();
-            JOptionPane.showMessageDialog(null, "Te has deslogueado con exito");
-		}else if (e.getActionCommand().equalsIgnoreCase("BAJA")) {
-            vista.creaOtraVentana("Login");
-            Sistema.getInstance().setAgencia(null);
-            vista.cerrarVentana();
-            JOptionPane.showMessageDialog(null, "Se ha eliminado la Agencia con exito!");
+				vista.renderListaTicketsEmpleado(modelo.getTicketDeBusquedaDeEmpleo());
+				vista.getForm().cleanForms();
+			}
+		} else if (e.getActionCommand().equalsIgnoreCase("CERRARSESION")) {
+			vista.creaOtraVentana("Login");
+			vista.cerrarVentana();
+			JOptionPane.showMessageDialog(null, "Te has deslogueado con exito");
+		} else if (e.getActionCommand().equalsIgnoreCase("BAJA")) {
+			vista.creaOtraVentana("Login");
+			Sistema.getInstance().setAgencia(null);
+			vista.cerrarVentana();
+			JOptionPane.showMessageDialog(null, "Se ha eliminado la Agencia con exito!");
 		}
 	}
-	
+
 	@Override
 	public void windowClosing(WindowEvent e) {
 		try {
@@ -124,31 +126,25 @@ public class ControladorEmpleados implements ActionListener, WindowListener {
 		// TODO Auto-generated method stub
 	}
 
-
-
 	@Override
 	public void windowClosed(WindowEvent e) {
 		// TODO Auto-generated method stub
 	}
-
 
 	@Override
 	public void windowIconified(WindowEvent e) {
 		// TODO Auto-generated method stub
 	}
 
-
 	@Override
 	public void windowDeiconified(WindowEvent e) {
 		// TODO Auto-generated method stub
 	}
 
-
 	@Override
 	public void windowActivated(WindowEvent e) {
 		// TODO Auto-generated method stub
 	}
-
 
 	@Override
 	public void windowDeactivated(WindowEvent e) {

@@ -1,4 +1,3 @@
-
 package vista;
 
 import javax.swing.JFrame;
@@ -74,7 +73,6 @@ public class VentanaEmpleador extends JFrame implements ActionListener,IVistaUsu
 	private JLabel cantTicketsLabel;
 	private JLabel nombreCompletooLabel;
 	private JPanel tab3;
-	private JScrollPane scrollPane_1;
 	private JButton seleccionarEmpleadorButton;
 	private JLabel lblEtiqueta_2;
 	private JSeparator separator_5;
@@ -341,16 +339,12 @@ public class VentanaEmpleador extends JFrame implements ActionListener,IVistaUsu
 		nombreCompletooLabel.setBounds(164, 24, 231, 29);
 		tab2.add(nombreCompletooLabel);
 		
-		this.renderVentanaVistas(3);
+		//this.renderVentanaVistas(3);
 		
 		tab3 = new JPanel();
 		tab3.setLayout(null);
 		tab3.setBackground(new Color(30, 144, 255));
 		pantallasTab.addTab("Elecciones", null, tab3, null);
-		
-		scrollPane_1 = new JScrollPane();
-		scrollPane_1.setBounds(31, 155, 539, 276);
-		tab3.add(scrollPane_1);
 		
 		
 		
@@ -417,7 +411,7 @@ public class VentanaEmpleador extends JFrame implements ActionListener,IVistaUsu
 		tab4.add(nombreCompletooLabel_2);
 		
 		form = new FormTickets();
-
+		//this.renderVentanaVistas(3);
 	}
 	public void actionPerformed(ActionEvent e) {
 	}
@@ -541,26 +535,34 @@ public class VentanaEmpleador extends JFrame implements ActionListener,IVistaUsu
 			
 			// Inicializo vista con los tickets del modelo
 			this.listaElecciones.setModel(tickets);
-			listaElecciones.setVisibleRowCount(3);
-			scrollPane_1.setViewportView(listaElecciones);
+			//scrollPane_1.setViewportView(listaElecciones);
 		}
 	}
 
 	
-	// Manejo de la lista de tickets
+	// Creacion de la lista
 	
-	public void renderVentanaVistas( int cantidad) {
+	public void renderVentanaVistas( int cantidad , TreeSet<Ticket> list) {
 		tabbedPane = new JTabbedPane(JTabbedPane.TOP);
-		tabbedPane.setBounds(15, 212, 221, 183);
+		tabbedPane.setBounds(31, 155, 539, 276);
 		for (int i = 0 ; i< cantidad ; i++) {
-			tab2.add(tabbedPane);
+			tab3.add(tabbedPane);
 			
 			scrollPane_3 = new JScrollPane();
 			tabbedPane.addTab("Ticket " + (1 + i), null, scrollPane_3, null);
 			
-			list_2 = new JList();
-			scrollPane_3.setRowHeaderView(list_2);
-			pantallasTab.setSelectedIndex(0);
+			lblNewLabel.setText("Ofertas laborales encontradas , seleccione una");
+			DefaultListModel<Ticket> tickets = new DefaultListModel<Ticket>();
+			Iterator <Ticket>it = list.iterator();
+			while (it.hasNext())
+				tickets.addElement(it.next());
+			this.listaElecciones = new JList<Ticket>();
+			
+			// Inicializo vista con los tickets del modelo
+			this.listaElecciones.setModel(tickets);
+			scrollPane_3.setViewportView(listaElecciones);
+			
+			
 		}
 		
 	}
@@ -576,6 +578,10 @@ public class VentanaEmpleador extends JFrame implements ActionListener,IVistaUsu
 		lblNewLabel.setText("Empleado seleccionado , espere los resultados");
 		this.listaElecciones.setVisible(false);
 		this.seleccionarEmpleadorButton.setVisible(false);
+	}
+	
+	public int getTabSeleccionado() {
+		return tabbedPane.getSelectedIndex();
 	}
 	
 

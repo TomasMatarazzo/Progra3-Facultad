@@ -37,11 +37,13 @@ public class ControladorEmpleador implements ActionListener, WindowListener{
 	public void actionPerformed(ActionEvent e) {
 		if (e.getActionCommand().equals("iniciarTICKETS")) {
 			vista.cambiarPagina(1);
+			
 		}else if (e.getActionCommand().equals("iniciarPERFIL")) {
 			vista.cambiarPagina(0);
 		}else if (e.getActionCommand().equals("iniciarELECCIONES")) {
 			vista.cambiarPagina(2);
-			vista.renderListaElecciones(Sistema.getInstance().getListas().get(modelo.getTicketsDeBusquedaDeEmpleado().get(0)).getOfertas());
+			vista.renderVentanaVistas(3,Sistema.getInstance().getListas().get(modelo.getTicketsDeBusquedaDeEmpleado().get(0)).getOfertas());
+			//vista.renderListaElecciones(Sistema.getInstance().getListas().get(modelo.getTicketsDeBusquedaDeEmpleado().get(0)).getOfertas());
 			//vista.renderListaElecciones();
 		}else if (e.getActionCommand().equals("CONTRATOS")){
 			vista.cambiarPagina(3);
@@ -69,11 +71,11 @@ public class ControladorEmpleador implements ActionListener, WindowListener{
 				vista.lanzarVentanaEmergente("Seleccione el ticket a eliminar.");
 			
 		}else if (e.getActionCommand().equals("EMPLEADORELEGIDO")) {
-			if (vista.getTicketEleccionesSeleccionado() != null) {
+			if (vista.getTicketEleccionesSeleccionado() != null ) {
 				vista.lanzarVentanaEmergente("Se elegio un empleado.");
 				modelo.getTicketsDeBusquedaDeEmpleado();
 				vista.confirmarSeleccion();
-				modelo.getTicketsDeBusquedaDeEmpleado().get(0).setEleccion( (Ticket_de_Busqueda_de_Empleo)vista.getTicketEleccionesSeleccionado());
+				modelo.getTicketsDeBusquedaDeEmpleado().get(vista.getTabSeleccionado()).setEleccion( (Ticket_de_Busqueda_de_Empleo)vista.getTicketEleccionesSeleccionado());
 			}
 			else
 				vista.lanzarVentanaEmergente("Seleccion un ticket de la ronda de elecciones.");

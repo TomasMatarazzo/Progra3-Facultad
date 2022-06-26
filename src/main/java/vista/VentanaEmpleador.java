@@ -4,7 +4,6 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import controladores.ControladorLogin;
-import modelo.tickets.Formulario_de_Busqueda;
 import modelo.tickets.Ticket;
 import modelo.tickets.Ticket_de_Busqueda_de_Empleado;
 import modelo.tickets.Ticket_de_Busqueda_de_Empleo;
@@ -347,7 +346,7 @@ public class VentanaEmpleador extends JFrame implements IVistaUsuarioComun {
 		tab3.add(separator_5);
 		
 		lblNewLabel = new JLabel();
-		this.renderListaElecciones( null);
+		this.renderListaElecciones(null);
 		lblNewLabel.setForeground(new Color(240, 248, 255));
 		lblNewLabel.setFont(new Font("Segoe UI Light", Font.PLAIN, 20));
 		lblNewLabel.setBounds(31, 76, 464, 38);
@@ -394,9 +393,9 @@ public class VentanaEmpleador extends JFrame implements IVistaUsuarioComun {
 		form = new FormTickets();
 		//this.renderVentanaVistas(3);
 	}
-	
+
+	@Override
 	public void setActionListener(ActionListener c) {
-		System.out.println("Se ejecuto el comando");
 		this.ticketsButton.addActionListener(c);
 		this.btnProfile.addActionListener(c);
 		this.eleccionesButton.addActionListener(c);
@@ -438,21 +437,25 @@ public class VentanaEmpleador extends JFrame implements IVistaUsuarioComun {
 	}
 	
 	// Para el formulario
-	
+
+	@Override
 	public FormTickets getForm() {
 		return this.form;
 	}
 
+	@Override
 	public void mostrarFormTicket() {
 		this.form.setVisible(true);
 	}
-	
+
+	@Override
 	public void ocultarFormTicket() {
 		this.form.setVisible(false);
 	}
 	
 	// Ventanas
-	
+
+	@Override
 	public void ejecutar() {
 		setTitle("My Linkedn - Grupo 10");
 		pack(); //Coloca los componentes
@@ -463,12 +466,13 @@ public class VentanaEmpleador extends JFrame implements IVistaUsuarioComun {
 		setResizable(false); //No redimensionable
 		setLocationRelativeTo(null);
 	}
-	
+
+	@Override
 	public void cambiarPagina(int i) {
 		this.pantallasTab.setSelectedIndex(i);
 	}
-	
-	
+
+	@Override
 	public void setCantidadTickets(String cant) {
 		this.cantTicketsLabel.setText(cant);
 	}
@@ -516,7 +520,7 @@ public class VentanaEmpleador extends JFrame implements IVistaUsuarioComun {
 			//scrollPane_1.setViewportView(listaElecciones);
 		}
 	}
-	
+
 	public void renderVentanaVistas(int cantidad, TreeSet<Ticket> list) {
 		tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		tabbedPane.setBounds(31, 155, 539, 276);
@@ -534,26 +538,30 @@ public class VentanaEmpleador extends JFrame implements IVistaUsuarioComun {
 			scrollPane_3.setViewportView(listaElecciones);
 		}
 	}
-	
+
+	@Override
 	public Ticket getTicketSeleccionado() {
 		return this.list_1.getSelectedValue();
 	}
 
+	@Override
 	public Ticket getTicketEleccionesSeleccionado() {
 		return this.listaElecciones.getSelectedValue();
 	}
-	
+
+	@Override
 	public void confirmarSeleccion() {
 		lblNewLabel.setText("Empleado seleccionado , espere los resultados");
 		this.listaElecciones.setVisible(false);
 		this.seleccionarEmpleadorButton.setVisible(false);
 	}
 
-	//METODOS QUE NO SE USAN
+
 	public int getTabSeleccionado() {
 		return tabbedPane.getSelectedIndex();
 	}
 
+	//METODOS QUE NO SE USAN
 	@Override
 	public void llenarDatosEmpleado(String nombre, String apellido, String email, String telefono, int edad) {
 		// TODO Auto-generated method stub
@@ -561,11 +569,6 @@ public class VentanaEmpleador extends JFrame implements IVistaUsuarioComun {
 
 	@Override
 	public void renderListaTicketsEmpleado(Ticket ticket) {
-		// TODO Auto-generated method stub
-	}
-
-	@Override
-	public void renderListaTicketsEmpleador(ArrayList<Ticket_de_Busqueda_de_Empleo> tickets) {
 		// TODO Auto-generated method stub
 	}
 }

@@ -18,17 +18,17 @@ import persistencia.IPersistencia;
 import persistencia.PersistenciaBIN;
 import persistencia.SistemaDTO;
 import util.Util;
-import vista.IVistaUsuarioComun;
 import vista.VentanaEmpleado;
 
-public class ControladorEmpleados implements ActionListener, WindowListener {
-	private IVistaUsuarioComun vista;
+public class ControladorEmpleado implements ActionListener, WindowListener {
+	private VentanaEmpleado vista;
 	private EmpleadoPretenso modelo;
 
-	public ControladorEmpleados(VentanaEmpleado vista, EmpleadoPretenso modelo) {
+	public ControladorEmpleado(VentanaEmpleado vista, EmpleadoPretenso modelo) {
 		this.modelo = modelo;
 		this.vista = vista;
 		this.vista.setActionListener(this);
+		this.vista.setWindowListener(this);
 		this.vista.llenarDatosEmpleado(modelo.getNombre(),modelo.getApellido(),modelo.geteMail(),modelo.getTelefono(),modelo.getEdad());
 		this.vista.renderListaTicketsEmpleado(modelo.getTicketDeBusquedaDeEmpleo());
 	}

@@ -485,9 +485,4 @@ public class VentanaEmpleado extends JFrame implements IVistaUsuarioComun {
 	public void llenarDatosEmpleador(String nombre, String tipoPersona, String rubro, String usuario) {
 		// TODO Auto-generated method stub
 	}
-
-	@Override
-	public void renderListaTicketsEmpleador(ArrayList<Ticket_de_Busqueda_de_Empleo> tickets) {
-		// TODO Auto-generated method stub
-	}
 }

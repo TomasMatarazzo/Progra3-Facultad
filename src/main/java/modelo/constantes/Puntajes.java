@@ -26,34 +26,34 @@ public class Puntajes {
     public static final int SENIOR = 1;
     public static final int MANAGMENT = 2;
 
-    private static String puesto1 = "\0";
-    private static String puesto2 = "\0";
-    private static String puesto3 = "\0";
+    private static String puesto1 = "";
+    private static String puesto2 = "";
+    private static String puesto3 = "";
 
     public static final int menorEdad1 = 0;
     public static final int menorEdad2 = 1;
     public static final int mayorEdad2 = 2;
 
     public static int edad1 = -1;
-    public static int edad2 = -1 ;
+    public static int edad2 = -1;
 
     public static final int PRIMARIO = 0;
     public static final int SECUNDARIO = 1;
     public static final int TERCIARIO = 2;
 
     public static String[][] NOMBRES_FORM_BUSQUEDA = {{"Media","Completa","Extendida"},
-                                                            {puesto1,puesto2,puesto3},
-                                                            {"edad menor a " + Puntajes.getEdad1(), "entre" + Puntajes.getEdad1() + "y" + edad2, "edad mayor a " + Puntajes.getEdad2()},
-                                                            {"sin experiencia","experiencia media", "mucha experiencia"},
-                                                            {"primerio","secundario","terciario"}};
+                                                      {puesto1,puesto2,puesto3},
+                                                      {"edad menor a " + Puntajes.getEdad1(), "entre" + Puntajes.getEdad1() + "y" + edad2, "edad mayor a " + Puntajes.getEdad2()},
+                                                      {"sin experiencia","experiencia media", "mucha experiencia"},
+                                                      {"primerio","secundario","terciario"}};
 
-    public static void setEdad1(int edad){
+    public static void setEdad1(int edad) {
         edad1 = edad;
         Puntajes.NOMBRES_FORM_BUSQUEDA[2][1] = "entre" + edad1 + "y" + edad2;
         Puntajes.NOMBRES_FORM_BUSQUEDA[2][0] = "edad menor a " + edad1;
     }
 
-    public static void setEdad2(int edad){
+    public static void setEdad2(int edad) {
         edad2 = edad;
         Puntajes.NOMBRES_FORM_BUSQUEDA[2][1] = "entre" + edad1 + "y" + edad2;
         Puntajes.NOMBRES_FORM_BUSQUEDA[2][2] = "edad mayor a " + edad2;

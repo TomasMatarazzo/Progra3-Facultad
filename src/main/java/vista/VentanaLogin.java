@@ -98,7 +98,7 @@ public class VentanaLogin extends JFrame implements IVistaLogin, KeyListener, Ob
                 break;
             case "Empleador":
                 Empleador empleador = (Empleador) observado;
-                VentanaEmpleador ventanaEmpleador = new VentanaEmpleador(empleador);
+                VentanaEmpleador ventanaEmpleador = new VentanaEmpleador();
                 ControladorEmpleador controladorEmpleador = new ControladorEmpleador(ventanaEmpleador,empleador);
                 ventanaEmpleador.ejecutar();
                 break;

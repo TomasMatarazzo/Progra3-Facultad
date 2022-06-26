@@ -4,9 +4,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import controladores.ControladorLogin;
-import modelo.tickets.Formulario_de_Busqueda;
 import modelo.tickets.Ticket;
-import modelo.tickets.Ticket_de_Busqueda_de_Empleado;
 import modelo.tickets.Ticket_de_Busqueda_de_Empleo;
 import modelo.tickets.locaciones.LocacionFactory;
 import modelo.usuarios.EmpleadoPretenso;
@@ -54,14 +52,12 @@ public class VentanaEmpleado extends JFrame implements IVistaUsuarioComun {
 	private JSeparator separator_4;
 	private JSeparator separator_6;
 	private JScrollPane scrollPane;
-	private JList<Ticket_de_Busqueda_de_Empleo> list_1 = new JList<Ticket_de_Busqueda_de_Empleo>();
+	private JList<Ticket_de_Busqueda_de_Empleo> list_1 = new JList<>();
 	private JPanel panel_4;
 	private JButton agregarTicketButton;
 	private JButton eliminarTicketButton;
 	private JButton btnModificarTicket;
     private LocacionFactory lc = new LocacionFactory();
-	private Formulario_de_Busqueda formulario;
-	private Ticket_de_Busqueda_de_Empleo ticket ;
 	private JLabel lblEtiqueta_1;
 	private JSeparator separator_7;
 	private JLabel lblNewLabel_7;
@@ -75,7 +71,6 @@ public class VentanaEmpleado extends JFrame implements IVistaUsuarioComun {
 	private JLabel lblNewLabel;
 	private JLabel nombreCompletooLabel_1;
 	private JList<Ticket> listaElecciones;
-	private DefaultListModel<Ticket> listaTicketsDefault ;
 	private FormTickets form;
 	private JPanel tab2;
 
@@ -357,8 +352,6 @@ public class VentanaEmpleado extends JFrame implements IVistaUsuarioComun {
 		form = new FormTickets();
 	}
 	
-	//Funcionalidades de ventana
-	
 	@Override
 	public void setActionListener(ActionListener controlador) {
 		this.ticketsButton.addActionListener(controlador);
@@ -377,7 +370,7 @@ public class VentanaEmpleado extends JFrame implements IVistaUsuarioComun {
 
 	@Override
 	public void ejecutar() {
-		setTitle("My Linkedn - Grupo 5");
+		setTitle("My Linkedn - Grupo 10");
 		pack(); //Coloca los componentes
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setVisible(true);
@@ -492,15 +485,10 @@ public class VentanaEmpleado extends JFrame implements IVistaUsuarioComun {
 	@Override
 	public void llenarDatosEmpleador(String nombre, String tipoPersona, String rubro, String usuario) {
 		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void renderListaTicketsEmpleador(ArrayList<Ticket_de_Busqueda_de_Empleo> tickets) {
 		// TODO Auto-generated method stub
-		
 	}
-
-
-	
 }

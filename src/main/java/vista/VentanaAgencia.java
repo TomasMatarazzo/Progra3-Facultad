@@ -82,8 +82,6 @@ public class VentanaAgencia extends JFrame implements IVistaAgencia, KeyListener
         botonAgregarDatos.addActionListener(controlador);
         botonCalcularComisiones.addActionListener(controlador);
         boxDatosCargados.addActionListener(controlador);
-
-        panelVentanas.getSelectedIndex();
     }
 
     @Override

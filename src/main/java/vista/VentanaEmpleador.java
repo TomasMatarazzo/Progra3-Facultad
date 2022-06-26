@@ -3,19 +3,13 @@ package vista;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-
-import controladores.ControladorEmpleador;
-import controladores.ControladorEmpleados;
 import controladores.ControladorLogin;
 import modelo.tickets.Formulario_de_Busqueda;
 import modelo.tickets.Ticket;
 import modelo.tickets.Ticket_de_Busqueda_de_Empleado;
 import modelo.tickets.Ticket_de_Busqueda_de_Empleo;
-import modelo.tickets.locaciones.ILocacion;
 import modelo.tickets.locaciones.LocacionFactory;
-import modelo.usuarios.EmpleadoPretenso;
 import modelo.usuarios.empleadores.Empleador;
-
 import java.awt.Color;
 import javax.swing.JButton;
 import java.util.ArrayList;
@@ -37,8 +31,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowListener;
 import java.awt.event.ActionEvent;
 
-public class VentanaEmpleador extends JFrame implements ActionListener,IVistaUsuarioComun {
-
+public class VentanaEmpleador extends JFrame implements IVistaUsuarioComun {
 	private JPanel contentPane;
 	private JButton btnProfile;
 	private JButton ticketsButton;
@@ -95,10 +88,7 @@ public class VentanaEmpleador extends JFrame implements ActionListener,IVistaUsu
 	private JPanel tab2;
 	private JButton btnBaja;
 
-	
-
-	public VentanaEmpleador(Empleador modelo) {
-		
+	public VentanaEmpleador() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 800, 500);
 		contentPane = new JPanel();
@@ -114,7 +104,6 @@ public class VentanaEmpleador extends JFrame implements ActionListener,IVistaUsu
 		panel.setLayout(null);
 		
 		ticketsButton = new JButton("Tickets");
-		ticketsButton.addActionListener(this);
 		ticketsButton.setSelected(true);
 		ticketsButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		ticketsButton.setBackground(new Color(100, 149, 237));
@@ -151,7 +140,6 @@ public class VentanaEmpleador extends JFrame implements ActionListener,IVistaUsu
 		panel.add(lblNewLabel_1);
 		
 		btnCerrarSesion = new JButton("Cerrar sesion");
-		btnCerrarSesion.addActionListener(this);
 		btnCerrarSesion.setSelected(true);
 		btnCerrarSesion.setFont(new Font("Segoe UI Semibold", Font.BOLD, 14));
 		btnCerrarSesion.setBorder(null);
@@ -161,7 +149,6 @@ public class VentanaEmpleador extends JFrame implements ActionListener,IVistaUsu
 		panel.add(btnCerrarSesion);
 		
 		btnContratos = new JButton("Contratos");
-		btnContratos.addActionListener(this);
 		btnContratos.setSelected(true);
 		btnContratos.setFont(new Font("Segoe UI Semibold", Font.BOLD, 14));
 		btnContratos.setBorder(null);
@@ -202,7 +189,7 @@ public class VentanaEmpleador extends JFrame implements ActionListener,IVistaUsu
 		tab1.add(separator);
 		
 		JLabel lblNewLabel_2 = new JLabel("");
-		lblNewLabel_2.setIcon(new ImageIcon("C:\\Users\\tomas\\Desktop\\tp-progra\\Progra3-Linkedin\\src\\icons8-donald-trump-96.png"));
+		lblNewLabel_2.setIcon(new ImageIcon("src/icons8-donald-trump-96.png"));
 		lblNewLabel_2.setBounds(27, 125, 266, 183);
 		tab1.add(lblNewLabel_2);
 		
@@ -345,9 +332,7 @@ public class VentanaEmpleador extends JFrame implements ActionListener,IVistaUsu
 		tab3.setLayout(null);
 		tab3.setBackground(new Color(30, 144, 255));
 		pantallasTab.addTab("Elecciones", null, tab3, null);
-		
-		
-		
+
 		seleccionarEmpleadorButton = new JButton("Confirmar Empleador");
 		seleccionarEmpleadorButton.setActionCommand("EMPLEADORELEGIDO");
 		seleccionarEmpleadorButton.setBounds(31, 128, 169, 19);
@@ -413,8 +398,6 @@ public class VentanaEmpleador extends JFrame implements ActionListener,IVistaUsu
 		form = new FormTickets();
 		//this.renderVentanaVistas(3);
 	}
-	public void actionPerformed(ActionEvent e) {
-	}
 	
 	public void setActionListener(ActionListener c) {
 		System.out.println("Se ejecuto el comando");
@@ -439,6 +422,7 @@ public class VentanaEmpleador extends JFrame implements ActionListener,IVistaUsu
 	@Override
 	public void cerrarVentana() {
 		this.setVisible(false);
+		dispose();
 	}
 	
 	@Override
@@ -462,8 +446,7 @@ public class VentanaEmpleador extends JFrame implements ActionListener,IVistaUsu
 	public FormTickets getForm() {
 		return this.form;
 	}
-	
-	
+
 	public void mostrarFormTicket() {
 		this.form.setVisible(true);
 	}
@@ -475,7 +458,7 @@ public class VentanaEmpleador extends JFrame implements ActionListener,IVistaUsu
 	// Ventanas
 	
 	public void ejecutar(){
-		setTitle("My Linkedn - Grupo 5");
+		setTitle("My Linkedn - Grupo 10");
 		pack(); //Coloca los componentes
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setVisible(true);
@@ -492,26 +475,27 @@ public class VentanaEmpleador extends JFrame implements ActionListener,IVistaUsu
 	public void setCantidadTickets(String cant) {
 		this.cantTicketsLabel.setText(cant);
 	}
-	// Muestra de datos de empleado
 
 	@Override
 	public void llenarDatosEmpleador(String nombre, String tipoPersona, String rubro, String usuario) {
 		if (nombreLabel.equals(" "))
-			this.nombreLabel.setText("------");
+			this.nombreLabel.setText("-");
 		else
 			this.nombreLabel.setText(rubro);
+
 		if (tipoPersona.equals(" "))
-			this.rubroLabel.setText("------");
+			this.rubroLabel.setText("-");
 		else
 			this.rubroLabel.setText(rubro);
+
 		this.usuarioLabel.setText(usuario);
 		this.entidadLabel.setText(tipoPersona);
 
 	}
 
 	public void renderListaTickets(ArrayList<Ticket_de_Busqueda_de_Empleado> tickets) {
-		DefaultListModel<Ticket_de_Busqueda_de_Empleado> listaTicketsDefault = new DefaultListModel<Ticket_de_Busqueda_de_Empleado>();
-		System.out.println("Agregando el nuevo ticket");
+		DefaultListModel<Ticket_de_Busqueda_de_Empleado> listaTicketsDefault = new DefaultListModel<>();
+
 		for(int i = 0 ; i < tickets.size() ; i++)
 			listaTicketsDefault.addElement(tickets.get(i));
 		if (list_1.getModel().getSize() != 0)
@@ -523,9 +507,9 @@ public class VentanaEmpleador extends JFrame implements ActionListener,IVistaUsu
 	
 	@Override
 	public void renderListaElecciones( TreeSet<Ticket> list) {
-		if (list == null || list.size() == 0) {
+		if (list == null || list.size() == 0)
 			lblNewLabel = new JLabel("Todavia no se efectuo la ronda de contratos laborales.");
-		}else {
+		else {
 			lblNewLabel.setText("Ofertas laborales encontradas , seleccione una");
 			DefaultListModel<Ticket> tickets = new DefaultListModel<Ticket>();
 			Iterator <Ticket>it = list.iterator();
@@ -539,7 +523,7 @@ public class VentanaEmpleador extends JFrame implements ActionListener,IVistaUsu
 		}
 	}
 	
-	public void renderVentanaVistas( int cantidad , TreeSet<Ticket> list) {
+	public void renderVentanaVistas(int cantidad, TreeSet<Ticket> list) {
 		tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		tabbedPane.setBounds(31, 155, 539, 276);
 		for (int i = 0 ; i< cantidad ; i++) {
@@ -553,20 +537,18 @@ public class VentanaEmpleador extends JFrame implements ActionListener,IVistaUsu
 			Iterator <Ticket>it = list.iterator();
 			while (it.hasNext())
 				tickets.addElement(it.next());
-			this.listaElecciones = new JList<Ticket>();
+			this.listaElecciones = new JList<>();
 			
 			// Inicializo vista con los tickets del modelo
 			this.listaElecciones.setModel(tickets);
 			scrollPane_3.setViewportView(listaElecciones);
-			
-			
 		}
-		
 	}
 	
 	public Ticket getTicketSeleccionado() {
 		return this.list_1.getSelectedValue();
 	}
+
 	public Ticket getTicketEleccionesSeleccionado() {
 		return this.listaElecciones.getSelectedValue();
 	}
@@ -580,23 +562,19 @@ public class VentanaEmpleador extends JFrame implements ActionListener,IVistaUsu
 	public int getTabSeleccionado() {
 		return tabbedPane.getSelectedIndex();
 	}
-	
 
 	@Override
 	public void llenarDatosEmpleado(String nombre, String apellido, String email, String telefono, int edad) {
 		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void renderListaTicketsEmpleado(Ticket ticket) {
 		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void renderListaTicketsEmpleador(ArrayList<Ticket_de_Busqueda_de_Empleo> tickets) {
 		// TODO Auto-generated method stub
-		
 	}
 }

@@ -9,8 +9,6 @@ public interface IVistaUsuarioComun extends IVista{
 
     FormTickets getForm();
 
-	void lanzarVentanaEmergente(String mensaje);
-
 	void mostrarFormTicket();
 
 	void ocultarFormTicket();
@@ -26,8 +24,6 @@ public interface IVistaUsuarioComun extends IVista{
 	Ticket getTicketEleccionesSeleccionado();
 
 	void setCantidadTickets(String cant);
-
-	void llenarDatosEmpleador(String nombre, String tipoPersona, String rubro, String usuario);
 
 	void confirmarSeleccion();
 }

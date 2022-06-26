@@ -1,8 +1,6 @@
 package vista;
 
 import modelo.constantes.Puntajes;
-
-import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -14,7 +12,6 @@ import javax.swing.JButton;
 import java.awt.Color;
 
 public class FormTickets extends JFrame {
-
 	private JPanel contentPane;
 	private JLabel lblNewLabel;
 	private JLabel lblCargaHoraria;

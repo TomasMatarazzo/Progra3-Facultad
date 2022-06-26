@@ -10,7 +10,6 @@ import modelo.usuarios.UsuarioComun;
 import simulacion.BolsaDeTrabajo;
 import simulacion.TicketSimplificado;
 import util.Util;
-
 import java.util.ArrayList;
 
 public abstract class Empleador extends UsuarioComun implements Runnable {
@@ -173,4 +172,6 @@ public abstract class Empleador extends UsuarioComun implements Runnable {
             Util.espera(2000);
         }
     }
+
+	public abstract String getNombre();
 }

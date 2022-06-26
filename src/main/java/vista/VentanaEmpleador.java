@@ -508,7 +508,7 @@ public class VentanaEmpleador extends JFrame implements ActionListener,IVistaUsu
 		this.entidadLabel.setText(tipoPersona);
 
 	}
-	
+
 	public void renderListaTickets(ArrayList<Ticket_de_Busqueda_de_Empleado> tickets) {
 		DefaultListModel<Ticket_de_Busqueda_de_Empleado> listaTicketsDefault = new DefaultListModel<Ticket_de_Busqueda_de_Empleado>();
 		System.out.println("Agregando el nuevo ticket");
@@ -538,9 +538,6 @@ public class VentanaEmpleador extends JFrame implements ActionListener,IVistaUsu
 			//scrollPane_1.setViewportView(listaElecciones);
 		}
 	}
-
-	
-	// Creacion de la lista
 	
 	public void renderVentanaVistas( int cantidad , TreeSet<Ticket> list) {
 		tabbedPane = new JTabbedPane(JTabbedPane.TOP);

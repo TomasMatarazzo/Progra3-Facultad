@@ -31,6 +31,11 @@ public class PersonaFisica extends Empleador {
 
         return remuneracion * porcentaje;
     }
+
+    @Override
+	public String getNombre() {
+		return "Persona Fisica";
+	}
 }
     
 

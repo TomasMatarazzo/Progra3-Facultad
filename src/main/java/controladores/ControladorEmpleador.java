@@ -29,12 +29,13 @@ public class ControladorEmpleador implements ActionListener, WindowListener{
 		this.modelo = modelo;
 		this.vista = vista2;
 		this.vista.setActionListener(this);
-		vista.llenarDatosEmpleador(modelo.getRazonSocial(),modelo.getNombre(),modelo.getRubro(),modelo.getNombreUsuario());
+		vista.llenarDatosEmpleador(modelo.getRazonSocial(),"caca",modelo.getRubro(),modelo.getNombreUsuario());
 		vista.renderListaTickets(modelo.getTicketsDeBusquedaDeEmpleado());
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+
 		switch (e.getActionCommand()) {
 			case "iniciarTICKETS":
 				vista.cambiarPagina(1);

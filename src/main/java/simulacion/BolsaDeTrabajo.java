@@ -7,7 +7,7 @@ import modelo.usuarios.EmpleadoPretenso;
 import modelo.usuarios.UsuarioComun;
 
 public class BolsaDeTrabajo extends Observable{
-	
+
 	private static BolsaDeTrabajo instancia = null;	
 	private ArrayList <TicketSimplificado> bolsa = new ArrayList<>();
 	
@@ -45,8 +45,8 @@ public class BolsaDeTrabajo extends Observable{
 
     //METODOS SYNCHRONIZED
     public synchronized TicketSimplificado SacaBolsa(Ticket t, EmpleadoPretenso u) {
-        TicketSimplificado aux;
-        while (((aux = coincidenciaTipoTrabajo(t)) == null)&&((t.getEstado().equalsIgnoreCase("Finalizado"))||(t.getEstado().equalsIgnoreCase("Suspenso")))) {
+        TicketSimplificado aux = coincidenciaTipoTrabajo(t);
+        while ((aux == null) &&((t.getEstado().equalsIgnoreCase("Finalizado"))||(t.getEstado().equalsIgnoreCase("Suspenso")))) {
             try {
             	setChanged();
                 notifyObservers(u.getNombreUsuario()+" Esperara por algun trabajo de su Tipo");

@@ -46,7 +46,7 @@ public class ControladorEmpleador implements ActionListener, WindowListener{
 				break;
 			case "iniciarELECCIONES":
 				vista.cambiarPagina(2);
-				vista.renderVentanaVistas(3,Sistema.getInstance().getListas().get(modelo.getTicketsDeBusquedaDeEmpleado().get(0)).getOfertas());
+				//vista.renderVentanaVistas(3,Sistema.getInstance().getListas().get(modelo.getTicketsDeBusquedaDeEmpleado().get(0)).getOfertas());
 				//vista.renderListaElecciones(Sistema.getInstance().getListas().get(modelo.getTicketsDeBusquedaDeEmpleado().get(0)).getOfertas());
 				//vista.renderListaElecciones();
 				break;
@@ -103,6 +103,7 @@ public class ControladorEmpleador implements ActionListener, WindowListener{
 						modelo.creaTicket(formulario, "Bombero", modelo.getPesoPuntajes());
 						vista.renderListaTicketsEmpleador(modelo.getTicketsDeBusquedaDeEmpleado());
 						vista.getForm().cleanForms();
+						vista.getForm().dispose();
 					}
 				}
 				break;
@@ -132,7 +133,6 @@ public class ControladorEmpleador implements ActionListener, WindowListener{
 				vista.creaOtraVentana("Login");
 				vista.cerrarVentana();
 				JOptionPane.showMessageDialog(null, "Se ha eliminado el Empleador con exito!");
-				vista.getForm().dispose();
 				break;
 		}
 	}

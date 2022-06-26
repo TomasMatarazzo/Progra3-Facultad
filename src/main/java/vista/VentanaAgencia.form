@@ -131,7 +131,7 @@
             <properties>
               <borderPainted value="false"/>
               <focusable value="false"/>
-              <text value="Desloguearse"/>
+              <text value="Cerrar Sesion"/>
             </properties>
           </component>
         </children>

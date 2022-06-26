@@ -26,8 +26,9 @@ import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.DefaultListModel;
 import javax.swing.BoxLayout;
+import java.awt.event.ActionEvent;
 
-public class VentanaEmpleado extends JFrame implements IVistaUsuarioComun {
+public class VentanaEmpleado extends JFrame implements IVistaUsuarioComun, ActionListener {
 	private JPanel contentPane;
 	private JPanel panel;
 	private JButton btnProfile;
@@ -76,6 +77,9 @@ public class VentanaEmpleado extends JFrame implements IVistaUsuarioComun {
 	private JList<Ticket> listaElecciones;
 	private FormTickets form;
 	private JPanel tab2;
+	private JButton cerrarSesionBtn;
+	private JButton btnDarDeBaja;
+	private JButton btnContratos;
 
 	// Ventaja Emergente
 	public void confirmarSeleccion() {
@@ -132,6 +136,34 @@ public class VentanaEmpleado extends JFrame implements IVistaUsuarioComun {
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_1.setBounds(-14, 56, 200, 49);
 		panel.add(lblNewLabel_1);
+		
+		cerrarSesionBtn = new JButton("Cerrar sesion");
+		cerrarSesionBtn.addActionListener(this);
+		cerrarSesionBtn.setSelected(true);
+		cerrarSesionBtn.setFont(new Font("Segoe UI Semibold", Font.BOLD, 14));
+		cerrarSesionBtn.setBorder(null);
+		cerrarSesionBtn.setBackground(new Color(100, 149, 237));
+		cerrarSesionBtn.setActionCommand("CERRARSESION");
+		cerrarSesionBtn.setBounds(0, 354, 186, 35);
+		panel.add(cerrarSesionBtn);
+		
+		btnDarDeBaja = new JButton("Dar de baja");
+		btnDarDeBaja.setSelected(true);
+		btnDarDeBaja.setFont(new Font("Segoe UI Semibold", Font.BOLD, 14));
+		btnDarDeBaja.setBorder(null);
+		btnDarDeBaja.setBackground(new Color(100, 149, 237));
+		btnDarDeBaja.setActionCommand("BAJA");
+		btnDarDeBaja.setBounds(0, 402, 186, 35);
+		panel.add(btnDarDeBaja);
+		
+		btnContratos = new JButton("Contratos");
+		btnContratos.setSelected(true);
+		btnContratos.setFont(new Font("Segoe UI Semibold", Font.BOLD, 14));
+		btnContratos.setBorder(null);
+		btnContratos.setBackground(new Color(100, 149, 237));
+		btnContratos.setActionCommand("CONTRATOS");
+		btnContratos.setBounds(0, 274, 186, 35);
+		panel.add(btnContratos);
 		
 		pantallasTab = new JTabbedPane(JTabbedPane.TOP);
 		pantallasTab.setBounds(187, 0, 599, 464);
@@ -362,6 +394,9 @@ public class VentanaEmpleado extends JFrame implements IVistaUsuarioComun {
 		this.eliminarTicketButton.addActionListener(controlador);
 		this.seleccionarEmpleadorButton.addActionListener(controlador);
 		this.form.crearTicketButton.addActionListener(controlador);
+		this.cerrarSesionBtn.addActionListener(controlador);
+		this.btnDarDeBaja.addActionListener(controlador);
+		this.btnContratos.addActionListener(controlador);
 	}
 
 	@Override
@@ -483,5 +518,7 @@ public class VentanaEmpleado extends JFrame implements IVistaUsuarioComun {
 	@Override
 	public void llenarDatosEmpleador(String nombre, String tipoPersona, String rubro, String usuario) {
 		// TODO Auto-generated method stub
+	}
+	public void actionPerformed(ActionEvent e) {
 	}
 }

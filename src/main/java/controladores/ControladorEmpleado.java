@@ -107,6 +107,7 @@ public class ControladorEmpleado implements ActionListener, WindowListener {
 				vista.creaOtraVentana("Login");
 				vista.cerrarVentana();
 				JOptionPane.showMessageDialog(null, "Se ha eliminado el empleado con exito!");
+				vista.getForm().dispose();
 				break;
 		}
 	}

@@ -38,31 +38,31 @@ public class VentanaLogin extends JFrame implements IVistaLogin, KeyListener, Ob
     private JLabel labelTituloPrincipal;
     private Usuario observado;
 
-    
+    @Override
     public void setActionListener(ActionListener controlador) {
         this.botonLogin.addActionListener(controlador);
         this.botonRegistrarse.addActionListener(controlador);
         this.botonSimulacion.addActionListener(controlador);
     }
 
-    
+    @Override
     public void setKeyListener() {
         this.textoNombreUsuario.addKeyListener(this);
         this.textoContrasena.addKeyListener(this);
     }
 
-    
+    @Override
     public void setWindowListener(WindowListener controlador) {
         this.addWindowListener(controlador);
     }
 
-    
+    @Override
     public void setObservado(Usuario usuario) {
         this.observado = usuario;
         usuario.addObserver(this);
     }
 
-    
+    @Override
     public void ejecutar() {
         setTitle("My Linkedn - Grupo 10");
         pack(); //Coloca los componentes
@@ -75,13 +75,13 @@ public class VentanaLogin extends JFrame implements IVistaLogin, KeyListener, Ob
         botonLogin.setEnabled(false);
     }
 
-    
+    @Override
     public void cerrarVentana() {
         setVisible(false); //Oculto la ventana
         dispose(); //Cierro la ventana
     }
 
-    
+    @Override
     public void creaOtraVentana(String ventana) {
         switch (ventana) {
             case "Register":
@@ -119,23 +119,23 @@ public class VentanaLogin extends JFrame implements IVistaLogin, KeyListener, Ob
         this.cerrarVentana();
     }
 
-    
+    @Override
     public void lanzarVentanaEmergente(String mensaje) {
         JFrame jFrame = new JFrame();
         JOptionPane.showMessageDialog(jFrame, mensaje);
     }
 
-    
+    @Override
     public String getNombreUsuario() {
         return textoNombreUsuario.getText();
     }
 
-    
+    @Override
     public String getContrasena() {
         return textoContrasena.getText();
     }
 
-    
+    @Override
     public void nombreUsuarioInvalido() {
         textoNombreUsuario.setText("");
         textoContrasena.setText("");

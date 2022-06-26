@@ -31,7 +31,7 @@ public class ControladorEmpleador implements ActionListener, WindowListener{
 		this.vista = vista;
 		this.vista.setActionListener(this);
 		this.vista.setWindowListener(this);
-		//this.vista.llenarDatosEmpleador(modelo.getRazonSocial(),modelo.getNombre(),modelo.getRubro(),modelo.getNombreUsuario());
+		this.vista.llenarDatosEmpleador(modelo.getRazonSocial(),modelo.getNombre(),modelo.getRubro(),modelo.getNombreUsuario());
 		this.vista.renderListaTicketsEmpleador(modelo.getTicketsDeBusquedaDeEmpleado());
 		//this.vista.renderListaContratos(Sistema.getInstance().getContratos());
 	}

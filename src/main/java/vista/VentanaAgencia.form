@@ -39,6 +39,7 @@
               </grid>
             </constraints>
             <properties>
+              <background color="-10185235"/>
               <borderPainted value="false"/>
               <focusable value="false"/>
               <horizontalTextPosition value="11"/>
@@ -54,6 +55,7 @@
               </grid>
             </constraints>
             <properties>
+              <background color="-10185235"/>
               <borderPainted value="false"/>
               <focusable value="false"/>
               <horizontalTextPosition value="11"/>
@@ -69,6 +71,7 @@
               </grid>
             </constraints>
             <properties>
+              <background color="-10185235"/>
               <borderPainted value="false"/>
               <focusable value="false"/>
               <horizontalTextPosition value="11"/>
@@ -84,6 +87,7 @@
               </grid>
             </constraints>
             <properties>
+              <background color="-10185235"/>
               <borderPainted value="false"/>
               <focusable value="false"/>
               <horizontalTextPosition value="11"/>
@@ -99,6 +103,7 @@
               </grid>
             </constraints>
             <properties>
+              <background color="-10185235"/>
               <borderPainted value="false"/>
               <focusable value="false"/>
               <horizontalTextPosition value="11"/>
@@ -129,6 +134,7 @@
               </grid>
             </constraints>
             <properties>
+              <background color="-10185235"/>
               <borderPainted value="false"/>
               <focusable value="false"/>
               <text value="Cerrar Sesion"/>

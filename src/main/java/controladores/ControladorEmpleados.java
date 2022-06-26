@@ -56,8 +56,7 @@ public class ControladorEmpleados implements ActionListener, WindowListener {
 				break;
 			case "ELIMINARTICKET":
 				if (vista.getTicketSeleccionado() != null) {
-					Sistema.getInstance().eliminaTicketDeEmpleadosPretensos(
-							(Ticket_de_Busqueda_de_Empleo) vista.getTicketSeleccionado());
+					Sistema.getInstance().eliminaTicketDeEmpleadosPretensos((Ticket_de_Busqueda_de_Empleo) vista.getTicketSeleccionado());
 					modelo.setTicketDeBusquedaDeEmpleo(null);
 					vista.lanzarVentanaEmergente("Se elimino el ticket.");
 					vista.renderListaTicketsEmpleado(modelo.getTicketDeBusquedaDeEmpleo());

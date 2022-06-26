@@ -125,10 +125,11 @@ public class ControladorEmpleador implements ActionListener, WindowListener{
 				JOptionPane.showMessageDialog(null, "Te has deslogueado con exito");
 				break;
 			case "BAJA":
-				JOptionPane.showMessageDialog(null, "Se ha eliminado el Empleado con exito!");
+				Sistema.getInstance().eliminaEmpleador(modelo);
+				this.modelo = null;
 				vista.creaOtraVentana("Login");
-				Sistema.getInstance().setAgencia(null);
 				vista.cerrarVentana();
+				JOptionPane.showMessageDialog(null, "Se ha eliminado el Empleador con exito!");
 				break;
 		}
 	}

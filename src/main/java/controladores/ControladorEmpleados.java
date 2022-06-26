@@ -25,12 +25,12 @@ public class ControladorEmpleados implements ActionListener, WindowListener {
 	private IVistaUsuarioComun vista;
 	private EmpleadoPretenso modelo;
 
-	public ControladorEmpleados(VentanaEmpleado vista2, EmpleadoPretenso modelo) {
+	public ControladorEmpleados(VentanaEmpleado vista, EmpleadoPretenso modelo) {
 		this.modelo = modelo;
-		this.vista = vista2;
+		this.vista = vista;
 		this.vista.setActionListener(this);
-		vista.llenarDatosEmpleado(modelo.getNombre(),modelo.getApellido(),modelo.geteMail(),modelo.getTelefono(),modelo.getEdad());
-		vista.renderListaTicketsEmpleado(modelo.getTicketDeBusquedaDeEmpleo());
+		this.vista.llenarDatosEmpleado(modelo.getNombre(),modelo.getApellido(),modelo.geteMail(),modelo.getTelefono(),modelo.getEdad());
+		this.vista.renderListaTicketsEmpleado(modelo.getTicketDeBusquedaDeEmpleo());
 	}
 
 	@Override

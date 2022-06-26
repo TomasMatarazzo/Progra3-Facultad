@@ -30,13 +30,17 @@ import javax.swing.BoxLayout;
 
 public class VentanaEmpleado extends JFrame implements IVistaUsuarioComun {
 	private JPanel contentPane;
+	private JPanel panel;
 	private JButton btnProfile;
 	private JButton ticketsButton;
+	private JLabel lblNewLabel_1;
+	private JLabel lblNewLabel_2;
+	private JLabel lblNewLabel_3;
 	private JButton eleccionesButton;
 	private JTabbedPane pantallasTab ;
 	private JPanel tab1;
 	private JSeparator separator;
-	private JLabel lblNewLabel_3;
+	private JLabel lblEtiqueta;
 	private JLabel lblNewLabel_4;
 	private JLabel lblNewLabel_5;
 	private JLabel lblNewLabel_6;
@@ -82,14 +86,12 @@ public class VentanaEmpleado extends JFrame implements IVistaUsuarioComun {
 	}
 
 	public VentanaEmpleado(EmpleadoPretenso modelo) {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 800, 500);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JPanel panel = new JPanel();
+		panel = new JPanel();
 		panel.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 		panel.setBackground(new Color(65, 105, 225));
 		panel.setBounds(0, 0, 186, 464);
@@ -125,7 +127,7 @@ public class VentanaEmpleado extends JFrame implements IVistaUsuarioComun {
 		btnProfile.setBounds(0, 146, 186, 35);
 		panel.add(btnProfile);
 		
-		JLabel lblNewLabel_1 = new JLabel("My Linkedn");
+		lblNewLabel_1 = new JLabel("My Linkedn");
 		lblNewLabel_1.setForeground(new Color(240, 255, 240));
 		lblNewLabel_1.setFont(new Font("Segoe UI", Font.BOLD | Font.ITALIC, 25));
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
@@ -141,7 +143,7 @@ public class VentanaEmpleado extends JFrame implements IVistaUsuarioComun {
 		pantallasTab.addTab("Perfil", null, tab1, null);
 		tab1.setLayout(null);
 		
-		JLabel lblEtiqueta = new JLabel("Empleado");
+		lblEtiqueta = new JLabel("Empleado");
 		lblEtiqueta.setForeground(new Color(253, 245, 230));
 		lblEtiqueta.setFont(new Font("Segoe UI Light", Font.PLAIN, 39));
 		lblEtiqueta.setBounds(27, 65, 238, 60);
@@ -153,7 +155,7 @@ public class VentanaEmpleado extends JFrame implements IVistaUsuarioComun {
 		separator.setBounds(27, 123, 176, 2);
 		tab1.add(separator);
 		
-		JLabel lblNewLabel_2 = new JLabel("");
+		lblNewLabel_2 = new JLabel("");
 		lblNewLabel_2.setIcon(new ImageIcon("src/icons8-donald-trump-96.png"));
 		lblNewLabel_2.setBounds(37, 133, 266, 183);
 		tab1.add(lblNewLabel_2);
@@ -373,6 +375,7 @@ public class VentanaEmpleado extends JFrame implements IVistaUsuarioComun {
 		setTitle("My Linkedn - Grupo 10");
 		pack(); //Coloca los componentes
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setContentPane(contentPane);
 		setVisible(true);
 		setSize(800,500); //Dimensiones del JFrame
 		setResizable(false); //No redimensionable
@@ -382,6 +385,7 @@ public class VentanaEmpleado extends JFrame implements IVistaUsuarioComun {
 	@Override
 	public void cerrarVentana() {
 		this.setVisible(false);
+		dispose();
 	}
 
 	@Override
@@ -406,7 +410,6 @@ public class VentanaEmpleado extends JFrame implements IVistaUsuarioComun {
 	}
 	
 	// Formulario de los tickets
-	
 	@Override
 	public void mostrarFormTicket() {
 		this.form.setVisible(true);
@@ -422,9 +425,7 @@ public class VentanaEmpleado extends JFrame implements IVistaUsuarioComun {
 		return this.form;
 	}
 	
-	
 	// Listas de tickets
-	
 	@Override
 	public void llenarDatosEmpleado(String nombre, String apellido, String email, String telefono , int edad) {
 		this.nombreLabel.setText(nombre);
@@ -439,7 +440,6 @@ public class VentanaEmpleado extends JFrame implements IVistaUsuarioComun {
 	@Override
 	public void renderListaTicketsEmpleado( Ticket ticket) {
 		DefaultListModel<Ticket_de_Busqueda_de_Empleo> listaTicketsDefault = new DefaultListModel<Ticket_de_Busqueda_de_Empleo>();
-		System.out.println("Agregando el nuevo ticket");
 		listaTicketsDefault.addElement((Ticket_de_Busqueda_de_Empleo)ticket);
 		if (list_1.getModel().getSize() != 0)
 			((DefaultListModel) list_1.getModel()).removeAllElements();
@@ -448,10 +448,10 @@ public class VentanaEmpleado extends JFrame implements IVistaUsuarioComun {
 	}
 	
 	@Override
-	public void renderListaElecciones( TreeSet<Ticket> list) {
+	public void renderListaElecciones(TreeSet<Ticket> list) {
 		if (list == null || list.size() == 0) {
 			lblNewLabel = new JLabel("Todavia no se efectuo la ronda de contratos laborales.");
-		}else {
+		} else {
 			lblNewLabel.setText("Ofertas laborales encontradas , seleccione una");
 			DefaultListModel<Ticket> tickets = new DefaultListModel<Ticket>();
 			Iterator <Ticket>it = list.iterator();
@@ -480,7 +480,6 @@ public class VentanaEmpleado extends JFrame implements IVistaUsuarioComun {
 	public void setCantidadTickets(String cant) {
 		this.cantTicketsLabel.setText(cant);
 	}
-
 
 	@Override
 	public void llenarDatosEmpleador(String nombre, String tipoPersona, String rubro, String usuario) {

@@ -464,6 +464,5 @@ public class VentanaEmpleado extends JFrame implements IVistaUsuarioComun {
 		tab3.add(nombreCompletooLabel_1);
 		
 		form = new FormTickets();
-
 	}
 }

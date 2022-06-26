@@ -59,6 +59,8 @@ public class VentanaAgencia extends JFrame implements IVistaAgencia, KeyListener
     private JLabel labelTitulo2;
     private JLabel labelTitulo3;
     private JButton botonDesloguearse;
+    private JScrollPane comisionesScrollPane;
+    private JScrollPane datosAlmacenadosScrollPane;
     private Usuario observado;
     //MODELOS PARA LISTAS
     DefaultListModel<String> modeloTiposDeTrabajo = new DefaultListModel<> ();
@@ -80,6 +82,8 @@ public class VentanaAgencia extends JFrame implements IVistaAgencia, KeyListener
         botonAgregarDatos.addActionListener(controlador);
         botonCalcularComisiones.addActionListener(controlador);
         boxDatosCargados.addActionListener(controlador);
+
+        panelVentanas.getSelectedIndex();
     }
 
     @Override

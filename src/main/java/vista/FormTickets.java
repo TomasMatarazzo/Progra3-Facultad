@@ -1,5 +1,7 @@
 package vista;
 
+import modelo.constantes.Puntajes;
+
 import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -99,17 +101,17 @@ public class FormTickets extends JFrame {
 		tipoPueestoLaboral = new Choice();
 		tipoPueestoLaboral.setForeground(Color.BLACK);
 		tipoPueestoLaboral.setBounds(173, 196, 124, 21);
-		tipoPueestoLaboral.addItem("Jr");
-		tipoPueestoLaboral.addItem("Sr");
-		tipoPueestoLaboral.addItem("Managment");
+		tipoPueestoLaboral.addItem(Puntajes.getPuesto1());
+		tipoPueestoLaboral.addItem(Puntajes.getPuesto2());
+		tipoPueestoLaboral.addItem(Puntajes.getPuesto3());
 		contentPane.add(tipoPueestoLaboral);
 		
 		edadForm = new Choice();
 		edadForm.setForeground(Color.BLACK);
 		edadForm.setBounds(27, 196, 124, 26);
-		edadForm.addItem("Menos de 40");
-		edadForm.addItem("Menos de 50");
-		edadForm.addItem("Mayor a 50");
+		edadForm.addItem(Puntajes.NOMBRES_FORM_BUSQUEDA[2][0]);
+		edadForm.addItem(Puntajes.NOMBRES_FORM_BUSQUEDA[2][1]);
+		edadForm.addItem(Puntajes.NOMBRES_FORM_BUSQUEDA[2][2]);
 		contentPane.add(edadForm);
 		
 		lblNewLabel_1 = new JLabel("Formulario de Ticket");

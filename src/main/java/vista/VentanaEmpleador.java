@@ -53,7 +53,7 @@ public class VentanaEmpleador extends JFrame implements IVistaUsuarioComun {
 	private JSeparator separator_3;
 	private JSeparator separator_4;
 	private JScrollPane scrollPane;
-	private JList<Ticket_de_Busqueda_de_Empleado> list_1 = new JList<Ticket_de_Busqueda_de_Empleado>();
+	private JList<Ticket_de_Busqueda_de_Empleado> list_1 = new JList<>();
 	private JPanel panel_4;
 	private JButton agregarTicketButton;
 	private JButton eliminarTicketButton;
@@ -395,18 +395,18 @@ public class VentanaEmpleador extends JFrame implements IVistaUsuarioComun {
 	}
 
 	@Override
-	public void setActionListener(ActionListener c) {
-		this.ticketsButton.addActionListener(c);
-		this.btnProfile.addActionListener(c);
-		this.eleccionesButton.addActionListener(c);
-		this.agregarTicketButton.addActionListener(c);
-		this.eliminarTicketButton.addActionListener(c);
-		this.seleccionarEmpleadorButton.addActionListener(c);
-		this.form.crearTicketButton.addActionListener(c);
-		this.btnContratos.addActionListener(c);
-		this.btnCerrarSesion.addActionListener(c);
-		this.btnSuspenderTicket.addActionListener(c);
-		this.btnBaja.addActionListener(c);
+	public void setActionListener(ActionListener controlador) {
+		this.ticketsButton.addActionListener(controlador);
+		this.btnProfile.addActionListener(controlador);
+		this.eleccionesButton.addActionListener(controlador);
+		this.agregarTicketButton.addActionListener(controlador);
+		this.eliminarTicketButton.addActionListener(controlador);
+		this.seleccionarEmpleadorButton.addActionListener(controlador);
+		this.form.crearTicketButton.addActionListener(controlador);
+		this.btnContratos.addActionListener(controlador);
+		this.btnCerrarSesion.addActionListener(controlador);
+		this.btnSuspenderTicket.addActionListener(controlador);
+		this.btnBaja.addActionListener(controlador);
 	}
 	
 	@Override

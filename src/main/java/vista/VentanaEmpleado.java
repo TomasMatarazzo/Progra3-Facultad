@@ -83,6 +83,13 @@ public class VentanaEmpleado extends JFrame implements IVistaUsuarioComun, Actio
 	private JButton btnDarDeBaja;
 	private JButton btnContratos;
 	private JButton btnActivar;
+	private JPanel tab4;
+	private JScrollPane scrollPane_2;
+	private JButton seleccionarEmpleadorButton_1;
+	private JLabel lblEtiqueta_3;
+	private JSeparator separator_8;
+	private JLabel lblNewLabel_8;
+	private JLabel nombreCompletooLabel_2;
 
 	// Ventaja Emergente
 	public void confirmarSeleccion() {
@@ -160,6 +167,7 @@ public class VentanaEmpleado extends JFrame implements IVistaUsuarioComun, Actio
 		panel.add(btnDarDeBaja);
 		
 		btnContratos = new JButton("Contratos");
+		btnContratos.addActionListener(this);
 		btnContratos.setSelected(true);
 		btnContratos.setFont(new Font("Segoe UI Semibold", Font.BOLD, 14));
 		btnContratos.setBorder(null);
@@ -390,6 +398,43 @@ public class VentanaEmpleado extends JFrame implements IVistaUsuarioComun, Actio
 		nombreCompletooLabel_1.setFont(new Font("Segoe UI", Font.PLAIN, 25));
 		nombreCompletooLabel_1.setBounds(164, 24, 231, 29);
 		tab3.add(nombreCompletooLabel_1);
+		
+		tab4 = new JPanel();
+		tab4.setLayout(null);
+		tab4.setBackground(new Color(30, 144, 255));
+		pantallasTab.addTab("Contratos", null, tab4, null);
+		
+		scrollPane_2 = new JScrollPane();
+		scrollPane_2.setBounds(31, 155, 539, 276);
+		tab4.add(scrollPane_2);
+		
+		seleccionarEmpleadorButton_1 = new JButton("Confirmar Empleador");
+		seleccionarEmpleadorButton_1.setActionCommand("EMPLEADORELEGIDO");
+		seleccionarEmpleadorButton_1.setBounds(31, 128, 169, 19);
+		tab4.add(seleccionarEmpleadorButton_1);
+		
+		lblEtiqueta_3 = new JLabel("Empleado: ");
+		lblEtiqueta_3.setForeground(new Color(253, 245, 230));
+		lblEtiqueta_3.setFont(new Font("Segoe UI Light", Font.PLAIN, 25));
+		lblEtiqueta_3.setBounds(31, 8, 238, 60);
+		tab4.add(lblEtiqueta_3);
+		
+		separator_8 = new JSeparator();
+		separator_8.setForeground(new Color(253, 245, 230));
+		separator_8.setBackground(new Color(245, 245, 245));
+		separator_8.setBounds(31, 59, 115, 2);
+		tab4.add(separator_8);
+		
+		lblNewLabel_8 = new JLabel();
+		lblNewLabel_8.setForeground(new Color(240, 248, 255));
+		lblNewLabel_8.setFont(new Font("Segoe UI Light", Font.PLAIN, 20));
+		lblNewLabel_8.setBounds(31, 76, 464, 38);
+		tab4.add(lblNewLabel_8);
+		
+		nombreCompletooLabel_2 = new JLabel("Tomas Matarazzo");
+		nombreCompletooLabel_2.setFont(new Font("Segoe UI", Font.PLAIN, 25));
+		nombreCompletooLabel_2.setBounds(164, 24, 231, 29);
+		tab4.add(nombreCompletooLabel_2);
 		
 		form = new FormTickets();
 	}

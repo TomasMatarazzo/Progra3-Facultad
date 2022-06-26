@@ -10,8 +10,6 @@ import simulacion.BolsaDeTrabajo;
 import simulacion.TicketSimplificado;
 import util.Util;
 
-import java.io.Serializable;
-
 public class EmpleadoPretenso extends UsuarioComun implements Runnable{
     //Datos personales:
     private String nombre;
@@ -95,7 +93,6 @@ public class EmpleadoPretenso extends UsuarioComun implements Runnable{
         return ticketDeBusquedaDeEmpleo;
     }
 
-	
     //TO STRING
     @Override
     public String toString() {
@@ -157,43 +154,11 @@ public class EmpleadoPretenso extends UsuarioComun implements Runnable{
     }
 
     /**
-     * Cambia y cerifica el estado del ticket del usuario
-     * <b>Pre: </b> estado debe ser distinto de null y no estar vacio <br>
-     * <b>Post: </b> se cambio el estado del ticket del empleado pretenso <br>
-     * @param estado: de tipo String, representa el tipo de estado que quiero que tenga el ticket.
-     * @throws EstadoException 
-     * @throws DatosMalIngresadosException cuando el dato ingresado como parametro es incorrecto
-     */
-    public void gestionaTicket(String estado) throws EstadoException {
-    	String mayu = estado;
-    	mayu.toUpperCase();
-    	switch (estado) {
-    	case "ACTIVO" : 
-    		this.getTicketDeBusquedaDeEmpleo().activar();
-    		this.ticketDeBusquedaDeEmpleo.setEstado(mayu);
-    		break;
-    	case "SUSPENDIDO" : 
-    		this.getTicketDeBusquedaDeEmpleo().suspender();
-    		this.ticketDeBusquedaDeEmpleo.setEstado(mayu);
-    		break;
-    	case "CANCELADO" : 
-    		this.getTicketDeBusquedaDeEmpleo().cancelar();
-    		this.ticketDeBusquedaDeEmpleo.setEstado(mayu);
-    		this.puntaje--;
-    		break;
-    	case "FINALIZADO" : 
-    		this.getTicketDeBusquedaDeEmpleo().finalizar();
-    		this.ticketDeBusquedaDeEmpleo.setEstado(mayu);
-    		break;
-    	}
-    }
-
-    /**
      * Este método muestra la lista de asignación del empleado pretenso.<br>
      * <b>pre:</b> ticket de busqueda de empleo (!= null). Lista de asignacion (!=null). Empleado-Pretenso inicializado (!=null)<br>
      */
     public void muestraLista() {
-        if (ticketDeBusquedaDeEmpleo.getEstado().equalsIgnoreCase("ACTIVO"))
+        if (ticketDeBusquedaDeEmpleo.getState().getNombreEstado().equalsIgnoreCase("ACTIVO"))
             System.out.println("Lista del usuario [" + this.nombreUsuario + "]: (en un mal formato)\n" + Sistema.getInstance().getListas().get(this.ticketDeBusquedaDeEmpleo).toString());
     }
 
@@ -208,7 +173,7 @@ public class EmpleadoPretenso extends UsuarioComun implements Runnable{
     @Override
     public void run(){
         int i=0;
-        TicketSimplificado aux=null;
+        TicketSimplificado aux;
         while ((i < 10) && (this.ticketSimplificado == null)){	
           aux = BolsaDeTrabajo.getInstancia().SacaBolsa(this.ticketDeBusquedaDeEmpleo,this);
           if(aux.getFormularioDeBusqueda().puntajeLocacion(this.ticketDeBusquedaDeEmpleo.getFormularioDeBusqueda().getLocacion())==1) {

@@ -117,33 +117,9 @@ public abstract class Empleador extends UsuarioComun implements Runnable {
         Sistema.getInstance().agregaTicketDeEmpleadores(this,nuevo);
     }
 
-    public void gestionaTicket(Ticket_de_Busqueda_de_Empleado ticket,String estado) throws EstadoException {
-    	String mayu = estado;
-    	mayu.toUpperCase();
-    	switch (estado) {
-    	case "ACTIVO" : 
-    		ticket.activar();
-    		ticket.setEstado(mayu);
-    		break;
-    	case "SUSPENDIDO" : 
-    		ticket.suspender();
-    		ticket.setEstado(mayu);
-    		break;
-    	case "CANCELADO" : 
-    		ticket.cancelar();
-    		ticket.setEstado(mayu);
-    		this.puntaje--;
-    		break;
-    	case "FINALIZADO" : 
-    		ticket.finalizar();
-    		ticket.setEstado(mayu);
-    		break;
-    	}
-    }
-
     public void muestraLista() {
         for (Ticket_de_Busqueda_de_Empleado ticket_de_busqueda_de_empleado : ticketsDeBusquedaDeEmpleado)
-            if (ticket_de_busqueda_de_empleado.getEstado().equalsIgnoreCase("ACTIVO"))
+            if (ticket_de_busqueda_de_empleado.getState().getNombreEstado().equalsIgnoreCase("ACTIVO"))
                 System.out.println("Lista del usuario [" + this.nombreUsuario + "]: (en un mal formato)\n" + Sistema.getInstance().getListas().get(ticket_de_busqueda_de_empleado).toString());
     }
 

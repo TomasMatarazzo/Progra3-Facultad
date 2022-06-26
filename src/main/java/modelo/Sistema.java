@@ -277,14 +277,12 @@ public class Sistema{
     public void rondaContrataciones() throws EstadoException {
         HashMap <Empleador,Boolean> elegidos = empleadosElegidos();
         for (Ticket_de_Busqueda_de_Empleo clave:Sistema.getInstance().ticketsDeEmpleadosPretensos.keySet()) {
-            if ((clave.getEstado().equalsIgnoreCase("Activo")) && (clave.getEleccion()!=null  && clave.getEleccion().getEstado().equalsIgnoreCase("Activo"))) {
+            if ((clave.getState().getNombreEstado().equalsIgnoreCase("Activo")) && (clave.getEleccion()!=null  && clave.getEleccion().getState().getNombreEstado().equalsIgnoreCase("Activo"))) {
                 if (clave.getEleccion()!= null && clave == clave.getEleccion().getEleccion()) {
                     elegidos.replace(this.ticketsDeEmpleadores.get(clave.getEleccion()), true);
                     Contrato contrato = new Contrato(this.ticketsDeEmpleadores.get(clave.getEleccion()),this.ticketsDeEmpleadosPretensos.get(clave),clave.getEleccion().getRemuneracion());
                     this.contratos.add(contrato);
-                    clave.setEstado("Finalizado");
                     clave.finalizar();
-                    clave.getEleccion().setEstado("Finalizado");
                     clave.getEleccion().finalizar();
                     this.ticketsDeEmpleadores.get(clave.getEleccion()).setPuntaje(this.ticketsDeEmpleadores.get(clave.getEleccion()).getPuntaje()+50);
                     this.ticketsDeEmpleadosPretensos.get(clave).setPuntaje(this.ticketsDeEmpleadosPretensos.get(clave).getPuntaje()+10);
@@ -328,7 +326,7 @@ public class Sistema{
         int cont = 0;
         if (empleador.getTicketsDeBusquedaDeEmpleado() != null) {
             while (cont<empleador.getTicketsDeBusquedaDeEmpleado().size() && !respuesta) {
-                if (empleador.getTicketsDeBusquedaDeEmpleado().get(cont).getEstado().equalsIgnoreCase("Activo"))
+                if (empleador.getTicketsDeBusquedaDeEmpleado().get(cont).getState().getNombreEstado().equalsIgnoreCase("Activo"))
                     respuesta = true;
                 cont++;
             }

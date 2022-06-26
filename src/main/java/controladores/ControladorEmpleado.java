@@ -99,7 +99,7 @@ public class ControladorEmpleado implements ActionListener, WindowListener {
 				break;
 			case "SUSPENDERTICKET":
 				if (vista.getTicketSeleccionado() != null) {
-					if (vista.getTicketSeleccionado().getEstado().equalsIgnoreCase("suspender"))
+					if (vista.getTicketSeleccionado().getState().getNombreEstado().equalsIgnoreCase("suspender"))
 						this.vista.lanzarVentanaEmergente("El ticket ya se encuentra suspendido");
 					else {
 						try {

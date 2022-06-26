@@ -12,7 +12,7 @@ import util.Util;
 
 import java.io.Serializable;
 
-public class EmpleadoPretenso extends UsuarioComun implements Runnable, Serializable {
+public class EmpleadoPretenso extends UsuarioComun implements Runnable{
     //Datos personales:
     private String nombre;
     private String apellido;

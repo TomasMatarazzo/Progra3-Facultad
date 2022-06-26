@@ -21,4 +21,5 @@ public interface IVistaUsuarioComun extends IVista{
 	public Ticket getTicketEleccionesSeleccionado();
 	public void setCantidadTickets(String cant) ;
 	public void llenarDatosEmpleador(String nombre, String tipoPersona, String rubro, String usuario);
+	public void confirmarSeleccion();
 }

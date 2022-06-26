@@ -95,6 +95,7 @@ public class VentanaEmpleador extends JFrame implements ActionListener,IVistaUsu
 	private JScrollPane scrollPane_3;
 	private JList list_2;
 	private JPanel tab2;
+	private JButton btnBaja;
 
 	
 
@@ -170,6 +171,16 @@ public class VentanaEmpleador extends JFrame implements ActionListener,IVistaUsu
 		btnContratos.setActionCommand("CONTRATOS");
 		btnContratos.setBounds(0, 275, 186, 35);
 		panel.add(btnContratos);
+		
+		btnBaja = new JButton("Dar de baja perfil");
+		btnBaja.setSelected(true);
+		btnBaja.setFont(new Font("Segoe UI Semibold", Font.BOLD, 14));
+		btnBaja.setBorder(null);
+		btnBaja.setBackground(new Color(100, 149, 237));
+		btnBaja.setActionCommand("CERRARSESION");
+		btnBaja.setBounds(0, 403, 186, 35);
+		btnBaja.setActionCommand("BAJA");
+		panel.add(btnBaja);
 		
 		pantallasTab = new JTabbedPane(JTabbedPane.TOP);
 		pantallasTab.setBounds(187, 0, 599, 464);
@@ -423,6 +434,7 @@ public class VentanaEmpleador extends JFrame implements ActionListener,IVistaUsu
 		this.btnContratos.addActionListener(c);
 		this.btnCerrarSesion.addActionListener(c);
 		this.btnSuspenderTicket.addActionListener(c);
+		this.btnBaja.addActionListener(c);
 	}
 	
 	@Override
@@ -584,5 +596,4 @@ public class VentanaEmpleador extends JFrame implements ActionListener,IVistaUsu
 		// TODO Auto-generated method stub
 		
 	}
-
 }

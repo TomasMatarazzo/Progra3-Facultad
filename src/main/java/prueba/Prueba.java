@@ -14,7 +14,7 @@ import controladores.ControladorEmpleador;
 import modelo.Sistema;
 
 public class Prueba {
-    public static void main() throws EstadoException, ErrorDeUsuarioException {
+    public static void main(String [] args) throws EstadoException, ErrorDeUsuarioException {
         Sistema sistema = Sistema.getInstance();
         UsuarioFactory usuarioFactory = new UsuarioFactory();
 

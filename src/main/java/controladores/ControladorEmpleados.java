@@ -9,6 +9,8 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import modelo.Sistema;
 import modelo.tickets.Formulario_de_Busqueda;
+import modelo.tickets.Ticket_de_Busqueda_de_Empleado;
+import modelo.tickets.Ticket_de_Busqueda_de_Empleo;
 import modelo.tickets.locaciones.ILocacion;
 import modelo.tickets.locaciones.LocacionFactory;
 import modelo.usuarios.EmpleadoPretenso;
@@ -28,7 +30,7 @@ public class ControladorEmpleados implements ActionListener, WindowListener {
 		this.vista = vista2;
 		this.vista.setActionListener(this);
 		vista.llenarDatosEmpleado(modelo.getNombre(),modelo.getApellido(),modelo.geteMail(), modelo.getTelefono(),modelo.getEdad());
-		vista.renderListaTickets(modelo.getTicketDeBusquedaDeEmpleo());
+		vista.renderListaTicketsEmpleado((Ticket_de_Busqueda_de_Empleo)modelo.getTicketDeBusquedaDeEmpleo());
 	}
 
 	@Override
@@ -50,11 +52,11 @@ public class ControladorEmpleados implements ActionListener, WindowListener {
 		}else if (e.getActionCommand().equals("ELIMINARTICKET")) {
 			// VERIFICA QUE SE HAYA SELECCIONADO UN TICKET
 			if (vista.getTicketSeleccionado() != null) {
-				Sistema.getInstance().eliminaTicketDeEmpleadosPretensos(vista.getTicketSeleccionado());
+				Sistema.getInstance().eliminaTicketDeEmpleadosPretensos((Ticket_de_Busqueda_de_Empleo)vista.getTicketSeleccionado());
 				modelo.setTicketDeBusquedaDeEmpleo(null);
 				vista.lanzarVentanaEmergente("Se elimino el ticket.");
 				System.out.println(modelo.getTicketDeBusquedaDeEmpleo());
-				vista.renderListaTickets(modelo.getTicketDeBusquedaDeEmpleo());
+				vista.renderListaTicketsEmpleado(modelo.getTicketDeBusquedaDeEmpleo());
 			}
 			else 
 				vista.lanzarVentanaEmergente("Seleccione el ticket a eliminar.");
@@ -63,7 +65,7 @@ public class ControladorEmpleados implements ActionListener, WindowListener {
 			if (vista.getTicketEleccionesSeleccionado() != null) {
 				vista.confirmarSeleccion();
 				vista.lanzarVentanaEmergente("Se elegio un empleado.");
-				modelo.getTicketDeBusquedaDeEmpleo().setEleccion(vista.getTicketEleccionesSeleccionado());
+				modelo.getTicketDeBusquedaDeEmpleo().setEleccion((Ticket_de_Busqueda_de_Empleado)vista.getTicketEleccionesSeleccionado());
 			}
 			else
 				vista.lanzarVentanaEmergente("Seleccion un ticket de la ronda de elecciones.");
@@ -89,9 +91,18 @@ public class ControladorEmpleados implements ActionListener, WindowListener {
 		        catch(Exception exc) {
 		        	exc.getMessage();
 		        }
-		        vista.renderListaTickets(modelo.getTicketDeBusquedaDeEmpleo());
+		        vista.renderListaTicketsEmpleado(modelo.getTicketDeBusquedaDeEmpleo());
 		        vista.getForm().cleanForms();
 		}
+		}else if (e.getActionCommand().equalsIgnoreCase("CERRARSESION")) {
+            vista.creaOtraVentana("Login");
+            vista.cerrarVentana();
+            JOptionPane.showMessageDialog(null, "Te has deslogueado con exito");
+		}else if (e.getActionCommand().equalsIgnoreCase("BAJA")) {
+            vista.creaOtraVentana("Login");
+            Sistema.getInstance().setAgencia(null);
+            vista.cerrarVentana();
+            JOptionPane.showMessageDialog(null, "Se ha eliminado la Agencia con exito!");
 		}
 	}
 	

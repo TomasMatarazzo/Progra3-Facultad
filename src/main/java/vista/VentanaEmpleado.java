@@ -263,7 +263,7 @@ public class VentanaEmpleado extends JFrame implements IVistaUsuarioComun {
 		scrollPane = new JScrollPane();
 		scrollPane.setBounds(31, 155, 539, 276);
 		tab2.add(scrollPane);
-		this.renderListaTickets(modelo.getTicketDeBusquedaDeEmpleo());
+		this.renderListaTicketsEmpleado(modelo.getTicketDeBusquedaDeEmpleo());
 		list_1.setVisibleRowCount(3);
 		scrollPane.setViewportView(list_1);
 		
@@ -445,7 +445,7 @@ public class VentanaEmpleado extends JFrame implements IVistaUsuarioComun {
 	}
 	
 	@Override
-	public void renderListaTickets( Ticket ticket) {
+	public void renderListaTicketsEmpleado( Ticket ticket) {
 		DefaultListModel<Ticket_de_Busqueda_de_Empleo> listaTicketsDefault = new DefaultListModel<Ticket_de_Busqueda_de_Empleo>();
 		System.out.println("Agregando el nuevo ticket");
 		listaTicketsDefault.addElement((Ticket_de_Busqueda_de_Empleo)ticket);
@@ -492,6 +492,12 @@ public class VentanaEmpleado extends JFrame implements IVistaUsuarioComun {
 
 	@Override
 	public void llenarDatosEmpleador(String nombre, String tipoPersona, String rubro, String usuario) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void renderListaTicketsEmpleador(ArrayList<Ticket_de_Busqueda_de_Empleo> tickets) {
 		// TODO Auto-generated method stub
 		
 	}

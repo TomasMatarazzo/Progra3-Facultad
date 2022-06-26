@@ -45,10 +45,7 @@ public class ControladorEmpleador implements ActionListener, WindowListener{
 			//vista.renderListaElecciones();
 		}else if (e.getActionCommand().equals("CONTRATOS")){
 			vista.cambiarPagina(3);
-		}else if (e.getActionCommand().equals("CERRARSESION")){
-			vista.lanzarVentanaEmergente("a");
-		}
-		else if (e.getActionCommand().equals("AGREGARTICKET")) {
+		}else if (e.getActionCommand().equals("AGREGARTICKET")) {
 			if ( modelo.getTicketsDeBusquedaDeEmpleado() != null || modelo.getTicketsDeBusquedaDeEmpleado().size() != 0) {
 //				Sistema.getInstance().agregaTicketDeEmpleadores(modelo, vista.getTicketSeleccionado());
 //				modelo.setTicketDeBusquedaDeEmpleo(vista.getTicketSeleccionado());
@@ -121,6 +118,15 @@ public class ControladorEmpleador implements ActionListener, WindowListener{
 				}else {
 					this.vista.lanzarVentanaEmergente("Seleccione el ticket a suspender");
 				}
+			}else if (e.getActionCommand().equalsIgnoreCase("CERRARSESION")) {
+	            vista.creaOtraVentana("Login");
+	            vista.cerrarVentana();
+	            JOptionPane.showMessageDialog(null, "Te has deslogueado con exito");
+			}else if (e.getActionCommand().equalsIgnoreCase("BAJA")) {
+	            JOptionPane.showMessageDialog(null, "Se ha eliminado el Empleado con exito!");
+	            vista.creaOtraVentana("Login");
+	            Sistema.getInstance().setAgencia(null);
+	            vista.cerrarVentana();
 			}
 		}
 

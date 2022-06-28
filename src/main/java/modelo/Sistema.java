@@ -231,20 +231,24 @@ public class Sistema{
         
         for(Ticket_de_Busqueda_de_Empleado ticketEmpleador:ticketsDeEmpleadores.keySet()){
             Lista nuevalista = new Lista();
+
             for ( Ticket_de_Busqueda_de_Empleo ticketEmpleado: ticketsDeEmpleadosPretensos.keySet()){
                 puntaje = ticketEmpleador.puntajeTotal(ticketEmpleado);
                 ticketEmpleado.setPuntajeTotal(puntaje);
                 if (ticketEmpleador.getTipoDeTrabajo().equalsIgnoreCase(ticketEmpleado.getTipoDeTrabajo())){
                     nuevalista.getOfertas().add(ticketEmpleado);
                 }
-
             }
-            Ticket ultimoTicketEmpleado = nuevalista.getOfertas().last();
-            Ticket primerTicketEmpleado = nuevalista.getOfertas().first();
-            ticketsDeEmpleadosPretensos.get(ultimoTicketEmpleado).setPuntaje(ticketsDeEmpleadosPretensos.get(ultimoTicketEmpleado).getPuntaje()+ 5);
-            ticketsDeEmpleadosPretensos.get(primerTicketEmpleado).setPuntaje(ticketsDeEmpleadosPretensos.get(primerTicketEmpleado).getPuntaje() - 5);
 
-            listas.put(ticketEmpleador,nuevalista);
+            if (nuevalista.getOfertas().size() != 0) {
+                Ticket ultimoTicketEmpleado = nuevalista.getOfertas().last();
+                Ticket primerTicketEmpleado = nuevalista.getOfertas().first();
+                ticketsDeEmpleadosPretensos.get(ultimoTicketEmpleado).setPuntaje(ticketsDeEmpleadosPretensos.get(ultimoTicketEmpleado).getPuntaje() + 5);
+                ticketsDeEmpleadosPretensos.get(primerTicketEmpleado).setPuntaje(ticketsDeEmpleadosPretensos.get(primerTicketEmpleado).getPuntaje() - 5);
+
+                listas.put(ticketEmpleador,nuevalista);
+                System.out.println(listas.get(ticketEmpleador));
+            }
         }
 
         for(Ticket_de_Busqueda_de_Empleo ticketEmpleado:ticketsDeEmpleadosPretensos.keySet()){
@@ -256,9 +260,13 @@ public class Sistema{
                     nuevalista.getOfertas().add(ticketEmpleador);
                 }
             }
-            Ticket ultimoTicketEmpresa = nuevalista.getOfertas().last(); // EN REALIDAD ES TICKET DE UNA EMPRESA
-            ticketsDeEmpleadores.get(ultimoTicketEmpresa).setPuntaje(ticketsDeEmpleadores.get(ultimoTicketEmpresa).getPuntaje() + 10);
-            listas.put(ticketEmpleado,nuevalista);
+
+            if (nuevalista.getOfertas().size() != 0) {
+                Ticket ultimoTicketEmpresa = nuevalista.getOfertas().last(); // EN REALIDAD ES TICKET DE UNA EMPRESA
+                ticketsDeEmpleadores.get(ultimoTicketEmpresa).setPuntaje(ticketsDeEmpleadores.get(ultimoTicketEmpresa).getPuntaje() + 10);
+                listas.put(ticketEmpleado,nuevalista);
+                System.out.println(listas.get(ticketEmpleado));
+            }
         }
     }
 
@@ -280,6 +288,7 @@ public class Sistema{
      */
     public void rondaContrataciones() throws EstadoException {
         HashMap <Empleador,Boolean> elegidos = empleadosElegidos();
+
         for (Ticket_de_Busqueda_de_Empleo clave:Sistema.getInstance().ticketsDeEmpleadosPretensos.keySet()) {
             if ((clave.getState().getNombreEstado().equalsIgnoreCase("Activo")) && (clave.getEleccion()!=null  && clave.getEleccion().getState().getNombreEstado().equalsIgnoreCase("Activo"))) {
                 if (clave.getEleccion()!= null && clave == clave.getEleccion().getEleccion()) {
@@ -293,6 +302,9 @@ public class Sistema{
                 }
             }
         }
+
+        if (contratos.isEmpty())
+            System.out.println("NO HAY NADA");
 
         for (Empleador clave:elegidos.keySet())
             if (!elegidos.get(clave))

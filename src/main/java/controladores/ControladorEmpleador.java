@@ -31,6 +31,9 @@ public class ControladorEmpleador implements ActionListener, WindowListener{
 		this.vista.setWindowListener(this);
 		this.vista.llenarDatosEmpleador(modelo.getRazonSocial(),modelo.getNombre(),modelo.getRubro(),modelo.getNombreUsuario());
 		this.vista.renderListaTicketsEmpleador(modelo.getTicketsDeBusquedaDeEmpleado());
+		if (!modelo.getTicketsDeBusquedaDeEmpleado().isEmpty()) {
+			this.vista.renderListaElecciones(Sistema.getInstance().getListas().get(modelo.getTicketsDeBusquedaDeEmpleado().get(0)).getOfertas());
+		}
 		this.vista.renderListaContratos(Sistema.getInstance().getContratos());
 	}
 
@@ -95,9 +98,9 @@ public class ControladorEmpleador implements ActionListener, WindowListener{
 						JOptionPane.showMessageDialog(jFrame, "Se creo el ticket");
 						vista.ocultarFormTicket();
 						LocacionFactory locacion = new LocacionFactory();
-						ILocacion locacionFac = locacion.getLocacion("indistinto");
+						ILocacion locacionFac = locacion.getLocacion(vista.getForm().locacion);
 						Formulario_de_Busqueda formulario = new Formulario_de_Busqueda(locacionFac, Integer.parseInt(vista.getForm().renumeracion), vista.getForm().cargaHoraria, vista.getForm().tipoPuesto, vista.getForm().edad, vista.getForm().experiencia, vista.getForm().estudios);
-						modelo.creaTicket(formulario, "Bombero", modelo.getPesoPuntajes());
+						modelo.creaTicket(formulario, "Recursos humanos", modelo.getPesoPuntajes());
 						vista.renderListaTicketsEmpleador(modelo.getTicketsDeBusquedaDeEmpleado());
 						vista.getForm().cleanForms();
 						vista.getForm().dispose();
@@ -191,7 +194,6 @@ public class ControladorEmpleador implements ActionListener, WindowListener{
 			IPersistencia binPuntajes = new PersistenciaBIN();
 			binPuntajes.abrirOutput("Puntajes.bin");
 			PuntajesDTO puntajesDTO = Util.puntajesDTOFromPuntajes();
-			System.out.println(puntajesDTO.toString());
 			binPuntajes.escribir(puntajesDTO);
 			binPuntajes.cerrarOutput();
 		} catch (IOException ex) {

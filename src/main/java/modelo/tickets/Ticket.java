@@ -78,10 +78,10 @@ public abstract class Ticket implements Comparable, Serializable {
         return puntajeTotal;
     }
 
-
     public void setState(IStateTickets IStateTickets){
         this.IStateTickets = IStateTickets;
     }
+
     public IStateTickets getState(){
         return this.IStateTickets;
     }
@@ -89,7 +89,6 @@ public abstract class Ticket implements Comparable, Serializable {
     public void setPuntajeTotal(double puntajeTotal) {
         this.puntajeTotal = puntajeTotal;
     }
-
 
     // FUNCIONALIDADES
     // Double dispatch con la locacion.

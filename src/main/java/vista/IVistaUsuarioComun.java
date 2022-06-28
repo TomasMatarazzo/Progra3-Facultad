@@ -2,6 +2,7 @@ package vista;
 
 import java.util.TreeSet;
 import modelo.tickets.Ticket;
+import modelo.tickets.Ticket_de_Busqueda_de_Empleo;
 
 public interface IVistaUsuarioComun extends IVista{
 
@@ -15,7 +16,7 @@ public interface IVistaUsuarioComun extends IVista{
 
 	void llenarDatosEmpleado(String nombre, String apellido, String email, String telefono , int edad);
 
-	void renderListaTicketsEmpleado( Ticket ticket);
+	void renderListaTicketsEmpleado(Ticket_de_Busqueda_de_Empleo ticket);
 
 	void renderListaElecciones( TreeSet<Ticket> list);
 

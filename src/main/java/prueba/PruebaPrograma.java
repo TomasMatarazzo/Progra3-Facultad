@@ -29,7 +29,6 @@ public class PruebaPrograma {
             IPersistencia binPuntajes = new PersistenciaBIN();
             binPuntajes.abrirInput("Puntajes.bin");
             PuntajesDTO puntajesDTO = (PuntajesDTO) binPuntajes.leer();
-            System.out.println(puntajesDTO.toString());
             Util.puntajeFromPuntajeDTO(puntajesDTO);
         } catch (IOException e) {
             JOptionPane.showMessageDialog(null,"Se ha creado un archivo binario nuevo");
@@ -37,6 +36,7 @@ public class PruebaPrograma {
             e.printStackTrace();
         }
 
+        //HARCODEO DE LOS PESOS
         int [] peso1 = new int[7]; peso1[0]=0; peso1[1]=2; peso1[2]=2; peso1[3]=1; peso1[4]=1; peso1[5]=1; peso1[6]=3;
         int [] peso2 = new int[7]; peso2[0]=1; peso2[1]=3; peso2[2]=3; peso2[3]=2; peso2[4]=2; peso2[5]=1; peso2[6]=1;
         int [] peso3 = new int[7]; peso3[0]=3; peso3[1]=2; peso3[2]=2; peso3[3]=3; peso3[4]=1; peso3[5]=2; peso3[6]=1;

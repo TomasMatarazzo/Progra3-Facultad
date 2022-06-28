@@ -67,7 +67,7 @@ public class VentanaEmpleado extends JFrame implements IVistaUsuarioComun, Actio
 	private JLabel lblEtiqueta_1;
 	private JSeparator separator_7;
 	private JLabel lblNewLabel_7;
-	private JLabel cantTicketsLabel;
+	private JLabel cantTicketsLabel = new JLabel("0");
 	private JLabel nombreCompletooLabel;
 	private JPanel tab3;
 	private JScrollPane scrollPane_1;
@@ -91,6 +91,10 @@ public class VentanaEmpleado extends JFrame implements IVistaUsuarioComun, Actio
 	private JLabel lblNewLabel_8;
 	private JLabel nombreCompletooLabel_2;
 	private JList<Contrato> listaContratos;
+
+	public JList<Ticket_de_Busqueda_de_Empleo> getList_1() {
+		return list_1;
+	}
 
 	// Ventaja Emergente
 	public void confirmarSeleccion() {
@@ -344,7 +348,7 @@ public class VentanaEmpleado extends JFrame implements IVistaUsuarioComun, Actio
 		lblNewLabel_7.setBounds(31, 76, 187, 38);
 		tab2.add(lblNewLabel_7);
 		
-		cantTicketsLabel = new JLabel("1");
+
 		cantTicketsLabel.setFont(new Font("Segoe UI Light", Font.BOLD, 25));
 		cantTicketsLabel.setBounds(206, 72, 46, 44);
 		tab2.add(cantTicketsLabel);
@@ -510,6 +514,7 @@ public class VentanaEmpleado extends JFrame implements IVistaUsuarioComun, Actio
 	@Override
 	public void ocultarFormTicket() {
 		this.form.setVisible(false);
+		this.form.dispose();
 	}
 
 	@Override
@@ -526,27 +531,39 @@ public class VentanaEmpleado extends JFrame implements IVistaUsuarioComun, Actio
 		this.telefonoLabel.setText(telefono);
 		this.edadLabel.setText(String.valueOf(edad));
 		this.nombreCompletooLabel.setText(nombre + " " + apellido);
-		this.cantTicketsLabel.setText(Integer.toString(this.list_1.getWidth()));
 		this.nombreCompletooLabel_1.setText(nombre + " " + apellido);
 		this.nombreCompletooLabel_2.setText(nombre + " " + apellido);
 	}
 	
 	@Override
-	public void renderListaTicketsEmpleado(Ticket ticket) {
-		DefaultListModel<Ticket_de_Busqueda_de_Empleo> listaTicketsDefault = new DefaultListModel<>();
-		listaTicketsDefault.addElement((Ticket_de_Busqueda_de_Empleo)ticket);
-		if (list_1.getModel().getSize() != 0)
-			((DefaultListModel) list_1.getModel()).removeAllElements();
-		this.list_1.setModel(listaTicketsDefault);
-		scrollPane.setViewportView(list_1);
+	public void renderListaTicketsEmpleado(Ticket_de_Busqueda_de_Empleo ticket) {
+		DefaultListModel<Ticket_de_Busqueda_de_Empleo> modeloListaTickets = new DefaultListModel<>();
+
+		if (ticket != null) {
+			modeloListaTickets.removeAllElements();
+			modeloListaTickets.addElement(ticket);
+			this.list_1.setModel(modeloListaTickets);
+			scrollPane.setViewportView(list_1);
+		}
+
+		this.cantTicketsLabel.setText(String.valueOf(modeloListaTickets.getSize()));
+	}
+
+	public void limpiaLista(JList list) {
+		DefaultListModel<Contrato> modelovacio = new DefaultListModel<>();
+
+		list.setModel(modelovacio);
+		this.cantTicketsLabel.setText("0");
 	}
 
 	public void renderListaContratos(ArrayList<Contrato> contratos) {
 		DefaultListModel<Contrato> listaContratoDefault = new DefaultListModel<>();
+
 		for(int i = 0 ; i < contratos.size() ; i++)
 			listaContratoDefault.addElement(contratos.get(i));
+
 		this.listaContratos.setModel(listaContratoDefault);
-		scrollPane.setViewportView(listaContratos);
+		scrollPane_2.setViewportView(listaContratos);
 	}
 
 	@Override
@@ -555,14 +572,16 @@ public class VentanaEmpleado extends JFrame implements IVistaUsuarioComun, Actio
 			lblNewLabel = new JLabel("Todavia no se efectuo la ronda de contratos laborales.");
 		} else {
 			lblNewLabel.setText("Ofertas laborales encontradas , seleccione una");
-			DefaultListModel<Ticket> tickets = new DefaultListModel<Ticket>();
+			DefaultListModel<Ticket> modeloElecciones = new DefaultListModel<Ticket>();
+
 			Iterator <Ticket>it = list.iterator();
 			while (it.hasNext())
-				tickets.addElement(it.next());
+				modeloElecciones.addElement(it.next());
+
 			this.listaElecciones = new JList<Ticket>();
 			
 			// Inicializo vista con los tickets del modelo
-			this.listaElecciones.setModel(tickets);
+			this.listaElecciones.setModel(modeloElecciones);
 			listaElecciones.setVisibleRowCount(3);
 			scrollPane_1.setViewportView(listaElecciones);
 		}

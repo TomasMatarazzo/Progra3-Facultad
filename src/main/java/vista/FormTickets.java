@@ -25,19 +25,18 @@ public class FormTickets extends JFrame {
 	private Choice edadForm;
 	private JLabel lblNewLabel_1;
 	private JTextField formRenumeracion;
+	private Choice locacionForm;
+	private Choice lblLocacion;
+	private JLabel lblLocacion_1;
+	private Choice experienciaForm;
 	public JButton crearTicketButton;
-	public String puesto ;
 	public String renumeracion ;
 	public int cargaHoraria ;
 	public int  estudios ;
 	public int edad ;
 	public int experiencia;
 	public int tipoPuesto;
-	private Choice locacionForm;
-	private Choice lblLocacion;
-	private JLabel lblLocacion_1;
 	public String locacion;
-	private Choice experienciaForm;
 
 	public FormTickets() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

@@ -7,6 +7,7 @@ import controladores.ControladorLogin;
 import modelo.listas.Contrato;
 import modelo.tickets.Ticket;
 import modelo.tickets.Ticket_de_Busqueda_de_Empleado;
+import modelo.tickets.Ticket_de_Busqueda_de_Empleo;
 import modelo.tickets.locaciones.LocacionFactory;
 import java.awt.Color;
 import javax.swing.JButton;
@@ -509,14 +510,14 @@ public class VentanaEmpleador extends JFrame implements IVistaUsuarioComun, Acti
 	}
 
 	public void renderListaTicketsEmpleador(ArrayList<Ticket_de_Busqueda_de_Empleado> tickets) {
-		DefaultListModel<Ticket_de_Busqueda_de_Empleado> listaTicketsDefault = new DefaultListModel<>();
+		DefaultListModel<Ticket_de_Busqueda_de_Empleado> modeloListaTickets = new DefaultListModel<>();
 
 		for(int i = 0 ; i < tickets.size() ; i++)
-			listaTicketsDefault.addElement(tickets.get(i));
+			modeloListaTickets.addElement(tickets.get(i));
 		if (list_1.getModel().getSize() != 0)
 			((DefaultListModel) list_1.getModel()).removeAllElements();
 		
-		this.list_1.setModel(listaTicketsDefault);
+		this.list_1.setModel(modeloListaTickets);
 		scrollPane.setViewportView(list_1);
 		this.setCantidadTickets(Integer.toString(tickets.size()));
 	}
@@ -527,7 +528,7 @@ public class VentanaEmpleador extends JFrame implements IVistaUsuarioComun, Acti
 		for(int i = 0 ; i < contratos.size() ; i++)
 			listaContratoDefault.addElement(contratos.get(i));
 		this.listaContratos.setModel(listaContratoDefault);
-		scrollPane.setViewportView(listaContratos);
+		scrollPane_2.setViewportView(listaContratos);
 	}
 	
 	@Override
@@ -570,7 +571,7 @@ public class VentanaEmpleador extends JFrame implements IVistaUsuarioComun, Acti
 	}
 
 	@Override
-	public void renderListaTicketsEmpleado(Ticket ticket) {
+	public void renderListaTicketsEmpleado(Ticket_de_Busqueda_de_Empleo ticket) {
 		// TODO Auto-generated method stub
 	}
 	public void actionPerformed(ActionEvent e) {

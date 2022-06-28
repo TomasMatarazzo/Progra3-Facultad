@@ -45,7 +45,6 @@ public class Ticket_de_Busqueda_de_Empleo extends Ticket implements Serializable
                 " estado: " + (this.getState().getNombreEstado() == null ? "-" : this.getState().getNombreEstado())  +
                 " tipoDeTrabajo " + (tipoDeTrabajo == null ? "-" : tipoDeTrabajo)  +
                 " puntajeTotal: " + puntajeTotal  +
-                " resultado: " + (resultado == null ? "pendiente" : resultado)  +
-                " eleccion: " + (eleccion == null ? "-" : eleccion);
+                " resultado: " + (resultado == null ? "pendiente" : resultado);
     }
 }

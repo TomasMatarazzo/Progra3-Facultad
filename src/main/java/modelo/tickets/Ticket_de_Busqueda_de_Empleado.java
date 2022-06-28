@@ -32,8 +32,6 @@ public class Ticket_de_Busqueda_de_Empleado extends Ticket {
     }
 
     //TO STRING
-
-
     @Override
     public String toString() {
     			return "Ticket: " +
@@ -42,8 +40,7 @@ public class Ticket_de_Busqueda_de_Empleado extends Ticket {
                 " fechaDeAlta: " + fechaDeAlta.getTime() +
                 " estado: " + (this.getState().getNombreEstado() == null ? "-" : this.getState().getNombreEstado())  +
                 " tipoDeTrabajo " + (tipoDeTrabajo == null ? "-" : tipoDeTrabajo)  +
-                " puntajeTotal: " + puntajeTotal  +
-                " eleccion: " + (eleccion == null ? "-" : eleccion);
+                " puntajeTotal: " + puntajeTotal;
     }
 
     //FUCNIONALIDADES

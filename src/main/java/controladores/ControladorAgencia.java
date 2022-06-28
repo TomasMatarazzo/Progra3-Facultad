@@ -137,7 +137,6 @@ public class ControladorAgencia implements ActionListener, WindowListener {
             IPersistencia binPuntajes = new PersistenciaBIN();
             binPuntajes.abrirOutput("Puntajes.bin");
             PuntajesDTO puntajesDTO = Util.puntajesDTOFromPuntajes();
-            System.out.println(puntajesDTO.toString());
             binPuntajes.escribir(puntajesDTO);
             binPuntajes.cerrarOutput();
         } catch (IOException ex) {

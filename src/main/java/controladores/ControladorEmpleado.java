@@ -29,7 +29,10 @@ public class ControladorEmpleado implements ActionListener, WindowListener {
 		this.vista.setActionListener(this);
 		this.vista.setWindowListener(this);
 		this.vista.llenarDatosEmpleado(modelo.getNombre(),modelo.getApellido(),modelo.geteMail(),modelo.getTelefono(),modelo.getEdad());
-		this.vista.renderListaTicketsEmpleado(modelo.getTicketDeBusquedaDeEmpleo());
+		this.vista.renderListaTicketsEmpleado(this.modelo.getTicketDeBusquedaDeEmpleo());
+		if (modelo.getTicketDeBusquedaDeEmpleo() != null) {
+			this.vista.renderListaElecciones(Sistema.getInstance().getListas().get(this.modelo.getTicketDeBusquedaDeEmpleo()).getOfertas());
+		}
 		this.vista.renderListaContratos(Sistema.getInstance().getContratos());
 	}
 
@@ -45,6 +48,9 @@ public class ControladorEmpleado implements ActionListener, WindowListener {
 				break;
 			case "iniciarELECCIONES":
 				vista.cambiarPagina(2);
+				if (modelo.getTicketDeBusquedaDeEmpleo() != null) {
+					this.vista.renderListaElecciones(Sistema.getInstance().getListas().get(this.modelo.getTicketDeBusquedaDeEmpleo()).getOfertas());
+				}
 				break;
 			case "AGREGARTICKET":
 				if (modelo.getTicketDeBusquedaDeEmpleo() == null) {
@@ -57,7 +63,7 @@ public class ControladorEmpleado implements ActionListener, WindowListener {
 					Sistema.getInstance().eliminaTicketDeEmpleadosPretensos((Ticket_de_Busqueda_de_Empleo) vista.getTicketSeleccionado());
 					modelo.setTicketDeBusquedaDeEmpleo(null);
 					vista.lanzarVentanaEmergente("Se elimino el ticket.");
-					vista.renderListaTicketsEmpleado(modelo.getTicketDeBusquedaDeEmpleo());
+					vista.limpiaLista(vista.getList_1());
 				} else
 					vista.lanzarVentanaEmergente("Seleccione el ticket a eliminar.");
 				break;
@@ -82,10 +88,10 @@ public class ControladorEmpleado implements ActionListener, WindowListener {
 						JFrame jFrame = new JFrame();
 						JOptionPane.showMessageDialog(jFrame, "Se creo el ticket");
 						LocacionFactory locacion = new LocacionFactory();
-						ILocacion locacionFac = locacion.getLocacion("indistinto");
+						ILocacion locacionFac = locacion.getLocacion(vista.getForm().locacion);
 						Formulario_de_Busqueda formulario = new Formulario_de_Busqueda(locacionFac, Integer.parseInt(vista.getForm().renumeracion), vista.getForm().cargaHoraria, vista.getForm().tipoPuesto, vista.getForm().edad, vista.getForm().experiencia, vista.getForm().estudios);
 						try {
-							modelo.creaTicket(formulario, "Bombero");
+							modelo.creaTicket(formulario, "Recursos humanos");
 						} catch (Exception e2) {
 							vista.lanzarVentanaEmergente(e2.getMessage());
 						}
@@ -155,7 +161,6 @@ public class ControladorEmpleado implements ActionListener, WindowListener {
 			IPersistencia binPuntajes = new PersistenciaBIN();
 			binPuntajes.abrirOutput("Puntajes.bin");
 			PuntajesDTO puntajesDTO = Util.puntajesDTOFromPuntajes();
-			System.out.println(puntajesDTO.toString());
 			binPuntajes.escribir(puntajesDTO);
 			binPuntajes.cerrarOutput();
 		} catch (IOException ex) {

@@ -6,6 +6,8 @@ public interface IVistaAgencia extends IVista{
 
     void setKeyListener();
 
+    void setModelos();
+
     String getTipoDeTrabajo();
 
     int getRangoLaboral();
@@ -27,4 +29,6 @@ public interface IVistaAgencia extends IVista{
     void limpiaModelo(String modelo);
 
     void mostrarDatos(String dato);
+
+    void renderListaDatosCargados();
 }

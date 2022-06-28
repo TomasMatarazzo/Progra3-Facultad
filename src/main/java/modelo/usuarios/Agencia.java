@@ -7,6 +7,7 @@ import modelo.tickets.Ticket_de_Busqueda_de_Empleo;
 
 public class Agencia extends Usuario {
     private double total;
+    //A
 
     public Agencia(String nombreUsuario, String contrasena) {
         super(nombreUsuario, contrasena);

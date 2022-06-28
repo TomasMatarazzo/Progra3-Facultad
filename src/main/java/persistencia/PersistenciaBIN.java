@@ -8,7 +8,6 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 
 public class PersistenciaBIN implements IPersistencia {
-
     private FileOutputStream fileoutput = null;
     private FileInputStream fileinput = null;
     private ObjectOutputStream objectoutput = null;

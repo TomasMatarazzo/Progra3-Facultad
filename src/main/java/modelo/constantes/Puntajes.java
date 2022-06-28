@@ -1,19 +1,21 @@
 package modelo.constantes;
 
-public class Puntajes {
+import java.io.Serializable;
+
+public class Puntajes implements Serializable {
     public static double[][] RENUMERACION = {{1,-0.5,-1},
-            {1,1,-0.5},
-            {1,1,1}};
+                                             {1,1,-0.5},
+                                             {1,1,1}};
 
     // se usara  para CARGA HORARIA , TIPO DE TRABAJO, RANGO ETARIO
     public static double[][] MATRIZ2 = {{1,-0.5,-1},
-            {-0.5,1,-0.5},
-            {-1,1,-0.5}};
+                                        {-0.5,1,-0.5},
+                                        {-1,1,-0.5}};
 
     // se usara para  EXPERIENCIA PREVIA, ESTUDIOS CURSADOS
     public static double[][] MATRIZ3 = {{1,1.5,2},
-            {-0.5,1,1.5},
-            {-2,-1.5,1}};
+                                        {-0.5,1,1.5},
+                                        {-2,-1.5,1}};
 
     public static final int V1 = 20000;
     public static final int V2 = 40000;
@@ -34,8 +36,8 @@ public class Puntajes {
     public static final int menorEdad2 = 1;
     public static final int mayorEdad2 = 2;
 
-    public static int edad1 = -1;
-    public static int edad2 = -1;
+    private static int edad1 = -1;
+    private static int edad2 = -1;
 
     public static final int PRIMARIO = 0;
     public static final int SECUNDARIO = 1;

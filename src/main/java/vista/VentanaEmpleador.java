@@ -453,8 +453,6 @@ public class VentanaEmpleador extends JFrame implements IVistaUsuarioComun, Acti
 		JFrame jFrame = new JFrame();
 		JOptionPane.showMessageDialog(jFrame, mensaje);
 	}
-	
-	// Para el formulario
 
 	@Override
 	public FormTickets getForm() {
@@ -470,8 +468,6 @@ public class VentanaEmpleador extends JFrame implements IVistaUsuarioComun, Acti
 	public void ocultarFormTicket() {
 		this.form.setVisible(false);
 	}
-	
-	// Ventanas
 
 	@Override
 	public void ejecutar() {

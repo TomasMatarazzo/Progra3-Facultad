@@ -1,12 +1,15 @@
 package vista;
 
 import controladores.ControladorLogin;
+import modelo.Sistema;
+import modelo.constantes.Puntajes;
 import modelo.usuarios.Usuario;
 import javax.swing.*;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.WindowListener;
+import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -92,6 +95,15 @@ public class VentanaAgencia extends JFrame implements IVistaAgencia, KeyListener
     }
 
     @Override
+    public void setModelos() {
+        listaTiposDeTrabajo.setModel(modeloTiposDeTrabajo);
+        listaRangoLaboral.setModel(modeloRangosLaborales);
+        listaTiposDePuestos.setModel(modeloTiposDePuestos);
+        listaDatosAlmacenados.setModel(modeloDatosAlmacenados);
+        listaComisiones.setModel(modeloComisiones);
+    }
+
+    @Override
     public String getTipoDeTrabajo() {
         return textoTiposDeTrabajo.getText();
     }
@@ -132,13 +144,7 @@ public class VentanaAgencia extends JFrame implements IVistaAgencia, KeyListener
         setSize(800,500); //Dimensiones del JFrame
         setResizable(false); //No redimensionable
         setLocationRelativeTo(null);
-
         botonAgregarDatos.setEnabled(false);
-        listaTiposDeTrabajo.setModel(modeloTiposDeTrabajo);
-        listaRangoLaboral.setModel(modeloRangosLaborales);
-        listaTiposDePuestos.setModel(modeloTiposDePuestos);
-        listaDatosAlmacenados.setModel(modeloDatosAlmacenados);
-        listaComisiones.setModel(modeloComisiones);
     }
 
     @Override
@@ -223,6 +229,27 @@ public class VentanaAgencia extends JFrame implements IVistaAgencia, KeyListener
         else
             if (dato.equalsIgnoreCase("Comisiones"))
                 listaComisiones.setModel(modeloComisiones);
+    }
+
+    @Override
+    public void renderListaDatosCargados() {
+        ArrayList<String> tiposDeTrabajo = Sistema.getInstance().getTiposDeTrabajo();
+
+        for (int i = 0;i < tiposDeTrabajo.size();i++) {
+            cargarModelo(modeloTiposDeTrabajo,tiposDeTrabajo.get(i));
+        }
+
+        if (Puntajes.getEdad1() != -1)
+            cargarModelo(modeloRangosLaborales,String.valueOf(Puntajes.getEdad1()));
+        if (Puntajes.getEdad2() != -1)
+            cargarModelo(modeloRangosLaborales,String.valueOf(Puntajes.getEdad2()));
+
+        if (!Puntajes.getPuesto1().isEmpty())
+            cargarModelo(modeloTiposDePuestos,Puntajes.getPuesto1());
+        if (!Puntajes.getPuesto2().isEmpty())
+            cargarModelo(modeloTiposDePuestos,Puntajes.getPuesto2());
+        if (!Puntajes.getPuesto3().isEmpty())
+            cargarModelo(modeloTiposDePuestos,Puntajes.getPuesto3());
     }
 
     public void setObservado(Usuario usuario) {

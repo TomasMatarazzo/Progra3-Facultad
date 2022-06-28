@@ -25,6 +25,8 @@ public class ControladorAgencia implements ActionListener, WindowListener {
         this.modelo = modelo;
         vista.setObservado(this.modelo);
         vista.cambiarTitulo(modelo.getNombreUsuario());
+        vista.setModelos();
+        vista.renderListaDatosCargados();
     }
 
     @Override

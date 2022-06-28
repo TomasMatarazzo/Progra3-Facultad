@@ -29,5 +29,4 @@ public interface IVistaUsuarioComun extends IVista{
 	void llenarDatosEmpleador(String nombre, String tipoPersona, String rubro, String usuario);
 
 	void confirmarSeleccion();
-
 }

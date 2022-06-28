@@ -1,6 +1,8 @@
 package modelo.tickets.locaciones;
 
-public interface ILocacion {
+import java.io.Serializable;
+
+public interface ILocacion extends Serializable {
 
     int puntajeLocacion( ILocacion locacion);
 

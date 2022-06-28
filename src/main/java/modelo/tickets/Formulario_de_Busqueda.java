@@ -3,7 +3,9 @@ package modelo.tickets;
 import modelo.tickets.locaciones.ILocacion;
 import modelo.constantes.Puntajes;
 
-public class Formulario_de_Busqueda {
+import java.io.Serializable;
+
+public class Formulario_de_Busqueda implements Serializable {
     private ILocacion locacion;
     private double remuneracion;
     private int cargaHoraria;

@@ -10,7 +10,7 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 public abstract class Ticket implements Comparable, Serializable {
-    protected transient Formulario_de_Busqueda formularioDeBusqueda;
+    protected Formulario_de_Busqueda formularioDeBusqueda;
     protected Calendar fechaDeAlta = Calendar.getInstance();
     private IStateTickets IStateTickets;
     protected String tipoDeTrabajo;

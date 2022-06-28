@@ -567,9 +567,6 @@ public class VentanaEmpleador extends JFrame implements IVistaUsuarioComun, Acti
 		this.seleccionarEmpleadorButton.setVisible(false);
 	}
 
-
-
-
 	//METODOS QUE NO SE USAN
 	@Override
 	public void llenarDatosEmpleado(String nombre, String apellido, String email, String telefono, int edad) {

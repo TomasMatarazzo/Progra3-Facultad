@@ -30,9 +30,9 @@ public class ControladorEmpleado implements ActionListener, WindowListener {
 		this.vista = vista;
 		this.vista.setActionListener(this);
 		this.vista.setWindowListener(this);
-		//this.vista.llenarDatosEmpleado(modelo.getNombre(),modelo.getApellido(),modelo.geteMail(),modelo.getTelefono(),modelo.getEdad());
+		this.vista.llenarDatosEmpleado(modelo.getNombre(),modelo.getApellido(),modelo.geteMail(),modelo.getTelefono(),modelo.getEdad());
 		this.vista.renderListaTicketsEmpleado(modelo.getTicketDeBusquedaDeEmpleo());
-		//this.vista.renderListaContratos(Sistema.getInstance().getContratos());
+		this.vista.renderListaContratos(Sistema.getInstance().getContratos());
 	}
 
 	@Override
@@ -50,8 +50,6 @@ public class ControladorEmpleado implements ActionListener, WindowListener {
 				break;
 			case "AGREGARTICKET":
 				if (modelo.getTicketDeBusquedaDeEmpleo() == null) {
-//				Sistema.getInstance().agregaTicketDeEmpleadosPretensos(modelo, vista.getTicketSeleccionado());
-//				modelo.setTicketDeBusquedaDeEmpleo(vista.getTicketSeleccionado());
 					vista.mostrarFormTicket();
 				} else
 					vista.lanzarVentanaEmergente("Ya creo un ticket.");

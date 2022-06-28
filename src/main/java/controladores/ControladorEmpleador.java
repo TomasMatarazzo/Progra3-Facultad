@@ -31,9 +31,9 @@ public class ControladorEmpleador implements ActionListener, WindowListener{
 		this.vista = vista;
 		this.vista.setActionListener(this);
 		this.vista.setWindowListener(this);
-		//this.vista.llenarDatosEmpleador(modelo.getRazonSocial(),modelo.getNombre(),modelo.getRubro(),modelo.getNombreUsuario());
+		this.vista.llenarDatosEmpleador(modelo.getRazonSocial(),modelo.getNombre(),modelo.getRubro(),modelo.getNombreUsuario());
 		this.vista.renderListaTicketsEmpleador(modelo.getTicketsDeBusquedaDeEmpleado());
-		//this.vista.renderListaContratos(Sistema.getInstance().getContratos());
+		this.vista.renderListaContratos(Sistema.getInstance().getContratos());
 	}
 
 	@Override
@@ -48,19 +48,15 @@ public class ControladorEmpleador implements ActionListener, WindowListener{
 				break;
 			case "iniciarELECCIONES":
 				vista.cambiarPagina(2);
-				//vista.renderVentanaVistas(3,Sistema.getInstance().getListas().get(modelo.getTicketsDeBusquedaDeEmpleado().get(0)).getOfertas());
-				//vista.renderListaElecciones();
-				this.vista.renderListaElecciones(Sistema.getInstance().getListas().get(modelo.getTicketsDeBusquedaDeEmpleado().get(0)).getOfertas());
-				System.out.println(Sistema.getInstance().getListas().get(modelo.getTicketsDeBusquedaDeEmpleado().get(0)).getOfertas());
+				if (!modelo.getTicketsDeBusquedaDeEmpleado().isEmpty()) {
+					this.vista.renderListaElecciones(Sistema.getInstance().getListas().get(modelo.getTicketsDeBusquedaDeEmpleado().get(0)).getOfertas());
+				}
 				break;
 			case "CONTRATOS":
 				vista.cambiarPagina(3);
 				break;
 			case "AGREGARTICKET":
 				if ( modelo.getTicketsDeBusquedaDeEmpleado() != null || modelo.getTicketsDeBusquedaDeEmpleado().size() != 0) {
-//				Sistema.getInstance().agregaTicketDeEmpleadores(modelo, vista.getTicketSeleccionado());
-//				modelo.setTicketDeBusquedaDeEmpleo(vista.getTicketSeleccionado());
-					
 					vista.mostrarFormTicket();
 				}else {
 					System.out.println("AGREGANDOO " +modelo.getTicketsDeBusquedaDeEmpleado());
@@ -71,7 +67,6 @@ public class ControladorEmpleador implements ActionListener, WindowListener{
 			case "ELIMINARTICKET":
 				if (vista.getTicketSeleccionado() != null) {
 					Sistema.getInstance().eliminaTicketDeEmpleadores(modelo,(Ticket_de_Busqueda_de_Empleado)vista.getTicketSeleccionado() );
-//				Sistema.getInstance().eliminaTicketDeEmpleadosPretensos(vista.getTicketSeleccionado());
 					modelo.eliminarTicket((Ticket_de_Busqueda_de_Empleado)vista.getTicketSeleccionado());
 					vista.lanzarVentanaEmergente("Se elimino el ticket.");
 					System.out.println(modelo.getTicketsDeBusquedaDeEmpleado());

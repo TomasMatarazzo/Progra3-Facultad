@@ -17,12 +17,20 @@ public class PruebaPrograma {
             bin.abrirInput("Sistema.bin");
             SistemaDTO sistemaDTO = (SistemaDTO) bin.leer();
             Util.sistemaFromSistemaDTO(sistemaDTO);
+        } catch (EstadoException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(null,"Se ha creado un archivo binario nuevo");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        try {
             IPersistencia binPuntajes = new PersistenciaBIN();
             binPuntajes.abrirInput("Puntajes.bin");
             PuntajesDTO puntajesDTO = (PuntajesDTO) binPuntajes.leer();
+            System.out.println(puntajesDTO.toString());
             Util.puntajeFromPuntajeDTO(puntajesDTO);
-        } catch (EstadoException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             JOptionPane.showMessageDialog(null,"Se ha creado un archivo binario nuevo");
         } catch (ClassNotFoundException e) {

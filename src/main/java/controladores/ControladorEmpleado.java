@@ -15,11 +15,8 @@ import modelo.tickets.Ticket_de_Busqueda_de_Empleo;
 import modelo.tickets.locaciones.ILocacion;
 import modelo.tickets.locaciones.LocacionFactory;
 import modelo.usuarios.EmpleadoPretenso;
-import persistencia.IPersistencia;
-import persistencia.PersistenciaBIN;
-import persistencia.PuntajesDTO;
-import persistencia.SistemaDTO;
-import util.Util;
+import persistencia.*;
+import util.UtilSimulacion;
 import vista.VentanaEmpleado;
 
 public class ControladorEmpleado implements ActionListener, WindowListener {
@@ -78,7 +75,7 @@ public class ControladorEmpleado implements ActionListener, WindowListener {
 					JFrame jFrame = new JFrame();
 					JOptionPane.showMessageDialog(jFrame, "Complete todos los campos");
 				} else
-					if (!Util.esNumero(vista.getForm().renumeracion)) {
+					if (!UtilSimulacion.esNumero(vista.getForm().renumeracion)) {
 						JFrame jFrame = new JFrame();
 						JOptionPane.showMessageDialog(jFrame, "Renumeracion tiene que ser un numero");
 					} else {
@@ -150,9 +147,15 @@ public class ControladorEmpleado implements ActionListener, WindowListener {
 			SistemaDTO sistemaDTO = Util.sistemaDTOFromSistema(Sistema.getInstance());
 			bin.escribir(sistemaDTO);
 			bin.cerrarOutput();
+		} catch (IOException ex) {
+			ex.printStackTrace();
+		}
+
+		try {
 			IPersistencia binPuntajes = new PersistenciaBIN();
 			binPuntajes.abrirOutput("Puntajes.bin");
-			PuntajesDTO puntajesDTO = persistencia.Util.puntajesDTOFromPuntajes();
+			PuntajesDTO puntajesDTO = Util.puntajesDTOFromPuntajes();
+			System.out.println(puntajesDTO.toString());
 			binPuntajes.escribir(puntajesDTO);
 			binPuntajes.cerrarOutput();
 		} catch (IOException ex) {

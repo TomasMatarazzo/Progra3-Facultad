@@ -1,14 +1,12 @@
 package modelo.usuarios;
 
-import modelo.excepciones.DatosMalIngresadosException;
-import modelo.excepciones.EstadoException;
 import modelo.excepciones.TicketYaCreadoException;
 import modelo.Sistema;
 import modelo.tickets.Formulario_de_Busqueda;
 import modelo.tickets.Ticket_de_Busqueda_de_Empleo;
 import simulacion.BolsaDeTrabajo;
 import simulacion.TicketSimplificado;
-import util.Util;
+import util.UtilSimulacion;
 
 public class EmpleadoPretenso extends UsuarioComun implements Runnable{
     //Datos personales:
@@ -180,9 +178,9 @@ public class EmpleadoPretenso extends UsuarioComun implements Runnable{
         	  aux.setEstado("Finalizado");
         	  this.ticketSimplificado =aux;
           }
-          Util.espera(2000);
+          UtilSimulacion.espera(2000);
           BolsaDeTrabajo.getInstancia().DevulveABolsa(aux, this);
-          Util.espera(2000);
+          UtilSimulacion.espera(2000);
           i++;
         }
     }

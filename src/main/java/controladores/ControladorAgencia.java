@@ -129,14 +129,22 @@ public class ControladorAgencia implements ActionListener, WindowListener {
             SistemaDTO sistemaDTO = Util.sistemaDTOFromSistema(Sistema.getInstance());
             bin.escribir(sistemaDTO);
             bin.cerrarOutput();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+
+        try {
             IPersistencia binPuntajes = new PersistenciaBIN();
             binPuntajes.abrirOutput("Puntajes.bin");
             PuntajesDTO puntajesDTO = Util.puntajesDTOFromPuntajes();
+            System.out.println(puntajesDTO.toString());
             binPuntajes.escribir(puntajesDTO);
             binPuntajes.cerrarOutput();
         } catch (IOException ex) {
             ex.printStackTrace();
         }
+
+
     }
 
     //METODOS NO USADOS

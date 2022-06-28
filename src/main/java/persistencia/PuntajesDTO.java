@@ -48,4 +48,15 @@ public class PuntajesDTO implements Serializable {
     public void setPuesto3(String puesto3) {
         this.puesto3 = puesto3;
     }
+
+    @Override
+    public String toString() {
+        return "PuntajesDTO{" +
+                "edad1=" + edad1 +
+                ", edad2=" + edad2 +
+                ", puesto1='" + puesto1 + '\'' +
+                ", puesto2='" + puesto2 + '\'' +
+                ", puesto3='" + puesto3 + '\'' +
+                '}';
+    }
 }

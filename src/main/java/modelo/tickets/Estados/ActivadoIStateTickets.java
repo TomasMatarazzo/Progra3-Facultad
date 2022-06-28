@@ -33,7 +33,7 @@ public class ActivadoIStateTickets implements IStateTickets {
 
 	@Override
 	public String getNombreEstado() {
-		return "Activado";
+		return "Activo";
 		
 	}
 }

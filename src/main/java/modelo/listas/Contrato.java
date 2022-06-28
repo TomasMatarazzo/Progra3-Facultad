@@ -28,4 +28,12 @@ public class Contrato implements Serializable {
     public double getRemuneracion() {
         return remuneracion;
     }
+
+    @Override
+    public String toString() {
+        return "Contrato: " +
+                "empleador: " + empleador.getRazonSocial() +
+                ", empleado: " + empleado_pretenso.getNombre() + empleado_pretenso.getApellido() +
+                ", remuneracion: " + remuneracion;
+    }
 }

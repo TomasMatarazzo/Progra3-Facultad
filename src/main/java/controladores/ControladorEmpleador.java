@@ -34,7 +34,7 @@ public class ControladorEmpleador implements ActionListener, WindowListener{
 		if (!modelo.getTicketsDeBusquedaDeEmpleado().isEmpty()) {
 			this.vista.renderListaElecciones(Sistema.getInstance().getListas().get(modelo.getTicketsDeBusquedaDeEmpleado().get(0)).getOfertas());
 		}
-		this.vista.renderListaContratos(Sistema.getInstance().getContratos());
+		this.vista.renderListaContratos(Sistema.getInstance().getContratos(),modelo);
 	}
 
 	@Override
@@ -49,9 +49,6 @@ public class ControladorEmpleador implements ActionListener, WindowListener{
 				break;
 			case "iniciarELECCIONES":
 				vista.cambiarPagina(2);
-				if (!modelo.getTicketsDeBusquedaDeEmpleado().isEmpty()) {
-					this.vista.renderListaElecciones(Sistema.getInstance().getListas().get(modelo.getTicketsDeBusquedaDeEmpleado().get(0)).getOfertas());
-				}
 				break;
 			case "CONTRATOS":
 				vista.cambiarPagina(3);
@@ -137,7 +134,7 @@ public class ControladorEmpleador implements ActionListener, WindowListener{
 				break;
 			case "ACTIVARTICKET":
 				if (vista.getTicketSeleccionado() != null) {
-					if (vista.getTicketSeleccionado().getState().getNombreEstado().equalsIgnoreCase("activado"))
+					if (vista.getTicketSeleccionado().getState().getNombreEstado().equalsIgnoreCase("Activo"))
 						this.vista.lanzarVentanaEmergente("El ticket ya se encuentra Activado");
 					else {
 						try {

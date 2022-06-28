@@ -1,8 +1,12 @@
 package vista;
 
+import java.util.ArrayList;
 import java.util.TreeSet;
+
+import modelo.listas.Contrato;
 import modelo.tickets.Ticket;
 import modelo.tickets.Ticket_de_Busqueda_de_Empleo;
+import modelo.usuarios.Usuario;
 
 public interface IVistaUsuarioComun extends IVista{
 
@@ -19,6 +23,8 @@ public interface IVistaUsuarioComun extends IVista{
 	void renderListaTicketsEmpleado(Ticket_de_Busqueda_de_Empleo ticket);
 
 	void renderListaElecciones( TreeSet<Ticket> list);
+
+	public void renderListaContratos(ArrayList<Contrato> contratos,Usuario usuario);
 
 	Ticket getTicketSeleccionado();
 

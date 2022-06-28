@@ -47,14 +47,6 @@ public class PruebaPrograma {
         Sistema.getInstance().getTicketsDeEmpleadores().remove(Sistema.getInstance().getEmpleadores().get(0).getTicketsDeBusquedaDeEmpleado().get(0));
         Sistema.getInstance().getTicketsDeEmpleadores().put(Sistema.getInstance().getEmpleadores().get(0).getTicketsDeBusquedaDeEmpleado().get(0),Sistema.getInstance().getEmpleadores().get(0));
 
-        Sistema.getInstance().getEmpleadores().get(0).getTicketsDeBusquedaDeEmpleado().get(1).setPesoAspectos(peso2);
-        Sistema.getInstance().getTicketsDeEmpleadores().remove(Sistema.getInstance().getEmpleadores().get(0).getTicketsDeBusquedaDeEmpleado().get(1));
-        Sistema.getInstance().getTicketsDeEmpleadores().put(Sistema.getInstance().getEmpleadores().get(0).getTicketsDeBusquedaDeEmpleado().get(1),Sistema.getInstance().getEmpleadores().get(0));
-
-        Sistema.getInstance().getEmpleadores().get(0).getTicketsDeBusquedaDeEmpleado().get(2).setPesoAspectos(peso3);
-        Sistema.getInstance().getTicketsDeEmpleadores().remove(Sistema.getInstance().getEmpleadores().get(0).getTicketsDeBusquedaDeEmpleado().get(2));
-        Sistema.getInstance().getTicketsDeEmpleadores().put(Sistema.getInstance().getEmpleadores().get(0).getTicketsDeBusquedaDeEmpleado().get(2),Sistema.getInstance().getEmpleadores().get(0));
-
         Sistema.getInstance().getEmpleadores().get(1).getTicketsDeBusquedaDeEmpleado().get(0).setPesoAspectos(peso4);
         Sistema.getInstance().getTicketsDeEmpleadores().remove(Sistema.getInstance().getEmpleadores().get(1).getTicketsDeBusquedaDeEmpleado().get(0));
         Sistema.getInstance().getTicketsDeEmpleadores().put(Sistema.getInstance().getEmpleadores().get(1).getTicketsDeBusquedaDeEmpleado().get(0),Sistema.getInstance().getEmpleadores().get(1));

@@ -9,6 +9,8 @@ import modelo.tickets.Ticket;
 import modelo.tickets.Ticket_de_Busqueda_de_Empleo;
 import modelo.tickets.locaciones.LocacionFactory;
 import modelo.usuarios.EmpleadoPretenso;
+import modelo.usuarios.Usuario;
+
 import java.awt.Color;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -413,11 +415,6 @@ public class VentanaEmpleado extends JFrame implements IVistaUsuarioComun, Actio
 		scrollPane_2.setBounds(31, 155, 539, 276);
 		tab4.add(scrollPane_2);
 		
-		seleccionarEmpleadorButton_1 = new JButton("Confirmar Empleador");
-		seleccionarEmpleadorButton_1.setActionCommand("EMPLEADORELEGIDO");
-		seleccionarEmpleadorButton_1.setBounds(31, 128, 169, 19);
-		tab4.add(seleccionarEmpleadorButton_1);
-		
 		lblEtiqueta_3 = new JLabel("Empleado: ");
 		lblEtiqueta_3.setForeground(new Color(253, 245, 230));
 		lblEtiqueta_3.setFont(new Font("Segoe UI Light", Font.PLAIN, 25));
@@ -556,11 +553,12 @@ public class VentanaEmpleado extends JFrame implements IVistaUsuarioComun, Actio
 		this.cantTicketsLabel.setText("0");
 	}
 
-	public void renderListaContratos(ArrayList<Contrato> contratos) {
+	public void renderListaContratos(ArrayList<Contrato> contratos, Usuario usuario) {
 		DefaultListModel<Contrato> listaContratoDefault = new DefaultListModel<>();
 
 		for(int i = 0 ; i < contratos.size() ; i++)
-			listaContratoDefault.addElement(contratos.get(i));
+			if (contratos.get(i).getEmpleado_pretenso().getNombreUsuario().equalsIgnoreCase(usuario.getNombreUsuario()))
+				listaContratoDefault.addElement(contratos.get(i));
 
 		this.listaContratos.setModel(listaContratoDefault);
 		scrollPane_2.setViewportView(listaContratos);

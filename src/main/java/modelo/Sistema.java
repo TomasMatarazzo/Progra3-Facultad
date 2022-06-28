@@ -247,7 +247,6 @@ public class Sistema{
                 ticketsDeEmpleadosPretensos.get(primerTicketEmpleado).setPuntaje(ticketsDeEmpleadosPretensos.get(primerTicketEmpleado).getPuntaje() - 5);
 
                 listas.put(ticketEmpleador,nuevalista);
-                System.out.println(listas.get(ticketEmpleador));
             }
         }
 
@@ -265,7 +264,6 @@ public class Sistema{
                 Ticket ultimoTicketEmpresa = nuevalista.getOfertas().last(); // EN REALIDAD ES TICKET DE UNA EMPRESA
                 ticketsDeEmpleadores.get(ultimoTicketEmpresa).setPuntaje(ticketsDeEmpleadores.get(ultimoTicketEmpresa).getPuntaje() + 10);
                 listas.put(ticketEmpleado,nuevalista);
-                System.out.println(listas.get(ticketEmpleado));
             }
         }
     }
@@ -302,9 +300,6 @@ public class Sistema{
                 }
             }
         }
-
-        if (contratos.isEmpty())
-            System.out.println("NO HAY NADA");
 
         for (Empleador clave:elegidos.keySet())
             if (!elegidos.get(clave))

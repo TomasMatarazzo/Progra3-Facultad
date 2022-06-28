@@ -9,6 +9,8 @@ import modelo.tickets.Ticket;
 import modelo.tickets.Ticket_de_Busqueda_de_Empleado;
 import modelo.tickets.Ticket_de_Busqueda_de_Empleo;
 import modelo.tickets.locaciones.LocacionFactory;
+import modelo.usuarios.Usuario;
+
 import java.awt.Color;
 import javax.swing.JButton;
 import java.util.ArrayList;
@@ -335,8 +337,6 @@ public class VentanaEmpleador extends JFrame implements IVistaUsuarioComun, Acti
 		scrollPane_1 = new JScrollPane();
 		scrollPane_1.setBackground(Color.RED);
 		scrollPane_1.setBounds(31, 155, 539, 276);
-		
-		//this.renderVentanaVistas(3);
 
 		tab3 = new JPanel();
 		tab3.setLayout(null);
@@ -344,7 +344,7 @@ public class VentanaEmpleador extends JFrame implements IVistaUsuarioComun, Acti
 		pantallasTab.addTab("Elecciones", null, tab3, null);
 		tab3.add(scrollPane_1);
 
-		seleccionarEmpleadorButton = new JButton("Confirmar Empleador");
+		seleccionarEmpleadorButton = new JButton("Confirmar Empleado");
 		seleccionarEmpleadorButton.setActionCommand("EMPLEADORELEGIDO");
 		seleccionarEmpleadorButton.setBounds(31, 128, 169, 19);
 		tab3.add(seleccionarEmpleadorButton);
@@ -522,11 +522,12 @@ public class VentanaEmpleador extends JFrame implements IVistaUsuarioComun, Acti
 		this.setCantidadTickets(Integer.toString(tickets.size()));
 	}
 
-	public void renderListaContratos(ArrayList<Contrato> contratos) {
+	public void renderListaContratos(ArrayList<Contrato> contratos, Usuario usuario) {
 		DefaultListModel<Contrato> listaContratoDefault = new DefaultListModel<>();
 
 		for(int i = 0 ; i < contratos.size() ; i++)
-			listaContratoDefault.addElement(contratos.get(i));
+			if (contratos.get(i).getEmpleador().getNombreUsuario().equalsIgnoreCase(usuario.getNombreUsuario()))
+				listaContratoDefault.addElement(contratos.get(i));
 		this.listaContratos.setModel(listaContratoDefault);
 		scrollPane_2.setViewportView(listaContratos);
 	}

@@ -64,14 +64,14 @@ public class Agencia extends Usuario {
             aux = Sistema.getInstance().getContratos().get(i).getEmpleador().calculaComision(Sistema.getInstance().getContratos().get(i).getRemuneracion());
             this.total += aux;
             setChanged();
-            notifyObservers("Usuario: " + Sistema.getInstance().getEmpleadores().get(i).getNombreUsuario() + " ~ Comision = $" + aux);
+            notifyObservers("Usuario: " + Sistema.getInstance().getEmpleadores().get(i).getNombreUsuario() + " ~ Comision = $" + (int) aux);
         }
         
         for (int i = 0;i < Sistema.getInstance().getContratos().size();i++) {
             aux = Sistema.getInstance().getContratos().get(i).getEmpleado_pretenso().calculaComision(Sistema.getInstance().getContratos().get(i).getRemuneracion());
             this.total += aux;
             setChanged();
-            notifyObservers("\tUsuario: " + Sistema.getInstance().getEmpleadosPretensos().get(i).getNombreUsuario() + " ~ Comision = $" + aux);
+            notifyObservers("\tUsuario: " + Sistema.getInstance().getEmpleadosPretensos().get(i).getNombreUsuario() + " ~ Comision = $" + (int) aux);
         }
     }
 

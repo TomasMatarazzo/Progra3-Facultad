@@ -18,6 +18,7 @@ public class SistemaDTO implements Serializable {
     private ArrayList<Contrato> contratos = new ArrayList<>();
     private HashMap<Ticket_de_Busqueda_de_Empleado,Empleador> ticketsDeEmpleadores = new HashMap<>();
     private HashMap<Ticket_de_Busqueda_de_Empleo, EmpleadoPretenso> ticketsDeEmpleadosPretensos = new HashMap<>();
+    private ArrayList<String> tiposDeTrabajo = new ArrayList<>();
 
     public ArrayList<Empleador> getEmpleadores() {
         return empleadores;
@@ -65,5 +66,13 @@ public class SistemaDTO implements Serializable {
 
     public void setTicketsDeEmpleadosPretensos(HashMap<Ticket_de_Busqueda_de_Empleo, EmpleadoPretenso> ticketsDeEmpleadosPretensos) {
         this.ticketsDeEmpleadosPretensos = ticketsDeEmpleadosPretensos;
+    }
+
+    public ArrayList<String> getTiposDeTrabajo() {
+        return tiposDeTrabajo;
+    }
+
+    public void setTiposDeTrabajo(ArrayList<String> tiposDeTrabajo) {
+        this.tiposDeTrabajo = tiposDeTrabajo;
     }
 }

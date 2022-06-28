@@ -84,6 +84,10 @@ public class Sistema{
         this.ticketsDeEmpleadosPretensos = ticketsDeEmpleadosPretensos;
     }
 
+    public void setTiposDeTrabajo(ArrayList<String> tiposDeTrabajo) {
+        this.tiposDeTrabajo = tiposDeTrabajo;
+    }
+
     public void agregaEmpleador(Empleador nuevo) {
         empleadores.add(nuevo);
     }

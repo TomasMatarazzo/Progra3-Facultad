@@ -22,19 +22,23 @@ public class Util {
         ArrayList<Contrato> contratos = new ArrayList<>();
         HashMap<Ticket_de_Busqueda_de_Empleado,Empleador> ticketsDeEmpleadores = new HashMap<>();
         HashMap<Ticket_de_Busqueda_de_Empleo, EmpleadoPretenso> ticketsDeEmpleadosPretensos = new HashMap<>();
+        ArrayList<String> tiposDeTrabajo = new ArrayList<>();
 
+        tiposDeTrabajo.addAll(sistema.getTiposDeTrabajo());
         empleadosPretensos.addAll(sistema.getEmpleadosPretensos());
         empleadores.addAll(sistema.getEmpleadores());
         listas.putAll(sistema.getListas());
         contratos.addAll(sistema.getContratos());
         ticketsDeEmpleadores.putAll(sistema.getTicketsDeEmpleadores());
         ticketsDeEmpleadosPretensos.putAll(sistema.getTicketsDeEmpleadosPretensos());
+
         respuesta.setEmpleadosPretensos(empleadosPretensos);
         respuesta.setEmpleadores(empleadores);
         respuesta.setContratos(contratos);
         respuesta.setListas(listas);
         respuesta.setTicketsDeEmpleadores(ticketsDeEmpleadores);
         respuesta.setTicketsDeEmpleadosPretensos(ticketsDeEmpleadosPretensos);
+        respuesta.setTiposDeTrabajo(tiposDeTrabajo);
 
         return respuesta;
     }
@@ -47,6 +51,7 @@ public class Util {
         HashMap<Ticket, Lista> listas = new HashMap<>();
         HashMap<Ticket_de_Busqueda_de_Empleado,Empleador> ticketsDeEmpleadores = new HashMap<>();
         HashMap<Ticket_de_Busqueda_de_Empleo, EmpleadoPretenso> ticketsDeEmpleadosPretensos = new HashMap<>();
+        ArrayList<String> tiposDeTrabajo = new ArrayList<>();
 
         empleadosPretensos.addAll(sistemaDTO.getEmpleadosPretensos());
         empleadores.addAll(sistemaDTO.getEmpleadores());
@@ -55,6 +60,7 @@ public class Util {
         listas.putAll(sistemaDTO.getListas());
         ticketsDeEmpleadores.putAll(sistemaDTO.getTicketsDeEmpleadores());
         ticketsDeEmpleadosPretensos.putAll(sistemaDTO.getTicketsDeEmpleadosPretensos());
+        tiposDeTrabajo.addAll(sistemaDTO.getTiposDeTrabajo());
 
         Sistema.getInstance().setEmpleadores(empleadores);
         Sistema.getInstance().setEmpleadosPretensos(empleadosPretensos);
@@ -62,6 +68,7 @@ public class Util {
         Sistema.getInstance().setListas(listas);
         Sistema.getInstance().setTicketsDeEmpleadores(ticketsDeEmpleadores);
         Sistema.getInstance().setTicketsDeEmpleadosPretensos(ticketsDeEmpleadosPretensos);
+        Sistema.getInstance().setTiposDeTrabajo(tiposDeTrabajo);
     }
 
     public static void puntajeFromPuntajeDTO(PuntajesDTO puntajesDTO){

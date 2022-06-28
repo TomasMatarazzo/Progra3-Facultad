@@ -18,6 +18,7 @@ import modelo.tickets.locaciones.LocacionFactory;
 import modelo.usuarios.empleadores.Empleador;
 import persistencia.IPersistencia;
 import persistencia.PersistenciaBIN;
+import persistencia.PuntajesDTO;
 import persistencia.SistemaDTO;
 import util.Util;
 import vista.VentanaEmpleador;
@@ -185,6 +186,11 @@ public class ControladorEmpleador implements ActionListener, WindowListener{
 			SistemaDTO sistemaDTO = Util.sistemaDTOFromSistema(Sistema.getInstance());
 			bin.escribir(sistemaDTO);
 			bin.cerrarOutput();
+			IPersistencia binPuntajes = new PersistenciaBIN();
+			binPuntajes.abrirOutput("Puntajes.bin");
+			PuntajesDTO puntajesDTO = persistencia.Util.puntajesDTOFromPuntajes();
+			binPuntajes.escribir(puntajesDTO);
+			binPuntajes.cerrarOutput();
 		} catch (IOException ex) {
 			ex.printStackTrace();
 		}

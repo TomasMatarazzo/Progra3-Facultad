@@ -1,6 +1,7 @@
 package persistencia;
 
 import modelo.Sistema;
+import modelo.constantes.Puntajes;
 import modelo.excepciones.EstadoException;
 import modelo.listas.Contrato;
 import modelo.listas.Lista;
@@ -61,5 +62,25 @@ public class Util {
         Sistema.getInstance().setListas(listas);
         Sistema.getInstance().setTicketsDeEmpleadores(ticketsDeEmpleadores);
         Sistema.getInstance().setTicketsDeEmpleadosPretensos(ticketsDeEmpleadosPretensos);
+    }
+
+    public static void puntajeFromPuntajeDTO(PuntajesDTO puntajesDTO){
+        Puntajes.setEdad1(puntajesDTO.getEdad1());
+        Puntajes.setEdad2(puntajesDTO.getEdad2());
+        Puntajes.setPuesto1(puntajesDTO.getPuesto1());
+        Puntajes.setPuesto2(puntajesDTO.getPuesto2());
+        Puntajes.setPuesto3(puntajesDTO.getPuesto3());
+    }
+
+    public static PuntajesDTO puntajesDTOFromPuntajes(){
+        PuntajesDTO puntajesDTO=new PuntajesDTO();
+        puntajesDTO.setEdad1(Puntajes.getEdad1());
+        puntajesDTO.setEdad2(Puntajes.getEdad2());
+        puntajesDTO.setPuesto1(Puntajes.getPuesto1());
+        puntajesDTO.setPuesto2(Puntajes.getPuesto2());
+        puntajesDTO.setPuesto3(Puntajes.getPuesto3());
+
+        return puntajesDTO;
+
     }
 }

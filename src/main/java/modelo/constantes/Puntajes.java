@@ -2,7 +2,7 @@ package modelo.constantes;
 
 import java.io.Serializable;
 
-public class Puntajes implements Serializable {
+public class Puntajes {
     public static double[][] RENUMERACION = {{1,-0.5,-1},
                                              {1,1,-0.5},
                                              {1,1,1}};

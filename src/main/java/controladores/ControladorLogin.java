@@ -4,10 +4,7 @@ import modelo.Sistema;
 import modelo.excepciones.ErrorDeContrasenaException;
 import modelo.excepciones.ErrorDeUsuarioException;
 import modelo.usuarios.Usuario;
-import persistencia.IPersistencia;
-import persistencia.PersistenciaBIN;
-import persistencia.SistemaDTO;
-import persistencia.Util;
+import persistencia.*;
 import vista.IVistaLogin;
 import vista.VentanaLogin;
 import javax.swing.*;
@@ -58,6 +55,11 @@ public class ControladorLogin implements ActionListener, WindowListener {
             SistemaDTO sistemaDTO = Util.sistemaDTOFromSistema(Sistema.getInstance());
             bin.escribir(sistemaDTO);
             bin.cerrarOutput();
+            IPersistencia binPuntajes = new PersistenciaBIN();
+            binPuntajes.abrirOutput("Puntajes.bin");
+            PuntajesDTO puntajesDTO = Util.puntajesDTOFromPuntajes();
+            binPuntajes.escribir(puntajesDTO);
+            binPuntajes.cerrarOutput();
         } catch (IOException ex) {
             ex.printStackTrace();
         }

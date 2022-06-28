@@ -4,10 +4,7 @@ import controladores.ControladorLogin;
 import modelo.Sistema;
 import modelo.excepciones.EstadoException;
 import modelo.usuarios.Agencia;
-import persistencia.IPersistencia;
-import persistencia.PersistenciaBIN;
-import persistencia.SistemaDTO;
-import persistencia.Util;
+import persistencia.*;
 import vista.VentanaLogin;
 import javax.swing.*;
 import java.io.IOException;
@@ -20,6 +17,10 @@ public class PruebaPrograma {
             bin.abrirInput("Sistema.bin");
             SistemaDTO sistemaDTO = (SistemaDTO) bin.leer();
             Util.sistemaFromSistemaDTO(sistemaDTO);
+            IPersistencia binPuntajes = new PersistenciaBIN();
+            binPuntajes.abrirInput("Puntajes.bin");
+            PuntajesDTO puntajesDTO = (PuntajesDTO) binPuntajes.leer();
+            Util.puntajeFromPuntajeDTO(puntajesDTO);
         } catch (EstadoException e) {
             e.printStackTrace();
         } catch (IOException e) {

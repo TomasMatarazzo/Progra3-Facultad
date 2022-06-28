@@ -1,12 +1,10 @@
 package controladores;
 
 import modelo.Sistema;
+import modelo.constantes.Puntajes;
 import modelo.excepciones.EstadoException;
 import modelo.usuarios.Agencia;
-import persistencia.IPersistencia;
-import persistencia.PersistenciaBIN;
-import persistencia.SistemaDTO;
-import persistencia.Util;
+import persistencia.*;
 import vista.IVistaAgencia;
 import vista.VentanaAgencia;
 import javax.swing.*;
@@ -131,6 +129,11 @@ public class ControladorAgencia implements ActionListener, WindowListener {
             SistemaDTO sistemaDTO = Util.sistemaDTOFromSistema(Sistema.getInstance());
             bin.escribir(sistemaDTO);
             bin.cerrarOutput();
+            IPersistencia binPuntajes = new PersistenciaBIN();
+            binPuntajes.abrirOutput("Puntajes.bin");
+            PuntajesDTO puntajesDTO = Util.puntajesDTOFromPuntajes();
+            binPuntajes.escribir(puntajesDTO);
+            binPuntajes.cerrarOutput();
         } catch (IOException ex) {
             ex.printStackTrace();
         }
